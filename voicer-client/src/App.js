@@ -7,6 +7,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register';
 import MainApp from './components/MainApp';
 import PrivateRoute from './components/Login/PrivateRoute'
+import PostJob from './components/PostJob';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path="/voicer" component={MainApp} />
+        <Route exact path="/postJob" component={PostJob} />
       </Router>
     );
   }
