@@ -13,6 +13,22 @@ const initialState = {
 export const registerReducer = (state = initialState, action) => {
     switch(action.type) {
         case REGISTER_START:
-            
+            return {
+                ...state,
+                signingUp: true
+            }
+        case REGISTER_SUCCESS:
+            const [id] = action.payload;
+            return {
+                ...state,
+                id: id,
+                signingUp: false
+            }
+        case REGISTER_FAILED:
+            return {
+                ...state,
+                error: action.payload
+            }
+        default: return state; 
     }
 }
