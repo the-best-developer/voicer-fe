@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
-import {Provider} from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

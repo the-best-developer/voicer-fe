@@ -4,13 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
-<<<<<<< HEAD
-    "bootstrap": "^4.3.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0",
-    "reactstrap": "^8.1.1"
-=======
     "jest": "^24.9.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -20,7 +13,6 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
->>>>>>> 9417c10252ef98f0884770d6f707c65b30bdcd2d
   },
   "scripts": {
     "start": "react-scripts start",
