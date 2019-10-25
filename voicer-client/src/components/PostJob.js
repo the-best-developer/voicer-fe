@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
-class PostJob extends Component () {
+class PostJob extends React.Component {
 
     state = {
         title: "",
@@ -15,15 +15,15 @@ class PostJob extends Component () {
     }
 
     handleSubmit = event => {
-        event.preventDefault()
-        
+        event.preventDefault();
+        console.log("Submit!")
     }
 
     render() {
         return(
             <div className="PostJob">
                 <h1>Post a Job</h1>
-                <Form onSubmit={}>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Title</Label>
                         <Input type="text" name="title" placeholder="Enter a Title" onChange={this.handleChange}/>
