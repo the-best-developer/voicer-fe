@@ -4,27 +4,26 @@ import styled from 'styled-components'
 
 // Styling
 const StyledCard = styled(Card)`
-  width: 30%;
-  display: flex;
-  flex-direction: column;
+  width: 90%;
   border: 1px solid red;
   padding: 10px;
   margin: 10px 0;
-  min-height: 200px;
+  min-height: 100px;
 `
 
 const StyledButton = styled(Button)`
-  border: 1px solid red;
-  margin: 5px;
-  margin-left: auto;
+  margin: 0 10px;
 `
 
 const StyledCardBody = styled(CardBody)`
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  height: 100%;
+`
+
+const StyledButtonDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `
 
 // Component
@@ -36,7 +35,10 @@ const JobListCard = props => {
                 <CardTitle>{props.jobData.jobTitle}</CardTitle>
                 <CardSubtitle>{props.jobData.clientId}</CardSubtitle>
                 <CardText>{props.jobData.jobDescription}</CardText>
-                <StyledButton>Click me!</StyledButton>
+                <StyledButtonDiv>
+                    <StyledButton>Click me!</StyledButton>
+                    <StyledButton>Or me!</StyledButton>
+                </StyledButtonDiv>
             </StyledCardBody>
         </StyledCard>
     );

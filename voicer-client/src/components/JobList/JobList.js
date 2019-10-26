@@ -4,8 +4,9 @@ import styled from 'styled-components'
 
 // Styling
 const MainDiv = styled.div`
-  width: 80%;
-  margin: 0 auto;
+  width: 60%;
+  margin: 10px;
+  margin-left: auto;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
