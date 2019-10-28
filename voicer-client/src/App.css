@@ -2,6 +2,23 @@
   text-align: center;
 }
 
+.TalentNavigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 50px;
+}
+
+.TalentNavigationLinks {
+  display: flex;
+  flex-direction: row;
+}
+
+.TalentNavigationLinks a {
+  margin-left: 100px;
+}
+
 .PostJob {
   margin: 50px auto;
   width: 600px;
