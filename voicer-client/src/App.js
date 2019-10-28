@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // import Home from './components/Home';
 import Login from './components/Login/Login';
 import Register from './components/Register';
 // import MainApp from './components/MainApp';
-import PrivateRoute from './components/Login/PrivateRoute';
+// import PrivateRoute from './components/Login/PrivateRoute';
+import PostJob from './components/PostJob';
+import TalentNavigation from './components/TalentNavigation';
 
 class App extends Component {
   render() {
@@ -15,7 +17,9 @@ class App extends Component {
         {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/client/postjob" component={PostJob} />
         {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
+        <Route path="/talent" component={TalentNavigation} />
       </Router>
     );
   }
