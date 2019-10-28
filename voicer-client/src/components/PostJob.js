@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import {postJob} from '../actions';
+import { connect } from 'react-redux';
 
 class PostJob extends React.Component {
     constructor(props) {
@@ -44,8 +45,6 @@ class PostJob extends React.Component {
         )
     }
 }
-
-export default PostJob;
 
 const mapStateToProps = state => ({
 });
