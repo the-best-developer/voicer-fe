@@ -1,11 +1,14 @@
 import React from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import {postJob} from '../actions';
 
 class PostJob extends React.Component {
-
-    state = {
-        title: "",
-        description: "",
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            description: "",
+        }
     }
 
     handleChange = event => {
@@ -16,7 +19,10 @@ class PostJob extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log("Submit!")
+        this.props.postJob({
+            title: this.state.title,
+            description: this.state.description
+        })
     }
 
     render() {
@@ -40,3 +46,11 @@ class PostJob extends React.Component {
 }
 
 export default PostJob;
+
+const mapStateToProps = state => ({
+});
+
+export default connect(
+    mapStateToProps,
+    { postJob }
+)(PostJob);
