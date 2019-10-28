@@ -7,8 +7,9 @@ class PostJob extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            description: "",
+            jobTitle: "",
+            jobDescription: "",
+            clientId: localStorage.getItem("token")
         }
     }
 
@@ -21,8 +22,8 @@ class PostJob extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         this.props.postJob({
-            title: this.state.title,
-            description: this.state.description
+            jobTitle: this.state.jobTitle,
+            jobDescription: this.state.jobDescription
         })
     }
 
