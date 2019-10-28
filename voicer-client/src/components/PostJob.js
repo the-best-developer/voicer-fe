@@ -23,7 +23,8 @@ class PostJob extends React.Component {
         event.preventDefault();
         this.props.postJob({
             jobTitle: this.state.jobTitle,
-            jobDescription: this.state.jobDescription
+            jobDescription: this.state.jobDescription,
+            clientId: this.state.clientId
         })
     }
 
