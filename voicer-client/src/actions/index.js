@@ -15,5 +15,6 @@ export {
 export {
     POST_JOB_START,
     POST_JOB_SUCCESS,
-    POST_JOB_FAILED
+    POST_JOB_FAILED,
+    postJob
 } from './postJob';
