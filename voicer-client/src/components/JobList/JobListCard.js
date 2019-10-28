@@ -16,14 +16,16 @@ const StyledButton = styled(Button)`
 `
 
 const StyledCardBody = styled(CardBody)`
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   padding: 10px;
 `
 
 const StyledButtonDiv = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  border: 1px solid red;
+  padding: 10px;
+  margin-left: auto;
 `
 
 // Component
