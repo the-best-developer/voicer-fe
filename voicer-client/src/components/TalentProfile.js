@@ -5,7 +5,8 @@ class TalentProfile extends React.Component {
   state = {
     gender: '',
     voiceAge: '',
-    languages: ''
+    languages: '',
+    biography: ''
   };
 
   handleChange = event => {
@@ -16,7 +17,7 @@ class TalentProfile extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('Submit!');
+    console.log('Profile Saved');
   };
 
   render() {
@@ -80,7 +81,16 @@ class TalentProfile extends React.Component {
               <option value="chinese">Chinese</option>
             </Input>
           </FormGroup>
-          <Button>Post Job</Button>
+          <FormGroup>
+            <Label for="bioText">Bio (Tell us a bit about yourself)</Label>
+            <Input
+              type="textarea"
+              name="biography"
+              id="bioText"
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <Button>Save Profile</Button>
         </Form>
       </div>
     );
