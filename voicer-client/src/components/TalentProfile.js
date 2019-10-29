@@ -59,6 +59,7 @@ class TalentProfile extends React.Component {
               id="ageSelect"
               onChange={this.handleChange}
             >
+              <option value="">Select One</option>
               <option value="child">Child</option>
               <option value="teen">Teen</option>
               <option value="adult">Adult</option>
