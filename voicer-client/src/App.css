@@ -24,16 +24,21 @@
   width: 600px;
 }
 
+.TalentProfile {
+  margin: 50px auto;
+  width: 600px;
+}
+
 .PostJob h1 {
   text-align: center;
 }
 
-.PostJob Form {
+.PostJob form {
   display: flex;
   flex-direction: column;
   align-content: center;
 }
 
-.PostJob Button {
+.PostJob button {
   margin-top: 20px;
 }
