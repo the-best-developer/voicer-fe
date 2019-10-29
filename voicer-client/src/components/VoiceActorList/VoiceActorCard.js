@@ -4,8 +4,9 @@ import styled from 'styled-components'
 
 // Styling
 const StyledCard = styled(Card)`
-  width: 31%;
+  width: 90%;
   border: 1px solid red;
+  padding: 10px;
   margin: 10px 0;
   min-height: 100px;
 `
@@ -15,6 +16,7 @@ const StyledButton = styled(Button)`
 `
 
 const StyledCardBody = styled(CardBody)`
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   padding: 10px;

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 // Styling
 const MainDiv = styled.div`
-  width: 75%;
+  width: 60%;
   margin: 10px;
   margin-left: auto;
   display: flex;
