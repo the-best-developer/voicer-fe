@@ -4,7 +4,8 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 class TalentProfile extends React.Component {
   state = {
     gender: '',
-    voiceAge: ''
+    voiceAge: '',
+    languages: ''
   };
 
   handleChange = event => {
@@ -50,7 +51,7 @@ class TalentProfile extends React.Component {
           </FormGroup>{' '}
           <FormGroup>
             <legend>Voice Age</legend>
-            {/* <Label for="voiceAge"></Label> */}
+            {/* <Label for="voiceAge">Voice Age</Label> */}
             <Input
               type="select"
               name="voiceAge"
@@ -61,6 +62,22 @@ class TalentProfile extends React.Component {
               <option value="teen">Teen</option>
               <option value="adult">Adult</option>
               <option value="senior">Senior</option>
+            </Input>
+          </FormGroup>
+          <FormGroup>
+            <Label for="languageSelect">Select Languages</Label>
+            <Input
+              type="select"
+              name="languages"
+              id="languageSelect"
+              onChange={this.handleChange}
+              multiple
+            >
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+              <option value="german">German</option>
+              <option value="japanese">Japanese</option>
+              <option value="chinese">Chinese</option>
             </Input>
           </FormGroup>
           <Button>Post Job</Button>
