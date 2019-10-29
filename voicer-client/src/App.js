@@ -9,6 +9,7 @@ import Register from './components/Register';
 // import PrivateRoute from './components/Login/PrivateRoute';
 import PostJob from './components/PostJob';
 import TalentNavigation from './components/TalentNavigation';
+import TalentHomePage from './components/TalentHomePage';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
         <Route exact path="/client/postjob" component={PostJob} />
         {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
         <Route path="/talent" component={TalentNavigation} />
+        <Route exact path="/talent" component={TalentHomePage} />
       </Router>
     );
   }
