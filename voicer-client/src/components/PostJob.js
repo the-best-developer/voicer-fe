@@ -24,7 +24,7 @@ class PostJob extends React.Component {
     handleSubmit = async event => {
         event.preventDefault()
 
-        const client = await axios.get(`http://localhost:4000/api/clients/${this.state.userId}`)
+        const client = await axios.get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
 
         this.props.postJob({
             jobTitle: this.state.jobTitle,

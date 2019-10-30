@@ -7,7 +7,7 @@ export const LOGIN_FAILED = 'LOGIN-FAILED';
 export const login = creds => dispatch => {
     dispatch({ type: LOGIN_START });
     return axios
-        .post('http://localhost:4000/api/login', creds)
+        .post('https://voicer-lambda-app-staging.herokuapp.com/api/login', creds)
         .then(res => {
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', res.data.userId);
