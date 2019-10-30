@@ -2,6 +2,8 @@ import React from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import {postJob} from '../actions';
 import { connect } from 'react-redux';
+import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
 class PostJob extends React.Component {
     constructor(props) {
@@ -9,7 +11,7 @@ class PostJob extends React.Component {
         this.state = {
             jobTitle: "",
             jobDescription: "",
-            clientId: localStorage.getItem("token")
+            userId: jwt.decode(localStorage.getItem("token")).userId
         }
     }
 
@@ -19,12 +21,15 @@ class PostJob extends React.Component {
         })
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
+    handleSubmit = async event => {
+        event.preventDefault()
+
+        const client = await axios.get(`http://localhost:4000/api/clients/${this.state.userId}`)
+
         this.props.postJob({
             jobTitle: this.state.jobTitle,
             jobDescription: this.state.jobDescription,
-            clientId: this.state.clientId
+            clientId: client.data[0].clientId
         })
     }
 
@@ -35,11 +40,11 @@ class PostJob extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Title</Label>
-                        <Input type="text" name="title" placeholder="Enter a Title" onChange={this.handleChange}/>
+                        <Input type="text" name="jobTitle" placeholder="Enter a Title" onChange={this.handleChange}/>
                     </FormGroup>
                     <FormGroup>
                         <Label>Description</Label>
-                        <Input type="textarea" name="description" placeholder="Describe the Job" onChange={this.handleChange}/>
+                        <Input type="textarea" name="jobDescription" placeholder="Describe the Job" onChange={this.handleChange}/>
                     </FormGroup>
                     <Button>Post Job</Button>
                 </Form>
