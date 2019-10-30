@@ -55,9 +55,12 @@ const sampleData = [
 
 // Component
 class JobList extends Component {
-    state = {
-        jobData: sampleData
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            jobData: this.props.jobs
+        }
+    }
 
     render() {
         return (

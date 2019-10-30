@@ -17,7 +17,7 @@ class TalentHomePage extends React.Component {
 
     render() {
         return(
-            <JobList />
+            <JobList jobs={this.state.jobList}/>
         )
     }
     
