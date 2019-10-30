@@ -9,21 +9,22 @@ import Register from './components/Register';
 // import PrivateRoute from './components/Login/PrivateRoute';
 import PostJob from './components/PostJob';
 import TalentNavigation from './components/TalentNavigation';
-import Home from './components/Home';
+import ClientProfile from './components/ClientProfile';
 
 class App extends Component {
-    render() {
-        return (
-            <Router>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/client/postjob" component={PostJob} />
-            {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
-            <Route path="/talent" component={TalentNavigation} />
-            </Router>
-        );
-    }
+  render() {
+    return (
+      <Router>
+        {/* <Route exact path="/" component={Home} /> */}
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/client/postjob" component={PostJob} />
+        <Route exact path="/client/profile" component={ClientProfile} />
+        {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
+        <Route path="/talent" component={TalentNavigation} />
+      </Router>
+    );
+  }
 }
 
 export default App;
