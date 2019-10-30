@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { login } from '../../actions';
+import { Form, Input, Button, Label } from 'reactstrap';
+import { login } from '../../actions/login';
+import './Login.css';
 
 class Login extends Component {
     state = {
@@ -24,7 +26,7 @@ class Login extends Component {
     
         const { email, password } = this.state.creds
     
-        this.PaymentResponse.login({
+        this.props.login({
             email: email,
             password: password
         })
@@ -37,38 +39,38 @@ class Login extends Component {
 
         return (
             <div className="loginPage">
-                <div className="loginImg">
-                    <form className="loginForm" onSubmit={this.submitHandler}>
-                        <input
-                            className="input"
-                            type="email"
-                            value={email}
-                            placeholder="Email"
-                            name="email"
-                            onChange={this.changeHandler}
-                        />
-                        <input
-                            className="input"
-                            type="text"
-                            value={password}
-                            placeholder="Password"
-                            name="password"
-                            onChange={this.changeHandler}
-                        />
-                        <button className="loginButton" type="submit">Log In</button>
-                    </form>
-                </div>
+                <Form className="loginForm" onSubmit={this.submitHandler}>
+                    <Label for="username">Username</Label>
+                    <Input
+                        className="input"
+                        type="text"
+                        value={email}
+                        placeholder="Username"
+                        name="username"
+                        onChange={this.changeHandler}
+                    />
+                    <Label for="email">Password</Label>
+                    <Input
+                        className="input"
+                        type="text"
+                        value={password}
+                        placeholder="Password"
+                        name="password"
+                        onChange={this.changeHandler}
+                    />
+                    <Button className="loginButton" type="submit">Log In</Button>
+                </Form>
             </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    // loggingIn: state.loginReducer.logginIn,
-    // id: state.loginReducer.id
+    loggingIn: state.loginReducer.logginIn,
+    id: state.loginReducer.id
 })
 
 export default connect(
     mapStateToProps,
-    { }
+    { login }
 )(Login)

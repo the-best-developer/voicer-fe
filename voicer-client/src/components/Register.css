@@ -1,0 +1,35 @@
+.registerPage {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.registerForm {
+    width: 50%;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: space-around;
+}
+
+.dropdown-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.input {
+    margin: 0 0 20px 0;
+}
+
+.registerButton {
+    margin-top: 10px;
+    margin-left: 90%;
+}
+
+
+
+/* .registerForm input {
+    width: 100%;
+} */

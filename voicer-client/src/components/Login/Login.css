@@ -1,0 +1,14 @@
+.loginPage {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.loginForm {
+    width: 50%;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: space-around;
+}

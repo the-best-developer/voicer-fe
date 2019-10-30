@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { getClientProfile } from '../actions';
 import { Container, Row, Col, Card, CardBody, CardTitle, CardText, FormGroup, Label, Input } from 'reactstrap';
 
 const ClientProfile = (props) => {
+    useEffect(() => {
+        props.getClientProfile();
+    }, []);
+    
     return (
         <Container>
             <Row>
@@ -12,12 +17,12 @@ const ClientProfile = (props) => {
                             <CardTitle><h1>Profile</h1></CardTitle>
                         </CardBody>
                         <CardBody>
-                            <CardText>{props.user.email}</CardText>
+                            <CardText>{props.clientProfile.email}</CardText>
                         </CardBody>
                         <CardBody>
                             <FormGroup>
                                 <Label for="username">Username</Label>
-                                <Input disabled id="username" value={props.user.username || ''} />
+                                <Input disabled id="username" value={props.clientProfile.username || ''} />
                             </FormGroup>
                         </CardBody>
                     </Card>
@@ -29,11 +34,10 @@ const ClientProfile = (props) => {
 
 const mapStateToProps = state => {
     return {
-        user: {
-            username: 'default',
-            email: 'ex@am.ple'
-        }
+        clientProfile: state.clientProfileReducer.clientProfile,
+        gettingClientProfile: state.clientProfileReducer.gettingClientProfile,
+        error: state.clientProfileReducer.error
     };
 }
 
-export default connect(mapStateToProps)(ClientProfile);
+export default connect(mapStateToProps, { getClientProfile })(ClientProfile);

@@ -11,3 +11,10 @@ export {
     LOGIN_FAILED,
     login
 } from './login';
+
+export {
+    GET_CLIENT_PROFILE_START,
+    GET_CLIENT_PROFILE_SUCCESS,
+    GET_CLIENT_PROFILE_FAILURE,
+    getClientProfile
+} from './getClientProfile'
