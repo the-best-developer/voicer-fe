@@ -1,11 +1,33 @@
 import React from 'react';
+import JobList from './JobList/JobList';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-const TalentHomePage = () => {
-    return(
-        <div>
+class TalentHomePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            jobList: []
+        }
+    }
 
-        </div>
-    )
+    componentDidMount() {
+        this.props.getJobs()
+    }
+
+    render() {
+        return(
+            <JobList />
+        )
+    }
+    
 }
 
-export default TalentHomePage;
+const mapStateToProps = state => ({
+
+})
+
+export default connect(
+    mapStateToProps,
+    { getJobs }
+)(TalentHomePage);
