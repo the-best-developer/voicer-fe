@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../actions/register';
 import { login } from '../actions/login';
+import NavBar from './Home/NavBar';
 import { Form, Label, Input, Button, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
 import './Register.css';
 
@@ -12,6 +13,7 @@ class Register extends Component {
             lastName: '',
             email: '',
             password: '',
+            username: '',
             userType: ''
         },
         toggleDrop: false
@@ -34,6 +36,7 @@ class Register extends Component {
             lastName,
             email,
             password,
+            username,
             userType
         } = this.state.creds;
         userType = userType.toLowerCase();
@@ -43,10 +46,11 @@ class Register extends Component {
             lastName,
             email,
             password,
+            username,
             userType
         })
         .then(() => {
-            const creds = { email, password };
+            const creds = { username, password };
             this.props.login(creds)
             .then(() => localStorage.setItem('user', this.props.id))
             .then(() => this.props.history.push('/voicer'))
@@ -58,44 +62,49 @@ class Register extends Component {
     render() {
         return (
             <div className="registerPage">
+                <NavBar />
                 <Form className="registerForm" onSubmit={this.submitHandler}>
-                    <Label for="firstName">First name</Label>
+                    <Label className="input-label" for="firstName">First name</Label>
                     <Input
                         className="input"
                         type="text"
                         name="firstName"
                         value={this.state.creds.firstName}
-                        placeholder="First Name"
                         onChange={this.changeHandler}
                     />
-                    <Label for="lastName">Last name</Label>
+                    <Label className="input-label" for="lastName">Last name</Label>
                     <Input
                         className="input"
                         type="text"
                         name="lastName"
                         value={this.state.creds.lastName}
-                        placeholder="Last Name"
                         onChange={this.changeHandler}
                     />
-                    <Label for="email">Email</Label>
+                    <Label className="input-label" for="username">Username</Label>
+                    <Input
+                        className="input"
+                        type="text"
+                        name="username"
+                        value={this.state.creds.username}
+                        onChange={this.changeHandler}
+                    />
+                    <Label className="input-label" for="email">Email</Label>
                     <Input
                         className="input"
                         type="email"
                         name="email"
                         value={this.state.creds.email}
-                        placeholder="Email"
                         onChange={this.changeHandler}
                     />
-                    <Label for="password">Password</Label>
+                    <Label className="input-label" for="password">Password</Label>
                     <Input
                         className="input"
                         type="password"
                         name="password"
                         value={this.state.creds.password}
-                        placeholder="Password"
                         onChange={this.changeHandler}
                     />
-                    <Label for="userType">User type</Label>
+                    <Label className="input-label" for="userType">User type</Label>
                     <div className="dropdown-div">
                         <Dropdown
                             isOpen={this.state.toggleDrop}

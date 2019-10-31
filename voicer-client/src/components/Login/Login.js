@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button, Label } from 'reactstrap';
 import { login } from '../../actions/login';
+import NavBar from '../Home/NavBar';
 import './Login.css';
 
 class Login extends Component {
@@ -39,22 +40,21 @@ class Login extends Component {
 
         return (
             <div className="loginPage">
+                <NavBar className="navbar"/>
                 <Form className="loginForm" onSubmit={this.submitHandler}>
-                    <Label for="username">Username</Label>
+                    <Label className="input-label" for="username">Username</Label>
                     <Input
                         className="input"
                         type="text"
                         value={email}
-                        placeholder="Username"
                         name="username"
                         onChange={this.changeHandler}
                     />
-                    <Label for="email">Password</Label>
+                    <Label className="input-label" for="password">Password</Label>
                     <Input
                         className="input"
                         type="text"
                         value={password}
-                        placeholder="Password"
                         name="password"
                         onChange={this.changeHandler}
                     />

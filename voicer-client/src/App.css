@@ -38,16 +38,6 @@
   margin-top: 20px;
 }
 
-
-.choice {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    width: 60%;
-    border: 1px solid gray;
-    padding: 2rem;
-}
-
 .welcome-title {
     text-align: center;
     margin: 2rem auto;

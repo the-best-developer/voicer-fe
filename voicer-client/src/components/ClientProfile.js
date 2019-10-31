@@ -17,12 +17,12 @@ const ClientProfile = (props) => {
                             <CardTitle><h1>Profile</h1></CardTitle>
                         </CardBody>
                         <CardBody>
-                            <CardText>{props.clientProfile.email}</CardText>
+                            <CardText>{props.clientProfile ? props.clientProfile.email : 'You are not signed in.'}</CardText>
                         </CardBody>
                         <CardBody>
                             <FormGroup>
                                 <Label for="username">Username</Label>
-                                <Input disabled id="username" value={props.clientProfile.username || ''} />
+                                <Input disabled id="username" value={props.clientProfile ? props.clientProfile.username : 'You are not signed in.'} />
                             </FormGroup>
                         </CardBody>
                     </Card>
