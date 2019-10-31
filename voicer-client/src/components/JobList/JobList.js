@@ -18,15 +18,12 @@ const MainDiv = styled.div`
 class JobList extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            jobData: this.props.jobs
-        }
     }
 
     render() {
         return (
             <MainDiv>
-                {this.state.jobData.map(job => <JobListCard jobData={job}/>)}
+                {this.props.jobs.map(job => <JobListCard key={job.jobId} jobData={job}/>)}
             </MainDiv>
         );
     };
