@@ -1,7 +1,7 @@
 import React from 'react';
 import JobList from './JobList/JobList';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { getJobs } from '../actions'
 
 class TalentHomePage extends React.Component {
     constructor(props) {
