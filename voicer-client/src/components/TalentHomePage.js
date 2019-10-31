@@ -10,7 +10,6 @@ class TalentHomePage extends React.Component {
 
     async componentDidMount() {
         await this.props.getJobs()
-        console.log(this.props.jobs)
     }
 
     render() {
