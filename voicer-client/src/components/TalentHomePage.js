@@ -1,5 +1,6 @@
 import React from 'react';
 import JobList from './JobList/JobList';
+
 import { connect } from 'react-redux';
 import { getJobs } from '../actions'
 
@@ -17,7 +18,6 @@ class TalentHomePage extends React.Component {
             <JobList jobs={this.props.jobs}/>
         )
     }
-    
 }
 
 const mapStateToProps = state => ({
