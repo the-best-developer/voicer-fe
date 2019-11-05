@@ -8,7 +8,7 @@ import './Login.css';
 class Login extends Component {
     state = {
         creds: {
-            email: '',
+            username: '',
             password: ''
         }
     }
@@ -25,10 +25,10 @@ class Login extends Component {
     submitHandler = e => {
         e.preventDefault();
     
-        const { email, password } = this.state.creds
+        const { username, password } = this.state.creds
     
         this.props.login({
-            email: email,
+            username: username,
             password: password
         })
         .then(() => this.props.history.push('/voicer'))
@@ -46,14 +46,14 @@ class Login extends Component {
                     <Input
                         className="input"
                         type="text"
-                        value={email}
+                        value={username}
                         name="username"
                         onChange={this.changeHandler}
                     />
                     <Label className="input-label" for="password">Password</Label>
                     <Input
                         className="input"
-                        type="text"
+                        type="password"
                         value={password}
                         name="password"
                         onChange={this.changeHandler}
