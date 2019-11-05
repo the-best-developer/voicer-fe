@@ -9,10 +9,9 @@ export const register = creds => dispatch => {
     return axios
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/auth/register', creds) // CHANGE URL
         .then(res => {
-            localStorage.setItem('token', res.data.token)
             dispatch({
                 type: REGISTER_SUCCESS,
-                payload: res.data
+                payload: 'SUCCEED'
             })
         })
         .catch(err => {

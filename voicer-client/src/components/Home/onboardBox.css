@@ -1,0 +1,35 @@
+.onboardBox {
+    width: 80%;
+    margin-top: 20px;
+}
+
+.jumbotron {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.choice {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.buttons {
+    width: 150px;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #FF934F;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.buttons:hover {
+    text-decoration: none;
+    color: #FF934F;
+    background-color: white;
+    transition: 0.75s;
+    transform: scale(1.1);
+}
