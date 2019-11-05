@@ -10,12 +10,10 @@ export const getClientProfile = () => dispatch => {
     return axios.get(`http://voicer-lambda-app-staging.herokuapp.com/api/clients/${userId}`).then(res => {
         dispatch({
             type: GET_CLIENT_PROFILE_SUCCESS,
-            payload: res.data
         });
     }).catch(err => {
         dispatch({
             type: GET_CLIENT_PROFILE_FAILURE,
-            payload: 'FAILED'
         });
     });
 }
