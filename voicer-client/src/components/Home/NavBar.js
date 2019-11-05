@@ -12,37 +12,48 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
-const NavBar = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+class NavBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false
+        }
+    }
 
-  const toggle = () => setIsOpen(!isOpen);
+    toggle = e => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
 
-  return (
-    <div style={{width: '100%', backgroundColor: '#9FA4C4'}}>
-      <Navbar light expand="md">
-        <NavbarBrand href="/">Voicer</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Onboard
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                    <NavLink href="/login">Login</NavLink>
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                    <NavLink href="/register">Register</NavLink>
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
-  );
+    render() {
+        return (
+            <div style={{width: '100%', backgroundColor: '#9FA4C4'}}>
+              <Navbar light expand="md">
+                <NavbarBrand href="/">Voicer</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                  <Nav className="ml-auto" navbar>
+                    <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle nav caret>
+                        Onboard
+                      </DropdownToggle>
+                      <DropdownMenu right>
+                        <DropdownItem>
+                            <NavLink href="/login">Login</NavLink>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                            <NavLink href="/register">Register</NavLink>
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </Nav>
+                </Collapse>
+              </Navbar>
+            </div>
+        );
+    }
 }
 
 export default NavBar;

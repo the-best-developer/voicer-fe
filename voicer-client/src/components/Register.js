@@ -40,7 +40,6 @@ class Register extends Component {
             userType
         } = this.state.creds;
         userType = userType.toLowerCase();
-        console.log(userType)
         this.props.register({
             firstName,
             lastName,
@@ -52,7 +51,7 @@ class Register extends Component {
         .then(() => {
             const creds = { username, password };
             this.props.login(creds)
-            .then(() => localStorage.setItem('user', this.props.id))
+            .then(() => localStorage.setItem('userId', this.props.id))
             .then(() => this.props.history.push('/voicer'))
             .catch(err => console.log(err))
         })
@@ -129,7 +128,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-    // id: state.registerReducer.id
+    id: state.registerReducer.id
 });
 
 export default connect(
