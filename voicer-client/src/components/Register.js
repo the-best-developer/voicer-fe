@@ -52,7 +52,7 @@ class Register extends Component {
             const creds = { username, password };
             this.props.login(creds)
             .then(() => localStorage.setItem('userId', this.props.id))
-            .then(() => this.props.history.push('/voicer'))
+            .then(() => userType === "client" ? this.props.history.push('/client') : this.props.history.push('/talent'))
             .catch(err => console.log(err))
         })
     }
