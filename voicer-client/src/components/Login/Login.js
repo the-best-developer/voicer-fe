@@ -33,7 +33,7 @@ class Login extends Component {
             password: password
         })
         .then(() => {
-            const decodedToken = jwt.decode(localStorage.getItem('token'))
+            const decodedToken = jwt.verify(localStorage.getItem('token'), process.env.REACT_APP_SECRET)
             return decodedToken.userType === "client" ?
                 this.props.history.push('/client') :
                 this.props.history.push('/talent')

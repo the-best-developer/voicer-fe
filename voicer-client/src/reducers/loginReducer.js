@@ -22,7 +22,7 @@ export const loginReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                id: jwt.decode(localStorage.getItem('token')).userId,
+                id: jwt.verify(localStorage.getItem('token'), process.env.REACT_APP_SECRET).userId,
                 loggingIn: false
             }
         case LOGIN_FAILED:
