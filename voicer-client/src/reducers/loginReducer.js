@@ -7,6 +7,7 @@ import {
 const initialState = {
     loggingIn: false,
     id: null,
+    userType: null,
     error: null
 }
 
@@ -21,6 +22,7 @@ export const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 id: action.payload.userId,
+                userType: action.payload.userType,
                 loggingIn: false
             }
         case LOGIN_FAILED:

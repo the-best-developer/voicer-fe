@@ -2,6 +2,11 @@ export {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILED,
+    CREATE_PROFILE_START,
+    CREATE_PROFILE_SUCCESS,
+    CREATE_PROFILE_FAILURE,
+    createClientProfile,
+    createTalentProfile,
     register
 } from './register';
 
