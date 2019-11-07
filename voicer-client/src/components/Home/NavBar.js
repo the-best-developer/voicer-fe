@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import logo from '../../images/logo-white.svg';
+
 import {
   Collapse,
   Navbar,
@@ -35,7 +37,7 @@ class NavBar extends React.Component {
 
           <nav className="navbar-main">
             <Link to="/">
-              <img className="logo" src="/images/logo-white.svg" alt="voicer" />
+              <img className="logo" src={logo} alt="voicer" />
             </Link>
           </nav>
 
