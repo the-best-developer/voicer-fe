@@ -56,3 +56,4 @@ export const createTalentProfile = creds => dispatch => {
         .then((res) => dispatch({type: CREATE_PROFILE_SUCCESS}))
         .catch((err) => { console.log(err); return dispatch({type: CREATE_PROFILE_FAILURE})})
 }
+
