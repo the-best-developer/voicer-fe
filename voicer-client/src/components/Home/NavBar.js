@@ -29,6 +29,12 @@ class NavBar extends React.Component {
     render() {
         return (
             <div style={{width: '100%', backgroundColor: '#9FA4C4'}}>
+
+
+          <div className="testing">
+            This is for testing
+          </div>
+
               <Navbar light expand="md">
                 <NavbarBrand href="/">Voicer</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
