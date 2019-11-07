@@ -31,9 +31,9 @@ class NavBar extends React.Component {
             <div style={{width: '100%', backgroundColor: '#9FA4C4'}}>
 
 
-          <div className="testing">
+          <nav className="navbar">
             This is for testing
-          </div>
+          </nav>
 
               <Navbar light expand="md">
                 <NavbarBrand href="/">Voicer</NavbarBrand>
