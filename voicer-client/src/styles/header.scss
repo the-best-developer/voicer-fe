@@ -4,6 +4,23 @@
   background-color: $blue-dark;
   color: white;
   padding: 10px 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-main-links {
+  border: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 400;
+  }
 }
 
 .logo {

@@ -39,7 +39,16 @@ class NavBar extends React.Component {
             <Link to="/">
               <img className="logo" src={logo} alt="voicer" />
             </Link>
+
+          <div className="navbar-main-links">
+            <NavLink href="/register">Register</NavLink>
+            <NavLink href="/login">Login</NavLink>
+          </div>
+
           </nav>
+
+
+
 
               <Navbar light expand="md">
                 <NavbarBrand href="/">Voicer</NavbarBrand>
