@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import {
   Collapse,
   Navbar,
@@ -31,8 +33,10 @@ class NavBar extends React.Component {
             <div style={{width: '100%', backgroundColor: '#9FA4C4'}}>
 
 
-          <nav className="navbar">
-            This is for testing
+          <nav className="navbar-main">
+            <Link to="/">
+              <img className="logo" src="/images/logo-white.svg" alt="voicer" />
+            </Link>
           </nav>
 
               <Navbar light expand="md">
