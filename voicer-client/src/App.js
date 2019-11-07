@@ -10,6 +10,7 @@ import TalentNavigation from './components/TalentNavigation';
 import ClientProfile from './components/ClientProfile';
 import Home from './components/Home/Home';
 import TalentHomePage from './components/TalentHomePage';
+import ApplyToJob from './components/ApplyToJob';
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
         {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
         <Route path="/talent" component={TalentNavigation} />
         <Route exact path="/talent" component={TalentHomePage} />
+        <Route exact path="/talent/apply" component={ApplyToJob} />
       </Router>
     );
   }
