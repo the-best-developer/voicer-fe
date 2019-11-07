@@ -10,7 +10,6 @@ export const login = creds => dispatch => {
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/auth/login', creds)
         .then(res => {
             localStorage.setItem('token', res.data.token);
-            localStorage.setItem('user', res.data.userId);
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data

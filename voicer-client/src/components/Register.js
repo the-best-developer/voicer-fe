@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { register } from '../actions/register';
+import { register, createClientProfile, createTalentProfile } from '../actions/register';
 import { login } from '../actions/login';
 import NavBar from './Home/NavBar';
 import { Form, Label, Input, Button, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
@@ -51,8 +51,12 @@ class Register extends Component {
         .then(() => {
             const creds = { username, password };
             this.props.login(creds)
-            .then(() => localStorage.setItem('userId', this.props.id))
-            .then(() => this.props.history.push('/voicer'))
+            .then(() => {
+                return userType === "client" ?
+                this.props.createClientProfile({userId: this.props.id, companyName: username}) :
+                this.props.createTalentProfile({userId: this.props.id, language: 'English'})
+            })
+            .then(() => userType === "client" ? this.props.history.push('/client') : this.props.history.push('/talent'))
             .catch(err => console.log(err))
         })
     }
@@ -128,10 +132,10 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-    id: state.registerReducer.id
+    id: state.loginReducer.id
 });
 
 export default connect(
     mapStateToProps,
-    { register, login }
+    { register, login, createClientProfile, createTalentProfile }
 )(Register);

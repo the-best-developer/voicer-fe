@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 function TalentNavigation () {
     return(
         <div className='TalentNavigation'>
-            <div className='TalentNavigationLogo'>
-                <h1 className='logo'>Voicer</h1>
-            </div>
+            <Link to='/'>
+                <div className='TalentNavigationLogo'>
+                    <h1 className='logo'>Voicer</h1>
+                </div>
+            </Link>
+            
             <div className='TalentNavigationLinks'>
                 <Link to='/talent'>Browse Jobs</Link>
                 <Link to='/talent/applications'>My Applications</Link>
