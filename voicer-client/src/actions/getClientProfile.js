@@ -5,9 +5,8 @@ export const GET_CLIENT_PROFILE_START = 'GET_CLIENT_PROFILE_START';
 export const GET_CLIENT_PROFILE_SUCCESS = 'GET_CLIENT_PROFILE_SUCCESS';
 export const GET_CLIENT_PROFILE_FAILURE = 'GET_CLIENT_PROFILE_FAILURE';
 
-export const getClientProfile = () => dispatch => {
+export const getClientProfile = (userId) => dispatch => {
     dispatch({ type: GET_CLIENT_PROFILE_START });
-    let userId = jwt.verify(localStorage.getItem('token'), process.env.REACT_APP_SECRET)['userId'];
     return axios.get(`http://voicer-lambda-app-staging.herokuapp.com/api/clients/${userId}`).then(res => {
         dispatch({
             type: GET_CLIENT_PROFILE_SUCCESS,

@@ -33,8 +33,7 @@ class Login extends Component {
             password: password
         })
         .then(() => {
-            const decodedToken = jwt.verify(localStorage.getItem('token'), process.env.REACT_APP_SECRET)
-            return decodedToken.userType === "client" ?
+            return this.props.userType === "client" ?
                 this.props.history.push('/client') :
                 this.props.history.push('/talent')
             }
@@ -74,7 +73,8 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
     loggingIn: state.loginReducer.logginIn,
-    id: state.loginReducer.id
+    id: state.loginReducer.id,
+    userType: state.loginReducer.userType
 })
 
 export default connect(

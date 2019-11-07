@@ -4,11 +4,10 @@ import {
     LOGIN_FAILED
 } from '../actions';
 
-import jwt from 'jsonwebtoken';
-
 const initialState = {
     loggingIn: false,
     id: null,
+    userType: null,
     error: null
 }
 
@@ -22,7 +21,8 @@ export const loginReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                id: jwt.verify(localStorage.getItem('token'), process.env.REACT_APP_SECRET).userId,
+                id: action.payload.userId,
+                userType: action.payload.userType,
                 loggingIn: false
             }
         case LOGIN_FAILED:
