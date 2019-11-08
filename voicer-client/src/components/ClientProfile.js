@@ -5,7 +5,7 @@ import { Container, Row, Col, Card, CardBody, CardTitle, CardText, FormGroup, La
 
 class ClientProfile extends React.Component {
     constructor(props) {
-        super();
+        super(props);
     }
 
     componentDidMount() {
@@ -28,6 +28,12 @@ class ClientProfile extends React.Component {
                                 <FormGroup>
                                     <Label for="username">Username</Label>
                                     <Input disabled id="username" value={this.props.clientProfile ? this.props.clientProfile.username : 'You are not signed in.'} />
+                                    <Label for="first_name">First Name</Label>
+                                    <Input disabled id="first_name" value={this.props.clientProfile ? this.props.clientProfile.firstName : 'You are not signed in.'} />
+                                    <Label for="last_name">Last Name</Label>
+                                    <Input disabled id="last_name" value={this.props.clientProfile ? this.props.clientProfile.lastName : 'You are not signed in.'} />
+                                    <Label for="company_name">Company Name</Label>
+                                    <Input disabled id="company_name" value={this.props.clientProfile ? this.props.clientProfile.companyName : 'You are not signed in.'} />
                                 </FormGroup>
                             </CardBody>
                         </Card>
