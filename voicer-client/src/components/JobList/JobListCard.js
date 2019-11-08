@@ -38,8 +38,11 @@ const JobListCard = props => {
                 <CardSubtitle>{props.jobData.clientId}</CardSubtitle>
                 <CardText>{props.jobData.jobDescription}</CardText>
                 <StyledButtonDiv>
-                    <StyledButton>Click me!</StyledButton>
-                    <StyledButton>Or me!</StyledButton>
+                    <StyledButton>Save Job</StyledButton>
+                    <StyledButton onClick={() => {
+                      props.openModal(props.jobData);
+                      props.toggle();
+                    }}>Apply</StyledButton>
                 </StyledButtonDiv>
             </StyledCardBody>
         </StyledCard>

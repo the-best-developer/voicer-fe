@@ -4,9 +4,6 @@ import {Form, FormGroup, Label, Input, Button, Modal, ModalHeader} from 'reactst
 class ApplyToJob extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            isOpen: false,
-        }
     }
 
     onChange = () => {
@@ -17,20 +14,19 @@ class ApplyToJob extends React.Component {
 
     }
 
-    toggle = () => this.setState({isOpen: !this.state.isOpen})
-
     render() {
         return(
             <Modal
-                isOpen={this.state.isOpen}
-                toggle={toggle}
+                isOpen={this.props.isOpen}
+                toggle={this.props.toggle}
                 centered={true}
             >
-                <ModalHeader>{this.props.jobTitle}</ModalHeader>
+                <p>You are Applying to:</p>
+                <ModalHeader>{this.props.job.jobTitle}</ModalHeader>
                 <Form className="ApplyToJob">
                     <FormGroup>
-                        <Label></Label>
-                        <Input></Input>
+                        <Label>Write a Message to the Client</Label>
+                        <Input type="textarea"></Input>
                     </FormGroup>
                 </Form>
             </Modal>
