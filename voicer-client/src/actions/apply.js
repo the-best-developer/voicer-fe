@@ -21,4 +21,4 @@ export const apply = (jobId) => dispatch => {
                 payload: err
             })
         })
-};
+}

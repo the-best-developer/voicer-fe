@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form, FormGroup, Label, Input, Button, Modal, ModalHeader} from 'reactstrap';
 import styled from 'styled-components';
+import apply from '../actions/apply';
 
 //Styling
 const StyledModal = styled(Modal)`
@@ -40,8 +41,8 @@ class ApplyToJob extends React.Component {
 
     }
 
-    onSubmit = () => {
-
+    onClick = () => {
+        apply(this.props.job.jobId)
     }
 
     render() {
@@ -59,11 +60,15 @@ class ApplyToJob extends React.Component {
                         <Label>Leave the Client a Message</Label>
                         <Input type="textarea"></Input>
                     </StyledFormGroup>
-                    <StyledButton>Apply</StyledButton>
+                    <StyledButton onClick={this.onClick}>Apply</StyledButton>
                 </StyledForm>
             </StyledModal>
         )
     }
 }
 
-export default ApplyToJob
+const mapStateToProps = state => ({
+
+})
+
+export default connect(mapStateToProps, { apply })(ApplyToJob)
