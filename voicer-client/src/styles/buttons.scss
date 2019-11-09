@@ -1,0 +1,22 @@
+@import 'colors';
+
+.btn-register, .btn-login {
+  color: white;
+  border: 1px solid white !important;
+  border-radius: 10px;
+  width: 200px;
+}
+
+.btn-register {
+  background-color: $orange !important;
+  &:hover {
+    background-color: darken($orange, 10%) !important;
+  }
+}
+
+.btn-login {
+  background-color: $blue-medium !important;
+  &:hover {
+    background-color: darken($blue-medium, 10%) !important;
+  }
+}
