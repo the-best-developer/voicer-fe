@@ -5,6 +5,7 @@
   border: 1px solid white !important;
   border-radius: 10px;
   width: 200px;
+  text-transform: uppercase !important;
 }
 
 .btn-register {
@@ -18,5 +19,15 @@
   background-color: $blue-medium !important;
   &:hover {
     background-color: darken($blue-medium, 10%) !important;
+  }
+}
+
+.btn-orange {
+  text-transform: uppercase !important;
+  background-color: $orange !important;
+  border: none !important;
+
+  &:hover {
+    background-color: darken($orange, 10%) !important;
   }
 }
