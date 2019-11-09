@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Jumbotron } from 'reactstrap'
-import './onboardBox.css'
+// import './onboardBox.css'
 
 const OnboardBox = () => {
     return (
-        <div className="onboardBox">
-            <Jumbotron className="jumbotron">
+        <div className="hero-box">
+            <Jumbotron className="hero">
                 <h1 className="display-3 header">Get Started!</h1>
                 <div className="choice">
                     <Link className="buttons lead" to="/register">REGISTER</Link>
