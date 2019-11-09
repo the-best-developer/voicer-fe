@@ -34,6 +34,7 @@ class SortFilter extends Component {
         super(props);
         this.state = {
             sortBy: "Alphabetical",
+            sortState: "alpha",
             toggleMenu: true
         }
     }
@@ -41,6 +42,11 @@ class SortFilter extends Component {
     toggleMenu = () => this.setState({
         toggleMenuValue: !this.state.toggleMenuValue
     })
+    
+    runFilter = () => {
+        // Run filter using current state
+        this.props.updateData(sortData(this.props.data, this.props.keys, this.state.sortState))
+    }
 
     render() {
         return (
@@ -52,14 +58,17 @@ class SortFilter extends Component {
                         <DropdownItem onClick={() => {
                             this.props.updateData(sortData(this.props.data, this.props.keys, "alpha"))
                             this.setState({sortBy: "Alphabetical"})
+                            this.setState({sortState: "alpha"})
                         }}>Alphabetical</DropdownItem>
                         <DropdownItem onClick={() => {
                             this.props.updateData(sortData(this.props.data, this.props.keys, "num"))
                             this.setState({sortBy: "Numerical"})
+                            this.setState({sortState: "num"})
                         }}>Numerical</DropdownItem>
                         <DropdownItem onClick={() => {
                             this.props.updateData(sortData(this.props.data, this.props.keys, "reverseAlpha"))
                             this.setState({sortBy: "Reverse Alphabetical"})
+                            this.setState({sortState: "reverseAlpha"})
                         }}>Reverse Alphabetical</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>

@@ -5,6 +5,7 @@ import SearchFilter from './SearchFilter';
 import SortFilter from './SortFilter';
 import StarFilter from './StarFilter';
 import PaymentFilter from './PaymentFilter';
+import { Button } from 'reactstrap';
 
 // Styling
 const MainDiv = styled.div`
@@ -64,6 +65,10 @@ class FilterComponent extends Component {
         this.state = {
             storedData: []
         }
+        this.paymentChild = React.createRef();
+        this.searchChild = React.createRef();
+        this.sortChild = React.createRef();
+        this.starChild = React.createRef();
     }
 
     componentDidMount() {
@@ -76,14 +81,30 @@ class FilterComponent extends Component {
         storedData: [...data]
     })
 
+    setFilters = () => {
+        this.paymentChild.current.runFilter();
+        this.searchChild.current.runFilter();
+        this.sortChild.current.runFilter();
+        this.starChild.current.runFilter();
+      };
+
 
     render() {
         return (
             <MainDiv>
-                <SearchFilter updateData={this.updateData} data={sampleData} keys={['jobTitle']} />
-                <StarFilter updateData={this.updateData} data={this.state.storedData} keys={"stars"} />
-                <SortFilter updateData={this.updateData} data={this.state.storedData} keys={"jobTitle"} />
-                <PaymentFilter />
+                <SearchFilter ref={this.searchChild} updateData={this.updateData} data={sampleData} keys={['jobTitle']} />
+                <StarFilter ref={this.starChild} updateData={this.updateData} data={this.state.storedData} keys={"stars"} />
+                <SortFilter ref={this.sortChild} updateData={this.updateData} data={this.state.storedData} keys={"jobTitle"} />
+                <PaymentFilter ref={this.paymentChild} />
+                <Button 
+                    style={{
+                        fontWeight: 'bold',
+                        color: 'white',
+                        backgroundColor: 'rgb(160, 162, 196)',
+                        width: '50%',
+                        marginLeft: '20px'
+                    }}
+                    onClick={_ => this.setFilters()}>Filter</Button>
             </MainDiv>
         );
     };

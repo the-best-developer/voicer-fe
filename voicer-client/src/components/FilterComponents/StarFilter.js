@@ -25,6 +25,11 @@ class StarFilter extends Component {
         this.setState({ stars: word })
     }
 
+    runFilter = () => {
+        // Run filter using current state
+        this.setState({ stars: 3 })
+    }
+
     stars = starsNum => {
         let starsArray = [];
         for (let i = 0 ; i < starsNum ; i++) {

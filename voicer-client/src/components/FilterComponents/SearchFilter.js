@@ -45,6 +45,10 @@ class SearchFilter extends Component {
         this.setState({ searchBy: word })
     }
 
+    runFilter = () => {
+        // Run filter using current state
+        this.props.updateData(searchData(this.props.data, this.props.keys, this.state.searchBy))
+    }
 
     render() {
         return (

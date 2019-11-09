@@ -24,6 +24,11 @@ class PaymentFilter extends Component {
         toggleMenuValue: !this.state.toggleMenuValue
     })
 
+    runFilter = () => {
+        // Run filter using current state
+        this.setState({typeSelected: this.state.typeSelected})
+    }
+
     render() {
         return (
             <MainDiv>
@@ -34,7 +39,7 @@ class PaymentFilter extends Component {
                         <DropdownItem onClick={ _ => this.setState({typeSelected: "Paypal"})} >Paypal</DropdownItem>
                         <DropdownItem onClick={ _ => this.setState({typeSelected: "Venmo"})}>Venmo</DropdownItem>
                         <DropdownItem onClick={ _ => this.setState({typeSelected: "Bankwire"})}>Bankwire</DropdownItem>
-                        </DropdownMenu>
+                    </DropdownMenu>
                 </Dropdown>
             
             </MainDiv>
