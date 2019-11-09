@@ -32,45 +32,25 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div style={{width: '100%', backgroundColor: '#9FA4C4'}}>
+            <div style={{width: '100%'}}>
 
+              <Navbar className="navbar-main">
 
-          <nav className="navbar-main">
-            <Link to="/">
-              <img className="logo" src={logo} alt="voicer" />
-            </Link>
+                <NavbarBrand href="/">
+                  <Link to="/">
+                    <img className="logo" src={logo} alt="voicer" />
+                  </Link>
+                </NavbarBrand>
 
-          <div className="navbar-main-links">
-            <NavLink href="/register">Register</NavLink>
-            <NavLink href="/login">Login</NavLink>
-          </div>
+                <Nav>
+                  <NavItem>
+                    <NavLink href="/register">Register</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href="/login">Login</NavLink>
+                  </NavItem>
+                </Nav>
 
-          </nav>
-
-
-
-
-              <Navbar light expand="md">
-                <NavbarBrand href="/">Voicer</NavbarBrand>
-                <NavbarToggler onClick={this.toggle} />
-                <Collapse isOpen={this.state.isOpen} navbar>
-                  <Nav className="ml-auto" navbar>
-                    <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav caret>
-                        Onboard
-                      </DropdownToggle>
-                      <DropdownMenu right>
-                        <DropdownItem>
-                            <NavLink href="/login">Login</NavLink>
-                        </DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>
-                            <NavLink href="/register">Register</NavLink>
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  </Nav>
-                </Collapse>
               </Navbar>
             </div>
         );
