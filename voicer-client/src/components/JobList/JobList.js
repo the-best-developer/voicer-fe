@@ -23,6 +23,7 @@ class JobList extends Component {
     }
 
     render() {
+        console.log(this.props.jobs)
         return (
             <MainDiv>
                 {this.props.jobs.map(job => <JobListCard key={job.jobId} jobData={job}/>)}
