@@ -10,13 +10,12 @@ import TalentNavigation from './components/TalentNavigation';
 import ClientProfile from './components/ClientProfile';
 import Home from './components/Home/Home';
 import TalentHomePage from './components/TalentHomePage';
-import FilterComponent from './components/FilterComponents/FilterComponent';
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Route exact path="/" component={FilterComponent} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path="/client/postjob" component={PostJob} />
