@@ -7,7 +7,23 @@ import StarFilter from './StarFilter';
 import PaymentFilter from './PaymentFilter';
 import { Button } from 'reactstrap';
 
-// Styling
+// FIXME: There is a bit that needs cleaned up. Here are a few things i'd like worked on next:
+
+// Styling:
+// Switch over to SASS from styled components, and use some more reactstrap styling.
+// Some inline styling would also need to be switched over.
+
+// State:
+// The state handling the data would either need to be in Redux or the homepage state.
+// The homepage would have to have a function that the filter component can use to pass the filtered data back to the homepage.
+// The filtering functions could be refactored into redux reducers, this is a cleaner approach and shouldn't take too long.
+// The filtering components should probably use fuse.js for most functions since it can easily sort mutiple keys and is simpler.
+
+// Clean up
+// Sample data needs removed and query data included
+// Some inline functions need to be added as methods
+// Clean up some functions and handle state in a cleaner way
+
 const MainDiv = styled.div`
 
   min-width: 225px;
@@ -65,6 +81,7 @@ class FilterComponent extends Component {
         this.state = {
             storedData: []
         }
+        // For referencing methods on the child filters
         this.paymentChild = React.createRef();
         this.searchChild = React.createRef();
         this.sortChild = React.createRef();
@@ -82,6 +99,7 @@ class FilterComponent extends Component {
     })
 
     setFilters = () => {
+        // Call each child filter to process the data and modify state
         this.paymentChild.current.runFilter();
         this.searchChild.current.runFilter();
         this.sortChild.current.runFilter();
@@ -94,7 +112,7 @@ class FilterComponent extends Component {
             <MainDiv>
                 <SearchFilter ref={this.searchChild} updateData={this.updateData} data={sampleData} keys={['jobTitle']} />
                 <StarFilter ref={this.starChild} updateData={this.updateData} data={this.state.storedData} keys={"stars"} />
-                <SortFilter ref={this.sortChild} updateData={this.updateData} data={this.state.storedData} keys={"jobTitle"} />
+                <SortFilter ref={this.sortChild} updateData={this.updateData} data={this.state.storedData} keys={"jobTitle", id} />
                 <PaymentFilter ref={this.paymentChild} />
                 <Button 
                     style={{
