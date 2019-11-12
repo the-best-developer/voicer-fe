@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosWithAuth from '../components/axiosAuth';
 
 export const LOGIN_START = 'LOGIN-START';
 export const LOGIN_SUCCESS = 'LOGIN-SUCCESS';
@@ -12,7 +12,7 @@ export const login = creds => dispatch => {
     if (!creds.password) {
         dispatch({ type: LOGIN_FAILED, error: 'password not correct' });
     }
-    return axios
+    return axiosWithAuth()
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/auth/login', creds)
         .then(res => {
             localStorage.setItem('token', res.data.token);
