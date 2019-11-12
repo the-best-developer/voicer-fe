@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
-import JobListCard from './JobListCard';
+import AppCard from './AppCard';
 import styled from 'styled-components';
-import '../../App.scss';
 
 // Styling
 const MainDiv = styled.div`
   width: 60%;
-  margin: 15vh 10px 10px 10px;
+  margin: 10px;
   margin-left: auto;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid black;
-  border-radius: 5px;
+  border: 1px solid red;
   padding: 10px;
 `
 
 // Component
-class JobList extends Component {
+class AppList extends Component {
     constructor(props) {
         super(props)
     }
 
     render() {
-        console.log(this.props.jobs)
         return (
             <MainDiv>
-                {this.props.jobs.map(job => <JobListCard key={job.jobId} jobData={job}/>)}
+                {this.props.apps.map(app => <AppCard key={app.jobId} appData={app}/>)}
             </MainDiv>
         );
     };
 };
 
-export default JobList
+export default AppList;
