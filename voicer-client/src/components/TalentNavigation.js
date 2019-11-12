@@ -17,11 +17,13 @@ import {
 import Logo from './logo.svg';
 
 const NavContainer = styled.div`
-    .bg-light {
-        background-color: #233842 !important;
-    }
     .navbar {
         height: 12.5vh !important;
+        background-color: #233842 !important;
+    }
+    a {
+        font-family: 'Nunito', sans-serif !important;
+        color: rgb(255, 255, 255) !important;
     }
 `;
 
@@ -30,8 +32,17 @@ const AppLogo = styled.img`
     height: 9vh;
 `;
 
+const Divider = styled.div`
+    height: 8vh;
+    width: 1px;
+    margin: 0 20px;
+    display:block; /* for use on default inline elements like span */
+    overflow: hidden;
+    background-color: #717F86;
+`;
+
 class TalentNavigation extends React.Component {
-    
+
     state = {
         isOpen: false
     }
@@ -39,7 +50,7 @@ class TalentNavigation extends React.Component {
     render() {
         return (
             <NavContainer>
-              <Navbar color="light" light expand="md">
+              <Navbar expand="md">
                 <NavbarBrand href="/">
                     <AppLogo src={Logo} />
                 </NavbarBrand>
@@ -47,10 +58,15 @@ class TalentNavigation extends React.Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink href="/components/">Marketplace</NavLink>
+                      <NavLink href="/components/">
+                            Marketplace
+                      </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink href="https://github.com/reactstrap/reactstrap">Logout</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <Divider />
                     </NavItem>
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav caret>
