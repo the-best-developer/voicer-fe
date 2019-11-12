@@ -11,7 +11,8 @@ class Login extends Component {
         creds: {
             username: '',
             password: ''
-        }
+        },
+        error: false
     }
 
     changeHandler = e => {
@@ -33,11 +34,14 @@ class Login extends Component {
             password: password
         })
         .then(() => {
-            return this.props.userType === "client" ?
-                this.props.history.push('/client') :
-                this.props.history.push('/talent')
+            if (localStorage.getItem('token')) {
+                return this.props.userType === "client" ?
+                    this.props.history.push('/client') :
+                    this.props.history.push('/talent')
+            } else {
+                this.setState({ error: true });
             }
-        )
+        })
         .catch(err => console.log(err))
     }
 
@@ -65,6 +69,7 @@ class Login extends Component {
                         onChange={this.changeHandler}
                     />
                     <Button className="loginButton" type="submit">Log In</Button>
+                    {this.state.error ? <p>There was an error.</p> : null}
                 </Form>
             </div>
         )
