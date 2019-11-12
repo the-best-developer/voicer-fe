@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Input, Button, Label } from 'reactstrap';
 import { login } from '../../actions/login';
 import NavBar from '../Home/NavBar';
+import jwt from 'jsonwebtoken';
 import './Login.css';
 
 class Login extends Component {
@@ -31,7 +32,12 @@ class Login extends Component {
             username: username,
             password: password
         })
-        .then(() => this.props.history.push('/voicer'))
+        .then(() => {
+            return this.props.userType === "client" ?
+                this.props.history.push('/client') :
+                this.props.history.push('/talent')
+            }
+        )
         .catch(err => console.log(err))
     }
 
@@ -67,7 +73,8 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
     loggingIn: state.loginReducer.logginIn,
-    id: state.loginReducer.id
+    id: state.loginReducer.id,
+    userType: state.loginReducer.userType
 })
 
 export default connect(

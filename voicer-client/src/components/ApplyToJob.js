@@ -1,7 +1,8 @@
 import React from 'react';
 import {Form, FormGroup, Label, Input, Button, Modal, ModalHeader} from 'reactstrap';
 import styled from 'styled-components';
-import apply from '../actions/apply';
+import {apply} from '../actions/apply';
+import {connect} from 'react-redux';
 
 //Styling
 const StyledModal = styled(Modal)`

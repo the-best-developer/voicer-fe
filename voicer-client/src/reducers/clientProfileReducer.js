@@ -5,7 +5,7 @@ import {
 } from '../actions';
 
 const initialState = {
-    clientProfile: null,
+    clientProfile: {},
     gettingClientProfile: false,
 }
 
@@ -19,6 +19,7 @@ export const clientProfileReducer = (state = initialState, action) => {
         case GET_CLIENT_PROFILE_SUCCESS:
             return {
                 ...state,
+                clientProfile: action.payload[0],
                 gettingClientProfile: false
             }
         case GET_CLIENT_PROFILE_FAILURE:
