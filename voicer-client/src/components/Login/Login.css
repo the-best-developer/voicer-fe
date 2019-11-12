@@ -1,0 +1,27 @@
+.loginPage {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.navbar {
+    width: 100%;
+}
+
+.loginForm {
+    width: 40%;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: space-around;
+}
+
+.loginButton {
+    margin-left: 87%;
+}
+
+.input-label {
+    color: grey;
+}
