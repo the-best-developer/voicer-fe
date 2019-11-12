@@ -9,8 +9,6 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-require('dotenv').config()
-
 console.log(process.env.REACT_APP_SECRET);
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
