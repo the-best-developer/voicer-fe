@@ -3,6 +3,7 @@ import {Form, FormGroup, Label, Input, Button, Modal, ModalHeader} from 'reactst
 import styled from 'styled-components';
 import {apply} from '../actions/apply';
 import {connect} from 'react-redux';
+import jwt from 'jsonwebtoken';
 
 //Styling
 const StyledModal = styled(Modal)`
@@ -36,14 +37,25 @@ const StyledFormGroup = styled(FormGroup)`
 class ApplyToJob extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            clientMessage: ""
+        }
     }
 
-    onChange = () => {
-
+    changeHandler = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
-    onClick = () => {
-        apply(this.props.job.jobId)
+    clickHandler = () => {
+        this.props.apply({
+            jobId: this.props.job.jobId,
+            offeredById: jwt.decode(localStorage.getItem("token")).userId,
+            offeredToId: this.props.job.clientId,
+            status: "open",
+            clientMessage: this.state.clientMessage
+        })
     }
 
     render() {
@@ -59,9 +71,12 @@ class ApplyToJob extends React.Component {
                 <StyledForm className="ApplyToJob">
                     <StyledFormGroup>
                         <Label>Leave the Client a Message</Label>
-                        <Input type="textarea"></Input>
+                        <Input type="textarea" onChange={this.changeHandler} name="clientMessage"></Input>
                     </StyledFormGroup>
-                    <StyledButton onClick={this.onClick}>Apply</StyledButton>
+                    <StyledButton onClick={this.clickHandler}>Apply</StyledButton>
+                    {this.props.postingApplication ? <p>... Posting Job ...</p> : null}
+                    {this.props.error ? <p>Error Posting Job</p> : null}
+                    {this.props.success ? <p>Congrats! You've Successfully Applied.</p> : null}
                 </StyledForm>
             </StyledModal>
         )
@@ -69,7 +84,9 @@ class ApplyToJob extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
+    postingApplication: state.applyReducer.postingApplication,
+    error: state.applyReducer.error,
+    success: state.applyReducer.success
 })
 
 export default connect(mapStateToProps, { apply })(ApplyToJob)

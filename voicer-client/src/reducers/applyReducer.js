@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     postingApplication: false,
-    error: null
+    error: false,
+    success: false
 }
 
 export const applyReducer = (state = initialState, action) => {
@@ -15,19 +16,22 @@ export const applyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postingApplication: true,
-                error: null
+                error: false,
+                success: false
             }
         case APPLY_SUCCESS:
             return {
                 ...state,
                 postingApplication: false,
-                error: false
+                error: false,
+                success: true
             }
         case APPLY_FAILED:
             return {
                 ...state,
                 postingApplication: false,
-                error: true
+                error: true,
+                success: false
             }
         default: return state;
     }

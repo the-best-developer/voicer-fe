@@ -23,7 +23,7 @@ class JobList extends Component {
         super(props)
         this.state = {
             activeJob: {},
-            modalIsOpen: false
+            modalIsOpen: false,
         }
     }
 
@@ -36,7 +36,6 @@ class JobList extends Component {
     }
 
     toggle = () => {
-        console.log("toggle")
         this.setState({
             modalIsOpen: !this.state.modalIsOpen
         })
@@ -53,7 +52,11 @@ class JobList extends Component {
                         toggle={this.toggle}
                     />
                 )}
-                <ApplyToJob toggle={this.toggle} isOpen={this.state.modalIsOpen} job={this.state.activeJob} />
+                <ApplyToJob
+                    toggle={this.toggle}
+                    isOpen={this.state.modalIsOpen}
+                    job={this.state.activeJob}
+                />
             </MainDiv>
         );
     };

@@ -20,7 +20,6 @@ class App extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
-        <Route path="/talent" component={TalentNavigation} />
         <Route exact path="/talent/apply" component={ApplyToJob} />
         <PrivateRoute exact path="/client/postjob" component={PostJob} />
         <PrivateRoute exact path="/client" component={ClientProfile} />
