@@ -16,13 +16,10 @@ export const login = creds => dispatch => {
             })
         })
         .catch(err => {
-            if(err) {
-                localStorage.removeItem('token')
-            } else {
-                dispatch({
-                    type: LOGIN_FAILED,
-                    payload: 'FAILED'
-                })
-            }
+            localStorage.removeItem('token')
+            dispatch({
+                type: LOGIN_FAILED,
+                payload: 'FAILED'
+            })
         })
 };
