@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import JobListCard from './JobListCard';
 import styled from 'styled-components';
 import ApplyToJob from '../ApplyToJob';
-import '../../App.css';
+import '../../App.scss';
 
 // Styling
 const MainDiv = styled.div`
