@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import logo from '../../images/logo-white.svg';
+
 import {
   Collapse,
   Navbar,
@@ -28,28 +32,25 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div style={{width: '100%', backgroundColor: '#9FA4C4'}}>
-              <Navbar light expand="md">
-                <NavbarBrand href="/">Voicer</NavbarBrand>
-                <NavbarToggler onClick={this.toggle} />
-                <Collapse isOpen={this.state.isOpen} navbar>
-                  <Nav className="ml-auto" navbar>
-                    <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav caret>
-                        Onboard
-                      </DropdownToggle>
-                      <DropdownMenu right>
-                        <DropdownItem>
-                            <NavLink href="/login">Login</NavLink>
-                        </DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>
-                            <NavLink href="/register">Register</NavLink>
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  </Nav>
-                </Collapse>
+            <div style={{width: '100%'}}>
+
+              <Navbar className="navbar-main">
+
+                <NavbarBrand href="/">
+                  <Link to="/">
+                    <img className="logo" src={logo} alt="voicer" />
+                  </Link>
+                </NavbarBrand>
+
+                <Nav>
+                  <NavItem>
+                    <NavLink href="/register">Register</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href="/login">Login</NavLink>
+                  </NavItem>
+                </Nav>
+
               </Navbar>
             </div>
         );
