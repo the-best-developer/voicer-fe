@@ -7,8 +7,8 @@ export const APPLY_FAILED = 'APPLY-FAILED';
 export const apply = application => dispatch => {
     dispatch({ type: APPLY_START });
     axiosWithAuth()
-        //.post(`https://voicer-lambda-app-staging.herokuapp.com/api/jobs/${jobId}/offers`, application)
-        .post(`http://localhost:4000/api/jobs/${application.jobId}/offers`, application)
+        .post(`https://voicer-lambda-app-staging.herokuapp.com/api/jobs/${jobId}/offers`, application)
+        //.post(`http://localhost:4000/api/jobs/${application.jobId}/offers`, application)
         .then(res => {
             dispatch({
                 type: APPLY_SUCCESS,
