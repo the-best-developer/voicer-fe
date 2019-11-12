@@ -12,6 +12,8 @@ import ClientProfile from './components/ClientProfile';
 import Home from './components/Home/Home';
 import TalentHomePage from './components/TalentHomePage';
 
+import Footer from './components/Footer';
+
 class App extends Component {
   render() {
     return (
@@ -23,6 +25,8 @@ class App extends Component {
         <PrivateRoute exact path="/client" component={ClientProfile} />
         <PrivateRoute path="/talent" component={TalentNavigation} />
         <PrivateRoute exact path="/talent" component={TalentHomePage} />
+
+        <Footer />
       </Router>
     );
   }
