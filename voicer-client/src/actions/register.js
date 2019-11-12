@@ -1,4 +1,4 @@
-import axiosWithAuth from '../components/axiosAuth';
+import axios from 'axios';
 
 export const REGISTER_START = 'REGISTER-START';
 export const REGISTER_SUCCESS = 'REGISTER-SUCCESS';
@@ -25,7 +25,7 @@ export const register = creds => dispatch => {
     if (!creds.email.includes('@') || !creds.email.includes('.')) {
         dispatch({ type: REGISTER_FAILED, error: 'Please enter a correct email' });
     }
-    return axiosWithAuth()
+    return axios
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/auth/register', creds) // CHANGE URL
         .then(res => {
             dispatch({
