@@ -1,0 +1,26 @@
+@import 'colors';
+
+.navbar-main {
+  background-color: $blue-dark;
+  color: white;
+  padding: 10px 70px;
+  // width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 400;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+}
+
+.logo {
+  width: 120px;
+}
