@@ -19,9 +19,13 @@ import UserIcon from '../images/user.svg';
 const NavContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
     .talentnavbar {
         width: 100% !important;
-        height: 15vh !important;
+        height: 11vh !important;
         background-color: #233842 !important;
         .nav-item .talent-link {
           font-family: 'Nunito Sans', sans-serif !important;
@@ -30,6 +34,7 @@ const NavContainer = styled.div`
           padding-top: 1em !important;
           margin-right: 3vw !important;
           font-weight: bolder !important;
+          cursor: pointer;
         }
         .nav-item .username {
           font-family: 'Nunito Sans', sans-serif !important;
@@ -43,13 +48,13 @@ const NavContainer = styled.div`
 
 const TertiaryNav = styled.div`
     width: 100%;
-    height: 10vh;
+    height: 9vh;
     background-color: rgb(159,164,195, 0.75);
     position: absolute;
-    top: 14vh;
+    top: 10.5vh;
     z-index: 4;
     div {
-      height: 10vh;
+      height: 9vh;
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -59,6 +64,7 @@ const TertiaryNav = styled.div`
         color: rgb(255, 255, 255) !important;
         margin-right: 5vw;
         font-weight: bolder;
+        cursor: pointer;
       }
       &:last-child {
         margin-right: 7%;
@@ -68,7 +74,7 @@ const TertiaryNav = styled.div`
 
 const AppLogo = styled.img`
     width: 100%;
-    height: 9vh;
+    height: 8.5vh;
 `;
 
 const IconStyle = styled.img`
@@ -87,6 +93,21 @@ const Divider = styled.div`
 
 class TalentNavigation extends React.Component {
 
+    constructor(props) {
+      super(props)
+    }
+
+    logout = e => {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      this.props.history.push('/');
+    }
+
+    route = (route, e) => {
+      e.preventDefault();
+      this.props.history.push(`/talent${route}`)
+    }
+
     render() {
         return (
             <NavContainer>
@@ -96,12 +117,12 @@ class TalentNavigation extends React.Component {
                 </NavbarBrand>
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink className="talent-link" href="/components/">
+                      <NavLink className="talent-link" href="/talent">
                             Marketplace
                       </NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink className="talent-link" href="https://github.com/reactstrap/reactstrap">Logout</NavLink>
+                      <NavLink className="talent-link" onClick={this.logout}>Logout</NavLink>
                     </NavItem>
                     <NavItem>
                       <Divider />
@@ -116,16 +137,16 @@ class TalentNavigation extends React.Component {
               </Navbar>
               <TertiaryNav>
                 <div>
-                  <NavLink className="tert-link">
-                    All Talents
+                  <NavLink onClick={(e) => this.route('/invites', e)} className="tert-link">
+                    Job Invites
                   </NavLink>
-                  <NavLink className='tert-link'>
-                    My Jobs
+                  <NavLink onClick={(e) => this.route('/applications', e)} className='tert-link'>
+                    Applications
                   </NavLink>
-                  <NavLink className='tert-link'>
+                  <NavLink onClick={(e) => this.route('/messages', e)} className='tert-link'>
                     Messages
                   </NavLink>
-                  <NavLink className='tert-link'>
+                  <NavLink onClick={(e) => this.route('/profile', e)} className='tert-link'>
                     My Profile
                   </NavLink>
                 </div>
