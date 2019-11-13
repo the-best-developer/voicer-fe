@@ -47,7 +47,10 @@ const JobListCard = props => {
               </StyledCardDetails>
                 <StyledButtonDiv>
                     <StyledButton>Save Job</StyledButton>
-                    <StyledButton>Apply</StyledButton>
+                    <StyledButton onClick={() => {
+                      props.openModal(props.jobData);
+                      props.toggle();
+                    }}>Apply</StyledButton>
                 </StyledButtonDiv>
             </StyledCardBody>
         </StyledCard>
