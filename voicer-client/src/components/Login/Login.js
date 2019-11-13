@@ -49,28 +49,38 @@ class Login extends Component {
         const { username, password } = this.state.creds;
 
         return (
-            <div className="login-page">
+                <div>
                 <NavBar className="navbar"/>
-                <Form className="loginForm" onSubmit={this.submitHandler}>
-                    <Label className="input-label" for="username">Username</Label>
-                    <Input
-                        className="input"
-                        type="text"
-                        value={username}
-                        name="username"
-                        onChange={this.changeHandler}
-                    />
-                    <Label className="input-label" for="password">Password</Label>
-                    <Input
-                        className="input"
-                        type="password"
-                        value={password}
-                        name="password"
-                        onChange={this.changeHandler}
-                    />
-                    <Button className="loginButton" type="submit">Log In</Button>
-                    {this.state.error ? <p>There was an error.</p> : null}
-                </Form>
+                <div className="login-page">
+
+
+                  <div className="login-box">
+                        <h2>Log In</h2>
+                        <Form onSubmit={this.submitHandler}>
+                            <Label className="input-label" for="username">Username</Label>
+                            <Input
+                                className="input"
+                                type="text"
+                                value={username}
+                                name="username"
+                                onChange={this.changeHandler}
+                            />
+                            <Label className="input-label" for="password">Password</Label>
+                            <Input
+                                className="input"
+                                type="password"
+                                value={password}
+                                name="password"
+                                onChange={this.changeHandler}
+                            />
+
+
+                          <Button type="submit" size="lg" className="btn-orange btn-centered">Log In</Button>
+
+                            {this.state.error ? <p>There was an error.</p> : null}
+                        </Form>
+                  </div>
+              </div>
             </div>
         )
     }
