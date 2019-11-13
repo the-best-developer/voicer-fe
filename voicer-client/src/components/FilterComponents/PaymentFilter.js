@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import { connect } from 'react-redux';
+import { filterData, setPayment } from '../../actions/filterData';
 
 // Styling
 const MainDiv = styled.div`
@@ -26,7 +28,7 @@ class PaymentFilter extends Component {
 
     runFilter = () => {
         // Run filter using current state
-        this.setState({typeSelected: this.state.typeSelected})
+        this.props.filterData();
     }
 
     render() {
@@ -34,11 +36,11 @@ class PaymentFilter extends Component {
             <MainDiv>
                 <Label>Payment Type:</Label>
                 <Dropdown isOpen={this.state.toggleMenuValue} toggle={this.toggleMenu}>
-                    <DropdownToggle caret>{this.state.typeSelected}</DropdownToggle>
+                    <DropdownToggle caret>{this.props.paymentState}</DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={ _ => this.setState({typeSelected: "Paypal"})} >Paypal</DropdownItem>
-                        <DropdownItem onClick={ _ => this.setState({typeSelected: "Venmo"})}>Venmo</DropdownItem>
-                        <DropdownItem onClick={ _ => this.setState({typeSelected: "Bankwire"})}>Bankwire</DropdownItem>
+                        <DropdownItem onClick={ _ => this.props.setPayment("Paypal") && this.runFilter()} >Paypal</DropdownItem>
+                        <DropdownItem onClick={ _ => this.props.setPayment("Venmo")}>Venmo</DropdownItem>
+                        <DropdownItem onClick={ _ => this.props.setPayment("Bankwire") }>Bankwire</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             
@@ -47,4 +49,8 @@ class PaymentFilter extends Component {
     };
 };
 
-export default PaymentFilter;
+const mapStateToProps = state => ({
+    paymentState: state.filterReducer.paymentState
+});
+
+export default connect(mapStateToProps, { filterData, setPayment } )(PaymentFilter);
