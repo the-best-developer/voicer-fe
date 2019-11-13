@@ -7,7 +7,7 @@ import '../../App.scss';
 // Styling
 const MainDiv = styled.div`
   width: 60%;
-  margin: 10px;
+  margin: 15vh 10px 10px 10px;
   margin-left: auto;
   display: flex;
   justify-content: space-evenly;
@@ -42,6 +42,7 @@ class JobList extends Component {
     }
 
     render() {
+        console.log(this.props.jobs)
         return (
             <MainDiv>
                 {this.props.jobs.map(job =>
