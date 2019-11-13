@@ -3,7 +3,7 @@ import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import {postJob} from '../actions';
 import { connect } from 'react-redux';
 import jwt from 'jsonwebtoken';
-import axios from 'axios';
+import axiosWithAuth from './axiosAuth';
 
 class PostJob extends React.Component {
     constructor(props) {
@@ -24,9 +24,14 @@ class PostJob extends React.Component {
     handleSubmit = async event => {
         event.preventDefault()
 
-        const client = await axios.get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
+        const client = await axiosWithAuth.get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
 
         this.props.postJob({
+            jobTitle: this.state.jobTitle,
+            jobDescription: this.state.jobDescription,
+            clientId: client.data[0].clientId
+        })
+        console.log({
             jobTitle: this.state.jobTitle,
             jobDescription: this.state.jobDescription,
             clientId: client.data[0].clientId

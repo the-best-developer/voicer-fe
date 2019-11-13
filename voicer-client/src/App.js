@@ -11,6 +11,7 @@ import TalentProfile from './components/TalentProfile';
 import ClientProfile from './components/ClientProfile';
 import Home from './components/Home/Home';
 import TalentHomePage from './components/TalentHomePage';
+import ClientHomePage from './components/ClientHomePage';
 
 class App extends Component {
   render() {
@@ -19,8 +20,9 @@ class App extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <PrivateRoute exact path="/client" component={ClientHomePage} />
         <PrivateRoute exact path="/client/postjob" component={PostJob} />
-        <PrivateRoute exact path="/client" component={ClientProfile} />
+        <PrivateRoute exact path="/client/profile" component={ClientProfile} />
         <PrivateRoute path="/talent" component={TalentNavigation} />
         <PrivateRoute exact path="/talent" component={TalentHomePage} />
       </Router>
