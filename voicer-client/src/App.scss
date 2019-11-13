@@ -1,0 +1,53 @@
+@import 'styles/resets';
+@import 'styles/typography';
+@import 'styles/buttons';
+@import 'styles/header';
+@import 'styles/hero';
+@import 'styles/infobox';
+@import 'styles/footer';
+
+
+.TalentNavigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 50px;
+}
+
+.TalentNavigationLinks {
+  display: flex;
+  flex-direction: row;
+}
+
+.TalentNavigationLinks a {
+  margin-left: 100px;
+}
+
+.PostJob {
+  margin: 50px auto;
+  width: 600px;
+}
+
+.PostJob h1 {
+  text-align: center;
+}
+
+.PostJob Form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.PostJob Button {
+  margin-top: 20px;
+}
+
+.welcome-title {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+
+
+

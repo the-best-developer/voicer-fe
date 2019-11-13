@@ -6,6 +6,12 @@ export const LOGIN_FAILED = 'LOGIN-FAILED';
 
 export const login = creds => dispatch => {
     dispatch({ type: LOGIN_START });
+    if (!creds.username) {
+        dispatch({ type: LOGIN_FAILED, error: 'username not correct' });
+    }
+    if (!creds.password) {
+        dispatch({ type: LOGIN_FAILED, error: 'password not correct' });
+    }
     return axios
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/auth/login', creds)
         .then(res => {
@@ -16,13 +22,10 @@ export const login = creds => dispatch => {
             })
         })
         .catch(err => {
-            if(err) {
-                localStorage.removeItem('token')
-            } else {
-                dispatch({
-                    type: LOGIN_FAILED,
-                    payload: 'FAILED'
-                })
-            }
+            localStorage.removeItem('token')
+            dispatch({
+                type: LOGIN_FAILED,
+                payload: 'FAILED'
+            })
         })
 };
