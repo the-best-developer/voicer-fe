@@ -1,12 +1,20 @@
 @import 'colors';
 
-.login-page {
-  background-image: url(../images/login-bg.jpg);
+.login-page, .register-page {
   background-size: cover;
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
-.login-box {
+.login-page {
+  background-image: url(../images/login-bg.jpg);
+}
+
+.register-page {
+  background-image: url(../images/register-bg.jpg);
+  padding-top: 1rem;
+}
+
+.input-box {
   background-color: $blue-light;
   padding: 3rem 4rem;
   border-radius: 10px;
@@ -29,3 +37,21 @@
     margin-bottom: 2rem;
   }
 }
+
+.input-box-wide {
+  width: 60%;
+  padding: 3rem 2.4rem;
+
+  form {
+    .input-box-cols {
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        width: 48%;
+      }
+    }
+  }
+}
+
+

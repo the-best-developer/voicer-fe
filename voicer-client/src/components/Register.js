@@ -64,49 +64,79 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="registerPage">
-                <NavBar />
-                <Form className="registerForm" onSubmit={this.submitHandler}>
+          <div>
+            <NavBar />
+            <div className="register-page">
+
+          <div className="input-box input-box-wide">
+                <h2>Register</h2>
+
+                <Form onSubmit={this.submitHandler}>
+
+
+
+                  <div className="input-box-cols">
+
+                  <div>
+
+
                     <Label className="input-label" for="firstName">First name</Label>
                     <Input
                         className="input"
                         type="text"
                         name="firstName"
+                        tabindex="1"
                         value={this.state.creds.firstName}
                         onChange={this.changeHandler}
                     />
-                    <Label className="input-label" for="lastName">Last name</Label>
-                    <Input
-                        className="input"
-                        type="text"
-                        name="lastName"
-                        value={this.state.creds.lastName}
-                        onChange={this.changeHandler}
-                    />
+
+
+
+
                     <Label className="input-label" for="username">Username</Label>
                     <Input
                         className="input"
                         type="text"
                         name="username"
+                        tabindex="3"
                         value={this.state.creds.username}
                         onChange={this.changeHandler}
                     />
-                    <Label className="input-label" for="email">Email</Label>
-                    <Input
-                        className="input"
-                        type="email"
-                        name="email"
-                        value={this.state.creds.email}
-                        onChange={this.changeHandler}
-                    />
+
                     <Label className="input-label" for="password">Password</Label>
                     <Input
                         className="input"
                         type="password"
                         name="password"
+                        tabindex="5"
                         value={this.state.creds.password}
                         onChange={this.changeHandler}
                     />
+                  </div>
+
+
+                  <div>
+
+                    <Label className="input-label" for="lastName">Last name</Label>
+                    <Input
+                        className="input"
+                        type="text"
+                        name="lastName"
+                        tabindex="2"
+                        value={this.state.creds.lastName}
+                        onChange={this.changeHandler}
+                    />
+
+                    <Label className="input-label" for="email">Email</Label>
+                    <Input
+                        className="input"
+                        type="email"
+                        name="email"
+                        tabindex="4"
+                        value={this.state.creds.email}
+                        onChange={this.changeHandler}
+                    />
+
                     <Label className="input-label" for="userType">User type</Label>
                     <div className="dropdown-div">
                         <Dropdown
@@ -124,9 +154,26 @@ class Register extends Component {
                             </DropdownMenu>
                         </Dropdown>
                     </div>
-                    <Button className="registerButton" type="submit">Submit</Button>
+
+                  </div>
+
+                  </div>
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="btn-orange btn-centered">
+                      Register
+                  </Button>
+
                 </Form>
+
+          </div>
+
+
+
             </div>
+          </div>
         )
     }
 }

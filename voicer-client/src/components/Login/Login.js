@@ -53,8 +53,7 @@ class Login extends Component {
                 <NavBar className="navbar"/>
                 <div className="login-page">
 
-
-                  <div className="login-box">
+                  <div className="input-box">
                         <h2>Log In</h2>
                         <Form onSubmit={this.submitHandler}>
                             <Label className="input-label" for="username">Username</Label>
