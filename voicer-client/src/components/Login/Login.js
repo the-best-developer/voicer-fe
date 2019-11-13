@@ -49,7 +49,7 @@ class Login extends Component {
         const { username, password } = this.state.creds;
 
         return (
-            <div className="loginPage">
+            <div className="login-page">
                 <NavBar className="navbar"/>
                 <Form className="loginForm" onSubmit={this.submitHandler}>
                     <Label className="input-label" for="username">Username</Label>
