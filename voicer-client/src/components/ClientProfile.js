@@ -54,9 +54,9 @@ class ClientProfile extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        clientProfile: state.clientProfileReducer.clientProfile,
-        gettingClientProfile: state.clientProfileReducer.gettingClientProfile,
-        error: state.clientProfileReducer.error,
+        clientProfile: state.getClientProfileReducer.clientProfile,
+        gettingClientProfile: state.getClientProfileReducer.gettingClientProfile,
+        error: state.getClientProfileReducer.error,
         id: state.loginReducer.id
     };
 }

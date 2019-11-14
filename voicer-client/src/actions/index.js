@@ -18,6 +18,13 @@ export {
 } from './login';
 
 export {
+    EDIT_CLIENT_PROFILE_START,
+    EDIT_CLIENT_PROFILE_SUCCESS,
+    EDIT_CLIENT_PROFILE_FAILURE,
+    editClientProfile
+} from './editClientProfile'
+
+export {
     GET_CLIENT_PROFILE_START,
     GET_CLIENT_PROFILE_SUCCESS,
     GET_CLIENT_PROFILE_FAILURE,
