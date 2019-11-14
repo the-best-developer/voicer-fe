@@ -4,7 +4,6 @@ import { Form, Input, Button, Label } from 'reactstrap';
 import { login } from '../../actions/login';
 import NavBar from '../Home/NavBar';
 import jwt from 'jsonwebtoken';
-import './Login.css';
 
 class Login extends Component {
     state = {
@@ -49,28 +48,37 @@ class Login extends Component {
         const { username, password } = this.state.creds;
 
         return (
-            <div className="loginPage">
+                <div>
                 <NavBar className="navbar"/>
-                <Form className="loginForm" onSubmit={this.submitHandler}>
-                    <Label className="input-label" for="username">Username</Label>
-                    <Input
-                        className="input"
-                        type="text"
-                        value={username}
-                        name="username"
-                        onChange={this.changeHandler}
-                    />
-                    <Label className="input-label" for="password">Password</Label>
-                    <Input
-                        className="input"
-                        type="password"
-                        value={password}
-                        name="password"
-                        onChange={this.changeHandler}
-                    />
-                    <Button className="loginButton" type="submit">Log In</Button>
-                    {this.state.error ? <p>There was an error.</p> : null}
-                </Form>
+                <div className="login-page">
+
+                  <div className="input-box">
+                        <h2>Log In</h2>
+                        <Form onSubmit={this.submitHandler}>
+                            <Label className="input-label" for="username">Username</Label>
+                            <Input
+                                className="input"
+                                type="text"
+                                value={username}
+                                name="username"
+                                onChange={this.changeHandler}
+                            />
+                            <Label className="input-label" for="password">Password</Label>
+                            <Input
+                                className="input"
+                                type="password"
+                                value={password}
+                                name="password"
+                                onChange={this.changeHandler}
+                            />
+
+
+                          <Button type="submit" size="lg" className="btn-orange btn-centered">Log In</Button>
+
+                            {this.state.error ? <p>There was an error.</p> : null}
+                        </Form>
+                  </div>
+              </div>
             </div>
         )
     }
