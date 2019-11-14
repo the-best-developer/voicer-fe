@@ -4,7 +4,6 @@ import { register, createClientProfile, createTalentProfile } from '../actions/r
 import { login } from '../actions/login';
 import NavBar from './Home/NavBar';
 import { Form, Label, Input, Button, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
-import './Register.css';
 
 class Register extends Component {
     state = {
