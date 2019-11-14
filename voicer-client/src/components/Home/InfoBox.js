@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import './InfoBox.css';
 
 const InfoBox = () => {
     return (
@@ -19,7 +18,7 @@ const InfoBox = () => {
         </p>
 
 
-        <p><Button className="btn-orange">Learn More...</Button></p>
+        <p><Button className="btn-orange btn-centered">Learn More...</Button></p>
         </div>
     );
 }
