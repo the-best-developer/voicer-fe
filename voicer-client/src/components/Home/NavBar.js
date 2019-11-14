@@ -37,9 +37,7 @@ class NavBar extends React.Component {
               <Navbar className="navbar-main">
 
                 <NavbarBrand href="/">
-                  <Link to="/">
                     <img className="logo" src={logo} alt="voicer" />
-                  </Link>
                 </NavbarBrand>
 
                 <Nav>

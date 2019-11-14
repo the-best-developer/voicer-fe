@@ -67,6 +67,7 @@ class Register extends Component {
             <div className="registerPage">
                 <NavBar />
                 <Form className="registerForm" onSubmit={this.submitHandler}>
+                    <h1>Create Your Account</h1>
                     <Label className="input-label" for="firstName">First name</Label>
                     <Input
                         className="input"

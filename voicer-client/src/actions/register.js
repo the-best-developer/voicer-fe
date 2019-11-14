@@ -1,3 +1,4 @@
+import axiosWithAuth from '../components/axiosAuth';
 import axios from 'axios';
 
 export const REGISTER_START = 'REGISTER-START';
@@ -43,7 +44,7 @@ export const register = creds => dispatch => {
 
 export const createClientProfile = creds => dispatch => {
     dispatch({type: CREATE_PROFILE_START});
-    return axios
+    return axiosWithAuth()
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/clients/', creds)
         .then((res) => dispatch({type: CREATE_PROFILE_SUCCESS}))
         .catch((err) => { console.log(err); return dispatch({type: CREATE_PROFILE_FAILURE})})
@@ -51,7 +52,7 @@ export const createClientProfile = creds => dispatch => {
 
 export const createTalentProfile = creds => dispatch => {
     dispatch({type: CREATE_PROFILE_START});
-    return axios
+    return axiosWithAuth()
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/talent/', creds)
         .then((res) => dispatch({type: CREATE_PROFILE_SUCCESS}))
         .catch((err) => { console.log(err); return dispatch({type: CREATE_PROFILE_FAILURE})})
