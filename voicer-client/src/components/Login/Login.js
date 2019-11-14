@@ -4,7 +4,6 @@ import { Form, Input, Button, Label } from 'reactstrap';
 import { login } from '../../actions/login';
 import NavBar from '../Home/NavBar';
 import jwt from 'jsonwebtoken';
-import './Login.css';
 
 class Login extends Component {
     state = {
