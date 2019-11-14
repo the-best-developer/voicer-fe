@@ -27,54 +27,16 @@ import { filterData, setFilterData } from '../../actions/filterData';
 // Clean up some functions and handle state in a cleaner way
 
 const MainDiv = styled.div`
-
-  min-width: 225px;
+  margin-top: 19vh;
+  min-width: 250px;
   max-width: 25%;
-  height: 99vh;
+  min-height: 100%;
   margin-right: auto;
   display: flex;
   flex-direction: column;
   background-color: rgb( 239, 241, 243 );
+  padding-top: 5vh;
 `
-
-// Sample Data
-const sampleData = [
-    {
-        "clientId" : "1",
-        "jobTitle" : "Cool guy",
-        "jobDescription" : "I need a cool guy to do stuff"
-    },
-    {
-        "clientId" : "2",
-        "jobTitle" : "Alright bro",
-        "jobDescription" : "I need a alright bro to do stuff"
-    },
-    {
-        "clientId" : "3",
-        "jobTitle" : "Cold fellow",
-        "jobDescription" : "I need a cold fellow to do stuff"
-    },
-    {
-        "clientId" : "4",
-        "jobTitle" : "Fire bruh",
-        "jobDescription" : "I need a fire bruh to do stuff"
-    },
-    {
-        "clientId" : "5",
-        "jobTitle" : "Ice bruh",
-        "jobDescription" : "I need a ice bruh to do stuff"
-    },
-    {
-        "clientId" : "6",
-        "jobTitle" : "Electric bruh",
-        "jobDescription" : "I need a electric bruh to do stuff"
-    },
-    {
-        "clientId" : "7",
-        "jobTitle" : "Earth bruh",
-        "jobDescription" : "I need a earth bruh to do stuff"
-    }
-];
 
 // Component
 class FilterComponent extends Component {
@@ -83,7 +45,6 @@ class FilterComponent extends Component {
     }
 
     componentDidMount() {
-        this.props.setFilterData(sampleData)
         this.props.filterData()
     }
 
@@ -96,11 +57,10 @@ class FilterComponent extends Component {
     render() {
         return (
             <MainDiv>
-                <SearchFilter  />
+                <SearchFilter />
                 <StarFilter />
                 <SortFilter />
-                <PaymentFilter  />
-                <JobList jobs={this.props.filteredData} />}
+                <PaymentFilter />
                 <Button 
                     style={{
                         fontWeight: 'bold',
