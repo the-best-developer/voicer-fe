@@ -6,6 +6,8 @@ import SortFilter from './SortFilter';
 import StarFilter from './StarFilter';
 import PaymentFilter from './PaymentFilter';
 import { Button } from 'reactstrap';
+import { connect } from 'react-redux';
+import { filterData, setFilterData } from '../../actions/filterData';
 
 // FIXME: There is a bit that needs cleaned up. Here are a few things i'd like worked on next:
 
@@ -78,42 +80,27 @@ const sampleData = [
 class FilterComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            storedData: []
-        }
-        // For referencing methods on the child filters
-        this.paymentChild = React.createRef();
-        this.searchChild = React.createRef();
-        this.sortChild = React.createRef();
-        this.starChild = React.createRef();
     }
 
     componentDidMount() {
-        this.setState({
-            storedData: [...sampleData]
-        })
+        this.props.setFilterData(sampleData)
+        this.props.filterData()
     }
-
-    updateData = data => this.setState({
-        storedData: [...data]
-    })
 
     setFilters = () => {
         // Call each child filter to process the data and modify state
-        this.paymentChild.current.runFilter();
-        this.searchChild.current.runFilter();
-        this.sortChild.current.runFilter();
-        this.starChild.current.runFilter();
-      };
+        
+    };
 
 
     render() {
         return (
             <MainDiv>
-                <SearchFilter ref={this.searchChild} updateData={this.updateData} data={sampleData} keys={['jobTitle']} />
-                <StarFilter ref={this.starChild} updateData={this.updateData} data={this.state.storedData} keys={"stars"} />
-                <SortFilter ref={this.sortChild} updateData={this.updateData} data={this.state.storedData} keys={"jobTitle", id} />
-                <PaymentFilter ref={this.paymentChild} />
+                <SearchFilter  />
+                <StarFilter />
+                <SortFilter />
+                <PaymentFilter  />
+                <JobList jobs={this.props.filteredData} />}
                 <Button 
                     style={{
                         fontWeight: 'bold',
@@ -128,4 +115,8 @@ class FilterComponent extends Component {
     };
 };
 
-export default FilterComponent;
+const mapStateToProps = state => ({
+    filteredData: state.filterReducer.filteredData
+});
+
+export default connect(mapStateToProps, { filterData, setFilterData } )(FilterComponent);
