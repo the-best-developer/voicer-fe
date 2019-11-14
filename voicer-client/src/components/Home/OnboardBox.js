@@ -1,7 +1,6 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import OnboardCard from './OnboardCard';
-// import './onboardBox.css'
 
 const OnboardBox = () => {
     return (
