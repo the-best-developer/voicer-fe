@@ -17,7 +17,8 @@ class ClientHomePage extends React.Component {
     }
 
     componentDidMount = async () => {
-        const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}/jobs`)
+        const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
+        console.log(client.data[0].clientId)
         this.props.getJobsBy(client.data[0].clientId)
     }
 

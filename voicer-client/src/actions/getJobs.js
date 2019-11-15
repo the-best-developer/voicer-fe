@@ -26,7 +26,7 @@ export const getJobs = () => dispatch => {
 export const getJobsBy = clientId => dispatch => {
     dispatch({ type: GET_JOBS_START });
     return axiosWithAuth()
-        .get(`https://voicer-lambda-app-staging.herokuapp.com/api/jobs/${clientId}`)
+        .get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${clientId}/jobs`)
         //.get(`http://localhost:4000/api/jobs/${clienId}`)
         .then(res => {
             dispatch({
