@@ -4,6 +4,8 @@
 @import 'styles/header';
 @import 'styles/hero';
 @import 'styles/infobox';
+@import 'styles/user-access';
+@import 'styles/footer';
 
 
 .TalentNavigation {
@@ -41,12 +43,4 @@
 .PostJob Button {
   margin-top: 20px;
 }
-
-.welcome-title {
-    text-align: center;
-    margin: 2rem auto;
-}
-
-
-
 

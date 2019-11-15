@@ -31,3 +31,9 @@
     background-color: darken($orange, 10%) !important;
   }
 }
+
+.btn-centered {
+  margin: 2rem auto .5rem;
+  display: block !important;
+  padding: .5rem 2rem !important;
+}

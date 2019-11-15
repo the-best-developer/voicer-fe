@@ -5,6 +5,8 @@ import { editClientProfileReducer } from './editClientProfileReducer'
 import { getClientProfileReducer } from './getClientProfileReducer';
 import { postJobReducer } from './postJobReducer';
 import { getJobsReducer } from './getJobsReducer';
+import { filterReducer } from './filterReducer';
+import { applyReducer } from './applyReducer';
 
 export default combineReducers({
     registerReducer,
@@ -12,5 +14,7 @@ export default combineReducers({
     editClientProfileReducer,
     getClientProfileReducer,
     postJobReducer,
-    getJobsReducer
+    getJobsReducer,
+    filterReducer,
+    applyReducer
 });
