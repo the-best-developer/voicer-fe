@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getClientProfile } from '../actions';
+import { getClientProfile, editClientProfile } from '../actions';
 import { Container, Row, Col, Card, CardBody, CardTitle, CardText, Form, FormGroup, Button, Label, Input } from 'reactstrap';
 import './ClientProfile.scss';
 
@@ -28,6 +28,7 @@ class ClientProfile extends React.Component {
             last_name: elements['last_name'].value,
             company_name: elements['company_name'].value
         }
+        this.props.editClientProfile(changes);
         this.setState({ editing: false });
         console.log(changes);
     }
@@ -77,4 +78,4 @@ const mapStateToProps = state => {
     };
 }
 
-export default connect(mapStateToProps, { getClientProfile })(ClientProfile);
+export default connect(mapStateToProps, { getClientProfile, editClientProfile })(ClientProfile);
