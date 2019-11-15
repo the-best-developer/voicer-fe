@@ -7,7 +7,7 @@ import StarFilter from './StarFilter';
 import PaymentFilter from './PaymentFilter';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { filterData, setFilterData } from '../../actions/filterData';
+import { filterData } from '../../actions/filterData';
 
 // FIXME: There is a bit that needs cleaned up. Here are a few things i'd like worked on next:
 
@@ -44,16 +44,6 @@ class FilterComponent extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        this.props.filterData()
-    }
-
-    setFilters = () => {
-        // Call each child filter to process the data and modify state
-        
-    };
-
-
     render() {
         return (
             <MainDiv>
@@ -69,14 +59,10 @@ class FilterComponent extends Component {
                         width: '50%',
                         marginLeft: '20px'
                     }}
-                    onClick={_ => this.setFilters()}>Filter</Button>
+                    onClick={_ => this.props.filterData()}>Filter</Button>
             </MainDiv>
         );
     };
 };
 
-const mapStateToProps = state => ({
-    filteredData: state.filterReducer.filteredData
-});
-
-export default connect(mapStateToProps, { filterData, setFilterData } )(FilterComponent);
+export default connect(null, { filterData } )(FilterComponent);

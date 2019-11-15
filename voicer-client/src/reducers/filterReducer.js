@@ -1,5 +1,6 @@
 import Fuse from "fuse.js";
 
+// Actions
 import {
     FILTER_SEARCH,
     FILTER_SORT,
@@ -10,58 +11,26 @@ import {
     SET_SEARCH,
     SET_SORT,
     SET_STAR,
-    SET_FILTER_DATA
+    SET_STORED_DATA,
+
+    SET_SORT_KEY,
+    SET_SEARCH_KEY
 } from '../actions/filterData';
 
+// State
 const initialState = {
     filteredData: [],
     isFiltering: false,
-    searchState: "",
+    searchState: '',
     sortState: "alpha",
     paymentState: "Paypal",
-    starState: 3
+    starState: 3,
+    sortKey: 'alpha',
+    searchKey: '',
+    storedData: []
 }
 
-const searchFunction = (state) => {
-    
-    const fuseOptions = {
-        shouldSort: true,
-        //Threshold is search accuracy
-        threshold: 0.4,
-        location: 0,
-        distance: 50,
-        maxPatternLength: 12,
-        minMatchCharLength: 3,
-        // Keys in object to searched for keywords
-        keys: ['jobTitle']//[...keys],
-    };
-
-    // Setup fuse using data and fuseOptions as search options
-    const fuse = new Fuse(state.filteredData, fuseOptions)
-    // Return searched list
-    const searchedData = fuse.search(state.searchState)
-    return (searchedData.length) ? searchedData : state.filteredData;
-}
-
-const sortFunction = (state) => {
-    
-    let sortedData = [...state.filteredData]
-        
-    switch(state.sortState) {
-        case 'alpha':
-            sortedData.sort((x,y) => (y['jobTitle'] > x['jobTitle']) ? -1 : 1);
-            return sortedData;
-        case 'num':
-            sortedData.sort((x,y) => x - y);
-            return sortedData;
-        case 'reverseAlpha':
-            sortedData.sort((x,y) => (y['jobTitle']> x['jobTitle']) ? -1 : 1).reverse();
-            return sortedData;
-        default:
-            return sortedData;
-        }
-}
-
+// Main reducer
 export const filterReducer = (state = initialState, action) => {
     switch (action.type) {
 
@@ -86,10 +55,22 @@ export const filterReducer = (state = initialState, action) => {
                 ...state,
                 starState: action.payload
             }
-        case SET_FILTER_DATA:
+        case SET_STORED_DATA:
             return {
                 ...state,
-                filteredData: [...action.payload]
+                storedData: [...action.payload]
+            }
+
+        // Set table keys for filtering
+        case SET_SORT_KEY:
+            return {
+                ...state,
+                sortKey: action.payload
+            }
+        case SET_SEARCH_KEY:
+            return {
+                ...state,
+                searchKey: action.payload
             }
 
         // Filter the data
@@ -106,5 +87,46 @@ export const filterReducer = (state = initialState, action) => {
             }
         default:
             return state;
+    }
+}
+
+// Filtering functions
+const searchFunction = (state) => {
+    
+    const fuseOptions = {
+        shouldSort: true,
+        //Threshold is search accuracy
+        threshold: 0.4,
+        location: 0,
+        distance: 50,
+        maxPatternLength: 12,
+        minMatchCharLength: 3,
+        // Keys in object to searched for keywords
+        keys: [...state.searchKey]
+    };
+
+    // Setup fuse using data and fuseOptions as search options
+    const fuse = new Fuse(state.storedData, fuseOptions)
+    // Return searched list
+    const searchedData = fuse.search(state.searchState)
+    return (searchedData.length) ? searchedData : state.storedData
+}
+
+const sortFunction = (state) => {
+    
+    let sortedData = [...state.filteredData]
+        
+    switch(state.sortState) {
+        case 'alpha':
+            sortedData.sort((x,y) => (y[state.sortKey] > x[state.sortKey]) ? -1 : 1);
+            return sortedData;
+        case 'num':
+            sortedData.sort((x,y) => (x[state.sortKey] - y[state.sortKey]));
+            return sortedData;
+        case 'reverseAlpha':
+            sortedData.sort((x,y) => (y[state.sortKey]> x[state.sortKey]) ? -1 : 1).reverse();
+            return sortedData;
+        default:
+            return sortedData;
     }
 }
