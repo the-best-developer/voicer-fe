@@ -6,6 +6,7 @@ import ClientJobList from './JobList/ClientJobList';
 import axiosWithAuth from './axiosAuth';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import "../App.scss";
 
 class ClientHomePage extends React.Component {
     constructor(props) {
@@ -23,8 +24,8 @@ class ClientHomePage extends React.Component {
     render() {
         return(
             <div className="ClientHomePage">
-                <ClientJobList jobs={[...this.props.jobs]} />
-                <Link to="/client/postJob"><Button>Post Job</Button></Link>
+                <ClientJobList jobs={this.props.jobs} />
+                <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
             </div>
         )
     }

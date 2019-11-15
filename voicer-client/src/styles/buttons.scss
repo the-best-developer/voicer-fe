@@ -31,3 +31,12 @@
     background-color: darken($orange, 10%) !important;
   }
 }
+
+.btn-medium-blue {
+  background-color: $blue-medium !important;
+  border: none !important;
+
+  &:hover {
+    background-color: darken($blue-medium, 10%) !important;
+  }
+}
