@@ -21,7 +21,7 @@ class App extends Component {
       <Router>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/register" component={Register} />
+        <Route exact path="/register" component={Register} />
         {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
         <Route exact path="/talent/apply" component={ApplyToJob} />
         <PrivateRoute exact path="/client/postjob" component={PostJob} />

@@ -19,6 +19,13 @@ const languageOptions = [
   { value: 'chinese', label: 'Chinese' }
 ];
 
+const accentOptions = [
+  { value: 'american', label: 'American' },
+  { value: 'british', label: 'British' },
+  { value: 'central american', label: 'Central American' },
+  { value: 'european spanish', label: 'European Spanish' }
+]
+
 
 class TalentProfile extends React.Component {
   state = {
@@ -42,6 +49,10 @@ class TalentProfile extends React.Component {
   handleLanguageChange = (languages) => {
     this.setState({ languages });
   };
+
+  handleAccentChange = (accents) => {
+    this.setState({ accents });
+  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -95,19 +106,18 @@ class TalentProfile extends React.Component {
               onChange={this.handleLanguageChange}
               components={makeAnimated()}
               isMulti
-              options={languageOptions} />
+              options={languageOptions}
+            />
           </FormGroup>
           <FormGroup>
             <Label for="accentSelect">Select Accents</Label>
-            <Input
-              type="select"
-              name="accents"
-              id="accentSelect"
-              onChange={this.handleSelectChange}
-              multiple
-            >
-
-            </Input>
+            <Select
+              className="mt-4 col-md-8 col-offset-4"
+              onChange={this.handleAccentChange}
+              components={makeAnimated()}
+              isMulti
+              options={accentOptions}
+            />
           </FormGroup>
           <FormGroup>
             <Label for="bioText">Bio (Tell us a bit about yourself)</Label>

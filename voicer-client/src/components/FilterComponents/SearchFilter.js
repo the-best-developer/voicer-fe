@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Input, Label } from 'reactstrap';
-import Fuse from "fuse.js";
+import { connect } from 'react-redux';
+import { filterData, setSearch } from '../../actions/filterData';
 
 // Styling
 const MainDiv = styled.div`
@@ -11,56 +12,31 @@ const MainDiv = styled.div`
   font-weight: bold;
 `
 
-const searchData = (data, keys, word) => {
-
-    const fuseOptions = {
-        shouldSort: true,
-        //Threshold is search accuracy
-        threshold: 0.4,
-        location: 0,
-        distance: 50,
-        maxPatternLength: 12,
-        minMatchCharLength: 3,
-        // Keys in object to searched for keywords
-        keys: [...keys],
-    };
-
-    // Setup fuse using data and fuseOptions as search options
-    const fuse = new Fuse(data, fuseOptions)
-    // Return searched list
-    const searchedData = fuse.search(word)
-    return (word.length) ? searchedData : data;
-}
-
 // Component
 class SearchFilter extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            searchBy: ""
-        }
-    }
-
-    setSearch = word => {
-        this.setState({ searchBy: word })
     }
 
     runFilter = () => {
         // Run filter using current state
-        this.props.updateData(searchData(this.props.data, this.props.keys, this.state.searchBy))
     }
 
     render() {
         return (
             <MainDiv>
                 <Label>Search:</Label>
-                <Input value={this.state.searchBy} onChange={(e) => {
-                    this.setSearch(`${e.target.value}`)
-                    this.props.updateData(searchData(this.props.data, this.props.keys, e.target.value))
+                <Input value={this.props.searchState} onChange={(e) => {
+                    this.props.setSearch(`${e.target.value}`)
+                    this.props.filterData();
                 }} />
             </MainDiv>
         );
     };
 };
 
-export default SearchFilter;
+const mapStateToProps = state => ({
+    searchState: state.filterReducer.searchState
+});
+
+export default connect(mapStateToProps, { filterData, setSearch } )(SearchFilter);
