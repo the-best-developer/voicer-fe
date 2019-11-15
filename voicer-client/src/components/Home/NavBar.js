@@ -4,17 +4,12 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/logo-white.svg';
 
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink
+  } from 'reactstrap';
 
 class NavBar extends React.Component {
     constructor(props) {

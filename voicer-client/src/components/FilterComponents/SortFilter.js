@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import { connect } from 'react-redux';
+import { filterData, setSort } from '../../actions/filterData';
 
 // Styling
 const MainDiv = styled.div`
@@ -10,31 +12,11 @@ const MainDiv = styled.div`
   font-weight: bold;
 `
 
-const sortData = (data, key = [], method) => {
-    let sortedData = [...data]
-
-    switch(method) {
-        case 'alpha':
-            sortedData.sort((x,y) => (y[key] > x[key]) ? -1 : 1);
-            return sortedData;
-        case 'num':
-            sortedData.sort((x,y) => x['clientId'] - y['clientId']);
-            return sortedData;
-        case 'reverseAlpha':
-            sortedData.sort((x,y) => (y[key] > x[key]) ? -1 : 1).reverse();
-            return sortedData;
-        default:
-            return sortedData;
-    }
-}
-
 // Component
 class SortFilter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortBy: "Alphabetical",
-            sortState: "alpha",
             toggleMenu: true
         }
     }
@@ -42,10 +24,16 @@ class SortFilter extends Component {
     toggleMenu = () => this.setState({
         toggleMenuValue: !this.state.toggleMenuValue
     })
-    
-    runFilter = () => {
-        // Run filter using current state
-        this.props.updateData(sortData(this.props.data, this.props.keys, this.state.sortState))
+
+    selectedSort = _ => {
+        switch(this.props.sortState){
+            case "alpha":
+                return "Alphabetical"
+            case "num":
+                return "Numerical"
+            case "reverseAlpha":
+                return "Reverse Alphabetical"
+        }
     }
 
     render() {
@@ -53,29 +41,29 @@ class SortFilter extends Component {
             <MainDiv>
                 <Label>Sort by:</Label>
                 <Dropdown isOpen={this.state.toggleMenuValue} toggle={this.toggleMenu}>
-                    <DropdownToggle caret>{this.state.sortBy}</DropdownToggle>
+                    <DropdownToggle caret>{this.selectedSort()}</DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem onClick={() => {
-                            this.props.updateData(sortData(this.props.data, this.props.keys, "alpha"))
-                            this.setState({sortBy: "Alphabetical"})
-                            this.setState({sortState: "alpha"})
+                            this.props.setSort("alpha");
+                            this.props.filterData();
                         }}>Alphabetical</DropdownItem>
                         <DropdownItem onClick={() => {
-                            this.props.updateData(sortData(this.props.data, this.props.keys, "num"))
-                            this.setState({sortBy: "Numerical"})
-                            this.setState({sortState: "num"})
+                            this.props.setSort("num");
+                            this.props.filterData();
                         }}>Numerical</DropdownItem>
                         <DropdownItem onClick={() => {
-                            this.props.updateData(sortData(this.props.data, this.props.keys, "reverseAlpha"))
-                            this.setState({sortBy: "Reverse Alphabetical"})
-                            this.setState({sortState: "reverseAlpha"})
+                            this.props.setSort("reverseAlpha");
+                            this.props.filterData();
                         }}>Reverse Alphabetical</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
-            
             </MainDiv>
         );
     };
 };
 
-export default SortFilter;
+const mapStateToProps = state => ({
+    sortState: state.filterReducer.sortState
+});
+
+export default connect(mapStateToProps, { filterData, setSort } )(SortFilter);
