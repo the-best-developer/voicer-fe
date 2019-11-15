@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { registerReducer } from './registerReducer';
 import { loginReducer } from './loginReducer';
 import { editClientProfileReducer } from './editClientProfileReducer'
-import { getClientProfileReducer } from './clientProfileReducer';
+import { getClientProfileReducer } from './getClientProfileReducer';
 import { postJobReducer } from './postJobReducer';
 import { getJobsReducer } from './getJobsReducer';
 
