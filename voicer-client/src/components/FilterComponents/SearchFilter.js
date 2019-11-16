@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Input, Label } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getJobs} from '../../actions'
-import { filterData, setSearch, setFilterData } from '../../actions/filterData';
+import { filterData, setSearch, setSearchKey } from '../../actions/filterData';
 
 // Styling
 const MainDiv = styled.div`
@@ -19,19 +18,18 @@ class SearchFilter extends Component {
         super(props);
     }
 
-    runFilter = async () => {
+    filterSearch = async (text, key) => {
         // Run filter using current state
-        await this.props.filterData(this.props.jobs)
+        await this.props.setSearchKey(key)
+        await this.props.setSearch(text)
+        await this.props.filterData()
     }
 
     render() {
         return (
             <MainDiv>
                 <Label>Search:</Label>
-                <Input value={this.props.searchState} onChange={(e) => {
-                    this.props.setSearch(`${e.target.value}`)
-                    this.runFilter()
-                }} />
+                <Input value={this.props.searchState} onChange={(e) => this.filterSearch(`${e.target.value}`, ['jobTitle', 'jobDescription'])} />
             </MainDiv>
         );
     };
@@ -42,4 +40,4 @@ const mapStateToProps = state => ({
     jobs: state.getJobsReducer.jobs
 });
 
-export default connect(mapStateToProps, { filterData, setSearch, getJobs} )(SearchFilter);
+export default connect(mapStateToProps, { filterData, setSearch, setSearchKey } )(SearchFilter);

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getJobs } from '../actions'
 import FilterComponent from './FilterComponents/FilterComponent';
-import { filterData, setFilterData } from '../actions/filterData';
+import { filterData, dataToFilter, setSearchKey, setSortKey } from '../actions/filterData';
 
 const HomePage = styled.div`
     display: flex;
@@ -18,7 +18,8 @@ class TalentHomePage extends React.Component {
 
     async componentDidMount() {
         await this.props.getJobs()
-        await this.props.filterData(this.props.jobs)
+        await this.props.dataToFilter(this.props.jobs)
+        await this.props.filterData()
     }
 
     render() {
@@ -38,5 +39,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getJobs, filterData }
+    { getJobs, dataToFilter, filterData, setSortKey, setSearchKey }
 )(TalentHomePage);

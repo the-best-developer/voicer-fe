@@ -26,9 +26,10 @@ class PaymentFilter extends Component {
         toggleMenuValue: !this.state.toggleMenuValue
     })
 
-    runFilter = () => {
+    filterPayment = async (payment) => {
         // Run filter using current state
-        this.props.filterData(this.props.jobs);
+        await this.props.setPayment(payment)
+        await this.props.filterData();
     }
 
     render() {
@@ -38,18 +39,9 @@ class PaymentFilter extends Component {
                 <Dropdown isOpen={this.state.toggleMenuValue} toggle={this.toggleMenu}>
                     <DropdownToggle caret>{this.props.paymentState}</DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={ _ => {
-                            this.props.setPayment("Paypal")
-                            this.runFilter()
-                        }} >Paypal</DropdownItem>
-                        <DropdownItem onClick={ _ => {
-                            this.props.setPayment("Venmo")
-                            this.runFilter()
-                        }}>Venmo</DropdownItem>
-                        <DropdownItem onClick={ _ => {
-                            this.props.setPayment("Bankwire")
-                            this.runFilter()
-                        }}>Bankwire</DropdownItem>
+                        <DropdownItem onClick={ _ => this.filterPayment("Paypal")} >Paypal</DropdownItem>
+                        <DropdownItem onClick={ _ => this.filterPayment("Venmo")}>Venmo</DropdownItem>
+                        <DropdownItem onClick={ _ => this.filterPayment("Bankwire")}>Bankwire</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             
