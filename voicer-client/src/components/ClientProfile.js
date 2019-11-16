@@ -1,15 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { getClientProfile } from '../actions';
-import { Container, Row, Col, Card, CardBody, CardTitle, CardText, FormGroup, Label, Input } from 'reactstrap';
+import { getClientProfile, editClientProfile } from '../actions';
+import { Container, Row, Col, Card, CardBody, CardTitle, CardText, Form, FormGroup, Button, Label, Input } from 'reactstrap';
+import './ClientProfile.scss';
 
 class ClientProfile extends React.Component {
-    constructor(props) {
-        super();
+    state = {
+        editing: false
     }
 
     componentDidMount() {
         this.props.getClientProfile(this.props.id);
+    }
+
+    edit = () => {
+        this.setState(prevState => ({
+            editing: !prevState.editing
+        }));
+    }
+
+    editProfile = event => {
+        event.preventDefault();
+        let elements = event.target.elements;
+        let changes = {
+            username: elements['username'].value,
+            firstName: elements['first_name'].value,
+            lastName: elements['last_name'].value,
+            companyName: elements['company_name'].value
+        }
+        this.props.editClientProfile(changes);
+        this.setState({ editing: false });
+        console.log(changes);
     }
     
     render() {
@@ -25,10 +46,20 @@ class ClientProfile extends React.Component {
                                 <CardText>{this.props.clientProfile ? this.props.clientProfile.email : 'You are not signed in.'}</CardText>
                             </CardBody>
                             <CardBody>
-                                <FormGroup>
-                                    <Label for="username">Username</Label>
-                                    <Input disabled id="username" value={this.props.clientProfile ? this.props.clientProfile.username : 'You are not signed in.'} />
-                                </FormGroup>
+                                <Form onSubmit={this.editProfile}>
+                                    <FormGroup>
+                                        <Label for="username">Username</Label>
+                                        <Input disabled={!this.state.editing} id="username" defaultValue={this.props.clientProfile ? this.props.clientProfile.username : 'You are not signed in.'} />
+                                        <Label for="first_name">First Name</Label>
+                                        <Input disabled={!this.state.editing} id="first_name" defaultValue={this.props.clientProfile ? this.props.clientProfile.firstName : 'You are not signed in.'} />
+                                        <Label for="last_name">Last Name</Label>
+                                        <Input disabled={!this.state.editing} id="last_name" defaultValue={this.props.clientProfile ? this.props.clientProfile.lastName : 'You are not signed in.'} />
+                                        <Label for="company_name">Company Name</Label>
+                                        <Input disabled={!this.state.editing} id="company_name" defaultValue={this.props.clientProfile ? this.props.clientProfile.companyName : 'You are not signed in.'} />
+                                        {this.state.editing ? <Input id='submit-button' type="submit" value={'Submit Changes'}/> : null}
+                                    </FormGroup>
+                                </Form>
+                                <Button onClick={this.edit}>Edit</Button>
                             </CardBody>
                         </Card>
                     </Col>
@@ -40,11 +71,11 @@ class ClientProfile extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        clientProfile: state.clientProfileReducer.clientProfile,
-        gettingClientProfile: state.clientProfileReducer.gettingClientProfile,
-        error: state.clientProfileReducer.error,
+        clientProfile: state.getClientProfileReducer.clientProfile,
+        gettingClientProfile: state.getClientProfileReducer.gettingClientProfile,
+        error: state.getClientProfileReducer.error,
         id: state.loginReducer.id
     };
 }
 
-export default connect(mapStateToProps, { getClientProfile })(ClientProfile);
+export default connect(mapStateToProps, { getClientProfile, editClientProfile })(ClientProfile);

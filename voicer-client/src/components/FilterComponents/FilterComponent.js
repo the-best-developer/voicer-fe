@@ -31,7 +31,6 @@ const MainDiv = styled.div`
   min-width: 250px;
   max-width: 25%;
   min-height: 100%;
-  margin-right: auto;
   display: flex;
   flex-direction: column;
   background-color: rgb( 239, 241, 243 );

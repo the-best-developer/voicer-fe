@@ -61,7 +61,8 @@ class SortFilter extends Component {
 };
 
 const mapStateToProps = state => ({
-    sortState: state.filterReducer.sortState
+    sortState: state.filterReducer.sortState,
+    jobs: state.getJobsReducer.jobs
 });
 
 export default connect(mapStateToProps, { filterData, setSort, setSortKey } )(SortFilter);

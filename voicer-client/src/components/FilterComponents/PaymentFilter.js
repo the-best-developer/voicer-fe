@@ -51,7 +51,8 @@ class PaymentFilter extends Component {
 };
 
 const mapStateToProps = state => ({
-    paymentState: state.filterReducer.paymentState
+    paymentState: state.filterReducer.paymentState,
+    jobs: state.getJobsReducer.jobs
 });
 
 export default connect(mapStateToProps, { filterData, setPayment } )(PaymentFilter);

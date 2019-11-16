@@ -36,7 +36,8 @@ class SearchFilter extends Component {
 };
 
 const mapStateToProps = state => ({
-    searchState: state.filterReducer.searchState
+    searchState: state.filterReducer.searchState,
+    jobs: state.getJobsReducer.jobs
 });
 
 export default connect(mapStateToProps, { filterData, setSearch, setSearchKey } )(SearchFilter);
