@@ -23,10 +23,10 @@ class ClientProfile extends React.Component {
         event.preventDefault();
         let elements = event.target.elements;
         let changes = {
-            email: elements['email'].value,
-            first_name: elements['first_name'].value,
-            last_name: elements['last_name'].value,
-            company_name: elements['company_name'].value
+            username: elements['username'].value,
+            firstName: elements['first_name'].value,
+            lastName: elements['last_name'].value,
+            companyName: elements['company_name'].value
         }
         this.props.editClientProfile(changes);
         this.setState({ editing: false });
@@ -43,13 +43,13 @@ class ClientProfile extends React.Component {
                                 <CardTitle><h1>Profile</h1></CardTitle>
                             </CardBody>
                             <CardBody>
-                                <CardText>{this.props.clientProfile ? this.props.clientProfile.username : 'You are not signed in.'}</CardText>
+                                <CardText>{this.props.clientProfile ? this.props.clientProfile.email : 'You are not signed in.'}</CardText>
                             </CardBody>
                             <CardBody>
                                 <Form onSubmit={this.editProfile}>
                                     <FormGroup>
-                                        <Label for="email">Email</Label>
-                                        <Input disabled={!this.state.editing} id="email" defaultValue={this.props.clientProfile ? this.props.clientProfile.email : 'You are not signed in.'} />
+                                        <Label for="username">Username</Label>
+                                        <Input disabled={!this.state.editing} id="username" defaultValue={this.props.clientProfile ? this.props.clientProfile.username : 'You are not signed in.'} />
                                         <Label for="first_name">First Name</Label>
                                         <Input disabled={!this.state.editing} id="first_name" defaultValue={this.props.clientProfile ? this.props.clientProfile.firstName : 'You are not signed in.'} />
                                         <Label for="last_name">Last Name</Label>
