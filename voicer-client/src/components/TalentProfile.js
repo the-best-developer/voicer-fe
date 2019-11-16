@@ -9,7 +9,7 @@ const ageOptions = [
   { value: 'teen', label: 'Teen' },
   { value: 'adult', label: 'Adult' },
   { value: 'senior', label: 'Senior' }
-]
+];
 
 const languageOptions = [
   { value: 'english', label: 'English' },
@@ -24,8 +24,7 @@ const accentOptions = [
   { value: 'british', label: 'British' },
   { value: 'central american', label: 'Central American' },
   { value: 'european spanish', label: 'European Spanish' }
-]
-
+];
 
 class TalentProfile extends React.Component {
   state = {
@@ -42,23 +41,33 @@ class TalentProfile extends React.Component {
     });
   };
 
-  handleAgeChange = (voiceAge) => {
+  handleAgeChange = voiceAge => {
     this.setState({ voiceAge: voiceAge.value });
   };
 
-  handleLanguageChange = (languages) => {
-    this.setState({ languages });
+  handleLanguageChange = languages => {
+    if (languages === null) {
+      languages = [];
+    } else {
+      this.setState({ languages });
+    }
   };
 
-  handleAccentChange = (accents) => {
+  destructureLanguages = languages => {
+    const newArray = languages.map(lang => lang.value);
+    console.log(newArray);
+    this.setState({ languages: newArray });
+  };
+
+  handleAccentChange = accents => {
     this.setState({ accents });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
+    this.destructureLanguages(this.state.languages);
     console.log('Profile Saved');
   };
-
 
   render() {
     return (
@@ -101,7 +110,7 @@ class TalentProfile extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="languageSelect">Select Languages</Label>
-            <Select 
+            <Select
               className="mt-4 col-md-8 col-offset-4"
               onChange={this.handleLanguageChange}
               components={makeAnimated()}
