@@ -27,7 +27,7 @@ const searchFunction = (state) => {
     const fuseOptions = {
         shouldSort: true,
         //Threshold is search accuracy
-        threshold: 0.4,
+        threshold: 0.3,
         location: 0,
         distance: 50,
         maxPatternLength: 12,
@@ -40,7 +40,7 @@ const searchFunction = (state) => {
     const fuse = new Fuse(state.filteredData, fuseOptions)
     // Return searched list
     const searchedData = fuse.search(state.searchState)
-    return (searchedData.length) ? searchedData : state.filteredData;
+    return (state.searchState.length && searchedData.length) ? searchedData : state.filteredData;
 }
 
 const sortFunction = (state) => {
@@ -49,13 +49,13 @@ const sortFunction = (state) => {
         
     switch(state.sortState) {
         case 'alpha':
-            sortedData.sort((x,y) => (y['jobTitle'] > x['jobTitle']) ? -1 : 1);
+            sortedData.sort((x,y) => (y[''] > x['']) ? -1 : 1);
             return sortedData;
         case 'num':
             sortedData.sort((x,y) => x - y);
             return sortedData;
         case 'reverseAlpha':
-            sortedData.sort((x,y) => (y['jobTitle']> x['jobTitle']) ? -1 : 1).reverse();
+            sortedData.sort((x,y) => (y['']> x['']) ? -1 : 1).reverse();
             return sortedData;
         default:
             return sortedData;

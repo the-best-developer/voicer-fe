@@ -31,7 +31,6 @@ const MainDiv = styled.div`
   min-width: 250px;
   max-width: 25%;
   min-height: 100%;
-  margin-right: auto;
   display: flex;
   flex-direction: column;
   background-color: rgb( 239, 241, 243 );
@@ -45,14 +44,8 @@ class FilterComponent extends Component {
     }
 
     componentDidMount() {
-        this.props.filterData()
+        this.props.filterData(this.props.jobs)
     }
-
-    setFilters = () => {
-        // Call each child filter to process the data and modify state
-        
-    };
-
 
     render() {
         return (
@@ -76,7 +69,8 @@ class FilterComponent extends Component {
 };
 
 const mapStateToProps = state => ({
-    filteredData: state.filterReducer.filteredData
+    filteredData: state.filterReducer.filteredData,
+    jobs: state.getJobsReducer.jobs
 });
 
 export default connect(mapStateToProps, { filterData, setFilterData } )(FilterComponent);

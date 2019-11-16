@@ -11,7 +11,8 @@ export const SET_SORT = 'SET_SORT';
 export const SET_STAR = 'SET_STAR';
 export const SET_FILTER_DATA = 'SET_FILTER_DATA';
 
-export const filterData = () => (dispatch) => {
+export const filterData = (data) => (dispatch) => {
+    dispatch(setFilterData(data));
     dispatch({ type: FILTER_SEARCH });
     dispatch({ type: FILTER_SORT });
     dispatch({ type: FILTER_PAYMENT });

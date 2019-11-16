@@ -45,15 +45,15 @@ class SortFilter extends Component {
                     <DropdownMenu>
                         <DropdownItem onClick={() => {
                             this.props.setSort("alpha");
-                            this.props.filterData();
+                            this.props.filterData(this.props.jobs);
                         }}>Alphabetical</DropdownItem>
                         <DropdownItem onClick={() => {
                             this.props.setSort("num");
-                            this.props.filterData();
+                            this.props.filterData(this.props.jobs);
                         }}>Numerical</DropdownItem>
                         <DropdownItem onClick={() => {
                             this.props.setSort("reverseAlpha");
-                            this.props.filterData();
+                            this.props.filterData(this.props.jobs);
                         }}>Reverse Alphabetical</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
@@ -63,7 +63,8 @@ class SortFilter extends Component {
 };
 
 const mapStateToProps = state => ({
-    sortState: state.filterReducer.sortState
+    sortState: state.filterReducer.sortState,
+    jobs: state.getJobsReducer.jobs
 });
 
 export default connect(mapStateToProps, { filterData, setSort } )(SortFilter);

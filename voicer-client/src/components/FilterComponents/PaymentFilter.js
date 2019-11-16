@@ -28,7 +28,7 @@ class PaymentFilter extends Component {
 
     runFilter = () => {
         // Run filter using current state
-        this.props.filterData();
+        this.props.filterData(this.props.jobs);
     }
 
     render() {
@@ -38,9 +38,18 @@ class PaymentFilter extends Component {
                 <Dropdown isOpen={this.state.toggleMenuValue} toggle={this.toggleMenu}>
                     <DropdownToggle caret>{this.props.paymentState}</DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={ _ => this.props.setPayment("Paypal") && this.runFilter()} >Paypal</DropdownItem>
-                        <DropdownItem onClick={ _ => this.props.setPayment("Venmo")}>Venmo</DropdownItem>
-                        <DropdownItem onClick={ _ => this.props.setPayment("Bankwire") }>Bankwire</DropdownItem>
+                        <DropdownItem onClick={ _ => {
+                            this.props.setPayment("Paypal")
+                            this.runFilter()
+                        }} >Paypal</DropdownItem>
+                        <DropdownItem onClick={ _ => {
+                            this.props.setPayment("Venmo")
+                            this.runFilter()
+                        }}>Venmo</DropdownItem>
+                        <DropdownItem onClick={ _ => {
+                            this.props.setPayment("Bankwire")
+                            this.runFilter()
+                        }}>Bankwire</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             
@@ -50,7 +59,8 @@ class PaymentFilter extends Component {
 };
 
 const mapStateToProps = state => ({
-    paymentState: state.filterReducer.paymentState
+    paymentState: state.filterReducer.paymentState,
+    jobs: state.getJobsReducer.jobs
 });
 
 export default connect(mapStateToProps, { filterData, setPayment } )(PaymentFilter);
