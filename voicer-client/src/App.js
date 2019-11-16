@@ -28,8 +28,8 @@ class App extends Component {
         <PrivateRoute exact path="/client" component={ClientProfile} />
         <PrivateRoute path="/talent" component={TalentNavigation} />
         <PrivateRoute exact path="/talent" component={TalentHomePage} />
-
-        <Footer />
+        <PrivateRoute exact path="/talent/profile" component={TalentProfile} />
+        <Footer /> 
       </Router>
     );
   }

@@ -1,11 +1,38 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import Select, { components } from 'react-select';
+import makeAnimated from 'react-select/animated';
+import 'bootstrap/dist/css/bootstrap.css';
+
+const ageOptions = [
+  { value: 'child', label: 'Child' },
+  { value: 'teen', label: 'Teen' },
+  { value: 'adult', label: 'Adult' },
+  { value: 'senior', label: 'Senior' }
+]
+
+const languageOptions = [
+  { value: 'english', label: 'English' },
+  { value: 'spanish', label: 'Spanish' },
+  { value: 'german', label: 'German' },
+  { value: 'japanese', label: 'Japanese' },
+  { value: 'chinese', label: 'Chinese' }
+];
+
+const accentOptions = [
+  { value: 'american', label: 'American' },
+  { value: 'british', label: 'British' },
+  { value: 'central american', label: 'Central American' },
+  { value: 'european spanish', label: 'European Spanish' }
+]
+
 
 class TalentProfile extends React.Component {
   state = {
     gender: '',
     voiceAge: '',
-    languages: '',
+    languages: [],
+    accents: [],
     biography: ''
   };
 
@@ -15,10 +42,23 @@ class TalentProfile extends React.Component {
     });
   };
 
+  handleAgeChange = (voiceAge) => {
+    this.setState({ voiceAge: voiceAge.value });
+  };
+
+  handleLanguageChange = (languages) => {
+    this.setState({ languages });
+  };
+
+  handleAccentChange = (accents) => {
+    this.setState({ accents });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     console.log('Profile Saved');
   };
+
 
   render() {
     return (
@@ -51,36 +91,33 @@ class TalentProfile extends React.Component {
             </FormGroup>
           </FormGroup>{' '}
           <FormGroup>
-            <legend>Voice Age</legend>
-            {/* <Label for="voiceAge">Voice Age</Label> */}
-            <Input
-              type="select"
-              name="voiceAge"
-              id="ageSelect"
-              onChange={this.handleChange}
-            >
-              <option value="">Select One</option>
-              <option value="child">Child</option>
-              <option value="teen">Teen</option>
-              <option value="adult">Adult</option>
-              <option value="senior">Senior</option>
-            </Input>
+            <Label for="voiceAgeSelect">Select Voice Age</Label>
+            <Select
+              className="mt-4 col-md-8 col-offset-4"
+              onChange={this.handleAgeChange}
+              components={makeAnimated()}
+              options={ageOptions}
+            />
           </FormGroup>
           <FormGroup>
             <Label for="languageSelect">Select Languages</Label>
-            <Input
-              type="select"
-              name="languages"
-              id="languageSelect"
-              onChange={this.handleChange}
-              multiple
-            >
-              <option value="english">English</option>
-              <option value="spanish">Spanish</option>
-              <option value="german">German</option>
-              <option value="japanese">Japanese</option>
-              <option value="chinese">Chinese</option>
-            </Input>
+            <Select 
+              className="mt-4 col-md-8 col-offset-4"
+              onChange={this.handleLanguageChange}
+              components={makeAnimated()}
+              isMulti
+              options={languageOptions}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="accentSelect">Select Accents</Label>
+            <Select
+              className="mt-4 col-md-8 col-offset-4"
+              onChange={this.handleAccentChange}
+              components={makeAnimated()}
+              isMulti
+              options={accentOptions}
+            />
           </FormGroup>
           <FormGroup>
             <Label for="bioText">Bio (Tell us a bit about yourself)</Label>
