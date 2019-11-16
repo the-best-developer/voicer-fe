@@ -117,7 +117,7 @@ class TalentNavigation extends React.Component {
                 </NavbarBrand>
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink className="talent-link" href="/talent">
+                      <NavLink className="talent-link" onClick={(e) => this.route('/', e)}>
                             Marketplace
                       </NavLink>
                     </NavItem>
