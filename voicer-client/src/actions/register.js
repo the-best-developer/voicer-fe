@@ -31,6 +31,12 @@ export const register = creds => dispatch => {
   if (!creds.lastName) {
     dispatch({ type: REGISTER_FAILED, error: 'Please enter your last name' });
   }
+  if (creds.userType != 'talent' || creds.userType != 'client') {
+    dispatch({
+      type: REGISTER_FAILED,
+      error: 'Please provide a valid user type'
+    });
+  }
   if (!creds.email.includes('@') || !creds.email.includes('.')) {
     dispatch({ type: REGISTER_FAILED, error: 'Please enter a correct email' });
   }

@@ -6,15 +6,18 @@ import '../../App.scss';
 
 // Styling
 const MainDiv = styled.div`
-  width: 60%;
-  margin: 10px;
+  max-width: 70%;
+  margin: 21vh 10px 0 10px;
   margin-left: auto;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
+  height: 99vh;
+  &:last-child {
+      margin-bottom: 30px;
+  }
 `
 
 // Component
@@ -42,6 +45,7 @@ class JobList extends Component {
     }
 
     render() {
+        console.log(this.props.jobs)
         return (
             <MainDiv>
                 {this.props.jobs.map(job =>
