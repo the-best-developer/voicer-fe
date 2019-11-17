@@ -4,101 +4,21 @@ import styled from 'styled-components';
 import "../../App.scss";
 
 // Styling
-const StyledCard = styled(Card)`
-  width: 100%;
-  margin: 15px 0;
-  min-height: 200px;
-  padding: 5px;
-  border: 1px solid #707070 !important;
-  border-radius: 10px !important;
-  background-color: #EFF1F3 !important;
-  box-shadow: 2px 2px 5px 4px rgba(130, 130, 130, 0.2);
-`
-
-const StyledCardHeader = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  height: 10vh;
-`;
-
-const CardName = styled.div`
-  padding-right: 10px;
-  font-family: 'Nunito Sans', sans-serif ;
-  font-size: 1.0rem;
-  font-weight: 800;
-`;
-
-const CardTitle = styled.div`
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  font-weight: bold;
-`;
-
-const StyledButton = styled(Button)`
-  width: 100%;
-  margin: 3px;
-  background-color: #DBD3D8;
-`
-
-const StyledCardBody = styled(CardBody)`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding: 10px;
-`
-
-const Divider = styled.div`
-    height: 1px;
-    width: 100%;
-    margin: 0;
-    display:block; /* for use on default inline elements like span */
-    overflow: hidden;
-    background-color: #717F86;
-`;
-
-// const StyledButtonDiv = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   padding: 10px;
-//   margin-left: auto;
-// `
-
-const StyledCardDetails = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 75%;
-  padding-left: 10px;
-`
-
-const StyledCardDetail = styled.div`
-  width: 22%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 15px;
-`;
-
-const StyledCardDetailItem = styled.div`
-  width: 100%;
-  text-align: left;
-`;
-
-const StyledCardAction = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 22.5%;
-`
-
-const StyledCardActionItem = styled.div`
-  width: 100%;
-  text-align: left;
-`;
+import 
+{ JobListContainer,
+  JobListButton, 
+  JobListCardAction, 
+  JobListCardActionItem, 
+  JobListCardBody,
+  JobListCardDetail,
+  JobListCardDetails,
+  JobListCardDetailItem,
+  JobListCardHeader,
+  Divider,
+  CardName,
+  CardTitle,
+} 
+from '../../styles/styledComponents/JobListCard';
 
 // Component
 const JobListCard = props => {
@@ -114,63 +34,63 @@ const JobListCard = props => {
 
     console.log(props)
     return (
-        <StyledCard>
-            <StyledCardBody>
-              <StyledCardHeader>
+        <JobListContainer>
+            <JobListCardBody>
+              <JobListCardHeader>
                 <CardTitle>{props.jobData.jobTitle}</CardTitle>
                 <CardName>{props.jobData.firstName + ' ' + props.jobData.lastName}</CardName>
                 <Divider />
-              </StyledCardHeader>
-              <StyledCardDetails>
-                <StyledCardDetail>
-                  <StyledCardDetailItem>
+              </JobListCardHeader>
+              <JobListCardDetails>
+                <JobListCardDetail>
+                  <JobListCardDetailItem>
                     <strong>JOB #</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
+                  </JobListCardDetailItem>
+                  <JobListCardDetailItem>
                     {props.jobData.jobId}
-                  </StyledCardDetailItem>
-                </StyledCardDetail>
-                <StyledCardDetail>
-                  <StyledCardDetailItem>
+                  </JobListCardDetailItem>
+                </JobListCardDetail>
+                <JobListCardDetail>
+                  <JobListCardDetailItem>
                     <strong>Language</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
+                  </JobListCardDetailItem>
+                  <JobListCardDetailItem>
                     English
-                  </StyledCardDetailItem>
-                </StyledCardDetail>
-                <StyledCardDetail>
-                  <StyledCardDetailItem>
+                  </JobListCardDetailItem>
+                </JobListCardDetail>
+                <JobListCardDetail>
+                  <JobListCardDetailItem>
                     <strong>Posted On</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
+                  </JobListCardDetailItem>
+                  <JobListCardDetailItem>
                     {formatDate(props.jobData.createdDate)}
-                  </StyledCardDetailItem>
-                </StyledCardDetail>
-                <StyledCardDetail>
-                  <StyledCardDetailItem>
+                  </JobListCardDetailItem>
+                </JobListCardDetail>
+                <JobListCardDetail>
+                  <JobListCardDetailItem>
                     <strong>Price</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
+                  </JobListCardDetailItem>
+                  <JobListCardDetailItem>
                     200$
-                  </StyledCardDetailItem>
-                </StyledCardDetail>
-              </StyledCardDetails>
-              <StyledCardAction>
-                <StyledCardActionItem>
-                    <StyledButton onClick={() => {
+                  </JobListCardDetailItem>
+                </JobListCardDetail>
+              </JobListCardDetails>
+              <JobListCardAction>
+                <JobListCardActionItem>
+                    <JobListButton onClick={() => {
                       props.openModal(props.jobData);
                       props.toggle2();
-                    }}>INFO</StyledButton>
-                </StyledCardActionItem>
-                <StyledCardActionItem>
-                    <StyledButton className='btn-orange' onClick={() => {
+                    }}>INFO</JobListButton>
+                </JobListCardActionItem>
+                <JobListCardActionItem>
+                    <JobListButton className='btn-orange' onClick={() => {
                       props.openModal(props.jobData);
                       props.toggle();
-                    }}>Apply</StyledButton>
-                </StyledCardActionItem>
-              </StyledCardAction>
-            </StyledCardBody>
-        </StyledCard>
+                    }}>Apply</JobListButton>
+                </JobListCardActionItem>
+              </JobListCardAction>
+            </JobListCardBody>
+        </JobListContainer>
     );
 };
 

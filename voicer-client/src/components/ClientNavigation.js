@@ -8,10 +8,12 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Button,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 import Logo from '../images/logo-white.svg';
 import UserIcon from '../images/user.svg';
@@ -31,7 +33,7 @@ const NavContainer = styled.div`
           font-family: 'Nunito Sans', sans-serif !important;
           text-transform: uppercase !important;
           color: rgb(255, 255, 255) !important;
-          padding-top: 1em !important;
+          padding-top: 3vh !important;
           margin-right: 3vw !important;
           font-weight: bolder !important;
           cursor: pointer;
@@ -40,7 +42,7 @@ const NavContainer = styled.div`
           font-family: 'Nunito Sans', sans-serif !important;
           text-transform: uppercase !important;
           color: rgb(255, 255, 255) !important;
-          padding-top: 0.75em !important;
+          padding-top: 2.75vh !important;
           font-size: 120% !important;
         }
     }
@@ -53,7 +55,7 @@ const TertiaryNav = styled.div`
     position: absolute;
     top: 10.5vh;
     z-index: 4;
-    div {
+    .link-container {
       height: 9vh;
       display: flex;
       justify-content: flex-end;
@@ -136,19 +138,17 @@ class ClientNavigation extends React.Component {
                   </Nav>
               </Navbar>
               <TertiaryNav>
-                <div>
-                  <NavLink onClick={(e) => this.route('/jobs', e)} className="tert-link">
-                    My Jobs
+                <div className="link-container">
+                  <NavLink onClick={(e) => this.route('/talentlist', e)} className="tert-link">
+                    Find Talent
                   </NavLink>
                   <NavLink onClick={(e) => this.route('/applications', e)} className='tert-link'>
                     Applications
                   </NavLink>
-                  <NavLink onClick={(e) => this.route('/messages', e)} className='tert-link'>
-                    Messages
-                  </NavLink>
                   <NavLink onClick={(e) => this.route('/profile', e)} className='tert-link'>
                     My Profile
                   </NavLink>
+                  <Link to="/client/postJob"><Button className="btn-orange">Post Job</Button></Link>
                 </div>
               </TertiaryNav>
             </NavContainer>
