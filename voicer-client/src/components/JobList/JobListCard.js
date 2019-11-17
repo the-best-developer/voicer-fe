@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Button, CardText, CardSubtitle, CardBody } from 'reactstrap';
 import styled from 'styled-components';
+import "../../App.scss";
 
 // Styling
 const StyledCard = styled(Card)`
@@ -168,16 +169,6 @@ const JobListCard = props => {
                     }}>Apply</StyledButton>
                 </StyledCardActionItem>
               </StyledCardAction>
-              {/* <StyledCardHeader>
-                <CardText>{props.jobData.jobDescription}</CardText>
-              </StyledCardDetails>
-                <StyledButtonDiv>
-                    <StyledButton>Save Job</StyledButton>
-                    <StyledButton onClick={() => {
-                      props.openModal(props.jobData);
-                      props.toggle();
-                    }}>Apply</StyledButton>
-                </StyledButtonDiv> */}
             </StyledCardBody>
         </StyledCard>
     );

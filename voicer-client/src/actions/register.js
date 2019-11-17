@@ -1,6 +1,5 @@
+import axiosWithAuth from '../components/axiosAuth';
 import axios from 'axios';
-
-import axiosWithAuth from '../components/Login/withAuth';
 
 export const REGISTER_START = 'REGISTER-START';
 export const REGISTER_SUCCESS = 'REGISTER-SUCCESS';

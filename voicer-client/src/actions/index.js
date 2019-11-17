@@ -42,7 +42,8 @@ export {
     GET_JOBS_START,
     GET_JOBS_SUCCESS,
     GET_JOBS_FAILED,
-    getJobs
+    getJobs,
+    getJobsBy
 } from './getJobs'
 
 export {
