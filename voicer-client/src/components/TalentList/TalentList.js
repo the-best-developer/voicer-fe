@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import JobListCard from './JobListCard';
-import styled from 'styled-components';
-import ApplyToJob from '../ApplyToJob';
-import JobInfo from '../JobInfo';
-import '../../App.scss';
+import TalentListCard from './TalentListCard'
+import styled from 'styled-components'
 
 // Styling
 const MainDiv = styled.div`
@@ -20,7 +17,7 @@ const MainDiv = styled.div`
 `
 
 // Component
-class JobList extends Component {
+class TalentList extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -49,19 +46,17 @@ class JobList extends Component {
     }
 
     render() {
-        console.log(this.props.jobs)
         return (
             <MainDiv>
-                {this.props.jobs.map(job =>
-                    <JobListCard
-                        key={job.jobId}
-                        jobData={job}
+                {this.props.talent.map(talent =>
+                    <TalentListCard
+                        talentData={talent}
                         openModal={this.openModal}
                         toggle={this.toggle}
                         toggle2={this.toggle2}
                     />
                 )}
-                <ApplyToJob
+                {/* <ApplyToJob
                     toggle={this.toggle}
                     isOpen={this.state.modalIsOpen}
                     job={this.state.activeJob}
@@ -70,10 +65,10 @@ class JobList extends Component {
                     toggle={this.toggle2}
                     isOpen={this.state.modalIsOpen2}
                     job={this.state.activeJob}
-                />
+                /> */}
             </MainDiv>
         );
     };
 };
 
-export default JobList
+export default TalentList

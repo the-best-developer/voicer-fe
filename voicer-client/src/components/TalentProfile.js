@@ -22,7 +22,7 @@ class TalentProfile extends React.Component {
 
   render() {
     return (
-      <div className="TalentProfile">
+      <div style={{marginTop: '21vh'}} className="TalentProfile">
         <h1>Talent Profile</h1>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup tag="fieldset">

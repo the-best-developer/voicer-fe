@@ -52,8 +52,8 @@ class Register extends Component {
             this.props.login(creds)
             .then(() => {
                 return userType === "client" ?
-                this.props.createClientProfile({userId: this.props.id, companyName: username}) :
-                this.props.createTalentProfile({userId: this.props.id, language: 'English'})
+                this.props.createClientProfile({userId: this.props.id, companyName: username, rating: 1}) :
+                this.props.createTalentProfile({userId: this.props.id, rating: 1})
             })
             .then(() => userType === "client" ? this.props.history.push('/client') : this.props.history.push('/talent'))
             .catch(err => console.log(err))
