@@ -11,7 +11,8 @@ class PostJob extends React.Component {
         this.state = {
             jobTitle: "",
             jobDescription: "",
-            userId: jwt.decode(localStorage.getItem("token")).userId
+            userId: jwt.decode(localStorage.getItem("token")).userId,
+            price: 0
         }
     }
 
@@ -24,17 +25,13 @@ class PostJob extends React.Component {
     handleSubmit = async event => {
         event.preventDefault()
 
-        const client = await axiosWithAuth.get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
+        const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
 
         this.props.postJob({
             jobTitle: this.state.jobTitle,
             jobDescription: this.state.jobDescription,
-            clientId: client.data[0].clientId
-        })
-        console.log({
-            jobTitle: this.state.jobTitle,
-            jobDescription: this.state.jobDescription,
-            clientId: client.data[0].clientId
+            clientId: client.data[0].clientId,
+            initialPrice: this.state.price
         })
     }
 
@@ -50,6 +47,10 @@ class PostJob extends React.Component {
                     <FormGroup>
                         <Label>Description</Label>
                         <Input type="textarea" name="jobDescription" placeholder="Describe the Job" onChange={this.handleChange}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>Price</Label>
+                        <Input type="decimal" name="price" placeholder="Price" onChange={this.handleChange}/>
                     </FormGroup>
                     <Button>Post Job</Button>
                 </Form>

@@ -11,8 +11,6 @@ const MainDiv = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid black;
-  border-radius: 5px;
   padding: 10px;
 `
 
