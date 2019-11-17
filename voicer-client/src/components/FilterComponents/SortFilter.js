@@ -25,8 +25,24 @@ class SortFilter extends Component {
         toggleMenuValue: !this.state.toggleMenuValue
     })
 
-    filterSort = async (type, key) => {
+    filterSort = async (type) => {
+
         // Run filter using current state
+        
+        // define key to sort:
+        let key;
+        switch (type) {
+
+            // If client sort by talent data, if talent sort by job data
+            case "alpha":
+                key = (this.props.userType === 'client') ? 'firstName' : 'jobTitle'
+            case "num":
+                key = (this.props.userType === 'client') ? 'talentId' : 'createdDate'
+            case "reverseAlpha":
+                key = (this.props.userType === 'client') ? 'firstName' : 'jobTitle'
+
+        }
+        
         await this.props.setSort(type)
         await this.props.setSortKey(key)
         await this.props.filterData();
@@ -34,10 +50,13 @@ class SortFilter extends Component {
 
     selectedSort = _ => {
         switch(this.props.sortState){
+
             case "alpha":
                 return "Alphabetical"
+
             case "num":
                 return "Numerical"
+
             case "reverseAlpha":
                 return "Reverse Alphabetical"
         }
@@ -50,9 +69,9 @@ class SortFilter extends Component {
                 <Dropdown isOpen={this.state.toggleMenuValue} toggle={this.toggleMenu}>
                     <DropdownToggle caret>{this.selectedSort()}</DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={() => this.filterSort("alpha", "jobTitle")}>Alphabetical</DropdownItem>
-                        <DropdownItem onClick={() => this.filterSort("num", "clientId")}>Numerical</DropdownItem>
-                        <DropdownItem onClick={() => this.filterSort("reverseAlpha", "jobTitle")}>Reverse Alphabetical</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("alpha")}>Alphabetical</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("num")}>Numerical</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("reverseAlpha")}>Reverse Alphabetical</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </MainDiv>

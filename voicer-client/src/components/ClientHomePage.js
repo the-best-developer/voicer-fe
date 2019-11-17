@@ -1,8 +1,8 @@
 import React from 'react';
-import JobList from './JobList/JobList';
+import TalentList from './TalentList/TalentList';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getJobs } from '../actions'
+import { getTalent } from '../actions'
 import FilterComponent from './FilterComponents/FilterComponent';
 import { filterData, dataToFilter, setSearchKey, setSortKey } from '../actions/filterData';
 
@@ -17,8 +17,8 @@ class ClientHomePage extends React.Component {
     }
 
     async componentDidMount() {
-        await this.props.getJobs()
-        await this.props.dataToFilter(this.props.jobs)
+        await this.props.getTalent()
+        await this.props.dataToFilter(this.props.talent)
         await this.props.filterData()
     }
 
@@ -26,18 +26,18 @@ class ClientHomePage extends React.Component {
         return(
             <HomePage>
                 <FilterComponent />
-                {/* <JobList jobs={this.props.filteredData} /> */}
+                <TalentList talent={this.props.filteredData} />
             </HomePage>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    jobs: state.getJobsReducer.jobs,
+    talent: state.getTalentReducer.talent,
     filteredData: state.filterReducer.filteredData
 })
 
 export default connect(
     mapStateToProps,
-    { getJobs, dataToFilter, filterData, setSortKey, setSearchKey }
+    { dataToFilter, getTalent, filterData, setSortKey, setSearchKey }
 )(ClientHomePage);

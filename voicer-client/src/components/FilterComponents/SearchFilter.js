@@ -20,6 +20,11 @@ class SearchFilter extends Component {
 
     filterSearch = async (text, key) => {
         // Run filter using current state
+
+        // define keys to search:
+        // if client, search firstName and lastName in talent list
+        // if talent, search jobTitle and jobDescription in job list
+        key = (this.props.userType === 'client') ? ['firstName', 'lastName'] : ['jobTitle', 'jobDescription']
         await this.props.setSearchKey(key)
         await this.props.setSearch(text)
         await this.props.filterData()
@@ -29,7 +34,7 @@ class SearchFilter extends Component {
         return (
             <MainDiv>
                 <Label>Search:</Label>
-                <Input value={this.props.searchState} onChange={(e) => this.filterSearch(`${e.target.value}`, ['jobTitle', 'jobDescription'])} />
+                <Input value={this.props.searchState} onChange={(e) => this.filterSearch(`${e.target.value}`, ['firstName', 'lastName'])} />
             </MainDiv>
         );
     };
@@ -37,7 +42,8 @@ class SearchFilter extends Component {
 
 const mapStateToProps = state => ({
     searchState: state.filterReducer.searchState,
-    jobs: state.getJobsReducer.jobs
+    jobs: state.getJobsReducer.jobs,
+    userType: state.loginReducer.userType
 });
 
 export default connect(mapStateToProps, { filterData, setSearch, setSearchKey } )(SearchFilter);
