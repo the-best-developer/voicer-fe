@@ -41,7 +41,7 @@ class AppList extends Component {
     };
 };
 
-mapStateToProps = state => ({
+let mapStateToProps = state => ({
     jobId: state.getTalentReducer.jobId
 })
 

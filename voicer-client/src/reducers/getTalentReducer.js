@@ -1,7 +1,8 @@
 import {
     GET_TALENT_START,
     GET_TALENT_SUCCESS,
-    GET_TALENT_FAILED
+    GET_TALENT_FAILED,
+    SET_JOB_ID
 } from '../actions';
 
 const initialState = {
