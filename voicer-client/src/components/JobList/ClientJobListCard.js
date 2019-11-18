@@ -3,6 +3,7 @@ import { Card, Button, CardTitle, CardText, CardSubtitle, CardBody } from 'react
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { setJobId } from '../../actions';
 import "../../App.scss";
 
 // Styling
@@ -27,14 +28,6 @@ class ClientJobListCard extends React.Component {
     super(props)
   }
 
-  handleApplicationClick(jobId) {
-    this.props.getApplications(jobId)
-  }
-
-  handleFindTalentClick(jobId) {
-    this.props.setJobId(jobId)
-  }
-
   render() {
     return (
       <ClientListContainer>
@@ -56,20 +49,17 @@ class ClientJobListCard extends React.Component {
             <ClientListCardAction>
                 <ClientListCardActionItem>
                   <Link to="/client/talentlist">
-                    <ClientListButton
-                      className='btn-orange'
-                      onClick={this.handleFindTalentClick(this.props.jobData.jobId)}
-                    >
+                    <ClientListButton className='btn-orange' onClick={setJobId(this.props.jobData.jobId)}>
                       Find Talent
                     </ClientListButton>
                   </Link>
                 </ClientListCardActionItem>
                 <ClientListCardActionItem>
-                  <ClientListButton
-                    onClick={this.handleApplicationsClick(this.props.jobData.jobId)}
-                  >
-                    Applications
-                  </ClientListButton>
+                  <Link to="/client/applicationlist">
+                    <ClientListButton onClick={setJobId(this.props.jobData.jobId)}>
+                      Applications
+                    </ClientListButton>
+                  </Link>
                 </ClientListCardActionItem>
             </ClientListCardAction>
           </ClientListCardBody>
@@ -80,10 +70,10 @@ class ClientJobListCard extends React.Component {
 
 const mapStateToProps = state => ({
   jobs: state.getJobsReducer.jobs,
-  filteredData: state.filterReducer.filteredData
+  filteredData: state.filterReducer.filteredData,
 })
 
 export default connect(
   mapStateToProps,
-  {  }
+  { setJobId }
 )(ClientJobListCard);

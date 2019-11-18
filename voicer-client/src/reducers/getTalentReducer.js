@@ -32,6 +32,11 @@ export const getTalentReducer = (state = initialState, action) => {
                 gettingTalent: false,
                 error: true
             }
+        case SET_JOB_ID:
+            return {
+                ...state,
+                jobId: action.payload
+            }
         default: return state;
     }
 }
