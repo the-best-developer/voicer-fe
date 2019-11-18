@@ -28,11 +28,11 @@ class ClientJobListCard extends React.Component {
   }
 
   handleApplicationClick(jobId) {
-
+    this.props.getApplications(jobId)
   }
 
   handleFindTalentClick(jobId) {
-
+    this.props.setJobId(jobId)
   }
 
   render() {

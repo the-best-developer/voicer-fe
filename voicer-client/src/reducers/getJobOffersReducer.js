@@ -1,34 +1,34 @@
 import {
     GET_JOB_OFFERS_START,
-    GET_JOBS_OFFERS_SUCCESS,
-    GET_JOBS_OFFERS_FAILED
+    GET_JOB_OFFERS_SUCCESS,
+    GET_JOB_OFFERS_FAILED
 } from '../actions';
 
 const initialState = {
-    gettingJobs: false,
+    gettingJobOffers: false,
     error: null,
-    jobs: []
+    jobOffers: []
 }
 
-export const getJobsReducer = (state = initialState, action) => {
+export const getJobOffersReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_JOBS_START:
+        case GET_JOB_OFFERS_START:
             return {
                 ...state,
-                gettingJobs: true,
+                gettingJobOffers: true,
                 error: null
             }
-        case GET_JOBS_SUCCESS:
+        case GET_JOB_OFFERS_SUCCESS:
             return {
                 ...state,
-                gettingJobs: false,
+                gettingJobOffers: false,
                 error: false,
-                jobs: action.payload
+                jobOffers: action.payload
             }
-        case GET_JOBS_FAILED:
+        case GET_JOB_OFFERS_FAILED:
             return {
                 ...state,
-                gettingJobs: false,
+                gettingJobOffers: false,
                 error: true
             }
         default: return state;
