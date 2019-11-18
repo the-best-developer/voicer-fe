@@ -7,7 +7,8 @@ import {
 const initialState = {
     gettingTalent: false,
     error: null,
-    talent: []
+    talent: [],
+    jobId: null
 }
 
 export const getTalentReducer = (state = initialState, action) => {
