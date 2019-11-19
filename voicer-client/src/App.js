@@ -6,11 +6,11 @@ import Login from './components/Login/Login';
 import Register from './components/Register';
 import PrivateRoute from './components/Login/PrivateRoute';
 import PostJob from './components/PostJob';
-import TalentNavigation from './components/TalentNavigation';
-import TalentProfile from './components/TalentProfile';
+import TalentNavigation from './components/Talent/TalentNavigation';
+import TalentProfile from './components/Talent/TalentProfile';
 import ClientProfile from './components/ClientProfile';
 import Home from './components/Home/Home';
-import TalentHomePage from './components/TalentHomePage';
+import TalentHomePage from './components/Talent/TalentHomePage';
 import ApplyToJob from './components/ApplyToJob';
 
 import Footer from './components/Footer';

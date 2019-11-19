@@ -1,10 +1,10 @@
 import React from 'react';
-import JobList from './JobList/JobList';
+import JobList from '../JobList/JobList';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getJobs } from '../actions'
-import FilterComponent from './FilterComponents/FilterComponent';
-import { filterData, setFilterData } from '../actions/filterData';
+import { getJobs } from '../../actions'
+import FilterComponent from '../FilterComponents/FilterComponent';
+import { filterData, setFilterData } from '../../actions/filterData';
 
 const HomePage = styled.div`
     display: flex;
