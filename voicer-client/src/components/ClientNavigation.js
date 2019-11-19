@@ -1,18 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
   NavLink,
-  Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  Button
+} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 import Logo from '../images/logo-white.svg';
@@ -94,10 +89,6 @@ const Divider = styled.div`
 `;
 
 class ClientNavigation extends React.Component {
-
-    constructor(props) {
-      super(props)
-    }
 
     logout = e => {
       e.preventDefault();

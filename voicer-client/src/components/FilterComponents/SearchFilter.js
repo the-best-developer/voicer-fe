@@ -14,9 +14,6 @@ const MainDiv = styled.div`
 
 // Component
 class SearchFilter extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     filterSearch = async (text, key) => {
         // Run filter using current state

@@ -4,8 +4,6 @@ import { getJobsBy } from '../actions';
 import jwt from 'jsonwebtoken';
 import ClientJobList from './JobList/ClientJobList';
 import axiosWithAuth from './axiosAuth';
-import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FilterComponent from './FilterComponents/FilterComponent';
 import { filterData, dataToFilter, setSearchKey, setSortKey } from '../actions/filterData';
@@ -40,7 +38,6 @@ class ClientHomePage extends React.Component {
                 <FilterComponent />
                 <ClientJobList jobs={this.props.filteredData} />
             </HomePage>
-
         )
     }
 }

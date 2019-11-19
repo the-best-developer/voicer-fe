@@ -9,6 +9,7 @@ const MainDiv = styled.div`
   margin: 10px;
   margin-left: auto;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
   padding: 10px;

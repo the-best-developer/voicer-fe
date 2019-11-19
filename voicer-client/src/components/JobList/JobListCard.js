@@ -1,6 +1,4 @@
 import React from 'react';
-import { Card, Button, CardText, CardSubtitle, CardBody } from 'reactstrap';
-import styled from 'styled-components';
 import "../../App.scss";
 
 // Styling

@@ -30,6 +30,7 @@ class AppList extends Component {
         this.setState({
             applications: apps
         })
+        console.log(this.props.jobId)
     }
 
     render() {
