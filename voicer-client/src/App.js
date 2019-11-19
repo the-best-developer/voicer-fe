@@ -15,7 +15,6 @@ import TalentHomePage from './components/TalentHomePage';
 import ClientHomePage from './components/ClientHomePage';
 import ApplyToJob from './components/ApplyToJob';
 import Footer from './components/Footer';
-import ClientNavigation from './components/ClientNavigation';
 
 class App extends Component {
   render() {

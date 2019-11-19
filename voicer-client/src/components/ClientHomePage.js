@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FilterComponent from './FilterComponents/FilterComponent';
 import { filterData, dataToFilter, setSearchKey, setSortKey } from '../actions/filterData';
+import ClientWelcome from './ClientWelcome';
 import "../App.scss";
 
 const HomePage = styled.div`
@@ -36,7 +37,7 @@ class ClientHomePage extends React.Component {
         return(
             <HomePage>
                 <FilterComponent />
-                <ClientJobList jobs={this.props.jobs} />
+                {this.props.jobs.length === 0 ? <ClientWelcome /> : <ClientJobList jobs={this.props.jobs} />}
                 <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
             </HomePage>
 
@@ -51,5 +52,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getJobsBy, dataToFilter, getTalent, filterData, setSortKey, setSearchKey }
+    { getJobsBy, dataToFilter, filterData, setSortKey, setSearchKey }
 )(ClientHomePage);
