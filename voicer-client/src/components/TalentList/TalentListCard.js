@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, Button, CardText, CardSubtitle, CardBody } from 'reactstrap';
+import { Card, Button, CardBody } from 'reactstrap';
 import styled from 'styled-components';
-import "../../App.scss";
 
 // Styling
 const StyledCard = styled(Card)`
@@ -101,9 +100,10 @@ const StyledCardActionItem = styled.div`
 `;
 
 // Component
-const JobListCard = props => {
+const TalentListCard = props => {
 
     const formatDate = (date) => {
+      
       let newDate = new Date(date);
       let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       let month = months[newDate.getMonth()]
@@ -111,23 +111,22 @@ const JobListCard = props => {
       let year = newDate.getFullYear();
       return(month.slice(0, 3) + ' ' + day + ', ' + year)
     }
-
     console.log(props)
     return (
         <StyledCard>
             <StyledCardBody>
               <StyledCardHeader>
-                <CardTitle>{props.jobData.jobTitle}</CardTitle>
-                <CardName>{props.jobData.firstName + ' ' + props.jobData.lastName}</CardName>
+                <CardTitle>{props.talentData.firstName + ' ' + props.talentData.lastName}</CardTitle>
+                <CardName>{}</CardName>
                 <Divider />
               </StyledCardHeader>
               <StyledCardDetails>
                 <StyledCardDetail>
                   <StyledCardDetailItem>
-                    <strong>JOB #</strong>
+                    <strong>Email</strong>
                   </StyledCardDetailItem>
                   <StyledCardDetailItem>
-                    {props.jobData.jobId}
+                    {props.talentData.email}
                   </StyledCardDetailItem>
                 </StyledCardDetail>
                 <StyledCardDetail>
@@ -140,38 +139,48 @@ const JobListCard = props => {
                 </StyledCardDetail>
                 <StyledCardDetail>
                   <StyledCardDetailItem>
-                    <strong>Posted On</strong>
+                    <strong>Gender</strong>
                   </StyledCardDetailItem>
                   <StyledCardDetailItem>
-                    {formatDate(props.jobData.createdDate)}
+                    {props.talentData.gender}
                   </StyledCardDetailItem>
                 </StyledCardDetail>
                 <StyledCardDetail>
                   <StyledCardDetailItem>
-                    <strong>Price</strong>
+                    <strong>Rating</strong>
                   </StyledCardDetailItem>
                   <StyledCardDetailItem>
-                    200$
+                  {props.talentData.rating}
                   </StyledCardDetailItem>
                 </StyledCardDetail>
               </StyledCardDetails>
               <StyledCardAction>
                 <StyledCardActionItem>
                     <StyledButton onClick={() => {
-                      props.openModal(props.jobData);
+                      props.openModal(props.talentData);
                       props.toggle2();
                     }}>INFO</StyledButton>
                 </StyledCardActionItem>
                 <StyledCardActionItem>
                     <StyledButton className='btn-orange' onClick={() => {
-                      props.openModal(props.jobData);
+                      props.openModal(props.talentData);
                       props.toggle();
                     }}>Apply</StyledButton>
                 </StyledCardActionItem>
               </StyledCardAction>
+              {/* <StyledCardHeader>
+                <CardText>{props.talentData.jobDescription}</CardText>
+              </StyledCardDetails>
+                <StyledButtonDiv>
+                    <StyledButton>Save Job</StyledButton>
+                    <StyledButton onClick={() => {
+                      props.openModal(props.talentData);
+                      props.toggle();
+                    }}>Apply</StyledButton>
+                </StyledButtonDiv> */}
             </StyledCardBody>
         </StyledCard>
     );
 };
 
-export default JobListCard;
+export default TalentListCard;

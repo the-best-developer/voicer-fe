@@ -7,6 +7,7 @@ import { postJobReducer } from './postJobReducer';
 import { getJobsReducer } from './getJobsReducer';
 import { filterReducer } from './filterReducer';
 import { applyReducer } from './applyReducer';
+import { getTalentReducer } from './getTalentReducer';
 
 export default combineReducers({
     registerReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     postJobReducer,
     getJobsReducer,
     filterReducer,
-    applyReducer
+    applyReducer,
+    getTalentReducer
 });

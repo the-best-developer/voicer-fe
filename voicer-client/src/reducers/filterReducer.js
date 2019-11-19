@@ -58,7 +58,7 @@ export const filterReducer = (state = initialState, action) => {
         case SET_STORED_DATA:
             return {
                 ...state,
-                storedData: [...action.payload]
+                storedData: action.payload
             }
 
         // Set table keys for filtering

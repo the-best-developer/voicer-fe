@@ -42,7 +42,8 @@ export {
     GET_JOBS_START,
     GET_JOBS_SUCCESS,
     GET_JOBS_FAILED,
-    getJobs
+    getJobs,
+    getJobsBy
 } from './getJobs'
 
 export {
@@ -50,3 +51,10 @@ export {
     APPLY_SUCCESS,
     APPLY_FAILED
 } from './apply'
+
+export {
+    GET_TALENT_START,
+    GET_TALENT_SUCCESS,
+    GET_TALENT_FAILED,
+    getTalent
+} from './getTalent'
