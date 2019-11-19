@@ -25,18 +25,20 @@ class AppList extends Component {
         }
     }
 
-    componentDidMount = async () => {
-        const apps = await getApplications(this.props.jobId)
+    componentDidMount = () => {
+        console.log(this.props.jobId)
+        const apps = this.props.getApplications(this.props.jobId)
         this.setState({
             applications: apps
         })
-        console.log(this.props.jobId)
+        console.log(apps)
     }
 
     render() {
         return (
             <MainDiv>
-                {this.state.applications.map(app => <AppCard key={app.jobId} appData={app}/>)}
+                {/* {this.state.applications.map(app => <AppCard key={app.jobId} appData={app}/>)} */}
+                {console.log(this.state.applicatoins)}
             </MainDiv>
         );
     };

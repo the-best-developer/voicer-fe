@@ -23,15 +23,49 @@ import {
 // Component
 class ClientJobListCard extends React.Component {
 
+  formatDate = (date) => {
+    let newDate = new Date(date);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let month = months[newDate.getMonth()]
+    let day = newDate.getDate();
+    let year = newDate.getFullYear();
+    return(month.slice(0, 3) + ' ' + day + ', ' + year)
+  }
+
   render() {
     return (
       <ClientListContainer>
           <ClientListCardBody>
             <ClientListCardHeader>
               <ClientCardTitle>{this.props.jobData.jobTitle}</ClientCardTitle>
+              <CardName>{this.props.jobData.firstName + ' ' + this.props.jobData.lastName}</CardName>
+              <Divider/>
             </ClientListCardHeader>
-            <Divider/>
             <ClientListCardDetails>
+              <ClientListCardDetail>
+                <ClientListCardDetailItem>
+                  <strong>JOB #</strong>
+                </ClientListCardDetailItem>
+                <ClientListCardDetailItem>
+                  {this.props.jobData.jobId}
+                </ClientListCardDetailItem>
+              </ClientListCardDetail>
+              <ClientListCardDetail>
+                <ClientListCardDetailItem>
+                  <strong>Language</strong>
+                </ClientListCardDetailItem>
+                <ClientListCardDetailItem>
+                {this.props.jobData.language}
+                </ClientListCardDetailItem>
+              </ClientListCardDetail>
+              <ClientListCardDetail>
+                <ClientListCardDetailItem>
+                  <strong>Posted On</strong>
+                </ClientListCardDetailItem>
+                <ClientListCardDetailItem>
+                  {this.formatDate(this.props.jobData.createdDate)}
+                </ClientListCardDetailItem>
+              </ClientListCardDetail>
               <ClientListCardDetail>
                 <ClientListCardDetailItem>
                   <strong>Price</strong>
@@ -44,14 +78,14 @@ class ClientJobListCard extends React.Component {
             <ClientListCardAction>
                 <ClientListCardActionItem>
                   <Link to="/client/talentlist">
-                    <ClientListButton className='btn-orange' onClick={() => setJobId(this.props.jobData.jobId)}>
+                    <ClientListButton className='btn-orange' onClick={this.props.setJobId(this.props.jobData.jobId)}>
                       Find Talent
                     </ClientListButton>
                   </Link>
                 </ClientListCardActionItem>
                 <ClientListCardActionItem>
                   <Link to="/client/applicationlist">
-                    <ClientListButton onClick={() => setJobId(this.props.jobData.jobId)}>
+                    <ClientListButton onClick={this.props.setJobId(this.props.jobData.jobId)}>
                       Applications
                     </ClientListButton>
                   </Link>

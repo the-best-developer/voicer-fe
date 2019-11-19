@@ -30,7 +30,6 @@ const JobListCard = props => {
       return(month.slice(0, 3) + ' ' + day + ', ' + year)
     }
 
-    console.log(props)
     return (
         <JobListContainer>
             <JobListCardBody>

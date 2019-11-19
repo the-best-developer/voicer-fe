@@ -14,9 +14,6 @@ const HomePage = styled.div`
 `;
 
 class TalentHomePage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     async componentDidMount() {
         await this.props.getJobs()
