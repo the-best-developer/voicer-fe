@@ -20,13 +20,20 @@ class StarFilter extends Component {
         super(props);
     }
 
+    filterStar = async (stars) => {
+        // Run filter using current state
+        await this.props.setStar(stars)
+        await this.props.filterData();
+    }
+    
+    // Function to generate stars
     stars = starsNum => {
         let starsArray = [];
         for (let i = 0 ; i < starsNum ; i++) {
-            starsArray.push(<FontAwesomeIcon icon={faStar} color="yellow" size={"2x"} onClick={_ => this.props.setStar(i + 1)} />)
+            starsArray.push(<FontAwesomeIcon icon={faStar} color="yellow" size={"2x"} onClick={_ => this.filterStar(i + 1)} />)
         }
         for (let i = starsNum ; i < 5 ; i++) {
-            starsArray.push(<FontAwesomeIcon icon={faStar} color="grey" size={"2x"} onClick={_ => this.props.setStar(i + 1)} />)
+            starsArray.push(<FontAwesomeIcon icon={faStar} color="grey" size={"2x"} onClick={_ => this.filterStar(i + 1)} />)
         }
         
         return starsArray;

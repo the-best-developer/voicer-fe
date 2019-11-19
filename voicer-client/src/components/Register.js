@@ -13,9 +13,12 @@ class Register extends Component {
             email: '',
             password: '',
             username: '',
-            userType: ''
+            userType: '',
+            gender: ''
         },
-        toggleDrop: false
+        toggleDropUserType: false,
+        toggleDropGender: false,
+
     };
 
     changeHandler = e => {
@@ -36,7 +39,8 @@ class Register extends Component {
             email,
             password,
             username,
-            userType
+            userType,
+            gender
         } = this.state.creds;
         userType = userType.toLowerCase();
         this.props.register({
@@ -45,7 +49,8 @@ class Register extends Component {
             email,
             password,
             username,
-            userType
+            userType,
+            gender
         })
         .then(() => {
             const creds = { username, password };
@@ -111,11 +116,32 @@ class Register extends Component {
                         value={this.state.creds.password}
                         onChange={this.changeHandler}
                     />
+
+
+                    <Label className="input-label" for="gender">Gender</Label>
+                    <div className="dropdown-div">
+                        <Dropdown
+                            isOpen={this.state.toggleDropGender}
+                            toggle={() => this.setState({toggleDropGender: !this.state.toggleDropGender})}
+                            className="dropdown"
+                        >
+                            <DropdownToggle caret>
+                                {this.state.creds.gender ? this.state.creds.gender : 'Gender'}
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem header>Gender</DropdownItem>
+                                <DropdownItem name="gender" value="Male" onClick={this.changeHandler}>Male</DropdownItem>
+                                <DropdownItem name="gender" value="Female" onClick={this.changeHandler}>Female</DropdownItem>
+                                <DropdownItem name="gender" value="Other" onClick={this.changeHandler}>Other</DropdownItem>
+                                <DropdownItem name="gender" value="Decline to say" onClick={this.changeHandler}>Decline to say</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </div>
+
                   </div>
 
 
                   <div>
-
                     <Label className="input-label" for="lastName">Last name</Label>
                     <Input
                         className="input"
@@ -139,8 +165,8 @@ class Register extends Component {
                     <Label className="input-label" for="userType">User type</Label>
                     <div className="dropdown-div">
                         <Dropdown
-                            isOpen={this.state.toggleDrop}
-                            toggle={() => this.setState({toggleDrop: !this.state.toggleDrop})}
+                            isOpen={this.state.toggleDropUserType}
+                            toggle={() => this.setState({toggleDropUserType: !this.state.toggleDropUserType})}
                             className="dropdown"
                         >
                             <DropdownToggle caret>
@@ -153,7 +179,6 @@ class Register extends Component {
                             </DropdownMenu>
                         </Dropdown>
                     </div>
-
                   </div>
 
                   </div>
