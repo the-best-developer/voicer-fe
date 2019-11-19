@@ -6,12 +6,7 @@ import '../../App.scss';
 // Styling
 const MainDiv = styled.div`
   width: 60%;
-  margin: 10px;
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  margin: 0 auto;
   padding: 10px;
 `
 

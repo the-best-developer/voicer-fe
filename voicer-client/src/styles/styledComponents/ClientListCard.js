@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Card, Button, CardBody } from "reactstrap";
 
-export const ClientListContainer = styled(Card)`
+export const ClientCardContainer = styled(Card)`
   width: 100%;
-  margin: 15px 0;
+  margin: 4vh 0;
   min-height: 200px;
   padding: 5px;
   border: 1px solid #707070 !important;

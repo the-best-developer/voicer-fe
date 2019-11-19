@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setJobId } from '../../actions';
+import styled from 'styled-components';
+import { Card, Button, CardBody } from 'reactstrap';
 import "../../App.scss";
 
 // Styling
@@ -17,11 +19,14 @@ import {
   ClientListCardDetailItem,
   ClientListCardDetails,
   ClientListCardHeader,
-  ClientListContainer
+  ClientCardContainer
 } from '../../styles/styledComponents/ClientListCard';
 
 // Component
 class ClientJobListCard extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
   formatDate = (date) => {
     let newDate = new Date(date);
@@ -34,28 +39,28 @@ class ClientJobListCard extends React.Component {
 
   render() {
     return (
-      <ClientListContainer>
+      <ClientCardContainer>
           <ClientListCardBody>
             <ClientListCardHeader>
               <ClientCardTitle>{this.props.jobData.jobTitle}</ClientCardTitle>
-              <CardName>{this.props.jobData.firstName + ' ' + this.props.jobData.lastName}</CardName>
+              <CardName>Applications: {this.props.jobData.appCount}</CardName>
               <Divider/>
             </ClientListCardHeader>
             <ClientListCardDetails>
+              <ClientListCardDetail>
+                <ClientListCardDetailItem>
+                  <strong>Status</strong>
+                </ClientListCardDetailItem>
+                <ClientListCardDetailItem>
+                  {this.props.jobData.status}
+                </ClientListCardDetailItem>
+              </ClientListCardDetail>
               <ClientListCardDetail>
                 <ClientListCardDetailItem>
                   <strong>JOB #</strong>
                 </ClientListCardDetailItem>
                 <ClientListCardDetailItem>
                   {this.props.jobData.jobId}
-                </ClientListCardDetailItem>
-              </ClientListCardDetail>
-              <ClientListCardDetail>
-                <ClientListCardDetailItem>
-                  <strong>Language</strong>
-                </ClientListCardDetailItem>
-                <ClientListCardDetailItem>
-                {this.props.jobData.language}
                 </ClientListCardDetailItem>
               </ClientListCardDetail>
               <ClientListCardDetail>
@@ -92,7 +97,7 @@ class ClientJobListCard extends React.Component {
                 </ClientListCardActionItem>
             </ClientListCardAction>
           </ClientListCardBody>
-      </ClientListContainer>
+      </ClientCardContainer>
   );
   }
 };
