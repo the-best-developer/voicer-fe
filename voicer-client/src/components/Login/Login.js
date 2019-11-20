@@ -74,9 +74,11 @@ class Login extends Component {
 
 
                           <Button type="submit" size="lg" className="btn-orange btn-centered">Log In</Button>
-
-                            {this.state.error ? <p>There was an error.</p> : null}
                         </Form>
+                        {this.props.loggingIn ?
+                            <p>...Logging In...</p> : 
+                            this.props.success ? <p>Login Successful!</p> :
+                            this.props.error ? <p>Login Failed</p> : null}
                   </div>
               </div>
             </div>
@@ -85,7 +87,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    loggingIn: state.loginReducer.logginIn,
+    loggingIn: state.loginReducer.loggingIn,
     id: state.loginReducer.id,
     userType: state.loginReducer.userType,
     error: state.loginReducer.error,

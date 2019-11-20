@@ -26,9 +26,8 @@ class ClientHomePage extends React.Component {
 
     componentDidMount = async () => {
         const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
-        console.log(client.data[0].clientId)
         this.props.getJobsBy(client.data[0].clientId)
-        await this.props.dataToFilter(this.props.talent)
+        await this.props.dataToFilter(this.props.jobs)
         await this.props.filterData()
     }
 
@@ -51,5 +50,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getJobsBy, dataToFilter, getTalent, filterData, setSortKey, setSearchKey }
+    { getJobsBy, dataToFilter, filterData, setSortKey, setSearchKey }
 )(ClientHomePage);
