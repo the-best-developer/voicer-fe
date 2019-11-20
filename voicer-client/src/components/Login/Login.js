@@ -74,11 +74,11 @@ class Login extends Component {
 
 
                           <Button type="submit" size="lg" className="btn-orange btn-centered">Log In</Button>
+                          {this.props.loggingIn ?
+                            <p className="login-status">...Logging In...</p> : 
+                            this.props.success ? <p className="login-status success">Login Successful!</p> :
+                            this.props.error ? <p className="login-status error">Login Failed</p> : null}
                         </Form>
-                        {this.props.loggingIn ?
-                            <p>...Logging In...</p> : 
-                            this.props.success ? <p>Login Successful!</p> :
-                            this.props.error ? <p>Login Failed</p> : null}
                   </div>
               </div>
             </div>
