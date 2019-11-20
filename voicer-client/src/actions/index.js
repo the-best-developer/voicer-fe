@@ -11,11 +11,19 @@ export {
   GET_ACCENTS_START,
   GET_ACCENTS_SUCCESS,
   GET_ACCENTS_FAIL,
+  ADD_TALENT_LANGUAGE_START,
+  ADD_TALENT_LANGUAGE_SUCCESS,
+  ADD_TALENT_LANGUAGE_FAIL,
+  ADD_TALENT_ACCENT_START,
+  ADD_TALENT_ACCENT_SUCCESS,
+  ADD_TALENT_ACCENT_FAIL,
   createClientProfile,
   createTalentProfile,
   getLanguages,
   getAccents,
-  register
+  register,
+  addTalentAccent,
+  addTalentLanguage
 } from './register';
 
 export { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILED, login } from './login';
