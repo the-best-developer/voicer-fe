@@ -26,11 +26,7 @@ class ClientHomePage extends React.Component {
 
     componentDidMount = async () => {
         const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
-<<<<<<< HEAD
-        this.props.getJobsBy(client.data[0].clientId)
-=======
         await this.props.getJobsBy(client.data[0].clientId)
->>>>>>> e702508a306e368d375dc3dc1ccd8617a34c3e1e
         await this.props.dataToFilter(this.props.jobs)
         await this.props.filterData()
     }
