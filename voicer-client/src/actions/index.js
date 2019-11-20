@@ -47,6 +47,13 @@ export {
 } from './getJobs'
 
 export {
+    GET_JOB_OFFERS_START,
+    GET_JOB_OFFERS_SUCCESS,
+    GET_JOB_OFFERS_FAILED,
+    getTalentJobOffers
+} from './getTalentJobOffers'
+
+export {
     APPLY_START,
     APPLY_SUCCESS,
     APPLY_FAILED

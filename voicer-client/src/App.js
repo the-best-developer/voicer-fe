@@ -15,6 +15,7 @@ import ClientHomePage from './components/ClientHomePage';
 import ApplyToJob from './components/ApplyToJob';
 import Footer from './components/Footer';
 import ClientNavigation from './components/ClientNavigation';
+import TalentOfferView from './components/Talent/TalentOfferView';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
         <PrivateRoute path="/talent" component={TalentNavigation} />
         <PrivateRoute exact path="/talent" component={TalentHomePage} />
         <PrivateRoute exact path="/talent/profile" component={TalentProfile} />
+        <PrivateRoute exact path="/talent/applications" component={TalentOfferView} />
         <Footer />
       </Router>
     );
