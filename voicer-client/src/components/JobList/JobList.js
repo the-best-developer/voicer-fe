@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import JobListCard from './JobListCard';
 import styled from 'styled-components';
 import ApplyToJob from '../ApplyToJob';
+import JobInfo from '../JobInfo';
 import '../../App.scss';
 
 // Styling
 const MainDiv = styled.div`
-  max-width: 70%;
+  width: 65%;
   margin: 21vh 10px 0 10px;
   margin-left: auto;
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
   border-radius: 5px;
-  padding: 10px;
-  height: 99vh;
+  padding: 10px 10% 10px 10px;
   &:last-child {
       margin-bottom: 30px;
   }
@@ -27,20 +26,25 @@ class JobList extends Component {
         this.state = {
             activeJob: {},
             modalIsOpen: false,
+            modalIsOpen2: false,
         }
     }
 
     openModal = job => {
-        console.log("openModal")
         this.setState({
             activeJob: job,
         })
-        console.log(this.state.activeJob)
     }
 
     toggle = () => {
         this.setState({
             modalIsOpen: !this.state.modalIsOpen
+        })
+    }
+
+    toggle2 = () => {
+        this.setState({
+            modalIsOpen2: !this.state.modalIsOpen2
         })
     }
 
@@ -54,11 +58,17 @@ class JobList extends Component {
                         jobData={job}
                         openModal={this.openModal}
                         toggle={this.toggle}
+                        toggle2={this.toggle2}
                     />
                 )}
                 <ApplyToJob
                     toggle={this.toggle}
                     isOpen={this.state.modalIsOpen}
+                    job={this.state.activeJob}
+                />
+                <JobInfo
+                    toggle={this.toggle2}
+                    isOpen={this.state.modalIsOpen2}
                     job={this.state.activeJob}
                 />
             </MainDiv>

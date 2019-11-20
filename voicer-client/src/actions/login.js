@@ -4,7 +4,7 @@ export const LOGIN_START = 'LOGIN-START';
 export const LOGIN_SUCCESS = 'LOGIN-SUCCESS';
 export const LOGIN_FAILED = 'LOGIN-FAILED';
 
-export const login = creds => dispatch => {
+export const login = creds => async dispatch => {
   dispatch({ type: LOGIN_START });
   if (!creds.username) {
     dispatch({ type: LOGIN_FAILED, error: 'username not correct' });
@@ -12,7 +12,7 @@ export const login = creds => dispatch => {
   if (!creds.password) {
     dispatch({ type: LOGIN_FAILED, error: 'password not correct' });
   }
-  return axios
+  return await axios
     .post(
       'https://voicer-lambda-app-staging.herokuapp.com/api/auth/login',
       creds

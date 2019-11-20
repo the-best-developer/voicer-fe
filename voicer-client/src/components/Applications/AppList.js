@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AppCard from './AppCard';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { getApplications } from '../../actions';
 
 // Styling
 const MainDiv = styled.div`
@@ -18,15 +20,32 @@ const MainDiv = styled.div`
 class AppList extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            applications: []
+        }
+    }
+
+    componentDidMount = () => {
+        console.log(this.props.jobId)
+        const apps = this.props.getApplications(this.props.jobId)
+        this.setState({
+            applications: apps
+        })
+        console.log(apps)
     }
 
     render() {
         return (
             <MainDiv>
-                {this.props.apps.map(app => <AppCard key={app.jobId} appData={app}/>)}
+                {/* {this.state.applications.map(app => <AppCard key={app.jobId} appData={app}/>)} */}
+                {console.log(this.state.applicatoins)}
             </MainDiv>
         );
     };
 };
 
-export default AppList;
+let mapStateToProps = state => ({
+    jobId: state.getTalentReducer.jobId
+})
+
+export default connect(mapStateToProps, { getApplications })(AppList)

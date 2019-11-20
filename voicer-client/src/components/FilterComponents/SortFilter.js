@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import { connect } from 'react-redux';
-import { filterData, setSort } from '../../actions/filterData';
+import { filterData, setSort, setSortKey } from '../../actions/filterData';
 
 // Styling
 const MainDiv = styled.div`
@@ -25,12 +25,38 @@ class SortFilter extends Component {
         toggleMenuValue: !this.state.toggleMenuValue
     })
 
+    filterSort = async (type) => {
+
+        // Run filter using current state
+        
+        // define key to sort:
+        let key;
+        switch (type) {
+
+            // If client sort by talent data, if talent sort by job data
+            case "alpha":
+                key = (this.props.userType === 'client') ? 'firstName' : 'jobTitle'
+            case "num":
+                key = (this.props.userType === 'client') ? 'talentId' : 'createdDate'
+            case "reverseAlpha":
+                key = (this.props.userType === 'client') ? 'firstName' : 'jobTitle'
+
+        }
+        
+        await this.props.setSort(type)
+        await this.props.setSortKey(key)
+        await this.props.filterData();
+    }
+
     selectedSort = _ => {
         switch(this.props.sortState){
+
             case "alpha":
                 return "Alphabetical"
+
             case "num":
                 return "Numerical"
+
             case "reverseAlpha":
                 return "Reverse Alphabetical"
         }
@@ -43,18 +69,9 @@ class SortFilter extends Component {
                 <Dropdown isOpen={this.state.toggleMenuValue} toggle={this.toggleMenu}>
                     <DropdownToggle caret>{this.selectedSort()}</DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={() => {
-                            this.props.setSort("alpha");
-                            this.props.filterData();
-                        }}>Alphabetical</DropdownItem>
-                        <DropdownItem onClick={() => {
-                            this.props.setSort("num");
-                            this.props.filterData();
-                        }}>Numerical</DropdownItem>
-                        <DropdownItem onClick={() => {
-                            this.props.setSort("reverseAlpha");
-                            this.props.filterData();
-                        }}>Reverse Alphabetical</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("alpha")}>Alphabetical</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("num")}>Numerical</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("reverseAlpha")}>Reverse Alphabetical</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </MainDiv>
@@ -63,7 +80,8 @@ class SortFilter extends Component {
 };
 
 const mapStateToProps = state => ({
-    sortState: state.filterReducer.sortState
+    sortState: state.filterReducer.sortState,
+    jobs: state.getJobsReducer.jobs
 });
 
-export default connect(mapStateToProps, { filterData, setSort } )(SortFilter);
+export default connect(mapStateToProps, { filterData, setSort, setSortKey } )(SortFilter);

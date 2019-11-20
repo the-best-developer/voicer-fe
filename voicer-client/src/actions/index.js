@@ -29,6 +29,13 @@ export {
 export { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILED, login } from './login';
 
 export {
+  EDIT_CLIENT_PROFILE_START,
+  EDIT_CLIENT_PROFILE_SUCCESS,
+  EDIT_CLIENT_PROFILE_FAILURE,
+  editClientProfile
+} from './editClientProfile';
+
+export {
   GET_CLIENT_PROFILE_START,
   GET_CLIENT_PROFILE_SUCCESS,
   GET_CLIENT_PROFILE_FAILURE,
@@ -46,7 +53,24 @@ export {
   GET_JOBS_START,
   GET_JOBS_SUCCESS,
   GET_JOBS_FAILED,
-  getJobs
+  getJobs,
+  getJobsBy
 } from './getJobs';
 
-export { APPLY_START, APPLY_SUCCESS, APPLY_FAILED } from './apply';
+export { APPLY_START, APPLY_SUCCESS, APPLY_FAILED, apply } from './apply';
+
+export {
+  GET_TALENT_START,
+  GET_TALENT_SUCCESS,
+  GET_TALENT_FAILED,
+  getTalent
+} from './getTalent';
+
+export {
+  GET_JOB_OFFERS_START,
+  GET_JOB_OFFERS_SUCCESS,
+  GET_JOB_OFFERS_FAILED,
+  getApplications
+} from './getApplications';
+
+export { SET_JOB_ID, setJobId } from './setJobId';
