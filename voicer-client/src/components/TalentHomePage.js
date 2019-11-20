@@ -9,12 +9,11 @@ import { filterData, dataToFilter, setSearchKey, setSortKey } from '../actions/f
 const HomePage = styled.div`
     display: flex;
     flex-wrap: wrap;
+    margin-top: 19vh;
+    min-height: 65vh;
 `;
 
 class TalentHomePage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     async componentDidMount() {
         await this.props.getJobs()

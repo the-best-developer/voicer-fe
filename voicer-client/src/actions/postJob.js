@@ -4,7 +4,7 @@ export const POST_JOB_START = 'POST_JOB-START';
 export const POST_JOB_SUCCESS = 'POST_JOB-SUCCESS';
 export const POST_JOB_FAILED = 'POST_JOB-FAILED';
 
-export const postJob = job => dispatch => {
+export const postJob = (job, history) => dispatch => {
     dispatch({ type: POST_JOB_START });
     return axiosWithAuth()
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/jobs', job)
@@ -13,6 +13,7 @@ export const postJob = job => dispatch => {
                 type: POST_JOB_SUCCESS,
                 payload: res.data
             })
+            history.push("/client")
         })
         .catch(err => {
             dispatch({

@@ -1,8 +1,8 @@
 import axiosWithAuth from '../components/axiosAuth';
 
-export const GET_JOBS_START = 'GET_JOBS-START';
-export const GET_JOBS_SUCCESS = 'GET_JOBS-SUCCESS';
-export const GET_JOBS_FAILED = 'GET_JOBS-FAILED';
+export const GET_JOBS_START = 'GET_JOBS_START';
+export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS';
+export const GET_JOBS_FAILED = 'GET_JOBS_FAILED';
 
 export const getJobs = () => dispatch => {
     dispatch({ type: GET_JOBS_START });

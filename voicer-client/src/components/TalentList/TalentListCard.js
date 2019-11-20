@@ -165,7 +165,7 @@ const TalentListCard = props => {
                     <StyledButton className='btn-orange' onClick={() => {
                       props.openModal(props.talentData);
                       props.toggle();
-                    }}>Apply</StyledButton>
+                    }}>Invite</StyledButton>
                 </StyledCardActionItem>
               </StyledCardAction>
               {/* <StyledCardHeader>
