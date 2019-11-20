@@ -1,13 +1,15 @@
 import {
     GET_TALENT_START,
     GET_TALENT_SUCCESS,
-    GET_TALENT_FAILED
+    GET_TALENT_FAILED,
+    SET_JOB_ID
 } from '../actions';
 
 const initialState = {
     gettingTalent: false,
     error: null,
-    talent: []
+    talent: [],
+    jobId: null
 }
 
 export const getTalentReducer = (state = initialState, action) => {
@@ -30,6 +32,11 @@ export const getTalentReducer = (state = initialState, action) => {
                 ...state,
                 gettingTalent: false,
                 error: true
+            }
+        case SET_JOB_ID:
+            return {
+                ...state,
+                jobId: action.payload
             }
         default: return state;
     }

@@ -14,6 +14,8 @@ import Home from './components/Home/Home';
 import TalentHomePage from './components/TalentHomePage';
 import ClientHomePage from './components/ClientHomePage';
 import ApplyToJob from './components/ApplyToJob';
+import TalentList from './components/TalentList/TalentList';
+import AppList from './components/Applications/AppList';
 import Footer from './components/Footer';
 
 class App extends Component {
@@ -28,12 +30,12 @@ class App extends Component {
         {/* <PrivateRoute exact path="/voicer" component={MainApp} /> */}
         <Route exact path="/talent/apply" component={ApplyToJob} />
         <PrivateRoute exact path="/client/postjob" component={PostJob} />
-        <PrivateRoute exact path="/client" component={ClientHomePage} />
         <PrivateRoute exact path="/client/profile" component={ClientProfile} />
-        <PrivateRoute path="/client" component={ClientNavigation} />
         <PrivateRoute path="/talent" component={TalentNavigation} />
         <PrivateRoute exact path="/talent" component={TalentHomePage} />
         <PrivateRoute exact path="/talent/profile" component={TalentProfile} />
+        <PrivateRoute exact path="/client/talentlist" component={TalentList} />
+        <PrivateRoute exact path="/client/applicationlist" component={AppList} />
         <Footer />
       </Router>
     );
