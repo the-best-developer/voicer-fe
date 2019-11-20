@@ -133,8 +133,54 @@ class TalentProfile extends React.Component {
         this.submitTalentAccents(this.state.accents);
         // this.destructureLanguages(this.state.languages);
         console.log('Profile Saved');
-    };
+  }
 
+  componentDidMount() {
+    this.props.getLanguages().then(this.modifyLanguage);
+    this.props.getAccents().then(this.modifyAccents);
+  }
+
+  modifyLanguage = () => {
+    const newArray = this.props.languageOptions.map(item => ({
+      value: item.language,
+      label: item.language,
+      languageId: item.languageId
+    }));
+
+    this.setState({ languageOptions: newArray });
+  };
+
+  modifyAccents = () => {
+    const newArray = this.props.accentOptions.map(item => ({
+      value: item.accent,
+      label: item.accent,
+      accentId: item.accentId
+    }));
+    this.setState({ accentOptions: newArray });
+  };
+
+  submitTalentLanguages = talentLangArray => {
+    talentLangArray.forEach(newLang => {
+      this.props.addTalentLanguage(newLang);
+    });
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleAgeChange = voiceAge => {
+    this.setState({ voiceAge: voiceAge.value });
+  };
+
+  handleLanguageAdd = languageId => {
+    const newLang = {
+      userId: this.props.userId,
+      languageId: languageId
+    };
+  }
     render() {
         return (
             <div style={{ marginTop: '21vh' }} className="TalentProfile">
@@ -208,9 +254,11 @@ class TalentProfile extends React.Component {
                     <Button>Save Profile</Button>
                 </Form>
             </div>
-        );
+        )
     }
 }
+
+
 
 const mapStateToProps = state => ({
     userId: state.loginReducer.id,
