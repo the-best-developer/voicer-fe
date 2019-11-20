@@ -7,7 +7,13 @@ import {
   GET_LANGUAGES_FAILURE,
   GET_ACCENTS_START,
   GET_ACCENTS_SUCCESS,
-  GET_ACCENTS_FAIL
+  GET_ACCENTS_FAIL,
+  ADD_TALENT_LANGUAGE_START,
+  ADD_TALENT_LANGUAGE_SUCCESS,
+  ADD_TALENT_LANGUAGE_FAIL,
+  ADD_TALENT_ACCENT_START,
+  ADD_TALENT_ACCENT_SUCCESS,
+  ADD_TALENT_ACCENT_FAIL
 } from '../actions';
 
 const initialState = {
@@ -15,7 +21,9 @@ const initialState = {
   id: null,
   languages: null,
   accents: null,
-  error: null
+  error: null,
+  talentLanguages: null,
+  talentAccents: null
 };
 
 export const registerReducer = (state = initialState, action) => {
@@ -69,6 +77,35 @@ export const registerReducer = (state = initialState, action) => {
         ...state,
         accents: null,
         error: null
+      };
+    case ADD_TALENT_LANGUAGE_START:
+      return {
+        ...state,
+        error: null
+      };
+    case ADD_TALENT_LANGUAGE_SUCCESS:
+      return {
+        ...state
+      };
+    case ADD_TALENT_LANGUAGE_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+
+    case ADD_TALENT_ACCENT_START:
+      return {
+        ...state,
+        error: null
+      };
+    case ADD_TALENT_ACCENT_SUCCESS:
+      return {
+        ...state
+      };
+    case ADD_TALENT_ACCENT_FAIL:
+      return {
+        ...state,
+        error: action.payload
       };
     default:
       return state;

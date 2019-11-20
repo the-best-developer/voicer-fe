@@ -17,6 +17,42 @@ export const GET_ACCENTS_START = 'GET_ACCENTS_START';
 export const GET_ACCENTS_SUCCESS = 'GET_ACCENTS_SUCCESS';
 export const GET_ACCENTS_FAIL = 'GET_ACCENTS_FAIL';
 
+export const ADD_TALENT_LANGUAGE_START = 'ADD_TALENT_LANGUAGE_START';
+export const ADD_TALENT_LANGUAGE_SUCCESS = 'ADD_TALENT_LANGUAGE_SUCCESS';
+export const ADD_TALENT_LANGUAGE_FAIL = 'ADD_TALENT_LANGUAGE_FAIL';
+
+export const ADD_TALENT_ACCENT_START = 'ADD_TALENT_ACCENT_START';
+export const ADD_TALENT_ACCENT_SUCCESS = 'ADD_TALENT_ACCENT_SUCCESS';
+export const ADD_TALENT_ACCENT_FAIL = 'ADD_TALENT_ACCENT_FAIL';
+
+export const addTalentLanguage = newTalentLanguage => dispatch => {
+  dispatch({ type: ADD_TALENT_LANGUAGE_START });
+  return axiosWithAuth()
+    .post(
+      'https://voicer-lambda-app-staging.herokuapp.com/api/talents/talentLanguage',
+      newTalentLanguage
+    )
+    .then(res => dispatch({ type: ADD_TALENT_LANGUAGE_SUCCESS }))
+    .catch(err => {
+      console.log(err);
+      return dispatch({ type: ADD_TALENT_LANGUAGE_FAIL });
+    });
+};
+
+export const addTalentAccent = newTalentAccent => dispatch => {
+  dispatch({ type: ADD_TALENT_ACCENT_START });
+  return axiosWithAuth()
+    .post(
+      'https://voicer-lambda-app-staging.herokuapp.com/api/talents/talentAccent',
+      newTalentAccent
+    )
+    .then(res => dispatch({ type: ADD_TALENT_ACCENT_SUCCESS }))
+    .catch(err => {
+      console.log(err);
+      return dispatch({ type: ADD_TALENT_ACCENT_FAIL });
+    });
+};
+
 export const register = creds => dispatch => {
   dispatch({ type: REGISTER_START });
   if (!creds.username) {
