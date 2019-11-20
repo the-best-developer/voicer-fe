@@ -8,7 +8,8 @@ const initialState = {
     loggingIn: false,
     id: null,
     userType: null,
-    error: null
+    error: false,
+    success: false
 }
 
 export const loginReducer = (state = initialState, action) => {
