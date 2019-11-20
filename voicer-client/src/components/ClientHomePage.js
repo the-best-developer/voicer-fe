@@ -14,13 +14,7 @@ const HomePage = styled.div`
     margin-top: 19vh;
     min-height: 100%;
     display: flex;
-<<<<<<< HEAD
     flex-direction: row;
-=======
-    flex-wrap: wrap;
-    margin-top: 19vh;
-    min-height: 65vh;
->>>>>>> e702508a306e368d375dc3dc1ccd8617a34c3e1e
 `;
 
 class ClientHomePage extends React.Component {
@@ -42,14 +36,10 @@ class ClientHomePage extends React.Component {
         return(
             <HomePage>
                 <FilterComponent />
-<<<<<<< HEAD
                 <div className="job-list-container">
                     {this.props.jobs.length === 0 ? <ClientWelcome /> : <ClientJobList jobs={this.props.jobs} />}
                     <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
                 </div>
-=======
-                <ClientJobList jobs={this.props.filteredData} />
->>>>>>> e702508a306e368d375dc3dc1ccd8617a34c3e1e
             </HomePage>
         )
     }

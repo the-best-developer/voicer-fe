@@ -27,17 +27,6 @@ import { filterData } from '../../actions/filterData';
 // Clean up some functions and handle state in a cleaner way
 
 const MainDiv = styled.div`
-<<<<<<< HEAD
-    min-width: 250px;
-    max-width: 25%;
-    min-height: 55.9vh;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb( 239, 241, 243 );
-    padding-top: 1vh
-    padding-bottom: 2vh;
-=======
   min-width: 250px;
   max-width: 25%;
   min-height: 100%;
@@ -45,7 +34,6 @@ const MainDiv = styled.div`
   flex-direction: column;
   background-color: rgb( 239, 241, 243 );
   padding-top: 5vh;
->>>>>>> e702508a306e368d375dc3dc1ccd8617a34c3e1e
 `
 
 // Component
