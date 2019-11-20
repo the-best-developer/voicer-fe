@@ -4,6 +4,26 @@ import {postJob} from '../actions';
 import { connect } from 'react-redux';
 import jwt from 'jsonwebtoken';
 import axiosWithAuth from './axiosAuth';
+import Container from '../styles/styledComponents/Container';
+import styled from 'styled-components';
+
+const PostJobContainer = styled(Container)`
+    min-height: 48vh;
+    margin: 50px auto;
+    margin-top: 23vh;
+    width: 600px;
+    h1 {
+        text-align: center;
+    }
+    Form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+    Button {
+        margin-top: 20px;
+    }
+`
 
 class PostJob extends React.Component {
     constructor(props) {
@@ -32,12 +52,12 @@ class PostJob extends React.Component {
             jobDescription: this.state.jobDescription,
             clientId: client.data[0].clientId,
             initialPrice: this.state.price
-        })
+        }, this.props.history)
     }
 
     render() {
         return(
-            <div className="PostJob">
+            <PostJobContainer>
                 <h1>Post a Job</h1>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
@@ -54,7 +74,7 @@ class PostJob extends React.Component {
                     </FormGroup>
                     <Button>Post Job</Button>
                 </Form>
-            </div>
+            </PostJobContainer>
         )
     }
 }
