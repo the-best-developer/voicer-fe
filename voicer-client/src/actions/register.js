@@ -120,7 +120,7 @@ export const createTalentProfile = creds => dispatch => {
 export const getLanguages = () => dispatch => {
   dispatch({ type: GET_LANGUAGES_START });
   return axios
-    .get('http://localhost:4000/api/auth/languages')
+    .get('https://voicer-lambda-app-staging.herokuapp.com/api/auth/languages')
     .then(res => {
       dispatch({
         type: GET_LANGUAGES_SUCESS,
@@ -138,7 +138,7 @@ export const getLanguages = () => dispatch => {
 export const getAccents = () => dispatch => {
   dispatch({ type: GET_ACCENTS_START });
   return axios
-    .get('http://localhost:4000/api/auth/accents')
+    .get('https://voicer-lambda-app-staging.herokuapp.com/api/auth/accents')
     .then(res => {
       dispatch({
         type: GET_ACCENTS_SUCCESS,
