@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import FilterComponent from './FilterComponents/FilterComponent';
 import { filterData, dataToFilter, setSearchKey, setSortKey } from '../actions/filterData';
 import ClientWelcome from './ClientWelcome';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import "../App.scss";
 
 const HomePage = styled.div`
