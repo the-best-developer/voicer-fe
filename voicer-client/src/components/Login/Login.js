@@ -87,7 +87,9 @@ class Login extends Component {
 const mapStateToProps = state => ({
     loggingIn: state.loginReducer.logginIn,
     id: state.loginReducer.id,
-    userType: state.loginReducer.userType
+    userType: state.loginReducer.userType,
+    error: state.loginReducer.error,
+    success: state.loginReducer.success
 })
 
 export default connect(
