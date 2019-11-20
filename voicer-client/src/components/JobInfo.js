@@ -1,9 +1,8 @@
 import React from 'react';
-import {Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import styled from 'styled-components';
 import {apply} from '../actions/apply';
 import {connect} from 'react-redux';
-import jwt from 'jsonwebtoken';
 
 //Styling
 const StyledModal = styled(Modal)`

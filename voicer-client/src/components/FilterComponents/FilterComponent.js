@@ -27,7 +27,6 @@ import { filterData } from '../../actions/filterData';
 // Clean up some functions and handle state in a cleaner way
 
 const MainDiv = styled.div`
-  margin-top: 19vh;
   min-width: 250px;
   max-width: 25%;
   min-height: 100%;
