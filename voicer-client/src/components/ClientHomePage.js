@@ -38,10 +38,15 @@ class ClientHomePage extends React.Component {
         return(
             <HomePage>
                 <FilterComponent />
+<<<<<<< HEAD
                 <div className="job-list-container">
                     {this.props.jobs.length === 0 ? <ClientWelcome /> : <ClientJobList jobs={this.props.jobs} />}
                     <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
                 </div>
+=======
+                {this.props.jobs.length === 0 ? <ClientWelcome /> : <ClientJobList jobs={this.props.jobs} />}
+                <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
+>>>>>>> 79edb0fcc2fb2ef1461e1fac6f5ad4c3c9d0c8d0
             </HomePage>
         )
     }
