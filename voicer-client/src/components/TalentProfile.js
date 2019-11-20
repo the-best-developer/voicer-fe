@@ -74,7 +74,21 @@ class TalentProfile extends React.Component {
 
   submitTalentLanguages = talentLangArray => {
     talentLangArray.forEach(newLang => {
-      this.props.addTalentLanguage(newLang);
+      const langSubmit = {
+        userId: this.props.userId,
+        languageId: newLang.languageId
+      };
+      this.props.addTalentLanguage(langSubmit);
+    });
+  };
+
+  submitTalentAccents = talentAccentArray => {
+    talentAccentArray.forEach(newAccent => {
+      const accentSubmit = {
+        userId: this.props.userId,
+        accentId: newAccent.accentId
+      };
+      this.props.addTalentAccent(accentSubmit);
     });
   };
 
@@ -116,6 +130,7 @@ class TalentProfile extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.submitTalentLanguages(this.state.languages);
+    this.submitTalentAccents(this.state.accents);
     // this.destructureLanguages(this.state.languages);
     console.log('Profile Saved');
   };
