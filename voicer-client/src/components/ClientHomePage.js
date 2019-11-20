@@ -13,8 +13,10 @@ import ClientWelcome from './ClientWelcome';
 import "../App.scss";
 
 const HomePage = styled.div`
+    margin-top: 19vh;
+    min-height: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
 `;
 
 class ClientHomePage extends React.Component {
@@ -27,9 +29,8 @@ class ClientHomePage extends React.Component {
 
     componentDidMount = async () => {
         const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
-        console.log(client.data[0].clientId)
-        this.props.getJobsBy(client.data[0].clientId)
-        await this.props.dataToFilter(this.props.talent)
+        await this.props.getJobsBy(client.data[0].clientId)
+        await this.props.dataToFilter(this.props.jobs)
         await this.props.filterData()
     }
 
@@ -37,8 +38,10 @@ class ClientHomePage extends React.Component {
         return(
             <HomePage>
                 <FilterComponent />
-                {this.props.jobs.length === 0 ? <ClientWelcome /> : <ClientJobList jobs={this.props.jobs} />}
-                <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
+                <div className="job-list-container">
+                    {this.props.jobs.length === 0 ? <ClientWelcome /> : <ClientJobList jobs={this.props.jobs} />}
+                    <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
+                </div>
             </HomePage>
 
         )
