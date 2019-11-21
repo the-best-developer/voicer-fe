@@ -41,23 +41,23 @@ class TalentList extends Component {
         this.props.getTalent()
     }
 
-    // openModal = talent => {
-    //     this.setState({
-    //         activeTalent: talent,
-    //     })
-    // }
+    openModal = talent => {
+        this.setState({
+            activeTalent: talent,
+        })
+    }
 
-    // toggle = () => {
-    //     this.setState({
-    //         modalIsOpen: !this.state.modalIsOpen
-    //     })
-    // }
+    toggle = () => {
+        this.setState({
+            modalIsOpen: !this.state.modalIsOpen
+        })
+    }
 
-    // toggle2 = () => {
-    //     this.setState({
-    //         modalIsOpen2: !this.state.modalIsOpen2
-    //     })
-    // }
+    toggle2 = () => {
+        this.setState({
+            modalIsOpen2: !this.state.modalIsOpen2
+        })
+    }
 
     render() {
         return (
