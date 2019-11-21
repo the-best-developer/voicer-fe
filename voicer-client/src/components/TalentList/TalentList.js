@@ -10,14 +10,17 @@ import { Divider } from '../../styles/styledComponents/ClientListCard';
 // Styling
 const MainDiv = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 19vh;
     min-height: 65vh;
 `
 
 const ListDiv = styled.div`
-    width: 60%;
-    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 2rem;
     padding: 10px;
     h1 {
         color: #FF934F;

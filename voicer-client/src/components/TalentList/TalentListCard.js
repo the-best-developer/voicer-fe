@@ -1,10 +1,11 @@
 import React from 'react';
 import { Card, Button, CardBody } from 'reactstrap';
 import styled from 'styled-components';
+import UserIcon from '../images/user.svg';
 
 // Styling
 const StyledCard = styled(Card)`
-  width: 100%;
+  width: 48%;
   margin: 15px 0;
   min-height: 200px;
   padding: 5px;
