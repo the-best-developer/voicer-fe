@@ -34,6 +34,15 @@ const UserImg = styled.img`
   width: 60px;
 `;
 
+const DetailLabel = styled.div`
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #223843;
+`
+
+const DetailItem = styled.div`
+`
+
 const StyledButton = styled(Button)`
   width: 100%;
   margin: 3px;
@@ -42,8 +51,8 @@ const StyledButton = styled(Button)`
 
 const StyledCardBody = styled(CardBody)`
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: flex-start;
   padding: 10px;
 `
 
@@ -56,40 +65,22 @@ const Divider = styled.div`
     background-color: #717F86;
 `;
 
-// const StyledButtonDiv = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   padding: 10px;
-//   margin-left: auto;
-// `
-
 const StyledCardDetails = styled.div`
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 75%;
-  padding-left: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
 `
 
 const StyledCardDetail = styled.div`
-  width: 22%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 15px;
-`;
-
-const StyledCardDetailItem = styled.div`
-  width: 100%;
-  text-align: left;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: .5rem 0;
 `;
 
 const StyledCardAction = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 22.5%;
+  justify-content: space-between;
 `
 
 const StyledCardActionItem = styled.div`
@@ -119,48 +110,52 @@ const TalentListCard = props => {
                   {props.talentData.firstName + ' ' + props.talentData.lastName}
                 </CardName>
                 <UserImg src={UserIcon} />
-
               </StyledCardHeader>
 
               <Divider />
 
 
 
-
               <StyledCardDetails>
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Email</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
-                    {props.talentData.email}
-                  </StyledCardDetailItem>
+                  <DetailLabel>
+                    Rating
+                  </DetailLabel>
+                  <DetailItem>
+                    {props.talentData.rating}
+                  </DetailItem>
                 </StyledCardDetail>
+
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Language</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
-                    English
-                  </StyledCardDetailItem>
+                  <DetailLabel>
+                    Language
+                  </DetailLabel>
+                  <DetailItem>
+                    English *
+                  </DetailItem>
                 </StyledCardDetail>
+
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Gender</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
+                  <DetailLabel>
+                    Gender
+                  </DetailLabel>
+                  <DetailItem>
                     {props.talentData.gender}
-                  </StyledCardDetailItem>
+                  </DetailItem>
                 </StyledCardDetail>
+
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Rating</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
-                  {props.talentData.rating}
-                  </StyledCardDetailItem>
+                  <DetailLabel>
+                    Email
+                  </DetailLabel>
+                  <DetailItem>
+                    {props.talentData.email}
+                  </DetailItem>
                 </StyledCardDetail>
+
               </StyledCardDetails>
+
+
               <StyledCardAction>
                 <StyledCardActionItem>
                     <StyledButton onClick={() => {
