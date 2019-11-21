@@ -29,7 +29,8 @@ class TalentProfile extends React.Component {
     };
   }
 
-  //Fires actions to get data from back-end and add it to store, then mutates the store data format to work in the form
+  //On Mount, lang/accents are pulled from back-end and added to store, then
+  //modified to a format that the form fields can use and put into state
   componentDidMount() {
     this.props.getLanguages().then(this.modifyLanguage);
     this.props.getAccents().then(this.modifyAccents);
