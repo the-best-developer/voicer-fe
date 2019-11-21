@@ -2,12 +2,8 @@ import React from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import Select, { components } from 'react-select';
 import { connect } from 'react-redux';
-import {
-  getLanguages,
-  getAccents,
-  addTalentLanguage,
-  addTalentAccent
-} from '../actions/register';
+import { getLanguages, addTalentLanguage } from '../actions/language';
+import { getAccents, addTalentAccent } from '../actions/accent';
 import makeAnimated from 'react-select/animated';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -17,21 +13,6 @@ const ageOptions = [
   { value: 'adult', label: 'Adult' },
   { value: 'senior', label: 'Senior' }
 ];
-
-// const languageOptions = [
-//     { value: 'english', label: 'English' },
-//     { value: 'spanish', label: 'Spanish' },
-//     { value: 'german', label: 'German' },
-//     { value: 'japanese', label: 'Japanese' },
-//     { value: 'chinese', label: 'Chinese' }
-// ];
-
-// const accentOptions = [
-//     { value: 'american', label: 'American' },
-//     { value: 'british', label: 'British' },
-//     { value: 'central american', label: 'Central American' },
-//     { value: 'european spanish', label: 'European Spanish' }
-// ];
 
 class TalentProfile extends React.Component {
   constructor(props) {
@@ -48,6 +29,7 @@ class TalentProfile extends React.Component {
     };
   }
 
+  //Fires actions to get data from back-end and add it to store, then mutates the store data format to work in the form
   componentDidMount() {
     this.props.getLanguages().then(this.modifyLanguage);
     this.props.getAccents().then(this.modifyAccents);
@@ -119,7 +101,6 @@ class TalentProfile extends React.Component {
 
   destructureLanguages = languages => {
     const newArray = languages.map(lang => lang.value);
-    console.log(newArray);
     this.setState({ languages: newArray });
   };
 
@@ -131,49 +112,12 @@ class TalentProfile extends React.Component {
     event.preventDefault();
     this.submitTalentLanguages(this.state.languages);
     this.submitTalentAccents(this.state.accents);
-    // this.destructureLanguages(this.state.languages);
-    console.log('Profile Saved');
   };
 
   componentDidMount() {
     this.props.getLanguages().then(this.modifyLanguage);
     this.props.getAccents().then(this.modifyAccents);
   }
-
-  modifyLanguage = () => {
-    const newArray = this.props.languageOptions.map(item => ({
-      value: item.language,
-      label: item.language,
-      languageId: item.languageId
-    }));
-
-    this.setState({ languageOptions: newArray });
-  };
-
-  modifyAccents = () => {
-    const newArray = this.props.accentOptions.map(item => ({
-      value: item.accent,
-      label: item.accent,
-      accentId: item.accentId
-    }));
-    this.setState({ accentOptions: newArray });
-  };
-
-  submitTalentLanguages = talentLangArray => {
-    talentLangArray.forEach(newLang => {
-      this.props.addTalentLanguage(newLang);
-    });
-  };
-
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  handleAgeChange = voiceAge => {
-    this.setState({ voiceAge: voiceAge.value });
-  };
 
   render() {
     return (
@@ -252,8 +196,8 @@ class TalentProfile extends React.Component {
 
 const mapStateToProps = state => ({
   userId: state.loginReducer.id,
-  languageOptions: state.registerReducer.languages,
-  accentOptions: state.registerReducer.accents
+  languageOptions: state.languageReducer.languages,
+  accentOptions: state.accentReducer.accents
 });
 
 export default connect(mapStateToProps, {
@@ -262,4 +206,3 @@ export default connect(mapStateToProps, {
   addTalentAccent,
   addTalentLanguage
 })(TalentProfile);
-// export default TalentProfile;
