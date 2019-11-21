@@ -8,7 +8,8 @@ const initialState = {
     loggingIn: false,
     id: null,
     userType: null,
-    error: null
+    error: false,
+    success: false
 }
 
 export const loginReducer = (state = initialState, action) => {
@@ -16,19 +17,25 @@ export const loginReducer = (state = initialState, action) => {
         case LOGIN_START:
             return {
                 ...state,
-                loggingIn: true
+                loggingIn: true,
+                error: false,
+                success: false
             }
         case LOGIN_SUCCESS:
             return {
                 ...state,
                 id: action.payload.userId,
                 userType: action.payload.userType,
-                loggingIn: false
+                loggingIn: false,
+                success: true,
+                error: false
             }
         case LOGIN_FAILED:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                loggingIn: false,
+                success: false
             }
         default: return state;
     }
