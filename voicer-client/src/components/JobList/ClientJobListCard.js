@@ -30,7 +30,7 @@ class ClientJobListCard extends React.Component {
       modalIsOpen: false,
     }
   }
-
+// Not working correctly because each ClientJobListCard is trying to use the same state variable in the getJobOffersReducer
   componentDidMount = () => {
     this.props.getApplications(this.props.jobData.jobId)
   }

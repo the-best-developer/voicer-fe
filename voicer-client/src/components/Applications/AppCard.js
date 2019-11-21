@@ -4,9 +4,9 @@
 
  const StyledCard = styled(Card)`
   width: 90%;
-  border: 1px solid red;
   padding: 10px;
-  margin: 10px 0;
+  margin: 0 auto;
+  margin-bottom: 5vh;
   min-height: 100px;
 `
 
@@ -15,14 +15,12 @@ const StyledButton = styled(Button)`
 `
 
 const StyledCardBody = styled(CardBody) `
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   padding: 10px;
 `
 
 const StyledButtonDiv = styled.div`
-  border: 1px solid red;
   padding: 10px;
   margin-left: auto;
 `
@@ -31,13 +29,14 @@ const StyledButtonDiv = styled.div`
     return(
         <StyledCard>
             <StyledCardBody>
-                <CardTitle>{props.appData.jobTitle}</CardTitle>
-                <CardSubtitle>{props.appData.clientId}</CardSubtitle>
-                <CardText>{props.appData.jobDescription}</CardText>
+                <CardTitle>{props.appData.talentId}</CardTitle>
+                <CardSubtitle>{props.appData.clientMessage}</CardSubtitle>
+                <CardText>Status: {props.appData.status}</CardText>
                 <StyledButtonDiv>
                     <StyledButton>Make Offer</StyledButton>
                 </StyledButtonDiv>
             </StyledCardBody>
+            {console.log(props.appData)}
         </StyledCard>
     );
  }
