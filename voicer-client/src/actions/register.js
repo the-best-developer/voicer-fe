@@ -1,5 +1,5 @@
-import axios from 'axios';
 import axiosWithAuth from '../components/axiosAuth';
+import axios from 'axios';
 
 export const REGISTER_START = 'REGISTER-START';
 export const REGISTER_SUCCESS = 'REGISTER-SUCCESS';
@@ -23,9 +23,6 @@ export const register = creds => dispatch => {
     if (!creds.lastName) {
         dispatch({ type: REGISTER_FAILED, error: 'Please enter your last name' });
     }
-    if (creds.userType != "talent" || creds.userType != "client") {
-        dispatch({ type: REGISTER_FAILED, error: 'Please provide a valid user type' });
-    } 
     if (!creds.email.includes('@') || !creds.email.includes('.')) {
         dispatch({ type: REGISTER_FAILED, error: 'Please enter a correct email' });
     }
@@ -56,7 +53,7 @@ export const createClientProfile = creds => dispatch => {
 export const createTalentProfile = creds => dispatch => {
     dispatch({type: CREATE_PROFILE_START});
     return axiosWithAuth()
-        .post('https://voicer-lambda-app-staging.herokuapp.com/api/talent/', creds)
+        .post('https://voicer-lambda-app-staging.herokuapp.com/api/talents/', creds)
         .then((res) => dispatch({type: CREATE_PROFILE_SUCCESS}))
         .catch((err) => { console.log(err); return dispatch({type: CREATE_PROFILE_FAILURE})})
 }

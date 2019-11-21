@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     postingJob: false,
-    error: null
+    success: false,
+    error: false
 }
 
 export const postJobReducer = (state = initialState, action) => {
@@ -15,18 +16,21 @@ export const postJobReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postingJob: true,
-                error: null
+                success: false,
+                error: false
             }
         case POST_JOB_SUCCESS:
             return {
                 ...state,
                 postingJob: false,
+                success: true,
                 error: false
             }
         case POST_JOB_FAILED:
             return {
                 ...state,
                 postingJob: false,
+                success: false,
                 error: true
             }
         default: return state;
