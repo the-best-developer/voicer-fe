@@ -51,8 +51,9 @@ class ApplyToJob extends React.Component {
     clickHandler = () => {
         this.props.apply({
             jobId: this.props.job.jobId,
-            offeredById: jwt.decode(localStorage.getItem("token")).userId,
-            offeredToId: this.props.job.clientId,
+            talentId: jwt.decode(localStorage.getItem("token")).userId,
+            clientId: this.props.job.clientId,
+            isClientOffer: false,
             status: "open",
             clientMessage: this.state.clientMessage
         })

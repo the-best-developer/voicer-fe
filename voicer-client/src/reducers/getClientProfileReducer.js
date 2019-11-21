@@ -9,7 +9,7 @@ const initialState = {
     gettingClientProfile: false,
 }
 
-export const clientProfileReducer = (state = initialState, action) => {
+export const getClientProfileReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CLIENT_PROFILE_START:
             return {
