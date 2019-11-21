@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getApplications } from '../../actions';
+import AppList from '../Applications/AppList';
 import { connect } from 'react-redux';
-import { setJobId } from '../../actions';
-import styled from 'styled-components';
-import { Card, Button, CardBody } from 'reactstrap';
 import "../../App.scss";
 
 // Styling
@@ -26,6 +25,14 @@ import {
 class ClientJobListCard extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      activeJob: {},
+      modalIsOpen: false,
+    }
+  }
+
+  componentDidMount() {
+    getApplications(this.props.jobData.jobId);
   }
 
   formatDate = (date) => {
@@ -37,13 +44,19 @@ class ClientJobListCard extends React.Component {
     return(month.slice(0, 3) + ' ' + day + ', ' + year)
   }
 
+  toggle = () => {
+    this.setState({
+        modalIsOpen: !this.state.modalIsOpen
+    })
+  }
+
   render() {
     return (
       <ClientCardContainer>
           <ClientListCardBody>
             <ClientListCardHeader>
               <ClientCardTitle>{this.props.jobData.jobTitle}</ClientCardTitle>
-              <CardName>Applications: {this.props.jobData.appCount}</CardName>
+              <CardName>Applications: {this.props.apps.length}</CardName>
               <Divider/>
             </ClientListCardHeader>
             <ClientListCardDetails>
@@ -83,30 +96,37 @@ class ClientJobListCard extends React.Component {
             <ClientListCardAction>
                 <ClientListCardActionItem>
                   <Link to="/client/talentlist">
-                    <ClientListButton className='btn-orange' onClick={this.props.setJobId(this.props.jobData.jobId)}>
+                    <ClientListButton className='btn-orange'>
                       Find Talent
                     </ClientListButton>
                   </Link>
                 </ClientListCardActionItem>
                 <ClientListCardActionItem>
-                  <Link to="/client/applicationlist">
-                    <ClientListButton onClick={this.props.setJobId(this.props.jobData.jobId)}>
-                      Applications
-                    </ClientListButton>
-                  </Link>
+                  <ClientListButton onClick = {() => {
+                      this.toggle();
+                    }
+                  }>
+                    Applications
+                  </ClientListButton>
                 </ClientListCardActionItem>
             </ClientListCardAction>
           </ClientListCardBody>
+          <AppList
+            toggle={this.toggle}
+            isOpen={this.state.modalIsOpen}
+            job={this.props.jobData}
+            apps={this.props.apps}
+          />
       </ClientCardContainer>
   );
   }
 };
 
 const mapStateToProps = state => ({
-
+  apps: state.getJobOffersReducer.jobOffers
 })
 
 export default connect(
   mapStateToProps,
-  { setJobId }
+  { getApplications }
 )(ClientJobListCard);

@@ -111,7 +111,6 @@ const TalentListCard = props => {
       let year = newDate.getFullYear();
       return(month.slice(0, 3) + ' ' + day + ', ' + year)
     }
-    console.log(props)
     return (
         <StyledCard>
             <StyledCardBody>

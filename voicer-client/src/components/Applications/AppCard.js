@@ -30,15 +30,15 @@ const StyledButtonDiv = styled.div`
  const AppCard = props => {
     return(
         <StyledCard>
-            <StyledCardBody>
-                <CardTitle>{props.jobData.jobTitle}</CardTitle>
-                <CardSubtitle>{props.jobData.clientId}</CardSubtitle>
-                <CardText>{props.jobData.jobDescription}</CardText>
+            {/* <StyledCardBody>
+                <CardTitle>{props.appData.jobTitle}</CardTitle>
+                <CardSubtitle>{props.appData.clientId}</CardSubtitle>
+                <CardText>{props.appData.jobDescription}</CardText>
                 <StyledButtonDiv>
-                    <StyledButton>Click me!</StyledButton>
-                    <StyledButton>Or me!</StyledButton>
+                    <StyledButton>Make Offer</StyledButton>
                 </StyledButtonDiv>
-            </StyledCardBody>
+            </StyledCardBody> */}
+            {console.log(props.appData)}
         </StyledCard>
     );
  }

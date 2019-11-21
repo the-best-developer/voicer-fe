@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getJobsBy } from '../actions';
+import { getJobsBy, getApplications } from '../actions';
 import jwt from 'jsonwebtoken';
 import ClientJobList from './JobList/ClientJobList';
 import axiosWithAuth from './axiosAuth';
@@ -48,5 +48,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getJobsBy, dataToFilter, filterData, setSortKey, setSearchKey }
+    { getJobsBy, dataToFilter, filterData, setSortKey, setSearchKey, getApplications }
 )(ClientHomePage);

@@ -11,18 +11,12 @@ const MainDiv = styled.div`
 `
 
 // Component
-class ClientJobList extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return (
-            <MainDiv>
-                {this.props.jobs.map(job => <ClientJobListCard key={job.jobId} jobData={job}/>)}
-            </MainDiv>
-        );
-    };
+const ClientJobList = props => {
+    return (
+        <MainDiv>
+            {props.jobs.map(job => <ClientJobListCard key={job.jobId} jobData={job}/>)}
+        </MainDiv>
+    );
 };
 
 export default ClientJobList
