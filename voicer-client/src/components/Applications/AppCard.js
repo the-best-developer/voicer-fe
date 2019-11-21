@@ -30,15 +30,14 @@ const StyledButtonDiv = styled.div`
  const AppCard = props => {
     return(
         <StyledCard>
-            {/* <StyledCardBody>
+            <StyledCardBody>
                 <CardTitle>{props.appData.jobTitle}</CardTitle>
                 <CardSubtitle>{props.appData.clientId}</CardSubtitle>
                 <CardText>{props.appData.jobDescription}</CardText>
                 <StyledButtonDiv>
                     <StyledButton>Make Offer</StyledButton>
                 </StyledButtonDiv>
-            </StyledCardBody> */}
-            {console.log(props.appData)}
+            </StyledCardBody>
         </StyledCard>
     );
  }

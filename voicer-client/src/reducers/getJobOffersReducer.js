@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     gettingJobOffers: false,
-    error: null,
+    error: false,
     jobOffers: []
 }
 
@@ -16,7 +16,7 @@ export const getJobOffersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 gettingJobOffers: true,
-                error: null
+                error: false
             }
         case GET_JOB_OFFERS_SUCCESS:
             return {

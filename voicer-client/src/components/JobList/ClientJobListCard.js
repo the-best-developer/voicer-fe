@@ -31,8 +31,8 @@ class ClientJobListCard extends React.Component {
     }
   }
 
-  componentDidMount() {
-    getApplications(this.props.jobData.jobId);
+  componentDidMount = () => {
+    this.props.getApplications(this.props.jobData.jobId)
   }
 
   formatDate = (date) => {
