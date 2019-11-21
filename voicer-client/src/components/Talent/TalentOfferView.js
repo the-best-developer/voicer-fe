@@ -8,7 +8,7 @@ class TalentOfferView extends React.Component {
     }
 
     async componentDidMount() {
-        await this.props.getTalentJobOffers(this.props.talentId)
+        await this.props.getTalentJobOffers(this.props.talent[0].talentId)
     }
 
     render() {
@@ -20,7 +20,7 @@ class TalentOfferView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    talentId: state.getTalentReducer.talent.talentId
+    talent: state.getTalentReducer.talent
 })
 
 

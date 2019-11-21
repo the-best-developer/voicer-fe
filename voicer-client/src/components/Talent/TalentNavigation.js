@@ -1,17 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink
+ } from 'reactstrap';
 
 import Logo from '../../images/logo-white.svg';
 import UserIcon from '../../images/user.svg';
@@ -92,10 +87,6 @@ const Divider = styled.div`
 `;
 
 class TalentNavigation extends React.Component {
-
-    constructor(props) {
-      super(props)
-    }
 
     logout = e => {
       e.preventDefault();

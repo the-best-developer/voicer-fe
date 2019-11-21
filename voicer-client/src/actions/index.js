@@ -47,17 +47,23 @@ export {
 } from './getJobs'
 
 export {
-    GET_JOB_OFFERS_START,
-    GET_JOB_OFFERS_SUCCESS,
-    GET_JOB_OFFERS_FAILED,
+    GET_TALENT_JOB_OFFERS_START,
+    GET_TALENT_JOB_OFFERS_SUCCESS,
+    GET_TALENT_JOB_OFFERS_FAILED,
     getTalentJobOffers
 } from './getTalentJobOffers'
 
 export {
     APPLY_START,
     APPLY_SUCCESS,
-    APPLY_FAILED
+    APPLY_FAILED,
+    apply
 } from './apply'
+
+export {
+    SET_JOB_ID,
+    setJobId
+} from './setJobId'
 
 export {
     GET_TALENT_START,
@@ -65,3 +71,10 @@ export {
     GET_TALENT_FAILED,
     getTalent
 } from './getTalent'
+
+export {
+    GET_JOB_OFFERS_START,
+    GET_JOB_OFFERS_SUCCESS,
+    GET_JOB_OFFERS_FAILED,
+    getApplications
+} from './getApplications'
