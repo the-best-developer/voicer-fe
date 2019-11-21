@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, CardBody } from 'reactstrap';
 import styled from 'styled-components';
-import UserIcon from '../images/user.svg';
+import UserIcon from '../../images/user.svg';
 
 // Styling
 const StyledCard = styled(Card)`
@@ -19,22 +19,19 @@ const StyledCardHeader = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  height: 10vh;
+  align-items: center;
+  flex-wrap: no-wrap;
 `;
 
 const CardName = styled.div`
   padding-right: 10px;
   font-family: 'Nunito Sans', sans-serif ;
-  font-size: 1.0rem;
+  font-size: 1.6rem;
   font-weight: 800;
 `;
 
-const CardTitle = styled.div`
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  font-weight: bold;
+const UserImg = styled.img`
+  width: 60px;
 `;
 
 const StyledButton = styled(Button)`
@@ -53,7 +50,7 @@ const StyledCardBody = styled(CardBody)`
 const Divider = styled.div`
     height: 1px;
     width: 100%;
-    margin: 0;
+    margin: 1rem 0;
     display:block; /* for use on default inline elements like span */
     overflow: hidden;
     background-color: #717F86;
@@ -116,11 +113,20 @@ const TalentListCard = props => {
     return (
         <StyledCard>
             <StyledCardBody>
+
               <StyledCardHeader>
-                <CardTitle>{props.talentData.firstName + ' ' + props.talentData.lastName}</CardTitle>
-                <CardName>{}</CardName>
-                <Divider />
+                <CardName>
+                  {props.talentData.firstName + ' ' + props.talentData.lastName}
+                </CardName>
+                <UserImg src={UserIcon} />
+
               </StyledCardHeader>
+
+              <Divider />
+
+
+
+
               <StyledCardDetails>
                 <StyledCardDetail>
                   <StyledCardDetailItem>
