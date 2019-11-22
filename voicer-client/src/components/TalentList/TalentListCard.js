@@ -122,9 +122,7 @@ const TalentListCard = props => {
                     Rating
                   </DetailLabel>
                   <DetailItem>
-
-        <ShowRating rating={props.talentData.rating} />
-
+                    <ShowRating rating={props.talentData.rating} />
                   </DetailItem>
                 </StyledCardDetail>
 
