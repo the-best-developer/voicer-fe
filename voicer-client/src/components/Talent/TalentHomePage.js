@@ -8,6 +8,11 @@ import FilterComponent from '../FilterComponents/FilterComponent';
 import { filterData, dataToFilter, setSearchKey, setSortKey } from '../../actions/filterData';
 
 const HomePage = styled.div`
+    margin-top: 19vh;
+    padding-top: 5vh;
+    min-width: 250px;
+    max-width: 25%;
+    min-height: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-top: 19vh;
