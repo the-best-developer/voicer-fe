@@ -33,6 +33,7 @@
 }
 
 .btn-medium-blue {
+  text-transform: uppercase !important;
   background-color: $blue-medium !important;
   border: none !important;
 
@@ -40,6 +41,7 @@
     background-color: darken($blue-medium, 10%) !important;
   }
 }
+
 .btn-centered {
   margin: 2rem auto .5rem;
   display: block !important;

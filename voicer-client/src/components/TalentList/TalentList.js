@@ -24,8 +24,9 @@ const ListDiv = styled.div`
     padding: 10px;
     h1 {
         color: #FF934F;
-        font-size: 3rem;
+        font-size: 2rem;
         margin-top: 5vh;
+        letter-spacing: 1px;
     }
 `
 

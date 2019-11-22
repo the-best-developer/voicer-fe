@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, Button, CardBody } from 'reactstrap';
 import styled from 'styled-components';
 import UserIcon from '../../images/user.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 // Styling
 const StyledCard = styled(Card)`
@@ -81,6 +83,7 @@ const StyledCardDetail = styled.div`
 const StyledCardAction = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 1.2rem 0 0;
 `
 
 const StyledCardActionItem = styled.div`
@@ -100,7 +103,23 @@ const TalentListCard = props => {
       let year = newDate.getFullYear();
       return(month.slice(0, 3) + ' ' + day + ', ' + year)
     }
+
     console.log(props)
+
+    const coloredStar = color => { 
+      return <FontAwesomeIcon icon={faStar} color={color} size={"1x"} />
+    }
+
+    const stars = starNumber => {
+      let starList = Array(5).fill(false);
+      starList.fill(true, 0, Number(starNumber));
+
+      return starList.map(star => { 
+        return (star ? coloredStar('orange') : coloredStar('gray')) 
+      })
+    }
+
+
     return (
         <StyledCard>
             <StyledCardBody>
@@ -122,7 +141,7 @@ const TalentListCard = props => {
                     Rating
                   </DetailLabel>
                   <DetailItem>
-                    {props.talentData.rating}
+                  { stars(props.talentData.rating) }
                   </DetailItem>
                 </StyledCardDetail>
 
@@ -157,19 +176,28 @@ const TalentListCard = props => {
 
 
               <StyledCardAction>
-                <StyledCardActionItem>
-                    <StyledButton onClick={() => {
+
+                  <StyledButton
+                      className='btn-medium-blue'
+                      onClick={() => {
                       props.openModal(props.talentData);
                       props.toggle2();
-                    }}>INFO</StyledButton>
-                </StyledCardActionItem>
-                <StyledCardActionItem>
-                    <StyledButton className='btn-orange' onClick={() => {
+                    }}>
+                    Info
+                  </StyledButton>
+
+                  <StyledButton
+                      className='btn-orange'
+                      onClick={() => {
                       props.openModal(props.talentData);
                       props.toggle();
-                    }}>Invite</StyledButton>
-                </StyledCardActionItem>
+                    }}>
+                    Invite
+                  </StyledButton>
+
               </StyledCardAction>
+
+
               {/* <StyledCardHeader>
                 <CardText>{props.talentData.jobDescription}</CardText>
               </StyledCardDetails>
