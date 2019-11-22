@@ -6,17 +6,18 @@ import Login from './components/Login/Login';
 import Register from './components/Register';
 import PrivateRoute from './components/Login/PrivateRoute';
 import PostJob from './components/PostJob';
-import TalentNavigation from './components/TalentNavigation';
-import TalentProfile from './components/TalentProfile';
+import TalentNavigation from './components/Talent/TalentNavigation';
+import TalentProfile from './components/Talent/TalentProfile';
 import ClientProfile from './components/ClientProfile';
-import ClientNavigation from './components/ClientNavigation';
 import Home from './components/Home/Home';
-import TalentHomePage from './components/TalentHomePage';
+import TalentHomePage from './components/Talent/TalentHomePage';
 import ClientHomePage from './components/ClientHomePage';
 import ApplyToJob from './components/ApplyToJob';
 import TalentList from './components/TalentList/TalentList';
 import AppList from './components/Applications/AppList';
 import Footer from './components/Footer';
+import ClientNavigation from './components/ClientNavigation';
+import TalentOfferView from './components/Talent/TalentOfferView';
 
 class App extends Component {
   render() {
@@ -33,6 +34,7 @@ class App extends Component {
         <PrivateRoute path="/talent" component={TalentNavigation} />
         <PrivateRoute exact path="/talent" component={TalentHomePage} />
         <PrivateRoute exact path="/talent/profile" component={TalentProfile} />
+        <PrivateRoute exact path="/talent/applications" component={TalentOfferView} />
         <PrivateRoute exact path="/client/talentlist" component={TalentList} />
         <PrivateRoute
           exact

@@ -8,19 +8,21 @@ import { getJobsReducer } from './getJobsReducer';
 import { filterReducer } from './filterReducer';
 import { applyReducer } from './applyReducer';
 import { getTalentReducer } from './getTalentReducer';
+import { getJobOffersReducer } from './getJobOffersReducer';
 import { languageReducer } from './languageReducer';
 import { accentReducer } from './accentReducer';
 
 export default combineReducers({
-  registerReducer,
-  loginReducer,
-  editClientProfileReducer,
-  getClientProfileReducer,
-  postJobReducer,
-  getJobsReducer,
-  filterReducer,
-  applyReducer,
-  getTalentReducer,
-  languageReducer,
-  accentReducer
+    registerReducer,
+    loginReducer,
+    editClientProfileReducer,
+    getClientProfileReducer,
+    postJobReducer,
+    getJobsReducer,
+    filterReducer,
+    applyReducer,
+    getTalentReducer,
+    getJobOffersReducer,
+    languageReducer,
+    accentReducer
 });
