@@ -2,8 +2,7 @@ import React from 'react';
 import { Card, Button, CardBody } from 'reactstrap';
 import styled from 'styled-components';
 import UserIcon from '../../images/user.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import ShowRating from './ShowRating';
 
 // Styling
 const StyledCard = styled(Card)`
@@ -106,20 +105,6 @@ const TalentListCard = props => {
 
     console.log(props)
 
-    const coloredStar = color => { 
-      return <FontAwesomeIcon icon={faStar} color={color} size={"1x"} />
-    }
-
-    const stars = starNumber => {
-      let starList = Array(5).fill(false);
-      starList.fill(true, 0, Number(starNumber));
-
-      return starList.map(star => { 
-        return (star ? coloredStar('orange') : coloredStar('gray')) 
-      })
-    }
-
-
     return (
         <StyledCard>
             <StyledCardBody>
@@ -139,7 +124,9 @@ const TalentListCard = props => {
                     Rating
                   </DetailLabel>
                   <DetailItem>
-                  { stars(props.talentData.rating) }
+
+        <ShowRating rating={props.talentData.rating} />
+
                   </DetailItem>
                 </StyledCardDetail>
 
