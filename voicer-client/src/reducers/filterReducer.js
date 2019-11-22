@@ -105,6 +105,12 @@ const searchFunction = (state) => {
         keys: [...state.searchKey]
     };
 
+    console.log(state.storedData)
+    
+    if(state.storedData.length === 0) {
+        return []
+    }
+
     // Setup fuse using data and fuseOptions as search options
     const fuse = new Fuse(state.storedData, fuseOptions)
     // Return searched list
