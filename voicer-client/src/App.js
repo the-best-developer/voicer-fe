@@ -35,7 +35,11 @@ class App extends Component {
         <PrivateRoute exact path="/talent" component={TalentHomePage} />
         <PrivateRoute exact path="/talent/profile" component={TalentProfile} />
         <PrivateRoute exact path="/client/talentlist" component={TalentList} />
-        <PrivateRoute exact path="/client/applicationlist" component={AppList} />
+        <PrivateRoute
+          exact
+          path="/client/applicationlist"
+          component={AppList}
+        />
         <Footer />
       </Router>
     );

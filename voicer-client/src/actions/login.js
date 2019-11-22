@@ -13,19 +13,22 @@ export const login = creds => async dispatch => {
         dispatch({ type: LOGIN_FAILED, error: 'password not correct' });
     }
     return await axios
-        .post('https://voicer-lambda-app-staging.herokuapp.com/api/auth/login', creds)
+        .post(
+            'https://voicer-lambda-app-staging.herokuapp.com/api/auth/login',
+            creds
+        )
         .then(res => {
             localStorage.setItem('token', res.data.token);
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
-            })
+            });
         })
         .catch(err => {
-            localStorage.removeItem('token')
+            localStorage.removeItem('token');
             dispatch({
                 type: LOGIN_FAILED,
                 payload: 'FAILED'
-            })
-        })
+            });
+        });
 };
