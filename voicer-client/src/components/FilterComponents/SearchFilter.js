@@ -31,7 +31,7 @@ class SearchFilter extends Component {
         return (
             <MainDiv>
                 <Label>Search:</Label>
-                <Input value={this.props.searchState} onChange={(e) => this.filterSearch(`${e.target.value}`, ['firstName', 'lastName'])} />
+                <Input value={this.props.searchState} onChange={(e) => this.filterSearch(`${e.target.value}`)} />
             </MainDiv>
         );
     };

@@ -8,7 +8,7 @@ import '../../App.scss';
 // Styling
 const MainDiv = styled.div`
   width: 65%;
-  margin: 21vh 10px 0 10px;
+  margin: 0 10px 0 10px;
   margin-left: auto;
   display: flex;
   flex-wrap: wrap;

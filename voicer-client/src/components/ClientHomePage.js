@@ -7,13 +7,16 @@ import axiosWithAuth from './axiosAuth';
 import styled from 'styled-components';
 import FilterComponent from './FilterComponents/FilterComponent';
 import { filterData, dataToFilter, setSearchKey, setSortKey } from '../actions/filterData';
+import ClientWelcome from './ClientWelcome';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import "../App.scss";
 
 const HomePage = styled.div`
-    display: flex;
-    flex-wrap: wrap;
     margin-top: 19vh;
-    min-height: 65vh;
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
 `;
 
 class ClientHomePage extends React.Component {
@@ -40,11 +43,16 @@ class ClientHomePage extends React.Component {
         return(
             <HomePage>
                 <FilterComponent />
-                <ClientJobList
-                    jobs={this.props.filteredData}
-                    clientId={this.state.clientId}
-                    applications={this.state.applications}
-                />
+                <div className="job-list-container">
+                    {this.props.jobs.length === 0 ? <ClientWelcome /> :
+                        <ClientJobList
+                            jobs={this.props.filteredData}
+                            clientId={this.state.clientId}
+                            applications={this.state.applications}
+                        />
+                    }
+                    <Link to="/client/postJob" className="centered"><Button className="btn-orange btn-centered">Post Job</Button></Link>
+                </div>
             </HomePage>
         )
     }
