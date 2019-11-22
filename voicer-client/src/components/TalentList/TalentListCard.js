@@ -133,8 +133,6 @@ const TalentListCard = props => {
 
               <Divider />
 
-
-
               <StyledCardDetails>
                 <StyledCardDetail>
                   <DetailLabel>
@@ -197,17 +195,6 @@ const TalentListCard = props => {
 
               </StyledCardAction>
 
-
-              {/* <StyledCardHeader>
-                <CardText>{props.talentData.jobDescription}</CardText>
-              </StyledCardDetails>
-                <StyledButtonDiv>
-                    <StyledButton>Save Job</StyledButton>
-                    <StyledButton onClick={() => {
-                      props.openModal(props.talentData);
-                      props.toggle();
-                    }}>Apply</StyledButton>
-                </StyledButtonDiv> */}
             </StyledCardBody>
         </StyledCard>
     );
