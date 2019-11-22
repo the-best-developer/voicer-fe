@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTalentJobOffers } from '../../actions'
+import { getTalentJobOffers } from '../../actions';
+import '../../styles/tjobofferlist.scss';
+import Container from '../../styles/styledComponents/Container';
+import TalentOfferCard from './TalentOfferCard';
 
 class TalentOfferView extends React.Component {
     constructor(props) {
@@ -12,15 +15,20 @@ class TalentOfferView extends React.Component {
     }
 
     render() {
+        console.log(this.props.jobOffers)
         return (
-            <div style={{marginTop: '21vh'}}>
-            </div>
+            <Container>
+                {this.props.jobOffers.map(offer => {
+                    return <TalentOfferCard offer={offer} />
+                })}
+            </Container>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    talent: state.getTalentReducer.talent
+    talent: state.getTalentReducer.talent,
+    jobOffers: state.getJobOffersReducer.jobOffers
 })
 
 
