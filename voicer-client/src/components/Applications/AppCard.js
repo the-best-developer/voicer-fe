@@ -36,7 +36,6 @@ const StyledButtonDiv = styled.div`
                     <StyledButton>Make Offer</StyledButton>
                 </StyledButtonDiv>
             </StyledCardBody>
-            {console.log(props.appData)}
         </StyledCard>
     );
  }

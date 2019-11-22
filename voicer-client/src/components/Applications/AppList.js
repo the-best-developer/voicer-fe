@@ -23,7 +23,7 @@ const AppList = props => {
             centered={true}
             size="lg"
         >
-            <AppListModalHeader>{`Applications for ${props.job.jobTitle}`}</AppListModalHeader>
+            <AppListModalHeader>{`Applications for ${props.activeJob.jobTitle}`}</AppListModalHeader>
             {props.apps.length === 0 ?
                 <div className="default-application-list centered">
                     <p>No Applications Yet</p>

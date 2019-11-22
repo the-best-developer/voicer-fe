@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getApplications } from '../../actions';
-import AppList from '../Applications/AppList';
-import { connect } from 'react-redux';
 import "../../App.scss";
 
 // Styling
@@ -23,17 +20,6 @@ import {
 
 // Component
 class ClientJobListCard extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      activeJob: {},
-      modalIsOpen: false,
-    }
-  }
-// Not working correctly because each ClientJobListCard is trying to use the same state variable in the getJobOffersReducer
-  componentDidMount = () => {
-    this.props.getApplications(this.props.jobData.jobId)
-  }
 
   formatDate = (date) => {
     let newDate = new Date(date);
@@ -44,19 +30,13 @@ class ClientJobListCard extends React.Component {
     return(month.slice(0, 3) + ' ' + day + ', ' + year)
   }
 
-  toggle = () => {
-    this.setState({
-        modalIsOpen: !this.state.modalIsOpen
-    })
-  }
-
   render() {
     return (
       <ClientCardContainer>
           <ClientListCardBody>
             <ClientListCardHeader>
               <ClientCardTitle>{this.props.jobData.jobTitle}</ClientCardTitle>
-              <CardName>Applications: {this.props.apps.length}</CardName>
+              <CardName>Applications: {this.props.applications.length}</CardName>
               <Divider/>
             </ClientListCardHeader>
             <ClientListCardDetails>
@@ -103,7 +83,8 @@ class ClientJobListCard extends React.Component {
                 </ClientListCardActionItem>
                 <ClientListCardActionItem>
                   <ClientListButton onClick = {() => {
-                      this.toggle();
+                      this.props.toggle()
+                      this.props.setActiveJob(this.props.jobData)
                     }
                   }>
                     Applications
@@ -111,22 +92,9 @@ class ClientJobListCard extends React.Component {
                 </ClientListCardActionItem>
             </ClientListCardAction>
           </ClientListCardBody>
-          <AppList
-            toggle={this.toggle}
-            isOpen={this.state.modalIsOpen}
-            job={this.props.jobData}
-            apps={this.props.apps}
-          />
       </ClientCardContainer>
   );
   }
 };
 
-const mapStateToProps = state => ({
-  apps: state.getJobOffersReducer.jobOffers
-})
-
-export default connect(
-  mapStateToProps,
-  { getApplications }
-)(ClientJobListCard);
+export default ClientJobListCard
