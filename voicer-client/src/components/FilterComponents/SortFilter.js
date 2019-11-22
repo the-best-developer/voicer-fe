@@ -28,20 +28,25 @@ class SortFilter extends Component {
     filterSort = async (type) => {
 
         // Run filter using current state
+
+        // FIXME:
+        // This should be moved into each specific component to reference the key in the table to sort.
+        // ====================================================================================================
         
         // define key to sort:
         let key;
         switch (type) {
 
-            // If client sort by talent data, if talent sort by job data
+            // If client, sort by talent data. if talent, sort by job data.
             case "alpha":
                 key = (this.props.userType === 'client') ? 'firstName' : 'jobTitle'
-            case "num":
-                key = (this.props.userType === 'client') ? 'talentId' : 'createdDate'
-            case "reverseAlpha":
+            case "recent":
+                key = (this.props.userType === 'client') ? 'jobId' : 'jobId'
+            case "rating":
                 key = (this.props.userType === 'client') ? 'firstName' : 'jobTitle'
 
         }
+        // ====================================================================================================
         
         await this.props.setSort(type)
         await this.props.setSortKey(key)
@@ -54,11 +59,11 @@ class SortFilter extends Component {
             case "alpha":
                 return "Alphabetical"
 
-            case "num":
-                return "Numerical"
+            case "recent":
+                return "Most recent"
 
-            case "reverseAlpha":
-                return "Reverse Alphabetical"
+            case "rating":
+                return "Highest rated"
         }
     }
 
@@ -70,8 +75,8 @@ class SortFilter extends Component {
                     <DropdownToggle caret>{this.selectedSort()}</DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem onClick={() => this.filterSort("alpha")}>Alphabetical</DropdownItem>
-                        <DropdownItem onClick={() => this.filterSort("num")}>Numerical</DropdownItem>
-                        <DropdownItem onClick={() => this.filterSort("reverseAlpha")}>Reverse Alphabetical</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("recent")}>Most recent</DropdownItem>
+                        <DropdownItem onClick={() => this.filterSort("rating")}>Highest rated</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </MainDiv>

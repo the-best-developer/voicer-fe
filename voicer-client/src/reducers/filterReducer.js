@@ -101,7 +101,7 @@ const searchFunction = (state) => {
         distance: 50,
         maxPatternLength: 12,
         minMatchCharLength: 3,
-        // Keys in object to searched for keywords
+        // Keys to search
         keys: [...state.searchKey]
     };
 
@@ -117,14 +117,22 @@ const sortFunction = (state) => {
     let sortedData = [...state.filteredData]
         
     switch(state.sortState) {
+
+        // Alphabetical
         case 'alpha':
             sortedData.sort((x,y) => (y[state.sortKey] > x[state.sortKey]) ? -1 : 1);
             return sortedData;
-        case 'num':
-            sortedData.sort((x,y) => (x[state.sortKey] - y[state.sortKey]));
+
+        // Most recent
+        case 'recent':
+            // Sorts by descending order
+            sortedData.sort((x,y) => (x[state.sortKey] + y[state.sortKey]));
             return sortedData;
-        case 'reverseAlpha':
-            sortedData.sort((x,y) => (y[state.sortKey]> x[state.sortKey]) ? -1 : 1).reverse();
+
+        // User rating
+        case 'rating':
+             // Sorts by descending order
+            sortedData.sort((x,y) => (x[state.sortKey] + y[state.sortKey]));
             return sortedData;
         default:
             return sortedData;
