@@ -107,6 +107,16 @@ class TalentProfile extends React.Component {
           <FormGroup>
             <Label for="accentSelect">Select Accents</Label>
             <Select
+              className="mt-4 col-md-8 col-offset-4"
+              onChange={this.handleAccentChange}
+              components={makeAnimated()}
+              isMulti
+              options={accentOptions}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="accentSelect">Select Accents</Label>
+            <Select
               className="mt-0 mb-3 col-md-11 col-offset-4"
               onChange={this.handleAccentChange}
               components={makeAnimated()}
