@@ -48,6 +48,17 @@
   margin-top: 20px;
 }
 
+.default-application-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5vh;
+}
+
+.centered {
+  margin: 0 auto;
+}
+
 .job-list-container {
   margin: 0 auto;
   padding-top: 5vh;
