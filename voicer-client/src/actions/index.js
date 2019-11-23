@@ -73,7 +73,8 @@ export {
     GET_JOB_OFFERS_START,
     GET_JOB_OFFERS_SUCCESS,
     GET_JOB_OFFERS_FAILED,
-    getApplications
+    getApplications,
+    getApplicationsByClientId
 } from './getApplications'
 
 export {

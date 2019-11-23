@@ -1,9 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { setJobId } from '../../actions';
-import styled from 'styled-components';
-import { Card, Button, CardBody } from 'reactstrap';
 import "../../App.scss";
 
 // Styling
@@ -24,9 +20,6 @@ import {
 
 // Component
 class ClientJobListCard extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   formatDate = (date) => {
     let newDate = new Date(date);
@@ -43,7 +36,7 @@ class ClientJobListCard extends React.Component {
           <ClientListCardBody>
             <ClientListCardHeader>
               <ClientCardTitle>{this.props.jobData.jobTitle}</ClientCardTitle>
-              <CardName>Applications: {this.props.jobData.appCount}</CardName>
+              <CardName>Applications: {this.props.applications.length}</CardName>
               <Divider/>
             </ClientListCardHeader>
             <ClientListCardDetails>
@@ -83,17 +76,19 @@ class ClientJobListCard extends React.Component {
             <ClientListCardAction>
                 <ClientListCardActionItem>
                   <Link to="/client/talentlist">
-                    <ClientListButton className='btn-orange' onClick={this.props.setJobId(this.props.jobData.jobId)}>
+                    <ClientListButton className='btn-orange'>
                       Find Talent
                     </ClientListButton>
                   </Link>
                 </ClientListCardActionItem>
                 <ClientListCardActionItem>
-                  <Link to="/client/applicationlist">
-                    <ClientListButton onClick={this.props.setJobId(this.props.jobData.jobId)}>
-                      Applications
-                    </ClientListButton>
-                  </Link>
+                  <ClientListButton onClick = {() => {
+                      this.props.toggle()
+                      this.props.setActiveJob(this.props.jobData)
+                    }
+                  }>
+                    Applications
+                  </ClientListButton>
                 </ClientListCardActionItem>
             </ClientListCardAction>
           </ClientListCardBody>
@@ -102,11 +97,4 @@ class ClientJobListCard extends React.Component {
   }
 };
 
-const mapStateToProps = state => ({
-
-})
-
-export default connect(
-  mapStateToProps,
-  { setJobId }
-)(ClientJobListCard);
+export default ClientJobListCard
