@@ -2,11 +2,11 @@ import React from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import Select, { components } from 'react-select';
 import { connect } from 'react-redux';
-import { getLanguages, addTalentLanguage } from '../actions/language';
-import { getAccents, addTalentAccent } from '../actions/accent';
+import { getLanguages, addTalentLanguage } from '../../actions/language';
+import { getAccents, addTalentAccent } from '../../actions/accent';
 import makeAnimated from 'react-select/animated';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../styles/talent-profile.css';
+import '../../styles/talent-profile.css';
 
 const genderOptions = [
   { value: 'male', label: 'Male' },
@@ -145,23 +145,13 @@ render() {
           </FormGroup>
           <FormGroup>
             <Label for="languageSelect">Select Languages</Label>
-<Select 
+            <Select 
               className="mt-0 mb-3 col-md-11 col-offset-4"
               onChange={this.handleLanguageChange}
               components={makeAnimated()}
               isMulti
               options={this.state.languageOptions}
 
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="accentSelect">Select Accents</Label>
-            <Select
-              className="mt-4 col-md-8 col-offset-4"
-              onChange={this.handleAccentChange}
-              components={makeAnimated()}
-              isMulti
-              options={accentOptions}
             />
           </FormGroup>
           <FormGroup>
