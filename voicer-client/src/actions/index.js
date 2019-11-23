@@ -92,18 +92,4 @@ export {
   getJobsBy
 } from './getJobs';
 
-export {
-  GET_TALENT_START,
-  GET_TALENT_SUCCESS,
-  GET_TALENT_FAILED,
-  getTalent
-} from './getTalent';
-
-export {
-  GET_JOB_OFFERS_START,
-  GET_JOB_OFFERS_SUCCESS,
-  GET_JOB_OFFERS_FAILED,
-  getApplications
-} from './getApplications';
-
 export { SET_JOB_ID, setJobId } from './setJobId';

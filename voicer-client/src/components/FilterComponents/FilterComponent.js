@@ -18,13 +18,11 @@ import { filterData } from '../../actions/filterData';
 const MainDiv = styled.div`
   min-width: 250px;
   max-width: 25%;
-  height: 100%;
-  min-height: 55.9vh
+  height: 80vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   background-color: rgb( 239, 241, 243 );
-  padding-top: 1.5vh;
-  padding-bottom: 1.5vh;
 `
 
 // Component
