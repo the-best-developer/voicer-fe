@@ -18,7 +18,6 @@ import { filterData } from '../../actions/filterData';
 const MainDiv = styled.div`
   min-width: 250px;
   max-width: 25%;
-  height: 80vh;
   min-height: 100%;
   display: flex;
   flex-direction: column;

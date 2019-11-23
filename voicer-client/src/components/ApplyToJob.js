@@ -51,7 +51,7 @@ class ApplyToJob extends React.Component {
     clickHandler = () => {
         this.props.apply({
             jobId: this.props.job.jobId,
-            talentId: jwt.decode(localStorage.getItem("token")).userId,
+            talentId: this.props.talent[0].talentId,
             clientId: this.props.job.clientId,
             isClientOffer: false,
             status: "open",
@@ -86,6 +86,7 @@ class ApplyToJob extends React.Component {
 
 const mapStateToProps = state => ({
     postingApplication: state.applyReducer.postingApplication,
+    talent: state.getTalentReducer.talent,
     error: state.applyReducer.error,
     success: state.applyReducer.success
 })

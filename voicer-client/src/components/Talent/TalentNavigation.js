@@ -128,9 +128,6 @@ class TalentNavigation extends React.Component {
               </Navbar>
               <TertiaryNav>
                 <div>
-                  <NavLink onClick={(e) => this.route('/invites', e)} className="tert-link">
-                    Job Invites
-                  </NavLink>
                   <NavLink onClick={(e) => this.route('/applications', e)} className='tert-link'>
                     Applications
                   </NavLink>
