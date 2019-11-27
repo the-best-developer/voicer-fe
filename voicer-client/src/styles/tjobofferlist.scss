@@ -1,3 +1,71 @@
-.job-offers-header {
-    text-align: center;
+.styled-job-card {
+    display: flex;
+    width: 60%;
+    flex-wrap: wrap;
+    margin: 5vh auto;
+    .job-offers-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        border-top: 2px solid rgba(0,0,0,.125) !important;
+        border-left: 2px solid rgba(0,0,0,.125) !important;
+        border-right: 2px solid rgba(0,0,0,.125) !important;
+        border-bottom: 2px solid rgba(0,0,0,.125) !important;
+        .header-element {
+            margin-bottom: 0;
+        }
+        .header-element:last-child {
+            border-radius: 5px;
+            background-color: #FF934F !important;
+        }
+    }
+    .job-offer-card {
+        display: flex;
+        border: 1px solid rgba(0,0,0,.125);
+        width: 100%;
+        height: 12.5vh;
+        justify-content: space-between;
+        .job-offer-info {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            .jo-card-left {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 48%;
+                p {
+                    margin-bottom: 0;
+                }
+                button {
+                    background-color: #5A6268;
+                    color: white;
+                    border-radius: 5px;
+                    padding: 10px;
+                    height: 50px;
+                }
+            }
+            .jo-card-right {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 48%;
+                .jo-button-pending {
+                    border-radius: 5px;
+                    padding: 5px;
+                    height: 40px;
+                    color: white;
+                    background-color: #5A6268;
+                }
+                .jo-button-action {
+                    border-radius: 5px;
+                    height: 40px;
+                    padding: 5px;
+                    color: white;
+                    background-color: #FF934F;
+                }
+            }
+        }
+    }
 }

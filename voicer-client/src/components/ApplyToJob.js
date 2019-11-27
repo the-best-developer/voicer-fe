@@ -54,6 +54,7 @@ class ApplyToJob extends React.Component {
             talentId: this.props.talent[0].talentId,
             clientId: this.props.job.clientId,
             isClientOffer: false,
+            price: this.props.job.initialPrice,
             status: "open",
             clientMessage: this.state.clientMessage
         })

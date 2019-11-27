@@ -4,7 +4,11 @@ import { getTalentJobOffers } from '../../actions';
 import '../../styles/tjobofferlist.scss';
 import Container from '../../styles/styledComponents/Container';
 import TalentOffersCard from './TalentOffersCard';
+import styled from 'styled-components';
 
+const OffersContainer = styled(Container)`
+    margin-top: 21vh; 
+`; 
 class TalentOfferView extends React.Component {
     constructor(props) {
         super(props)
@@ -39,11 +43,11 @@ class TalentOfferView extends React.Component {
 
     render() {
         return (
-            <Container>
+            <OffersContainer>
                 {this.state.sortedJobs.map(job => {
                     return <TalentOffersCard job={job} />
                 })}
-            </Container>
+            </OffersContainer>
         )
     }
 }
