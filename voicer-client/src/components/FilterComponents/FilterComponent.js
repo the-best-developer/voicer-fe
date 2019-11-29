@@ -19,6 +19,8 @@ const MainDiv = styled.div`
   min-width: 250px;
   max-width: 25%;
   min-height: 100%;
+  padding-top: 2.5%;
+  padding-bottom: 5%;
   display: flex;
   flex-direction: column;
   background-color: rgb( 239, 241, 243 );
