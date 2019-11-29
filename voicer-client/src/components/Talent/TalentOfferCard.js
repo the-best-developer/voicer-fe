@@ -62,12 +62,16 @@ class TalentOfferCard extends React.Component {
                     <div className="jo-card-right">
                         <button
                             onClick={async() => await this.toggleCounterOfferModal()} 
-                            className={this.props.offer.isClientOffer ? 'jo-button-action' : 'jo-button-pending'}>
+                            className={this.props.offer.isClientOffer ? 'jo-button-action' : 'jo-button-pending'}
+                            disabled={!this.props.offer.isClientOffer}
+                        >
                             {this.props.offer.isClientOffer ? 'Counter Bid' : 'Pending...'}
                         </button>
                         <button 
                             onClick={async() => await this.toggleAcceptModal()} 
-                            className={this.props.offer.isClientOffer ? 'jo-button-action' : 'jo-button-pending'}>
+                            className={this.props.offer.isClientOffer ? 'jo-button-action' : 'jo-button-pending'}
+                            disabled={!this.props.offer.isClientOffer}
+                        >
                             {this.props.offer.isClientOffer ? 'Accept' : 'Pending...'}
                         </button>
                     </div> : <div className="jo-card-right">{this.props.offer.createdAt}</div> }
