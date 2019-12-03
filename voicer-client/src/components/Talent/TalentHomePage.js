@@ -18,7 +18,8 @@ class TalentHomePage extends React.Component {
     async componentDidMount() {
         await this.props.getTalent(this.props.userId)
         await this.props.getJobs()
-        await this.props.dataToFilter(this.props.jobs)
+        let jobs = this.props.jobs.sort((a, b) => b.jobId - a.jobId)
+        await this.props.dataToFilter(jobs)
         await this.props.filterData()
     }
 
