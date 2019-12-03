@@ -152,27 +152,25 @@ const TalentListCard = props => {
                     {props.talentData.email}
                   </DetailItem>
                 </StyledCardDetail>
-
               </StyledCardDetails>
 
-
               <StyledCardAction>
-
                   <StyledButton
                       className='btn-medium-blue'
                       onClick={() => {
                       props.openModal(props.talentData);
-                      props.toggle2();
+                      props.toggleInfo();
                     }}>
                     Info
                   </StyledButton>
 
                   <StyledButton
-                      className='btn-orange'
-                      onClick={() => {
-                      props.openModal(props.talentData);
-                      props.toggle();
-                    }}>
+                    className='btn-orange'
+                    onClick={(e) => {
+                      e.preventDefault();
+                      props.sendInvite(props.talentData.email)
+                    }}
+                  >
                     Invite
                   </StyledButton>
 

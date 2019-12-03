@@ -52,13 +52,11 @@ class TalentList extends Component {
         })
     }
 
-    toggle = () => {
-        this.setState({
-            modalIsOpen: !this.state.modalIsOpen
-        })
+    sendInvite = (email) => {
+      window.location.href = `mailto:${email}`;
     }
 
-    toggle2 = async () => {
+    toggleInfo = async () => {
         await this.setState({
             modalJobInfoIsOpen: !this.state.modalJobInfoIsOpen
         })
@@ -75,15 +73,15 @@ class TalentList extends Component {
                         <TalentListCard
                             talentData={talent}
                             openModal={this.openModal}
-                            toggle={this.toggle}
-                            toggle2={this.toggle2}
+                            sendInvite={this.sendInvite}
+                            toggleInfo={this.toggleInfo}
                         />
                     )}
                 </ListDiv>
 
 
                 <TalentInfo
-                    toggle={this.toggle2}
+                    toggle={this.toggleInfo}
                     isOpen={this.state.modalJobInfoIsOpen}
                     talent={this.state.activeTalent}
                 />
