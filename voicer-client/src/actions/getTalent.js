@@ -7,8 +7,7 @@ export const GET_TALENT_FAILED = 'GET_TALENT_FAILED';
 export const getTalent = () => dispatch => {
     dispatch({ type: GET_TALENT_START });
     return axiosWithAuth()
-        .get('https://voicer-lambda-app-staging.herokuapp.com/api/jobs')
-        //.get('http://localhost:4000/api/talents')
+        .get('https://voicer-lambda-app-staging.herokuapp.com/api/talents')
         .then((res) => {
             dispatch({
                 type: GET_TALENT_SUCCESS,

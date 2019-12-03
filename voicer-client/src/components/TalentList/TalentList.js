@@ -6,6 +6,7 @@ import { setJobId, getTalent } from '../../actions';
 import FilterComponent from '../FilterComponents/FilterComponent';
 import '../../styles/_colors.scss';
 import { Divider } from '../../styles/styledComponents/ClientListCard';
+import TalentInfo from '../TalentInfo';
 
 // Styling
 const MainDiv = styled.div`
@@ -37,7 +38,7 @@ class TalentList extends Component {
         this.state = {
             activeTalent: {},
             modalIsOpen: false,
-            modalIsOpen2: false,
+            modalJobInfoIsOpen: false,
         }
     }
 
@@ -57,9 +58,9 @@ class TalentList extends Component {
         })
     }
 
-    toggle2 = () => {
-        this.setState({
-            modalIsOpen2: !this.state.modalIsOpen2
+    toggle2 = async () => {
+        await this.setState({
+            modalJobInfoIsOpen: !this.state.modalJobInfoIsOpen
         })
     }
 
@@ -79,6 +80,14 @@ class TalentList extends Component {
                         />
                     )}
                 </ListDiv>
+
+
+                <TalentInfo
+                    toggle={this.toggle2}
+                    isOpen={this.state.modalJobInfoIsOpen}
+                    talent={this.state.activeTalent}
+                />
+
             </MainDiv>
         );
     };
