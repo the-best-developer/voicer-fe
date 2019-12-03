@@ -46,8 +46,8 @@ class TalentList extends Component {
         this.props.getTalent()
     }
 
-    openModal = talent => {
-        this.setState({
+    openModal = async (talent) => {
+        await this.setState({
             activeTalent: talent,
         })
     }

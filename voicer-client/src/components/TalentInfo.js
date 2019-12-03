@@ -2,6 +2,7 @@ import React from 'react';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
+import UserIcon from '../images/user.svg';
 
 //Styling
 const StyledModal = styled(Modal)`
@@ -20,19 +21,16 @@ const StyledModalContent = styled(ModalBody)`
     padding-left: 5rem !important; 
 `;
 
+const UserImg = styled.img`
+  width: 100px;
+  display: block;
+  margin: 1rem auto;
+`;
 
 
 class TalentInfo extends React.Component {
 
-  printTalent = talent => {
-
-    let myTalent = this.props.talent;
-
-    for (let [key, value] of Object.entries(myTalent)) {
-      return `${key}: ${value}`;
-    }
-
-  }
+  talentName = talent => `${talent.firstName} ${talent.lastName}` 
 
   render() {
     return (
@@ -42,14 +40,15 @@ class TalentInfo extends React.Component {
           centered={true}
           size="lg"
       >
-          <StyledModalHeader>{this.props.talent.talentId}</StyledModalHeader>
+          <StyledModalHeader>
+            <UserImg src={UserIcon} />
+            {this.talentName(this.props.talent)}
+          </StyledModalHeader>
+
           <StyledModalContent>
-              Talent - {this.props.talent.toString()} <br /> <br />
-
-      {this.printTalent(this.props.talent)}
-
-
-
+            <p>id: {this.props.talent.talentId}</p>
+            <p>username: {this.props.talent.username}</p>
+            <p>email: {this.props.talent.email}</p>
 
           </StyledModalContent>
       </StyledModal>
