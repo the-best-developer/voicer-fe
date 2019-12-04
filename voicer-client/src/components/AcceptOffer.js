@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {accept} from '../../actions/acceptDecline';
+import {accept} from '../actions/acceptDecline';
 import {withRouter} from 'react-router-dom';
 import {Button, Modal, ModalHeader, ModalBody, Input, InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap';
-import '../../styles/tjobofferlist.scss'
+import '../styles/tjobofferlist.scss'
 
 class AcceptOffer extends React.Component {
     constructor(props) {
@@ -16,7 +16,10 @@ class AcceptOffer extends React.Component {
     }
 
     validate = async() => {
-        let name = this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName
+        let name = 
+        this.props.talent.length > 0 ?
+        this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName :
+        this.props.clientName
         name === this.state.checkboxText ? await this.setState({validated: true}) : await this.setState({validated: false})
     }
 
@@ -31,7 +34,8 @@ class AcceptOffer extends React.Component {
 
     acceptOffer = async() => {
         await this.props.accept(this.props.job, this.props.offer)
-        this.props.history.push('/talent')
+        let route = this.props.userType==="Talent" ? '/talent' : '/client'
+        this.props.history.push(route)
     }
 
     render() {

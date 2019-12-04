@@ -51,9 +51,9 @@ class CounterOffer extends React.Component {
     clickHandler = () => {
         this.props.apply({
             jobId: this.props.job.jobId,
-            talentId: this.props.talent[0].talentId,
+            talentId: this.props.talent.length > 0 ? this.props.talent[0].talentId : this.props.talentId,
             clientId: this.props.job.clientId,
-            isClientOffer: false,
+            isClientOffer: this.props.userType==="Client" ? true : false,
             price: this.state.price,
             status: "open",
             clientMessage: this.state.clientMessage

@@ -2,8 +2,8 @@ import React from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Select, { components } from "react-select";
 import { connect } from "react-redux";
-import { getLanguages, addTalentLanguage } from "../actions/language";
-import { getAccents, addTalentAccent } from "../actions/accent";
+import { getLanguages, addTalentLanguage } from "../../actions/language";
+import { getAccents, addTalentAccent } from "../../actions/accent";
 import makeAnimated from "react-select/animated";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/talent-profile.css";
@@ -141,11 +141,7 @@ class TalentProfile extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="languageSelect">Select Languages</Label>
-<<<<<<< HEAD
-            <Select 
-=======
             <Select
->>>>>>> 06d1909fe0ee3a310e45e0214fd686e1eedfd195
               className="mt-0 mb-3 col-md-11 col-offset-4"
               onChange={this.handleLanguageChange}
               components={makeAnimated()}

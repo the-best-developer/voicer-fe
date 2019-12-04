@@ -68,7 +68,7 @@ const JobListCard = props => {
                     <strong>Price</strong>
                   </JobListCardDetailItem>
                   <JobListCardDetailItem>
-                    200$
+                    ${props.jobData.initialPrice}
                   </JobListCardDetailItem>
                 </JobListCardDetail>
               </JobListCardDetails>

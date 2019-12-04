@@ -21,3 +21,18 @@ export const getTalent = (userId) => dispatch => {
             })
         })
 };
+
+export const getTalentByTalentId = (talentId) => dispatch => {
+    dispatch({ type: GET_TALENT_START });
+    return axiosWithAuth()
+        .get(`https://voicer-lambda-app-staging.herokuapp.com/api/talents/profile/tid/${talentId}`)
+        .then((res) => {
+            return res.data
+        })
+        .catch(err => {
+            dispatch({
+                type: GET_TALENT_FAILED,
+                payload: err
+            })
+        })
+};

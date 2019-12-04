@@ -49,9 +49,6 @@ export {
 } from './getClientProfile';
 
 export {
-    GET_TALENT_JOB_OFFERS_START,
-    GET_TALENT_JOB_OFFERS_SUCCESS,
-    GET_TALENT_JOB_OFFERS_FAILED,
     getTalentJobOffers
 } from './getTalentJobOffers'
 
