@@ -1,5 +1,7 @@
 import axiosWithAuth from '../components/axiosAuth';
 import axios from 'axios';
+import { dbUrl } from './index';
+//replace dbUrl in index.js to change backend server for testing
 
 export const GET_ACCENTS_START = 'GET_ACCENTS_START';
 export const GET_ACCENTS_SUCCESS = 'GET_ACCENTS_SUCCESS';
@@ -12,10 +14,7 @@ export const ADD_TALENT_ACCENT_FAIL = 'ADD_TALENT_ACCENT_FAIL';
 export const addTalentAccent = newTalentAccent => dispatch => {
   dispatch({ type: ADD_TALENT_ACCENT_START });
   return axiosWithAuth()
-    .post(
-      'https://voicer-lambda-app-staging.herokuapp.com/api/talents/talentAccent',
-      newTalentAccent
-    )
+    .post(`${dbUrl}/api/talents/talentAccent`, newTalentAccent)
     .then(res => dispatch({ type: ADD_TALENT_ACCENT_SUCCESS }))
     .catch(err => {
       console.log(err);
@@ -26,7 +25,7 @@ export const addTalentAccent = newTalentAccent => dispatch => {
 export const getAccents = () => dispatch => {
   dispatch({ type: GET_ACCENTS_START });
   return axiosWithAuth()
-    .get('https://voicer-lambda-app-staging.herokuapp.com/api/talents/accents')
+    .get(`${dbUrl}/api/talents/accents`)
     .then(res => {
       dispatch({
         type: GET_ACCENTS_SUCCESS,
