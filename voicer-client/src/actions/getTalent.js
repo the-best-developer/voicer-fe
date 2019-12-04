@@ -1,4 +1,6 @@
 import axiosWithAuth from '../components/axiosAuth';
+import { dbUrl } from './index';
+//replace dbUrl in index.js to change backend server for testing
 
 export const GET_TALENT_START = 'GET_TALENT_START';
 export const GET_TALENT_SUCCESS = 'GET_TALENT_SUCCESS';
