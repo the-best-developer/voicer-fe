@@ -6,6 +6,9 @@ export const POST_JOB_FAILED = 'POST_JOB-FAILED';
 
 export const postJob = (job, history) => dispatch => {
     dispatch({ type: POST_JOB_START });
+    if (!job.jobTitle) {
+        dispatch({ type: POST_JOB_FAILED, error: 'Please enter a job title' })
+    };
     return axiosWithAuth()
         .post('https://voicer-lambda-app-staging.herokuapp.com/api/jobs', job)
         .then(res => {
