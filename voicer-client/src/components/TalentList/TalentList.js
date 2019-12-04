@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TalentListCard from './TalentListCard';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { setJobId, getTalent } from '../../actions';
+import { setJobId, getTalents } from '../../actions';
 import FilterComponent from '../FilterComponents/FilterComponent';
 import '../../styles/_colors.scss';
 import { Divider } from '../../styles/styledComponents/ClientListCard';
@@ -43,7 +43,7 @@ class TalentList extends Component {
     }
 
     componentDidMount = () => {
-        this.props.getTalent()
+        this.props.getTalents()
     }
 
     openModal = async (talent) => {
@@ -69,7 +69,7 @@ class TalentList extends Component {
                 <ListDiv>
                     <h1>AVAILABLE TALENTS</h1>
                     <Divider />
-                    {this.props.talent.map(talent =>
+                    {this.props.talents.map(talent =>
                         <TalentListCard
                             talentData={talent}
                             openModal={this.openModal}
@@ -92,10 +92,10 @@ class TalentList extends Component {
 };
 
 const mapStateToProps = state => ({
-    talent: state.getTalentReducer.talent
+    talents: state.getTalentsReducer.talents
 })
 
 export default connect(
   mapStateToProps,
-  { setJobId, getTalent }
+  { setJobId, getTalents }
 )(TalentList);

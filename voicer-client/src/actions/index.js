@@ -70,6 +70,13 @@ export {
 } from './getTalent'
 
 export {
+    GET_TALENTS_START,
+    GET_TALENTS_SUCCESS,
+    GET_TALENTS_FAILED,
+    getTalents
+} from './getTalents'
+
+export {
     GET_JOB_OFFERS_START,
     GET_JOB_OFFERS_SUCCESS,
     GET_JOB_OFFERS_FAILED,
