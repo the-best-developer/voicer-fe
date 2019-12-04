@@ -71,6 +71,7 @@ export {
     getTalents
 } from './getTalents'
 
+export {
   GET_JOB_OFFERS_START,
   GET_JOB_OFFERS_SUCCESS,
   GET_JOB_OFFERS_FAILED,
