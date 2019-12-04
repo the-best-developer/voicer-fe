@@ -4,10 +4,10 @@ export const GET_TALENT_START = 'GET_TALENT_START';
 export const GET_TALENT_SUCCESS = 'GET_TALENT_SUCCESS';
 export const GET_TALENT_FAILED = 'GET_TALENT_FAILED';
 
-export const getTalent = () => dispatch => {
+export const getTalent = (userId) => dispatch => {
     dispatch({ type: GET_TALENT_START });
     return axiosWithAuth()
-        .get('https://voicer-lambda-app-staging.herokuapp.com/api/talents')
+        .get(`https://voicer-lambda-app-staging.herokuapp.com/api/talents/profile/${userId}`)
         .then((res) => {
             dispatch({
                 type: GET_TALENT_SUCCESS,

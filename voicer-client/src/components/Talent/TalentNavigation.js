@@ -8,8 +8,8 @@ import {
   NavLink
  } from 'reactstrap';
 
-import Logo from '../images/logo-white.svg';
-import UserIcon from '../images/user.svg';
+import Logo from '../../images/logo-white.svg';
+import UserIcon from '../../images/user.svg';
 
 const NavContainer = styled.div`
     display: flex;

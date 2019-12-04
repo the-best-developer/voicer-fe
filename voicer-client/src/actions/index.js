@@ -1,50 +1,59 @@
 export {
-    REGISTER_START,
-    REGISTER_SUCCESS,
-    REGISTER_FAILED,
-    CREATE_PROFILE_START,
-    CREATE_PROFILE_SUCCESS,
-    CREATE_PROFILE_FAILURE,
-    createClientProfile,
-    createTalentProfile,
-    register
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_FAILED,
+  CREATE_PROFILE_START,
+  CREATE_PROFILE_SUCCESS,
+  CREATE_PROFILE_FAILURE,
+  createClientProfile,
+  createTalentProfile,
+  register
 } from './register';
 
 export {
-    LOGIN_START,
-    LOGIN_SUCCESS,
-    LOGIN_FAILED,
-    login
-} from './login';
+  GET_LANGUAGES_START,
+  GET_LANGUAGES_SUCESS,
+  GET_LANGUAGES_FAILURE,
+  ADD_TALENT_LANGUAGE_START,
+  ADD_TALENT_LANGUAGE_SUCCESS,
+  ADD_TALENT_LANGUAGE_FAIL,
+  getLanguages,
+  addTalentLanguage
+} from './language';
 
 export {
-    EDIT_CLIENT_PROFILE_START,
-    EDIT_CLIENT_PROFILE_SUCCESS,
-    EDIT_CLIENT_PROFILE_FAILURE,
-    editClientProfile
-} from './editClientProfile'
+  GET_ACCENTS_START,
+  GET_ACCENTS_SUCCESS,
+  GET_ACCENTS_FAIL,
+  ADD_TALENT_ACCENT_START,
+  ADD_TALENT_ACCENT_SUCCESS,
+  ADD_TALENT_ACCENT_FAIL,
+  getAccents,
+  addTalentAccent
+} from './accent';
+
+export { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILED, login } from './login';
 
 export {
-    GET_CLIENT_PROFILE_START,
-    GET_CLIENT_PROFILE_SUCCESS,
-    GET_CLIENT_PROFILE_FAILURE,
-    getClientProfile
-} from './getClientProfile'
+  EDIT_CLIENT_PROFILE_START,
+  EDIT_CLIENT_PROFILE_SUCCESS,
+  EDIT_CLIENT_PROFILE_FAILURE,
+  editClientProfile
+} from './editClientProfile';
 
 export {
-    POST_JOB_START,
-    POST_JOB_SUCCESS,
-    POST_JOB_FAILED,
-    postJob
-} from './postJob';
+  GET_CLIENT_PROFILE_START,
+  GET_CLIENT_PROFILE_SUCCESS,
+  GET_CLIENT_PROFILE_FAILURE,
+  getClientProfile
+} from './getClientProfile';
 
 export {
-    GET_JOBS_START,
-    GET_JOBS_SUCCESS,
-    GET_JOBS_FAILED,
-    getJobs,
-    getJobsBy
-} from './getJobs'
+    GET_TALENT_JOB_OFFERS_START,
+    GET_TALENT_JOB_OFFERS_SUCCESS,
+    GET_TALENT_JOB_OFFERS_FAILED,
+    getTalentJobOffers
+} from './getTalentJobOffers'
 
 export {
     APPLY_START,
@@ -64,10 +73,23 @@ export {
     GET_JOB_OFFERS_START,
     GET_JOB_OFFERS_SUCCESS,
     GET_JOB_OFFERS_FAILED,
-    getApplications
+    getApplications,
+    getApplicationsByClientId
 } from './getApplications'
 
 export {
-    SET_JOB_ID,
-    setJobId
-} from './setJobId'
+  POST_JOB_START,
+  POST_JOB_SUCCESS,
+  POST_JOB_FAILED,
+  postJob
+} from './postJob';
+
+export {
+  GET_JOBS_START,
+  GET_JOBS_SUCCESS,
+  GET_JOBS_FAILED,
+  getJobs,
+  getJobsBy
+} from './getJobs';
+
+export { SET_JOB_ID, setJobId } from './setJobId';

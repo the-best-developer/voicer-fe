@@ -15,25 +15,14 @@ import { filterData } from '../../actions/filterData';
 // Switch over to SASS from styled components, and use some more reactstrap styling.
 // Some inline styling would also need to be switched over.
 
-// State:
-// The state handling the data would either need to be in Redux or the homepage state.
-// The homepage would have to have a function that the filter component can use to pass the filtered data back to the homepage.
-// The filtering functions could be refactored into redux reducers, this is a cleaner approach and shouldn't take too long.
-// The filtering components should probably use fuse.js for most functions since it can easily sort mutiple keys and is simpler.
-
-// Clean up
-// Sample data needs removed and query data included
-// Some inline functions need to be added as methods
-// Clean up some functions and handle state in a cleaner way
-
 const MainDiv = styled.div`
   min-width: 250px;
   max-width: 25%;
+  height: 80vh;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   background-color: rgb( 239, 241, 243 );
-  padding-top: 5vh;
 `
 
 // Component

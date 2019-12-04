@@ -27,8 +27,11 @@
 }
 
 .PostJob {
-  margin: 50px auto;
+  margin: 0 auto;
   width: 600px;
+  margin-top: 19vh;
+  padding-top: 4vh;
+  min-height: 55.9vh;
 }
 
 .PostJob h1 {
@@ -45,3 +48,23 @@
   margin-top: 20px;
 }
 
+.default-application-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5vh;
+}
+
+.centered {
+  margin: 0 auto;
+}
+
+.job-list-container {
+  margin: 0 auto;
+  padding-top: 5vh;
+  width: 100%;
+}
+
+.job-list-container h3 {
+  text-align: center;
+}
