@@ -19,7 +19,7 @@ const StyledModalContent = styled(ModalBody)`
     padding-left: 5rem !important; 
 `;
 
-class JobInfo extends React.Component {
+class JOMessage extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -32,17 +32,13 @@ class JobInfo extends React.Component {
                 centered={true}
                 size="lg"
             >
-                <StyledModalHeader>{this.props.job.jobTitle}</StyledModalHeader>
+                <StyledModalHeader>Bid Message</StyledModalHeader>
                 <StyledModalContent>
-                    Company - {this.props.job.companyName} <br /> <br />
-                    Client - {this.props.job.firstName + ' ' + this.props.job.lastName} <br /> <br />
-                    Client Rating - {this.props.job.rating} Stars <br /> <br />
-                    Client Email - {this.props.job.email} <br /> <br />
-                    Job Description - {this.props.job.jobDescription} <br /> <br />
+                    {this.props.message}
                 </StyledModalContent>
             </StyledModal>
         )
     }
 }
 
-export default JobInfo
+export default JOMessage

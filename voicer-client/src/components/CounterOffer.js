@@ -3,7 +3,6 @@ import {Form, FormGroup, Label, Input, Button, Modal, ModalHeader} from 'reactst
 import styled from 'styled-components';
 import {apply} from '../actions/apply';
 import {connect} from 'react-redux';
-import jwt from 'jsonwebtoken';
 
 //Styling
 const StyledModal = styled(Modal)`
@@ -34,11 +33,12 @@ const StyledFormGroup = styled(FormGroup)`
     width: 100%;
 `
 
-class ApplyToJob extends React.Component {
+class CounterOffer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            clientMessage: ""
+            clientMessage: "",
+            price: this.props.job.initialPrice
         }
     }
 
@@ -54,7 +54,7 @@ class ApplyToJob extends React.Component {
             talentId: this.props.talent[0].talentId,
             clientId: this.props.job.clientId,
             isClientOffer: false,
-            price: this.props.job.initialPrice,
+            price: this.state.price,
             status: "open",
             clientMessage: this.state.clientMessage
         })
@@ -68,17 +68,21 @@ class ApplyToJob extends React.Component {
                 centered={true}
                 size="lg"
             >
-                <StyledP>You are Applying to:</StyledP>
+                <StyledP>You are submitting a counter offer to:</StyledP>
                 <StyledModalHeader>{this.props.job.jobTitle}</StyledModalHeader>
-                <StyledForm className="ApplyToJob">
+                <StyledForm className="CounterOffer">
+                    <StyledFormGroup>
+                        <Label>Your Offer Price</Label>
+                        <Input type="text" onChange={this.changeHandler} name="price"></Input>
+                    </StyledFormGroup>
                     <StyledFormGroup>
                         <Label>Leave the Client a Message</Label>
                         <Input type="textarea" onChange={this.changeHandler} name="clientMessage"></Input>
                     </StyledFormGroup>
-                    <StyledButton onClick={this.clickHandler}>Apply</StyledButton>
-                    {this.props.postingApplication ? <p>... Posting Job ...</p> : null}
-                    {this.props.error ? <p>Error Posting Job</p> : null}
-                    {this.props.success ? <p>Congrats! You've Successfully Applied.</p> : null}
+                    <StyledButton onClick={this.clickHandler}>Counter Offer</StyledButton>
+                    {this.props.postingApplication ? <p>... Posting Counter Offer ...</p> : null}
+                    {this.props.error ? <p>Error Counter Offering</p> : null}
+                    {this.props.success ? <p>Congrats! You've Successfully Sent Your Offer.</p> : null}
                 </StyledForm>
             </StyledModal>
         )
@@ -92,4 +96,4 @@ const mapStateToProps = state => ({
     success: state.applyReducer.success
 })
 
-export default connect(mapStateToProps, { apply })(ApplyToJob)
+export default connect(mapStateToProps, { apply })(CounterOffer)
