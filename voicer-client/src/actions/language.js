@@ -1,5 +1,7 @@
 import axiosWithAuth from '../components/axiosAuth';
 import axios from 'axios';
+import { dbUrl } from './index';
+//replace dbUrl in index.js to change backend server for testing
 
 export const GET_LANGUAGES_START = 'GET_TALENT_LANGUAGES';
 export const GET_LANGUAGES_SUCESS = 'GET_LANGUAGES_SUCCESS';
@@ -12,10 +14,7 @@ export const ADD_TALENT_LANGUAGE_FAIL = 'ADD_TALENT_LANGUAGE_FAIL';
 export const addTalentLanguage = newTalentLanguage => dispatch => {
   dispatch({ type: ADD_TALENT_LANGUAGE_START });
   return axiosWithAuth()
-    .post(
-      'https://voicer-lambda-app-staging.herokuapp.com/api/talents/talentLanguage',
-      newTalentLanguage
-    )
+    .post(`${dbUrl}/api/talents/talentLanguage`, newTalentLanguage)
     .then(res => dispatch({ type: ADD_TALENT_LANGUAGE_SUCCESS }))
     .catch(err => {
       console.log(err);
@@ -26,9 +25,7 @@ export const addTalentLanguage = newTalentLanguage => dispatch => {
 export const getLanguages = () => dispatch => {
   dispatch({ type: GET_LANGUAGES_START });
   return axiosWithAuth()
-    .get(
-      'https://voicer-lambda-app-staging.herokuapp.com/api/talents/languages'
-    )
+    .get(`${dbUrl}/api/talents/languages`)
     .then(res => {
       dispatch({
         type: GET_LANGUAGES_SUCESS,
