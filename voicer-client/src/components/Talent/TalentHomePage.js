@@ -15,8 +15,15 @@ const HomePage = styled.div`
 
 class TalentHomePage extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            userId: jwt.decode(localStorage.getItem("token")).userId
+        }
+    }
+
     async componentDidMount() {
-        await this.props.getTalent(this.props.userId)
+        await this.props.getTalent(this.state.userId)
         await this.props.getJobs()
         let jobs = this.props.jobs.sort((a, b) => b.jobId - a.jobId)
         await this.props.dataToFilter(jobs)
