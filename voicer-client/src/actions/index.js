@@ -52,7 +52,7 @@ export {
   getTalentJobOffers
 } from './getTalentJobOffers';
 
-export { APPLY_START, APPLY_SUCCESS, APPLY_FAILED, apply } from './apply';
+export { APPLY_START, APPLY_SUCCESS, APPLY_FAILED, APPLY_COMPLETED, apply } from './apply';
 
 export {
   GET_TALENT_START,
