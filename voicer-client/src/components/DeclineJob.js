@@ -44,7 +44,7 @@ class DeclineJob extends React.Component {
                 <Modal
                     isOpen={this.props.isOpen}
                     toggle={this.props.toggle}
-                    onClosed={this.setState({
+                    onClosed={() => this.setState({
                         checkbox: false,
                         checkboxText: '',
                         validated: false
