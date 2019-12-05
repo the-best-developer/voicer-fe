@@ -2,6 +2,7 @@ import React from 'react';
 import JobList from '../JobList/JobList';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import jwt from 'jsonwebtoken';
 import { getJobs } from '../../actions'
 import { getTalent } from '../../actions';
 import FilterComponent from '../FilterComponents/FilterComponent';
