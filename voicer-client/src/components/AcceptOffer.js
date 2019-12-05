@@ -34,8 +34,8 @@ class AcceptOffer extends React.Component {
 
     acceptOffer = async() => {
         await this.props.accept(this.props.job, this.props.offer)
-        let route = this.props.userType==="Talent" ? '/talent' : '/client'
-        this.props.history.push(route)
+        this.props.userType==="Talent" ? this.props.history.push('/talent') : this.props.toggle()
+        
     }
 
     render() {

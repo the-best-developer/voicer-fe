@@ -53,6 +53,7 @@ class TalentOfferCard extends React.Component {
                     isOpen={this.state.acceptModalIsOpen}
                     job={this.props.job}
                     offer={this.props.offer}
+                    userType="Talent"
                 />
                 <div className="job-offer-info">
                     <div className="jo-card-left">
