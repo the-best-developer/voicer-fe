@@ -17,8 +17,9 @@ class DeclineJob extends React.Component {
     }
 
     validate = async() => {
-        let name = this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName
-        name === this.state.checkboxText ? await this.setState({validated: true}) : await this.setState({validated: false})
+        let profile = this.props.talent.length > 0 ? this.props.talent[0] : this.props.client
+        let name = (profile.firstName + ' ' + profile.lastName).toLowerCase()
+        name === this.state.checkboxText.toLowerCase() ? await this.setState({validated: true}) : await this.setState({validated: false})
     }
 
     changeHandler = async event => {
@@ -94,7 +95,8 @@ class DeclineJob extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    talent: state.getTalentReducer.talent
+    talent: state.getTalentReducer.talent,
+    client: state.getClientProfileReducer.clientProfile
 })
 
 export default connect(mapStateToProps, { decline })(withRouter(DeclineJob))

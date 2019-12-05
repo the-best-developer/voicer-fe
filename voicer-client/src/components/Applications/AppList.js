@@ -34,7 +34,7 @@ const AppList = props => {
                         </Button>
                     </Link>
                 </div> :
-                apps.map(app => <AppCard key={app.jobOfferId} appData={app} clientName={props.clientName} job={props.activeJob}/>)}
+                apps.map((app, index) => <AppCard key={app.jobOfferId} recent={index===0 ? true : false} appData={app} clientName={props.clientName} job={props.activeJob}/>)}
         </AppListModal>
     );
 };

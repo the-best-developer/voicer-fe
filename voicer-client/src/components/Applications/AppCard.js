@@ -156,7 +156,7 @@ class AppCard extends React.Component {
                   </StyledCardText>
                 </StyledButtonsDiv>
                 :
-                !this.props.appData.isClientOffer ?
+                !this.props.appData.isClientOffer && this.props.recent ?
                 <StyledButtonsDiv>
                   <StyledButtonDiv>
                       <StyledButton
