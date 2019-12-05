@@ -9,7 +9,7 @@ import {
   Button
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
-
+import {connect} from 'react-redux';
 import Logo from '../images/logo-white.svg';
 import UserIcon from '../images/user.svg';
 
@@ -90,6 +90,10 @@ const Divider = styled.div`
 
 class ClientNavigation extends React.Component {
 
+    constructor(props) {
+      super(props)
+    }
+
     logout = e => {
       e.preventDefault();
       localStorage.removeItem('token');
@@ -121,7 +125,7 @@ class ClientNavigation extends React.Component {
                       <Divider />
                     </NavItem>
                     <NavItem>
-                      <NavLink className='username'>John Smith</NavLink>
+                      <NavLink className='username'>{this.props.client.firstName} {this.props.client.lastName}</NavLink>
                     </NavItem>
                     <NavItem>
                       <IconStyle src={UserIcon} />
@@ -133,9 +137,6 @@ class ClientNavigation extends React.Component {
                   <NavLink onClick={(e) => this.route('/talentlist', e)} className="tert-link">
                     Find Talent
                   </NavLink>
-                  <NavLink onClick={(e) => this.route('/applications', e)} className='tert-link'>
-                    Applications
-                  </NavLink>
                   <NavLink onClick={(e) => this.route('/profile', e)} className='tert-link'>
                     My Profile
                   </NavLink>
@@ -146,4 +147,8 @@ class ClientNavigation extends React.Component {
         )};
 };
 
-export default ClientNavigation;
+const mapStateToProps = (state) => ({
+  client: state.getClientProfileReducer.clientProfile
+})
+
+export default connect(mapStateToProps, {})(ClientNavigation);

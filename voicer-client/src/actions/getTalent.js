@@ -6,6 +6,20 @@ export const GET_TALENT_START = 'GET_TALENT_START';
 export const GET_TALENT_SUCCESS = 'GET_TALENT_SUCCESS';
 export const GET_TALENT_FAILED = 'GET_TALENT_FAILED';
 
+export const getTalentByTalentId = (talentId) => dispatch => {
+    dispatch({ type: GET_TALENT_START });
+    return axiosWithAuth()
+        .get(`${dbUrl}/api/talents/profile/tid/${talentId}`)
+        .then((res) => {
+            return res.data
+        })
+        .catch(err => {
+            dispatch({
+                type: GET_TALENT_FAILED,
+                payload: err
+            })
+        })
+};
 export const getTalent = userId => dispatch => {
   dispatch({ type: GET_TALENT_START });
   return axiosWithAuth()
