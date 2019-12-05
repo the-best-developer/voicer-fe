@@ -182,7 +182,7 @@ class AppCard extends React.Component {
                 </StyledButtonsDiv>
                 :
                 <StyledButtonsDiv>
-                  <StyledCardText>Pending</StyledCardText>
+                  <StyledCardText>{this.props.recent ? "Pending" : "Previous Offer"}</StyledCardText>
                 </StyledButtonsDiv>
                 }
             </StyledCardBody>

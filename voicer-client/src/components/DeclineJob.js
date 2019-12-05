@@ -19,7 +19,7 @@ class DeclineJob extends React.Component {
     validate = async() => {
         let profile = this.props.talent.length > 0 ? this.props.talent[0] : this.props.client
         let name = (profile.firstName + ' ' + profile.lastName).toLowerCase()
-        name === this.state.checkboxText.toLowerCase() ? await this.setState({validated: true}) : await this.setState({validated: false})
+        name === this.state.checkboxText.toLowerCase() && this.state.checkbox ? await this.setState({validated: true}) : await this.setState({validated: false})
     }
 
     changeHandler = async event => {
@@ -44,6 +44,11 @@ class DeclineJob extends React.Component {
                 <Modal
                     isOpen={this.props.isOpen}
                     toggle={this.props.toggle}
+                    onClosed={this.setState({
+                        checkbox: false,
+                        checkboxText: '',
+                        validated: false
+                    })}
                     centered={true}
                     size="lg"
                 >
