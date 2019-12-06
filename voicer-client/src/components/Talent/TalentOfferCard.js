@@ -3,7 +3,7 @@ import { Card, CardBody, CardTitle} from 'reactstrap';
 import TalentJobOfferMessage from './TalentJobOfferMessage';
 import CounterOffer from '../CounterOffer';
 import '../../styles/tjobofferlist.scss';
-import AcceptOffer from './AcceptOffer';
+import AcceptOffer from '../AcceptOffer';
 
 class TalentOfferCard extends React.Component {
     constructor(props) {
@@ -46,12 +46,14 @@ class TalentOfferCard extends React.Component {
                     toggle={this.toggleCounterOfferModal}
                     isOpen={this.state.counterOfferModalIsOpen}
                     job={this.props.job}
+                    userType="Talent"
                 />
                 <AcceptOffer 
                     toggle={this.toggleAcceptModal}
                     isOpen={this.state.acceptModalIsOpen}
                     job={this.props.job}
                     offer={this.props.offer}
+                    userType="Talent"
                 />
                 <div className="job-offer-info">
                     <div className="jo-card-left">

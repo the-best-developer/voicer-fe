@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getJobsBy, getApplicationsByClientId } from '../actions';
+import { getJobsBy, getApplicationsByClientId, getClientProfile } from '../actions';
 import jwt from 'jsonwebtoken';
 import ClientJobList from './JobList/ClientJobList';
 import axiosWithAuth from './axiosAuth';
@@ -24,18 +24,17 @@ class ClientHomePage extends React.Component {
         super(props)
         this.state = {
             userId: jwt.decode(localStorage.getItem("token")).userId,
-            clientId: null,
             applications: []
         }
     }
 
     componentDidMount = async () => {
-        const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
-        this.setState({clientId: client.data[0].clientId})
-        await this.props.getJobsBy(this.state.clientId)
+        await this.props.getClientProfile(this.state.userId)
+        await this.setState({client: this.props.client})
+        await this.props.getJobsBy(this.props.client.clientId)
         await this.props.dataToFilter(this.props.jobs)
         await this.props.filterData()
-        await this.props.getApplicationsByClientId(this.state.clientId)
+        await this.props.getApplicationsByClientId(this.props.client.clientId)
         this.setState({applications: this.props.applications})
     }
 
@@ -47,7 +46,8 @@ class ClientHomePage extends React.Component {
                     {this.props.jobs.length === 0 ? <ClientWelcome /> :
                         <ClientJobList
                             jobs={this.props.filteredData}
-                            clientId={this.state.clientId}
+                            clientId={this.props.client.clientId}
+                            clientName={this.props.client.firstName + ' ' + this.props.client.lastName}
                             applications={this.state.applications}
                         />
                     }
@@ -61,10 +61,11 @@ class ClientHomePage extends React.Component {
 const mapStateToProps = state => ({
     jobs: state.getJobsReducer.jobs,
     filteredData: state.filterReducer.filteredData,
-    applications: state.getJobOffersReducer.jobOffers
+    applications: state.getJobOffersReducer.jobOffers,
+    client: state.getClientProfileReducer.clientProfile
 })
 
 export default connect(
     mapStateToProps,
-    { getJobsBy, dataToFilter, filterData, setSortKey, setSearchKey, getApplicationsByClientId }
+    { getJobsBy, getClientProfile, dataToFilter, filterData, setSortKey, setSearchKey, getApplicationsByClientId }
 )(ClientHomePage);

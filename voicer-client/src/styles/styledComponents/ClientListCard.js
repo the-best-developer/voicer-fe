@@ -37,7 +37,6 @@ export const ClientCardTitle = styled.div`
 export const ClientListButton = styled(Button)`
   width: 100%;
   margin: 3px;
-  background-color: #DBD3D8;
 `
 
 export const ClientListCardBody = styled(CardBody)`
