@@ -69,7 +69,7 @@ class ClientJobListCard extends React.Component {
                   <strong>Price</strong>
                 </ClientListCardDetailItem>
                 <ClientListCardDetailItem>
-                  {this.props.jobData.initialPrice}
+                  ${this.props.jobData.initialPrice}
                 </ClientListCardDetailItem>
               </ClientListCardDetail>
             </ClientListCardDetails>

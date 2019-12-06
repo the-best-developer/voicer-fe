@@ -10,6 +10,7 @@ import {
 
 import Logo from '../../images/logo-white.svg';
 import UserIcon from '../../images/user.svg';
+import { connect } from 'react-redux';
 
 const NavContainer = styled.div`
     display: flex;
@@ -88,6 +89,10 @@ const Divider = styled.div`
 
 class TalentNavigation extends React.Component {
 
+    constructor(props) {
+      super(props)
+    }
+
     logout = e => {
       e.preventDefault();
       localStorage.removeItem('token');
@@ -100,6 +105,10 @@ class TalentNavigation extends React.Component {
     }
 
     render() {
+      const name =
+        this.props.talent.length > 0 ?
+        this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName :
+        "John Smith"
         return (
             <NavContainer>
               <Navbar className="talentnavbar" expand="md">
@@ -119,7 +128,7 @@ class TalentNavigation extends React.Component {
                       <Divider />
                     </NavItem>
                     <NavItem>
-                      <NavLink className='username'>John Smith</NavLink>
+                      <NavLink className='username'>{name}</NavLink>
                     </NavItem>
                     <NavItem>
                       <IconStyle src={UserIcon} />
@@ -128,9 +137,6 @@ class TalentNavigation extends React.Component {
               </Navbar>
               <TertiaryNav>
                 <div>
-                  <NavLink onClick={(e) => this.route('/invites', e)} className="tert-link">
-                    Job Invites
-                  </NavLink>
                   <NavLink onClick={(e) => this.route('/applications', e)} className='tert-link'>
                     Applications
                   </NavLink>
@@ -146,4 +152,8 @@ class TalentNavigation extends React.Component {
         )};
 };
 
-export default TalentNavigation;
+const mapStateToProps = (state) => ({
+  talent: state.getTalentReducer.talent
+})
+
+export default connect(mapStateToProps, null)(TalentNavigation);

@@ -1,5 +1,7 @@
 import axiosWithAuth from '../components/axiosAuth';
 import axios from 'axios';
+import { dbUrl } from './index';
+//replace dbUrl in index.js to change backend server address
 
 export const REGISTER_START = 'REGISTER-START';
 export const REGISTER_SUCCESS = 'REGISTER-SUCCESS';
@@ -36,10 +38,7 @@ export const register = creds => dispatch => {
     });
   }
   return axios
-    .post(
-      'https://voicer-lambda-app-staging.herokuapp.com/api/auth/register',
-      creds
-    ) // CHANGE URL
+    .post(`${dbUrl}/api/auth/register`, creds) // CHANGE URL
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -57,7 +56,7 @@ export const register = creds => dispatch => {
 export const createClientProfile = creds => dispatch => {
   dispatch({ type: CREATE_PROFILE_START });
   return axiosWithAuth()
-    .post('https://voicer-lambda-app-staging.herokuapp.com/api/clients/', creds)
+    .post(`${dbUrl}/api/clients/`, creds)
     .then(res => dispatch({ type: CREATE_PROFILE_SUCCESS }))
     .catch(err => {
       console.log(err);
@@ -68,7 +67,7 @@ export const createClientProfile = creds => dispatch => {
 export const createTalentProfile = creds => dispatch => {
   dispatch({ type: CREATE_PROFILE_START });
   return axiosWithAuth()
-    .post('https://voicer-lambda-app-staging.herokuapp.com/api/talents/', creds)
+    .post(`${dbUrl}/api/talents/`, creds)
     .then(res => dispatch({ type: CREATE_PROFILE_SUCCESS }))
     .catch(err => {
       console.log(err);

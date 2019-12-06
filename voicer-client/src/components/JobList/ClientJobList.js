@@ -24,6 +24,8 @@ class ClientJobList extends Component {
         }
     }
 
+
+
     toggle = () => {
         this.setState({
             modalIsOpen: !this.state.modalIsOpen
@@ -37,9 +39,21 @@ class ClientJobList extends Component {
     }
 
     render() {
+        const openJobs = this.props.jobs.filter(job => job.status !== "Hired")
+        const hiredJobs = this.props.jobs.filter(job => job.status !== "Hiring")
         return (
             <MainDiv>
-                {this.props.jobs.map(job =>
+                <h1>Hiring Jobs</h1>
+                {openJobs.map(job =>
+                    <ClientJobListCard
+                        key={job.jobId}
+                        jobData={job}
+                        setActiveJob={this.setActiveJob}
+                        toggle={this.toggle}
+                        applications={this.props.applications.filter(app => app.jobId === job.jobId)}
+                    />)}
+                <h1>Hired Jobs</h1>
+                {hiredJobs.map(job =>
                     <ClientJobListCard
                         key={job.jobId}
                         jobData={job}
@@ -50,6 +64,7 @@ class ClientJobList extends Component {
                 <AppList
                     toggle={this.toggle}
                     isOpen={this.state.modalIsOpen}
+                    clientName={this.props.clientName}
                     activeJob={this.state.activeJob}
                     apps={this.props.applications.filter(app => app.jobId === this.state.activeJob.jobId)}
                 />

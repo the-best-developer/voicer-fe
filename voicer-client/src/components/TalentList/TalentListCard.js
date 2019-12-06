@@ -1,10 +1,12 @@
 import React from 'react';
 import { Card, Button, CardBody } from 'reactstrap';
 import styled from 'styled-components';
+import UserIcon from '../../images/user.svg';
+import ShowRating from './ShowRating';
 
 // Styling
 const StyledCard = styled(Card)`
-  width: 100%;
+  width: 48%;
   margin: 15px 0;
   min-height: 200px;
   padding: 5px;
@@ -18,23 +20,29 @@ const StyledCardHeader = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  height: 10vh;
+  align-items: center;
+  flex-wrap: no-wrap;
 `;
 
 const CardName = styled.div`
   padding-right: 10px;
   font-family: 'Nunito Sans', sans-serif ;
-  font-size: 1.0rem;
+  font-size: 1.6rem;
   font-weight: 800;
 `;
 
-const CardTitle = styled.div`
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  font-weight: bold;
+const UserImg = styled.img`
+  width: 60px;
 `;
+
+const DetailLabel = styled.div`
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #223843;
+`
+
+const DetailItem = styled.div`
+`
 
 const StyledButton = styled(Button)`
   width: 100%;
@@ -44,54 +52,37 @@ const StyledButton = styled(Button)`
 
 const StyledCardBody = styled(CardBody)`
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: flex-start;
   padding: 10px;
 `
 
 const Divider = styled.div`
     height: 1px;
     width: 100%;
-    margin: 0;
+    margin: 1rem 0;
     display:block; /* for use on default inline elements like span */
     overflow: hidden;
     background-color: #717F86;
 `;
 
-// const StyledButtonDiv = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   padding: 10px;
-//   margin-left: auto;
-// `
-
 const StyledCardDetails = styled.div`
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 75%;
-  padding-left: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
 `
 
 const StyledCardDetail = styled.div`
-  width: 22%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 15px;
-`;
-
-const StyledCardDetailItem = styled.div`
-  width: 100%;
-  text-align: left;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: .5rem 0;
 `;
 
 const StyledCardAction = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 22.5%;
+  justify-content: space-between;
+  margin: 1.2rem 0 0;
 `
 
 const StyledCardActionItem = styled.div`
@@ -111,72 +102,80 @@ const TalentListCard = props => {
       let year = newDate.getFullYear();
       return(month.slice(0, 3) + ' ' + day + ', ' + year)
     }
+
     return (
         <StyledCard>
             <StyledCardBody>
+
               <StyledCardHeader>
-                <CardTitle>{props.talentData.firstName + ' ' + props.talentData.lastName}</CardTitle>
-                <CardName>{}</CardName>
-                <Divider />
+                <CardName>
+                  {props.talentData.firstName + ' ' + props.talentData.lastName}
+                </CardName>
+                <UserImg src={UserIcon} />
               </StyledCardHeader>
+
+              <Divider />
+
               <StyledCardDetails>
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Email</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
-                    {props.talentData.email}
-                  </StyledCardDetailItem>
+                  <DetailLabel>
+                    Rating
+                  </DetailLabel>
+                  <DetailItem>
+                    <ShowRating rating={props.talentData.rating} />
+                  </DetailItem>
                 </StyledCardDetail>
+
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Language</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
-                    English
-                  </StyledCardDetailItem>
+                  <DetailLabel>
+                    Language
+                  </DetailLabel>
+                  <DetailItem>
+                    English *
+                  </DetailItem>
                 </StyledCardDetail>
+
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Gender</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
+                  <DetailLabel>
+                    Gender
+                  </DetailLabel>
+                  <DetailItem>
                     {props.talentData.gender}
-                  </StyledCardDetailItem>
+                  </DetailItem>
                 </StyledCardDetail>
+
                 <StyledCardDetail>
-                  <StyledCardDetailItem>
-                    <strong>Rating</strong>
-                  </StyledCardDetailItem>
-                  <StyledCardDetailItem>
-                  {props.talentData.rating}
-                  </StyledCardDetailItem>
+                  <DetailLabel>
+                    Email
+                  </DetailLabel>
+                  <DetailItem>
+                    {props.talentData.email}
+                  </DetailItem>
                 </StyledCardDetail>
               </StyledCardDetails>
+
               <StyledCardAction>
-                <StyledCardActionItem>
-                    <StyledButton onClick={() => {
+                  <StyledButton
+                      className='btn-medium-blue'
+                      onClick={() => {
                       props.openModal(props.talentData);
-                      props.toggle2();
-                    }}>INFO</StyledButton>
-                </StyledCardActionItem>
-                <StyledCardActionItem>
-                    <StyledButton className='btn-orange' onClick={() => {
-                      props.openModal(props.talentData);
-                      props.toggle();
-                    }}>Invite</StyledButton>
-                </StyledCardActionItem>
+                      props.toggleInfo();
+                    }}>
+                    Info
+                  </StyledButton>
+
+                  <StyledButton
+                    className='btn-orange'
+                    onClick={(e) => {
+                      e.preventDefault();
+                      props.sendInvite(props.talentData.email)
+                    }}
+                  >
+                    Invite
+                  </StyledButton>
+
               </StyledCardAction>
-              {/* <StyledCardHeader>
-                <CardText>{props.talentData.jobDescription}</CardText>
-              </StyledCardDetails>
-                <StyledButtonDiv>
-                    <StyledButton>Save Job</StyledButton>
-                    <StyledButton onClick={() => {
-                      props.openModal(props.talentData);
-                      props.toggle();
-                    }}>Apply</StyledButton>
-                </StyledButtonDiv> */}
+
             </StyledCardBody>
         </StyledCard>
     );

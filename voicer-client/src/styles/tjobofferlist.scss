@@ -1,0 +1,118 @@
+.styled-job-card {
+    display: flex;
+    width: 60%;
+    flex-wrap: wrap;
+    margin: 5vh auto;
+    background-color: #EFF1F3 !important;
+    .job-offers-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        border-top: 2px solid rgba(0,0,0,.125) !important;
+        border-left: 2px solid rgba(0,0,0,.125) !important;
+        border-right: 2px solid rgba(0,0,0,.125) !important;
+        border-bottom: 2px solid rgba(0,0,0,.125) !important;
+        .header-element {
+            margin-bottom: 0;
+        }
+        .header-element:last-child {
+            border-radius: 5px;
+            background-color: #FF934F !important;
+        }
+    }
+    .job-offer-card {
+        display: flex;
+        border: 1px solid rgba(0,0,0,.125);
+        width: 100%;
+        height: 12.5vh;
+        justify-content: space-between;
+        background-color: #EFF1F3;
+        .job-offer-info {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            .jo-card-left {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 48%;
+                p {
+                    margin-bottom: 0;
+                }
+                button {
+                    background-color: #5A6268;
+                    color: white;
+                    border-radius: 5px;
+                    padding: 10px;
+                    height: 50px;
+                }
+            }
+            .jo-card-right {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 48%;
+                .jo-button-pending {
+                    border-radius: 5px;
+                    padding: 5px;
+                    height: 40px;
+                    color: white;
+                    background-color: #5A6268;
+                }
+                .jo-button-action {
+                    border-radius: 5px;
+                    height: 40px;
+                    padding: 5px;
+                    color: black;
+                    background-color: #FF934F;
+                }
+            }
+        }
+    }
+    .accepted-job-desc {
+        width: 100%;
+        font-size: 20px;
+        text-align: center;
+    }
+    .decline-job-button {
+        width: 50%;
+        margin: 10px 25%;
+    }
+}
+
+.accept-modal-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-content: flex-start;
+    .accept-modal-header {
+        font-size: 32px;
+        font-weight: bold;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    
+    .accept-modal-text {
+        font-size: 16px;
+        color: grey;
+        width: 70%;
+    }
+}
+
+.declined {
+    background-color: #f5b3b3 !important;
+    .job-offers-header {
+        .header-element:last-child {
+            background-color: #f5b3b3 !important;
+        }
+    }
+}
+
+.jobs-type {
+    text-align: center;
+    color: #FF934F;
+    text-decoration: underline;
+}

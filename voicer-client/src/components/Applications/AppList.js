@@ -16,6 +16,7 @@ const AppListModalHeader = styled(ModalHeader)`
 
 // Component
 const AppList = props => {
+    const apps = props.apps.reverse()
     return (
         <AppListModal
             isOpen={props.isOpen}
@@ -33,7 +34,7 @@ const AppList = props => {
                         </Button>
                     </Link>
                 </div> :
-                props.apps.map(app => <AppCard key={app.jobOfferId} appData={app}/>)}
+                apps.map(app => <AppCard key={app.jobOfferId} appData={app} clientName={props.clientName} job={props.activeJob}/>)}
         </AppListModal>
     );
 };

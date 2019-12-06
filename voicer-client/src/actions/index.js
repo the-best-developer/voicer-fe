@@ -49,33 +49,32 @@ export {
 } from './getClientProfile';
 
 export {
-    GET_TALENT_JOB_OFFERS_START,
-    GET_TALENT_JOB_OFFERS_SUCCESS,
-    GET_TALENT_JOB_OFFERS_FAILED,
-    getTalentJobOffers
-} from './getTalentJobOffers'
+  getTalentJobOffers
+} from './getTalentJobOffers';
+
+export { APPLY_START, APPLY_SUCCESS, APPLY_FAILED, apply } from './apply';
 
 export {
-    APPLY_START,
-    APPLY_SUCCESS,
-    APPLY_FAILED,
-    apply
-} from './apply'
+  GET_TALENT_START,
+  GET_TALENT_SUCCESS,
+  GET_TALENT_FAILED,
+  getTalent
+} from './getTalent';
 
 export {
-    GET_TALENT_START,
-    GET_TALENT_SUCCESS,
-    GET_TALENT_FAILED,
-    getTalent
-} from './getTalent'
+    GET_TALENTS_START,
+    GET_TALENTS_SUCCESS,
+    GET_TALENTS_FAILED,
+    getTalents
+} from './getTalents'
 
 export {
-    GET_JOB_OFFERS_START,
-    GET_JOB_OFFERS_SUCCESS,
-    GET_JOB_OFFERS_FAILED,
-    getApplications,
-    getApplicationsByClientId
-} from './getApplications'
+  GET_JOB_OFFERS_START,
+  GET_JOB_OFFERS_SUCCESS,
+  GET_JOB_OFFERS_FAILED,
+  getApplications,
+  getApplicationsByClientId
+} from './getApplications';
 
 export {
   POST_JOB_START,
@@ -93,3 +92,6 @@ export {
 } from './getJobs';
 
 export { SET_JOB_ID, setJobId } from './setJobId';
+
+const dbUrl = 'https://voicer-lambda-app-staging.herokuapp.com';
+export { dbUrl };
