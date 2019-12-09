@@ -20,7 +20,7 @@ class AcceptOffer extends React.Component {
         this.props.talent.length > 0 ?
         this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName :
         this.props.clientName
-        name === this.state.checkboxText ? await this.setState({validated: true}) : await this.setState({validated: false})
+        name.toLowerCase() === this.state.checkboxText.toLowerCase() && this.state.checkbox ? await this.setState({validated: true}) : await this.setState({validated: false})
     }
 
     changeHandler = async event => {
@@ -43,6 +43,11 @@ class AcceptOffer extends React.Component {
             <Modal
                 isOpen={this.props.isOpen}
                 toggle={this.props.toggle}
+                onClosed={() => this.setState({
+                    checkbox: false,
+                    checkboxText: '',
+                    validated: false
+                })}
                 centered={true}
                 size="lg"
             >

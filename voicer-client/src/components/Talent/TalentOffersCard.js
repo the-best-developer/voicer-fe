@@ -74,6 +74,7 @@ class TalentOffersCard extends React.Component {
                     isOpen={this.state.declineModalIsOpen}
                     job={this.props.job}
                     offer={this.state.sortedOffers ? this.state.sortedOffers[0] : null}
+                    userType="Talent"
                 />
             </Collapse> :
             <Collapse
