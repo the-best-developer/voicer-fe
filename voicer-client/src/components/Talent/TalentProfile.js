@@ -2,8 +2,10 @@ import React from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Select, { components } from "react-select";
 import { connect } from "react-redux";
+import jwt from "jsonwebtoken";
 import { getLanguages, addTalentLanguage } from "../../actions/language";
 import { getAccents, addTalentAccent } from "../../actions/accent";
+import { addTalentBio } from "../../actions/talentBio";
 import makeAnimated from "react-select/animated";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/talent-profile.css";
@@ -25,7 +27,8 @@ class TalentProfile extends React.Component {
     super(props);
 
     this.state = {
-      gender: "",
+      userId: jwt.decode(localStorage.getItem("token")).userId,
+      voiceGender: "",
       voiceAge: "",
       languageOptions: [],
       accentOptions: [],
@@ -64,7 +67,7 @@ class TalentProfile extends React.Component {
   submitTalentLanguages = talentLangArray => {
     talentLangArray.forEach(newLang => {
       const langSubmit = {
-        userId: this.props.userId,
+        userId: this.state.userId,
         languageId: newLang.languageId
       };
       this.props.addTalentLanguage(langSubmit);
@@ -74,11 +77,21 @@ class TalentProfile extends React.Component {
   submitTalentAccents = talentAccentArray => {
     talentAccentArray.forEach(newAccent => {
       const accentSubmit = {
-        userId: this.props.userId,
+        userId: this.state.userId,
         accentId: newAccent.accentId
       };
       this.props.addTalentAccent(accentSubmit);
     });
+  };
+
+  submitChanges = (voiceGender, voiceAge, biography) => {
+    const bioSubmit = {
+      userId: this.state.userId,
+      voiceGender: voiceGender,
+      voiceAge: voiceAge,
+      biography: biography
+    };
+    this.props.addTalentBio(bioSubmit);
   };
 
   handleChange = event => {
@@ -93,7 +106,7 @@ class TalentProfile extends React.Component {
 
   handleLanguageAdd = languageId => {
     const newLang = {
-      userId: this.props.userId,
+      userId: this.state.userId,
       languageId: languageId
     };
   };
@@ -114,6 +127,7 @@ class TalentProfile extends React.Component {
     event.preventDefault();
     this.submitTalentLanguages(this.state.languages);
     this.submitTalentAccents(this.state.accents);
+    this.submitChanges(this.state.voiceGender, this.state.voiceAge, this.state.biography);
   };
 
   render() {
@@ -179,7 +193,6 @@ class TalentProfile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userId: state.loginReducer.id,
   languageOptions: state.languageReducer.languages,
   accentOptions: state.accentReducer.accents
 });
@@ -188,5 +201,6 @@ export default connect(mapStateToProps, {
   getAccents,
   getLanguages,
   addTalentAccent,
-  addTalentLanguage
+  addTalentLanguage,
+  addTalentBio
 })(TalentProfile);
