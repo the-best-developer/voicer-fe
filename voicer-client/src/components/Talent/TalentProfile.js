@@ -85,11 +85,12 @@ class TalentProfile extends React.Component {
   };
 
   submitChanges = (voiceGender, voiceAge, biography) => {
+    let talent = this.props.talent[0]
     const bioSubmit = {
-      userId: this.state.userId,
-      voiceGender: voiceGender,
-      voiceAge: voiceAge,
-      biography: biography
+      talentId: talent.talentId,
+      voiceGender: voiceGender.length > 0 ? voiceGender : talent.voiceGender,
+      voiceAge: voiceAge.length > 0 ? voiceAge : talent.voiceAge,
+      biography: biography.length > 0 ? biography : talent.biography
     };
     this.props.addTalentBio(bioSubmit);
   };
@@ -102,6 +103,10 @@ class TalentProfile extends React.Component {
 
   handleAgeChange = voiceAge => {
     this.setState({ voiceAge: voiceAge.value });
+  };
+
+  handleGenderChange = voiceGender => {
+    this.setState({ voiceGender: voiceGender.value });
   };
 
   handleLanguageAdd = languageId => {
@@ -194,7 +199,8 @@ class TalentProfile extends React.Component {
 
 const mapStateToProps = state => ({
   languageOptions: state.languageReducer.languages,
-  accentOptions: state.accentReducer.accents
+  accentOptions: state.accentReducer.accents,
+  talent: state.getTalentReducer.talent
 });
 
 export default connect(mapStateToProps, {
