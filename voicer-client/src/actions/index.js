@@ -48,11 +48,15 @@ export {
   getClientProfile
 } from './getClientProfile';
 
-export {
-  getTalentJobOffers
-} from './getTalentJobOffers';
+export { getTalentJobOffers } from './getTalentJobOffers';
 
-export { APPLY_START, APPLY_SUCCESS, APPLY_FAILED, APPLY_COMPLETED, apply } from './apply';
+export {
+  APPLY_START,
+  APPLY_SUCCESS,
+  APPLY_FAILED,
+  APPLY_COMPLETED,
+  apply
+} from './apply';
 
 export {
   GET_TALENT_START,
@@ -62,11 +66,11 @@ export {
 } from './getTalent';
 
 export {
-    GET_TALENTS_START,
-    GET_TALENTS_SUCCESS,
-    GET_TALENTS_FAILED,
-    getTalents
-} from './getTalents'
+  GET_TALENTS_START,
+  GET_TALENTS_SUCCESS,
+  GET_TALENTS_FAILED,
+  getTalents
+} from './getTalents';
 
 export {
   GET_JOB_OFFERS_START,
@@ -93,5 +97,5 @@ export {
 
 export { SET_JOB_ID, setJobId } from './setJobId';
 
-const dbUrl = 'https://voicer-lambda-app-staging.herokuapp.com';
+const dbUrl = 'http://localhost:4000';
 export { dbUrl };
