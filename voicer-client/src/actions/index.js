@@ -84,6 +84,15 @@ export {
 } from './postJob';
 
 export {
+  UPDATE_BALANCE_START,
+  UPDATE_CLIENT_BALANCE_SUCCESS,
+  UPDATE_TALENT_BALANCE_SUCCESS,
+  UPDATE_BALANCE_FAILED,
+  withdraw,
+  deposit
+} from './updateBalance';
+
+export {
   GET_JOBS_START,
   GET_JOBS_SUCCESS,
   GET_JOBS_FAILED,
