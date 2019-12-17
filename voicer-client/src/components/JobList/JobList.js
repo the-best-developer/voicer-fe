@@ -3,6 +3,7 @@ import JobListCard from './JobListCard';
 import styled from 'styled-components';
 import ApplyToJob from '../ApplyToJob';
 import JobInfo from '../JobInfo';
+import ReviewModal from '../ReviewModal';
 import '../../App.scss';
 
 // Styling
@@ -66,7 +67,7 @@ class JobList extends Component {
                     isOpen={this.state.modalIsOpen}
                     job={this.state.activeJob}
                 />
-                <JobInfo
+                <ReviewModal
                     toggle={this.toggle2}
                     isOpen={this.state.modalIsOpen2}
                     job={this.state.activeJob}
