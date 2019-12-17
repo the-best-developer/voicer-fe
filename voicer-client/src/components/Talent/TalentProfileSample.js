@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import axiosWithAuth from './';
 
 class TalentProfileSample extends Component {
   constructor(props) {
@@ -19,11 +20,11 @@ class TalentProfileSample extends Component {
     let file = this.uploadInput.files[0];
     // Split the filename to get the name and type
     let fileParts = this.uploadInput.files[0].name.split('.');
-    let fileName = fileParts[0];
+    let fileName = fileParts[0] + ' - ' + Date.now();
     let fileType = fileParts[1];
     console.log('Preparing the upload');
     axios
-      .post('http://localhost:4000/uploads', {
+      .post('http://localhost:4000/api/uploads', {
         fileName: fileName,
         fileType: fileType
       })
