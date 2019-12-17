@@ -201,7 +201,7 @@ class TalentProfile extends React.Component {
           >
             Save Profile
           </Button>
-          <TalentProfileSample />
+          <TalentProfileSample userId={this.state.userId} />
         </Form>
       </div>
     );
