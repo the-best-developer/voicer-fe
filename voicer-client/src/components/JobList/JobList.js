@@ -49,10 +49,10 @@ class JobList extends Component {
     }
 
     render() {
-        console.log(this.props.jobs)
+        const jobs = this.props.jobs.filter(job => job.status !== "Hired")
         return (
             <MainDiv>
-                {this.props.jobs.map(job =>
+                {jobs.map(job =>
                     <JobListCard
                         key={job.jobId}
                         jobData={job}

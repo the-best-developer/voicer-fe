@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {accept} from '../../actions/acceptDecline';
+import {accept} from '../actions/acceptDecline';
 import {withRouter} from 'react-router-dom';
 import {Button, Modal, ModalHeader, ModalBody, Input, InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap';
-import '../../styles/tjobofferlist.scss'
+import '../styles/tjobofferlist.scss'
 
 class AcceptOffer extends React.Component {
     constructor(props) {
@@ -16,8 +16,11 @@ class AcceptOffer extends React.Component {
     }
 
     validate = async() => {
-        let name = this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName
-        name === this.state.checkboxText ? await this.setState({validated: true}) : await this.setState({validated: false})
+        let name = 
+        this.props.talent.length > 0 ?
+        this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName :
+        this.props.clientName
+        name.toLowerCase() === this.state.checkboxText.toLowerCase() && this.state.checkbox ? await this.setState({validated: true}) : await this.setState({validated: false})
     }
 
     changeHandler = async event => {
@@ -31,7 +34,8 @@ class AcceptOffer extends React.Component {
 
     acceptOffer = async() => {
         await this.props.accept(this.props.job, this.props.offer)
-        this.props.history.push('/talent')
+        this.props.userType==="Talent" ? this.props.history.push('/talent') : this.props.toggle()
+        
     }
 
     render() {
@@ -39,6 +43,11 @@ class AcceptOffer extends React.Component {
             <Modal
                 isOpen={this.props.isOpen}
                 toggle={this.props.toggle}
+                onClosed={() => this.setState({
+                    checkbox: false,
+                    checkboxText: '',
+                    validated: false
+                })}
                 centered={true}
                 size="lg"
             >

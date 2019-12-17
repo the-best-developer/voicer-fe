@@ -1,23 +1,25 @@
-import React from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import Select, { components } from 'react-select';
-import { connect } from 'react-redux';
-import { getLanguages, addTalentLanguage } from '../../actions/language';
-import { getAccents, addTalentAccent } from '../../actions/accent';
-import makeAnimated from 'react-select/animated';
-import 'bootstrap/dist/css/bootstrap.css';
-import '../../styles/talent-profile.css';
+import React from "react";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import Select, { components } from "react-select";
+import { connect } from "react-redux";
+import jwt from "jsonwebtoken";
+import { getLanguages, addTalentLanguage } from "../../actions/language";
+import { getAccents, addTalentAccent } from "../../actions/accent";
+import { addTalentBio } from "../../actions/talentBio";
+import makeAnimated from "react-select/animated";
+import "bootstrap/dist/css/bootstrap.css";
+import "../../styles/talent-profile.css";
 
 const genderOptions = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' }
+  { value: "male", label: "Male" },
+  { value: "female", label: "Female" }
 ];
 
 const ageOptions = [
-  { value: 'child', label: 'Child' },
-  { value: 'teen', label: 'Teen' },
-  { value: 'adult', label: 'Adult' },
-  { value: 'senior', label: 'Senior' }
+  { value: "child", label: "Child" },
+  { value: "teen", label: "Teen" },
+  { value: "adult", label: "Adult" },
+  { value: "senior", label: "Senior" }
 ];
 
 class TalentProfile extends React.Component {
@@ -25,13 +27,14 @@ class TalentProfile extends React.Component {
     super(props);
 
     this.state = {
-      gender: '',
-      voiceAge: '',
+      userId: jwt.decode(localStorage.getItem("token")).userId,
+      voiceGender: "",
+      voiceAge: "",
       languageOptions: [],
       accentOptions: [],
       languages: [],
       accents: [],
-      biography: ''
+      biography: ""
     };
   }
 
@@ -64,7 +67,7 @@ class TalentProfile extends React.Component {
   submitTalentLanguages = talentLangArray => {
     talentLangArray.forEach(newLang => {
       const langSubmit = {
-        userId: this.props.userId,
+        userId: this.state.userId,
         languageId: newLang.languageId
       };
       this.props.addTalentLanguage(langSubmit);
@@ -74,12 +77,22 @@ class TalentProfile extends React.Component {
   submitTalentAccents = talentAccentArray => {
     talentAccentArray.forEach(newAccent => {
       const accentSubmit = {
-        userId: this.props.userId,
+        userId: this.state.userId,
         accentId: newAccent.accentId
       };
       this.props.addTalentAccent(accentSubmit);
     });
+  };
 
+  submitChanges = (voiceGender, voiceAge, biography) => {
+    let talent = this.props.talent[0]
+    const bioSubmit = {
+      talentId: talent.talentId,
+      voiceGender: voiceGender.length > 0 ? voiceGender : talent.voiceGender,
+      voiceAge: voiceAge.length > 0 ? voiceAge : talent.voiceAge,
+      biography: biography.length > 0 ? biography : talent.biography
+    };
+    this.props.addTalentBio(bioSubmit);
   };
 
   handleChange = event => {
@@ -88,18 +101,22 @@ class TalentProfile extends React.Component {
     });
   };
 
-handleAgeChange = (voiceAge) => {
+  handleAgeChange = voiceAge => {
     this.setState({ voiceAge: voiceAge.value });
   };
 
-handleLanguageAdd = languageId => {
+  handleGenderChange = voiceGender => {
+    this.setState({ voiceGender: voiceGender.value });
+  };
+
+  handleLanguageAdd = languageId => {
     const newLang = {
-      userId: this.props.userId,
+      userId: this.state.userId,
       languageId: languageId
     };
   };
 
-handleLanguageChange = languages => {
+  handleLanguageChange = languages => {
     if (languages === null) {
       languages = [];
     } else {
@@ -107,22 +124,22 @@ handleLanguageChange = languages => {
     }
   };
 
-handleAccentChange = (accents) => {
+  handleAccentChange = accents => {
     this.setState({ accents });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
     this.submitTalentLanguages(this.state.languages);
     this.submitTalentAccents(this.state.accents);
+    this.submitChanges(this.state.voiceGender, this.state.voiceAge, this.state.biography);
   };
 
-render() {
+  render() {
     return (
-      <div style={{marginTop: '21vh'}} className="TalentProfile">
+      <div style={{ marginTop: "21vh" }} className="TalentProfile">
         <h1 className="title">TALENT PROFILE</h1>
         <Form onSubmit={this.handleSubmit} className="ProfileForm">
-
           <FormGroup tag="fieldset">
             <Label for="genderSelect">Select Voice Gender</Label>
             <Select
@@ -135,9 +152,7 @@ render() {
           <FormGroup>
             <Label for="voiceAgeSelect">Select Voice Age</Label>
             <Select
-
               className="mt-0 mb-3 col-md-11 col-offset-4"
-
               onChange={this.handleAgeChange}
               components={makeAnimated()}
               options={ageOptions}
@@ -145,13 +160,12 @@ render() {
           </FormGroup>
           <FormGroup>
             <Label for="languageSelect">Select Languages</Label>
-            <Select 
+            <Select
               className="mt-0 mb-3 col-md-11 col-offset-4"
               onChange={this.handleLanguageChange}
               components={makeAnimated()}
               isMulti
               options={this.state.languageOptions}
-
             />
           </FormGroup>
           <FormGroup>
@@ -174,7 +188,9 @@ render() {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Button outline size="lg" className="saveButton">Save Profile</Button>
+          <Button outline size="lg" className="saveButton">
+            Save Profile
+          </Button>
         </Form>
       </div>
     );
@@ -182,14 +198,15 @@ render() {
 }
 
 const mapStateToProps = state => ({
-  userId: state.loginReducer.id,
   languageOptions: state.languageReducer.languages,
-  accentOptions: state.accentReducer.accents
+  accentOptions: state.accentReducer.accents,
+  talent: state.getTalentReducer.talent
 });
 
 export default connect(mapStateToProps, {
   getAccents,
   getLanguages,
   addTalentAccent,
-  addTalentLanguage
+  addTalentLanguage,
+  addTalentBio
 })(TalentProfile);

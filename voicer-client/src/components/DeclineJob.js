@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {decline} from '../../actions/acceptDecline';
+import {decline} from '../actions/acceptDecline';
 import {withRouter} from 'react-router-dom';
 import {Button, Modal, ModalHeader, ModalBody, Input, InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap';
 import styled from 'styled-components';
-import '../../styles/tjobofferlist.scss'
+import '../styles/tjobofferlist.scss'
 
 class DeclineJob extends React.Component {
     constructor(props) {
@@ -17,8 +17,9 @@ class DeclineJob extends React.Component {
     }
 
     validate = async() => {
-        let name = this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName
-        name === this.state.checkboxText ? await this.setState({validated: true}) : await this.setState({validated: false})
+        let profile = this.props.talent.length > 0 ? this.props.talent[0] : this.props.client
+        let name = (profile.firstName + ' ' + profile.lastName).toLowerCase()
+        name === this.state.checkboxText.toLowerCase() && this.state.checkbox ? await this.setState({validated: true}) : await this.setState({validated: false})
     }
 
     changeHandler = async event => {
@@ -38,10 +39,16 @@ class DeclineJob extends React.Component {
     render() {
         return (
             <>
-                <Button onClick={this.props.toggle} size="md" className="decline-job-button" color="danger">Decline Job</Button>
+                {this.props.userType==="Talent" ?
+                <Button onClick={this.props.toggle} size="md" className="decline-job-button" color="danger">Decline Job</Button> : null}
                 <Modal
                     isOpen={this.props.isOpen}
                     toggle={this.props.toggle}
+                    onClosed={() => this.setState({
+                        checkbox: false,
+                        checkboxText: '',
+                        validated: false
+                    })}
                     centered={true}
                     size="lg"
                 >
@@ -93,7 +100,8 @@ class DeclineJob extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    talent: state.getTalentReducer.talent
+    talent: state.getTalentReducer.talent,
+    client: state.getClientProfileReducer.clientProfile
 })
 
 export default connect(mapStateToProps, { decline })(withRouter(DeclineJob))

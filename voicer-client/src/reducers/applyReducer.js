@@ -1,7 +1,8 @@
 import {
     APPLY_START,
     APPLY_SUCCESS,
-    APPLY_FAILED
+    APPLY_FAILED,
+    APPLY_COMPLETED
 } from '../actions';
 
 const initialState = {
@@ -31,6 +32,12 @@ export const applyReducer = (state = initialState, action) => {
                 ...state,
                 postingApplication: false,
                 error: true,
+                success: false
+            }
+        case APPLY_COMPLETED:
+            return {
+                ...state,
+                error: false,
                 success: false
             }
         default: return state;

@@ -35,6 +35,7 @@ class JobInfo extends React.Component {
                 <StyledModalHeader>{this.props.job.jobTitle}</StyledModalHeader>
                 <StyledModalContent>
                     Company - {this.props.job.companyName} <br /> <br />
+                    Job Status - {this.props.job.status} <br /> <br />
                     Client - {this.props.job.firstName + ' ' + this.props.job.lastName} <br /> <br />
                     Client Rating - {this.props.job.rating} Stars <br /> <br />
                     Client Email - {this.props.job.email} <br /> <br />

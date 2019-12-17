@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, CardTitle, Collapse} from 'reactstrap';
 import { connect } from 'react-redux';
 import TalentOfferCard from './TalentOfferCard';
-import DeclineJob from '././DeclineJob';
+import DeclineJob from '../DeclineJob';
 import '../../styles/tjobofferlist.scss';
 
 class TalentOffersCard extends React.Component {
@@ -74,6 +74,7 @@ class TalentOffersCard extends React.Component {
                     isOpen={this.state.declineModalIsOpen}
                     job={this.props.job}
                     offer={this.state.sortedOffers ? this.state.sortedOffers[0] : null}
+                    userType="Talent"
                 />
             </Collapse> :
             <Collapse
