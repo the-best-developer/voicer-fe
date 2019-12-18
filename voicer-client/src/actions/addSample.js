@@ -7,15 +7,33 @@ export const ADD_SAMPLE_START = 'ADD_SAMPLE_START';
 export const ADD_SAMPLE_SUCCESS = 'ADD_SAMPLE_SUCCESS';
 export const ADD_SAMPLE_FAIL = 'ADD_SAMPLE_FAIL';
 
-export const addSample = (fileName, fileType) => dispatch => {
-  axiosWithAuth()
-    .post(`${dbUrl}/api/uploads`, {
-      fileName: fileName,
-      fileType: fileType
-    })
-    .then(response => {
-      let returnData = response.data.data.returnData;
-      let signedRequest = returnData.signedRequest;
-      let url = returnData.url;
-    });
+export const addSample = (file, fileName, fileType) => dispatch => {
+    dispatch({ type: ADD_SAMPLE_START });
+    return axiosWithAuth()
+        .post(`${dbUrl}/api/uploads`, {
+            fileName: fileName,
+            fileType: fileType
+        })
+        .then(response => {
+            let returnData = response.data.data.returnData;
+            let signedRequest = returnData.signedRequest;
+            let url = returnData.url;
+            console.log('Recieved a signed request ' + signedRequest);
+
+            var options = {
+                headers: {
+                    'Content-Type': fileType
+                }
+            };
+            axios
+                .put(signedRequest, file, options)
+                .then(result => {
+                    dispatch({ type: ADD_SAMPLE_SUCCESS, payload: url });
+                    console.log('Response from s3', url, result);
+                })
+                .catch(error => {
+                    alert(JSON.stringify(error));
+                    dispatch({ type: ADD_SAMPLE_FAIL, payload: error });
+                });
+        });
 };
