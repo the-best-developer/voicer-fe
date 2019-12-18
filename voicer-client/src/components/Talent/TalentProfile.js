@@ -1,25 +1,26 @@
-import React from "react";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import Select, { components } from "react-select";
-import { connect } from "react-redux";
-import jwt from "jsonwebtoken";
-import { getLanguages, addTalentLanguage } from "../../actions/language";
-import { getAccents, addTalentAccent } from "../../actions/accent";
-import { addTalentBio } from "../../actions/talentBio";
-import makeAnimated from "react-select/animated";
-import "bootstrap/dist/css/bootstrap.css";
-import "../../styles/talent-profile.css";
+import React from 'react';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import Select, { components } from 'react-select';
+import { connect } from 'react-redux';
+import jwt from 'jsonwebtoken';
+import { getLanguages, addTalentLanguage } from '../../actions/language';
+import { getAccents, addTalentAccent } from '../../actions/accent';
+import { addTalentBio } from '../../actions/talentBio';
+import makeAnimated from 'react-select/animated';
+import TalentProfileSample from './TalentProfileSample';
+import 'bootstrap/dist/css/bootstrap.css';
+import '../../styles/talent-profile.css';
 
 const genderOptions = [
-  { value: "male", label: "Male" },
-  { value: "female", label: "Female" }
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' }
 ];
 
 const ageOptions = [
-  { value: "child", label: "Child" },
-  { value: "teen", label: "Teen" },
-  { value: "adult", label: "Adult" },
-  { value: "senior", label: "Senior" }
+  { value: 'child', label: 'Child' },
+  { value: 'teen', label: 'Teen' },
+  { value: 'adult', label: 'Adult' },
+  { value: 'senior', label: 'Senior' }
 ];
 
 class TalentProfile extends React.Component {
@@ -27,14 +28,14 @@ class TalentProfile extends React.Component {
     super(props);
 
     this.state = {
-      userId: jwt.decode(localStorage.getItem("token")).userId,
-      voiceGender: "",
-      voiceAge: "",
+      userId: jwt.decode(localStorage.getItem('token')).userId,
+      voiceGender: '',
+      voiceAge: '',
       languageOptions: [],
       accentOptions: [],
       languages: [],
       accents: [],
-      biography: ""
+      biography: ''
     };
   }
 
@@ -85,7 +86,7 @@ class TalentProfile extends React.Component {
   };
 
   submitChanges = (voiceGender, voiceAge, biography) => {
-    let talent = this.props.talent[0]
+    let talent = this.props.talent[0];
     const bioSubmit = {
       talentId: talent.talentId,
       voiceGender: voiceGender.length > 0 ? voiceGender : talent.voiceGender,
@@ -132,14 +133,18 @@ class TalentProfile extends React.Component {
     event.preventDefault();
     this.submitTalentLanguages(this.state.languages);
     this.submitTalentAccents(this.state.accents);
-    this.submitChanges(this.state.voiceGender, this.state.voiceAge, this.state.biography);
+    this.submitChanges(
+      this.state.voiceGender,
+      this.state.voiceAge,
+      this.state.biography
+    );
   };
 
   render() {
     return (
-      <div style={{ marginTop: "21vh" }} className="TalentProfile">
+      <div style={{ marginTop: '21vh' }} className="TalentProfile">
         <h1 className="title">TALENT PROFILE</h1>
-        <Form onSubmit={this.handleSubmit} className="ProfileForm">
+        <Form className="ProfileForm">
           <FormGroup tag="fieldset">
             <Label for="genderSelect">Select Voice Gender</Label>
             <Select
@@ -188,9 +193,15 @@ class TalentProfile extends React.Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Button outline size="lg" className="saveButton">
+          <Button
+            // onClick={this.handleSubmit}
+            outline
+            size="lg"
+            className="saveButton"
+          >
             Save Profile
           </Button>
+          <TalentProfileSample userId={this.state.userId} />
         </Form>
       </div>
     );
