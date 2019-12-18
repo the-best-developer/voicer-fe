@@ -2,9 +2,9 @@ import axios from 'axios';
 import { dbUrl } from './index';
 //replace dbUrl in index.js to change backend server for testing
 
-export const LOGIN_START = 'LOGIN-START';
-export const LOGIN_SUCCESS = 'LOGIN-SUCCESS';
-export const LOGIN_FAILED = 'LOGIN-FAILED';
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
 
 export const login = creds => async dispatch => {
   dispatch({ type: LOGIN_START });
@@ -27,7 +27,7 @@ export const login = creds => async dispatch => {
       localStorage.removeItem('token');
       dispatch({
         type: LOGIN_FAILED,
-        payload: 'FAILED'
+        payload: err
       });
     });
 };
