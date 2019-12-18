@@ -1,95 +1,78 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import axiosWithAuth from './';
+import { connect } from 'react-redux';
+import { addSample } from '../../actions/addSample';
 
 class TalentProfileSample extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      success: false,
-      url: '',
-      error: false,
-      errorMessage: ''
-    };
-  }
-
-  handleChange = ev => {
-    this.setState({ success: false, url: '' });
-  };
-  handleUpload = ev => {
-    let file = this.uploadInput.files[0];
-    // Split the filename to get the name and type
-    let fileParts = this.uploadInput.files[0].name.split('.');
-    let fileName = fileParts[0] + ' - ' + Date.now();
-    let fileType = fileParts[1];
-    console.log('Preparing the upload');
-    axios
-      .post('http://localhost:4000/api/uploads', {
-        fileName: fileName,
-        fileType: fileType
-      })
-      .then(response => {
-        var returnData = response.data.data.returnData;
-        var signedRequest = returnData.signedRequest;
-        var url = returnData.url;
-        this.setState({ url: url });
-        console.log('Recieved a signed request ' + signedRequest);
-
-        var options = {
-          headers: {
-            'Content-Type': fileType
-          }
+    constructor(props) {
+        super(props);
+        this.state = {
+            success: false,
+            url: '',
+            error: false,
+            errorMessage: ''
         };
-        axios
-          .put(signedRequest, file, options)
-          .then(result => {
-            console.log('Response from s3');
-            this.setState({ success: true });
-          })
-          .catch(error => {
-            alert('ERROR ' + JSON.stringify(error));
-          });
-      })
-      .catch(error => {
-        alert(JSON.stringify(error));
-      });
-  };
+    }
 
-  render() {
-    const SuccessMessage = () => (
-      <div style={{ padding: 50 }}>
-        <h3 style={{ color: 'green' }}>SUCCESSFUL UPLOAD</h3>
-        <a href={this.state.url}>Access the file here</a>
-        <br />
-      </div>
-    );
-    const ErrorMessage = () => (
-      <div style={{ padding: 50 }}>
-        <h3 style={{ color: 'red' }}>FAILED UPLOAD</h3>
-        <span style={{ color: 'red', backgroundColor: 'black' }}>ERROR: </span>
-        <span>{this.state.errorMessage}</span>
-        <br />
-      </div>
-    );
-    return (
-      <div className="App">
-        <center>
-          <h1>UPLOAD A FILE</h1>
-          {this.state.success ? <SuccessMessage /> : null}
-          {this.state.error ? <ErrorMessage /> : null}
-          <input
-            onChange={this.handleChange}
-            ref={ref => {
-              this.uploadInput = ref;
-            }}
-            type="file"
-          />
-          <br />
-          <button onClick={this.handleUpload}>UPLOAD</button>
-        </center>
-      </div>
-    );
-  }
+    handleChange = ev => {
+        this.setState({ success: false, url: '' });
+    };
+    handleUpload = ev => {
+        ev.preventDefault();
+        let file = this.uploadInput.files[0];
+        // Split the filename to get the name and type
+        let fileParts = this.uploadInput.files[0].name.split('.');
+        let fileName = fileParts[0] + ' - ' + Date.now();
+        let fileType = fileParts[1];
+        console.log('Preparing the upload');
+        this.props.addSample(file, fileName, fileType);
+    };
+
+    render() {
+        const SuccessMessage = () => (
+            <div style={{ padding: 50 }}>
+                <h3 style={{ color: 'green' }}>SUCCESSFUL UPLOAD</h3>
+                <a href={this.props.newUrl}>Access the file here</a>
+                <br />
+            </div>
+        );
+        const ErrorMessage = () => (
+            <div style={{ padding: 50 }}>
+                <h3 style={{ color: 'red' }}>FAILED UPLOAD</h3>
+                <span style={{ color: 'red', backgroundColor: 'black' }}>
+                    ERROR:{' '}
+                </span>
+                <span>{this.state.errorMessage}</span>
+                <br />
+            </div>
+        );
+        return (
+            <div className="App">
+                <center>
+                    <h1>UPLOAD A FILE</h1>
+                    {this.props.uploadSuccess ? <SuccessMessage /> : null}
+                    {this.props.uploadError ? <ErrorMessage /> : null}
+                    <input
+                        onChange={this.handleChange}
+                        ref={ref => {
+                            this.uploadInput = ref;
+                        }}
+                        type="file"
+                    />
+                    <br />
+                    <button onClick={this.handleUpload}>UPLOAD</button>
+                </center>
+            </div>
+        );
+    }
 }
 
-export default TalentProfileSample;
+const mapStateToProps = state => ({
+    newUrl: state.sampleReducer.newUrl,
+    uploadSuccess: state.sampleReducer.uploadSuccess,
+    uploadError: state.sampleReducer.uploadError
+});
+
+export default connect(mapStateToProps, {
+    addSample
+})(TalentProfileSample);
