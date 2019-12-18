@@ -1,9 +1,32 @@
 import React from 'react';
-import {Form, FormGroup, Label, Input, Button, Modal, ModalHeader} from 'reactstrap';
+import {Form, FormGroup, Input, Label, Button, Modal, ModalBody, ModalHeader} from 'reactstrap';
+import { submitReview } from '../actions';
+import {connect} from 'react-redux';
 
 class ReviewModal extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            reviewText: "",
+            reviewRating: ""
+        }
+    }
+
+    changeHandler = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    // Call the submitReview action creator
+    clickHandler = () => {
+        this.props.submitReview({
+            authorId: 1, //this.props.
+            recipientId: 2,
+            jobId: 1,
+            rating: this.state.reviewRating,
+            message: this.state.reviewText
+        })
     }
 
     render() {
@@ -15,15 +38,24 @@ class ReviewModal extends React.Component {
                 size="lg"
             >
                 <ModalHeader>Review</ModalHeader>
-                <Form>
-                    <FormGroup>
-                        <Input type="textarea" onChange={() => {console.log("woohooooo!!")}} name="review"></Input>
-                    </FormGroup>
-                    <Button onClick={() => {console.log("woho!1!1")}}>Submit</Button>
-                </Form>
+                <ModalBody>
+                    <Form>
+                        <FormGroup>
+                            <Label>Message:</Label>
+                            <Input type="textarea" name="reviewText" onChange={this.changeHandler}></Input>
+                            <Label>Rating:</Label>
+                            <Input type="textarea" name="reviewRating" onChange={this.changeHandler}></Input>
+                        </FormGroup>
+                        <Button onClick={this.clickHandler}>Submit</Button>
+                    </Form>
+                </ModalBody>
             </Modal>
         )
     }
 }
 
-export default ReviewModal;
+const mapStateToProps = (state) => ({
+
+})
+
+export default connect(mapStateToProps, { submitReview } )(ReviewModal);

@@ -12,6 +12,8 @@ import { getTalentsReducer } from './getTalentsReducer';
 import { getJobOffersReducer } from './getJobOffersReducer';
 import { languageReducer } from './languageReducer';
 import { accentReducer } from './accentReducer';
+import { submitReviewReducer } from './submitReviewReducer';
+import { getReviewsReducer } from './getReviewsReducer';
 
 export default combineReducers({
     registerReducer,
@@ -26,5 +28,7 @@ export default combineReducers({
     getTalentsReducer,
     getJobOffersReducer,
     languageReducer,
-    accentReducer
+    accentReducer,
+    submitReviewReducer,
+    getReviewsReducer
 });
