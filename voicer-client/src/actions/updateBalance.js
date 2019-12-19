@@ -11,7 +11,7 @@ export const withdraw = (profile, amount) => async dispatch => {
     dispatch({type: UPDATE_BALANCE_START})
     await axiosWithAuth().put(`${dbUrl}/api/users/${profile.userId}`, {
         accountBalance: profile.accountBalance - amount
-    }).then(res => profile.userType === "talent" ?
+    }).then(res => profile.userType.toLowerCase() === "talent" ?
         dispatch({type: UPDATE_TALENT_BALANCE_SUCCESS, payload: profile.accountBalance - amount}) :
         dispatch({type: UPDATE_CLIENT_BALANCE_SUCCESS, payload: profile.accountBalance - amount}))
     .catch(res => dispatch({type: UPDATE_BALANCE_FAILED}))
@@ -21,7 +21,7 @@ export const deposit = (profile, amount) => async dispatch => {
     dispatch({type: UPDATE_BALANCE_START})
     await axiosWithAuth().put(`${dbUrl}/api/users/${profile.userId}`, {
         accountBalance: profile.accountBalance + amount
-    }).then(res => profile.userType === "talent" ? 
+    }).then(res => profile.userType.toLowerCase() === "talent" ? 
         dispatch({type: UPDATE_TALENT_BALANCE_SUCCESS, payload: profile.accountBalance + amount}) : 
         dispatch({type: UPDATE_CLIENT_BALANCE_SUCCESS, payload: profile.accountBalance + amount}))
     .catch(res => dispatch({type: UPDATE_BALANCE_FAILED}))

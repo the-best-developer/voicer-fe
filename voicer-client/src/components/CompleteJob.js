@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {decline} from '../actions/acceptDecline';
+import {complete} from '../actions/completeJob.js';
 import {withRouter} from 'react-router-dom';
 import {Button, Modal, ModalHeader, ModalBody, Input, InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap';
 import styled from 'styled-components';
 import '../styles/tjobofferlist.scss'
 
-class DeclineJob extends React.Component {
+class CompleteJob extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,16 +31,18 @@ class DeclineJob extends React.Component {
         }
     }
 
-    declineOffer = async() => {
-        await this.props.decline(this.props.job, this.props.offer)
-        this.props.history.push(`/${this.props.userType}`)
+    completeOffer = async() => {
+        await this.props.complete(this.props.job.jobId)
+        this.props.history.push('/talent')
     }
 
     render() {
+        let fee = this.props.talent[0].loyaltyLevel === 1 ? 0.1 : 
+            this.props.talent[0].loyaltyLevel === 2 ? 0.075 : 0.05
         return (
             <>
-                {this.props.userType==="Talent" ?
-                <Button onClick={this.props.toggle} size="md" className="decline-job-button" color="danger">Decline Job</Button> : null}
+                {this.props.userType.toLowerCase()==="talent" ?
+                <Button onClick={this.props.toggle} size="md" className="complete-job-button" color="info">Complete Job</Button> : null}
                 <Modal
                     isOpen={this.props.isOpen}
                     toggle={this.props.toggle}
@@ -52,20 +54,27 @@ class DeclineJob extends React.Component {
                     centered={true}
                     size="lg"
                 >
-                    <ModalHeader>Decline Job</ModalHeader>
+                    <ModalHeader>Complete Job</ModalHeader>
                     <ModalBody className="accept-modal-content">
                         <h2 className="accept-modal-header">
-                            Current Offer Amount - ${this.props.offer ? this.props.offer.price : 0} 
+                            Earnings After Service Fee - ${this.props.offer ? 
+                                this.props.offer.price - (this.props.offer.price * fee) : 0
+                            } 
                         <br /></h2>
-                        <p className="accept-modal-text">Do you wish to decline this job?</p>
+                        <p className="accept-modal-text">Do you wish to complete this job?</p>
                         <p className="accept-modal-text">
-                            By declining this job, you won't be able to make any more
-                            bids/offers on this job. The job will also be placed at the
-                            bottom of your application history. This is a permanent action.
+                            After completing the job, you'll receive the accepted offer pay
+                            minus the service fee determined by your loyalty level.
+                        </p>
+                        <p className="accept-modal-text">
+                            Your calculated fee is shown below. <br />
+                            Loyalty Level - {this.props.talent[0].loyaltyLevel} <br />
+                            Fee - {fee * 100}% * {this.props.offer.price} = ${this.props.offer.price * fee}
+
                         </p>
                         <p className="accept-modal-text">
                             Click the checkbox below, type your first and last name in the input, and click
-                            Decline to decline the job.
+                            'Complete' to complete the job.
                         </p>
                         <InputGroup>
                             <InputGroupAddon addonType="prepend">
@@ -84,11 +93,11 @@ class DeclineJob extends React.Component {
                             />
                             <InputGroupAddon addonType="append">
                                 <Button
-                                    color="danger"
+                                    color="info"
                                     disabled={!this.state.validated}
-                                    onClick={this.declineOffer}
+                                    onClick={this.completeOffer}
                                 >
-                                    Decline
+                                    Complete
                                 </Button>
                             </InputGroupAddon>
                         </InputGroup>
@@ -104,4 +113,4 @@ const mapStateToProps = state => ({
     client: state.getClientProfileReducer.clientProfile
 })
 
-export default connect(mapStateToProps, { decline })(withRouter(DeclineJob))
+export default connect(mapStateToProps, { complete })(withRouter(CompleteJob))

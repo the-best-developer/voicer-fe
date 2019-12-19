@@ -55,6 +55,13 @@ export {
 export { APPLY_START, APPLY_SUCCESS, APPLY_FAILED, APPLY_COMPLETED, apply } from './apply';
 
 export {
+  COMPLETE_JOB_START,
+  COMPLETE_JOB_SUCCESS,
+  COMPLETE_JOB_FAILED,
+  complete
+} from './completeJob';
+
+export {
   GET_TALENT_START,
   GET_TALENT_SUCCESS,
   GET_TALENT_FAILED,
@@ -102,5 +109,6 @@ export {
 
 export { SET_JOB_ID, setJobId } from './setJobId';
 
-const dbUrl = 'https://voicer-lambda-app-staging.herokuapp.com';
+// const dbUrl = 'https://voicer-lambda-app-staging.herokuapp.com';
+const dbUrl = 'http://localhost:4000'
 export { dbUrl };
