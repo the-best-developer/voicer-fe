@@ -20,7 +20,8 @@ export const getClientProfile = () => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: GET_CLIENT_PROFILE_FAILURE
+        type: GET_CLIENT_PROFILE_FAILURE,
+        payload: err
       });
     });
 };
