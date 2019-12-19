@@ -37,7 +37,9 @@ export const submitReviewReducer = (state = initialState, action) => {
         case SUBMIT_REVIEW_COMPLETED:
             return {
                 ...state,
-                success: false
+                error: "",
+                success: false,
+                submittingReview: false,
             }
         default: return state;
     }
