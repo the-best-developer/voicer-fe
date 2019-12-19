@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Login from './components/Login/Login';
@@ -26,8 +25,8 @@ class App extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <PrivateRoute path="/client" component={ClientNavigation} />
         <PrivateRoute exact path="/client" component={ClientHomePage} />
+        <PrivateRoute path="/client" component={ClientNavigation} />
         <Route exact path="/talent/apply" component={ApplyToJob} />
         <PrivateRoute exact path="/client/postjob" component={PostJob} />
         <PrivateRoute exact path="/client/profile" component={ClientProfile} />
