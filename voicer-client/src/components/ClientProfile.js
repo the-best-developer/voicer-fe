@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { getClientProfile, editClientProfile } from '../actions';
 import { Container, Row, Col, Card, CardBody, CardTitle, CardText, Form, FormGroup, Button, Label, Input } from 'reactstrap';
 import './ClientProfile.scss';
+import goldMic from '../images/Gold-Mic.png';
+import silverMic from '../images/Silver-Mic.png';
+import bronzeMic from '../images/Bronze-Mic.png';
 
 class ClientProfile extends React.Component {
     state = {
@@ -32,6 +35,16 @@ class ClientProfile extends React.Component {
         this.setState({ editing: false });
         console.log(changes);
     }
+
+    loyaltyLevel = level => {
+        if(level === 1) {
+            return <img className="loyaltyBadge" src={bronzeMic} alt="bronze-mic" />
+        } else if (level === 2) {
+            return <img className="loyaltyBadge" src={silverMic} alt="silver-mic" />
+        } else if (level ===3) {
+            return <img className="loyaltyBadge" src={goldMic} alt="gold-mic" />
+        }
+    }
     
     render() {
         return (
@@ -44,6 +57,9 @@ class ClientProfile extends React.Component {
                             </CardBody>
                             <CardBody>
                                 <CardText>{this.props.clientProfile ? this.props.clientProfile.email : 'You are not signed in.'}</CardText>
+                            </CardBody>
+                            <CardBody>
+                                {this.loyaltyLevel(this.props.clientProfile.loyaltyLevel)}
                             </CardBody>
                             <CardBody>
                                 <Form onSubmit={this.editProfile}>
