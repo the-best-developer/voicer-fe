@@ -146,9 +146,7 @@ class AppCard extends React.Component {
                     <StyledCardText>Message - {this.props.appData.clientMessage}</StyledCardText>
                   </StyledCardContent>
                 </StyledCardColumn>
-                {this.props.appData.status.toLowerCase()==="accepted" 
-                || this.props.appData.status.toLowerCase()==="declined"
-                || this.props.appData.status.toLowerCase()==="completed" ?
+                {this.props.appData.status.toLowerCase() !== "open" ?
                 <StyledButtonsDiv>
                   <StyledCardText>
                     {this.props.appData.status.toLowerCase()==="accepted" ?

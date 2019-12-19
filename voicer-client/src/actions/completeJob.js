@@ -10,10 +10,8 @@ export const complete = (jobId) => async dispatch => {
     await axiosWithAuth().put(`${dbUrl}/api/jobs/complete/${jobId}`)
     .then((res) => {
         dispatch({type: COMPLETE_JOB_SUCCESS})
-        console.log(res)
     })
     .catch((res) => { 
         dispatch({type: COMPLETE_JOB_FAILED})
-        console.log(res)
     })
 }
