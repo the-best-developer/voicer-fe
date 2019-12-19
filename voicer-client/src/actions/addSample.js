@@ -43,11 +43,10 @@ export const addSample = (file, fileName, fileType, userId) => dispatch => {
 
             axiosWithAuth().post(`${dbUrl}/api/talents/voice-samples/`, data)
               .then(result => {
-                console.log(">>>>> URL Added to database");
+                return result.data.message
               })
               .catch(error => {
                   alert(JSON.stringify(error));
-                  dispatch({ type: ADD_SAMPLE_FAIL, payload: error });
               });
         })
 };
