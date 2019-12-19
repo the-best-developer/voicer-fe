@@ -75,10 +75,17 @@ export {
 } from './apply';
 
 export {
-    GET_TALENT_START,
-    GET_TALENT_SUCCESS,
-    GET_TALENT_FAILED,
-    getTalent
+  COMPLETE_JOB_START,
+  COMPLETE_JOB_SUCCESS,
+  COMPLETE_JOB_FAILED,
+  complete
+} from './completeJob';
+
+export {
+  GET_TALENT_START,
+  GET_TALENT_SUCCESS,
+  GET_TALENT_FAILED,
+  getTalent
 } from './getTalent';
 
 export {
@@ -104,11 +111,20 @@ export {
 } from './postJob';
 
 export {
-    GET_JOBS_START,
-    GET_JOBS_SUCCESS,
-    GET_JOBS_FAILED,
-    getJobs,
-    getJobsBy
+  UPDATE_BALANCE_START,
+  UPDATE_CLIENT_BALANCE_SUCCESS,
+  UPDATE_TALENT_BALANCE_SUCCESS,
+  UPDATE_BALANCE_FAILED,
+  withdraw,
+  deposit
+} from './updateBalance';
+
+export {
+  GET_JOBS_START,
+  GET_JOBS_SUCCESS,
+  GET_JOBS_FAILED,
+  getJobs,
+  getJobsBy
 } from './getJobs';
 
 export { SET_JOB_ID, setJobId } from './setJobId';

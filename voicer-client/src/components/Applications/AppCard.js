@@ -146,12 +146,20 @@ class AppCard extends React.Component {
                     <StyledCardText>Message - {this.props.appData.clientMessage}</StyledCardText>
                   </StyledCardContent>
                 </StyledCardColumn>
-                {this.props.appData.status==="Accepted" || this.props.appData.status==="Declined" ?
+                {this.props.appData.status.toLowerCase() !== "open" ?
                 <StyledButtonsDiv>
                   <StyledCardText>
-                    {this.props.appData.status==="Accepted" ?
+                    {this.props.appData.status.toLowerCase()==="accepted" ?
                     "Job Offer Accepted!" :
-                    "Job was declined."
+                      null
+                    }
+                    {this.props.appData.status.toLowerCase()==="completed" ?
+                      "Job Completed!" :
+                      null
+                    }
+                    {this.props.appData.status.toLowerCase()==="declined" ?
+                      "Job was declined." :
+                      null
                     }
                   </StyledCardText>
                 </StyledButtonsDiv>

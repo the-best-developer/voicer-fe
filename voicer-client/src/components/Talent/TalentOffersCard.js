@@ -3,6 +3,7 @@ import { Card, CardBody, CardTitle, Collapse} from 'reactstrap';
 import { connect } from 'react-redux';
 import TalentOfferCard from './TalentOfferCard';
 import DeclineJob from '../DeclineJob';
+import CompleteJob from '../CompleteJob';
 import '../../styles/tjobofferlist.scss';
 
 class TalentOffersCard extends React.Component {
@@ -30,6 +31,12 @@ class TalentOffersCard extends React.Component {
         })
     }
 
+    toggleCompleteModal = () => {
+        this.setState({
+            completeModalIsOpen: !this.state.completeModalIsOpen
+        })
+    }
+
     render() {
         return (
         <>
@@ -52,7 +59,8 @@ class TalentOffersCard extends React.Component {
                         Status - {this.props.job.status}
                     </p>
                     <button onClick={() => this.setState({showOffers: !this.state.showOffers})} className="header-element">
-                        {this.props.job.status === "Hired" ? "Show Final Bid" : "Show Offers"}
+                        {this.props.job.status.toLowerCase() === "hired" ||
+                         this.props.job.status.toLowerCase() === "completed" ? "Show Final Bid" : "Show Offers"}
                     </button>
                 </>
             </div>
@@ -82,10 +90,18 @@ class TalentOffersCard extends React.Component {
                 style={{height: '100% !important'}}
             >
                 <p className="accepted-job-desc">
-                    You accepted this job for $
+                    You {this.state.sortedOffers[0].status.toLowerCase() === 'accepted' ? 'accepted' : 'completed'} this job for $
                     {this.state.sortedOffers.length > 0 ? this.state.sortedOffers[0].price : 0}
                     , great work!
                 </p>
+                {this.state.sortedOffers[0].status.toLowerCase() === 'accepted' ?
+                <CompleteJob
+                    toggle={this.toggleCompleteModal}
+                    isOpen={this.state.completeModalIsOpen}
+                    job={this.props.job}
+                    offer={this.state.sortedOffers ? this.state.sortedOffers[0] : null}
+                    userType="Talent"
+                /> : null }
             </Collapse>
             }
         </Card>

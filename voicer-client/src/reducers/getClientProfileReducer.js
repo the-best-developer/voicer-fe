@@ -1,7 +1,8 @@
 import {
     GET_CLIENT_PROFILE_START,
     GET_CLIENT_PROFILE_SUCCESS,
-    GET_CLIENT_PROFILE_FAILURE
+    GET_CLIENT_PROFILE_FAILURE,
+    UPDATE_CLIENT_BALANCE_SUCCESS
 } from '../actions';
 
 const initialState = {
@@ -26,6 +27,11 @@ export const getClientProfileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 gettingClientProfile: false,
+            }
+        case UPDATE_CLIENT_BALANCE_SUCCESS:
+            return {
+                ...state,
+                clientProfile: {...state.clientProfile[0], accountBalance: action.payload}
             }
         default:
             return state;

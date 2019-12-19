@@ -39,8 +39,9 @@ class ClientJobList extends Component {
     }
 
     render() {
-        const openJobs = this.props.jobs.filter(job => job.status !== "Hired")
-        const hiredJobs = this.props.jobs.filter(job => job.status !== "Hiring")
+        const openJobs = this.props.jobs.filter(job => 
+            job.status.toLowerCase() !== "hired" && job.status.toLowerCase() !== "completed")
+        const hiredJobs = this.props.jobs.filter(job => job.status.toLowerCase() !== "hiring")
         return (
             <MainDiv>
                 <h1>Hiring Jobs</h1>
@@ -52,7 +53,7 @@ class ClientJobList extends Component {
                         toggle={this.toggle}
                         applications={this.props.applications.filter(app => app.jobId === job.jobId)}
                     />)}
-                <h1>Hired Jobs</h1>
+                <h1>Hired/Completed Jobs</h1>
                 {hiredJobs.map(job =>
                     <ClientJobListCard
                         key={job.jobId}
