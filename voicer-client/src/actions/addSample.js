@@ -7,7 +7,7 @@ export const ADD_SAMPLE_START = 'ADD_SAMPLE_START';
 export const ADD_SAMPLE_SUCCESS = 'ADD_SAMPLE_SUCCESS';
 export const ADD_SAMPLE_FAIL = 'ADD_SAMPLE_FAIL';
 
-export const addSample = (file, fileName, fileType) => dispatch => {
+export const addSample = (file, fileName, fileType, userId) => dispatch => {
     dispatch({ type: ADD_SAMPLE_START });
     return axiosWithAuth()
         .post(`${dbUrl}/api/uploads`, {
@@ -18,7 +18,7 @@ export const addSample = (file, fileName, fileType) => dispatch => {
             let returnData = response.data.data.returnData;
             let signedRequest = returnData.signedRequest;
             let url = returnData.url;
-            console.log('Recieved a signed request ' + signedRequest);
+            console.log('Received a signed request ' + signedRequest);
 
             var options = {
                 headers: {
@@ -35,5 +35,19 @@ export const addSample = (file, fileName, fileType) => dispatch => {
                     alert(JSON.stringify(error));
                     dispatch({ type: ADD_SAMPLE_FAIL, payload: error });
                 });
-        });
+
+          return {url: url, userId: userId};
+        })
+        .then(voiceSampleData => {
+            const data = voiceSampleData;
+
+            axiosWithAuth().post(`${dbUrl}/api/talents/voice-samples/`, data)
+              .then(result => {
+                console.log(">>>>> URL Added to database");
+              })
+              .catch(error => {
+                  alert(JSON.stringify(error));
+                  dispatch({ type: ADD_SAMPLE_FAIL, payload: error });
+              });
+        })
 };

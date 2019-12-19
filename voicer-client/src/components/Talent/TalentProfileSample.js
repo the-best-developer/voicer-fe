@@ -24,7 +24,8 @@ class TalentProfileSample extends Component {
         let fileName = fileParts[0] + ' - ' + Date.now();
         let fileType = fileParts[1];
         console.log('Preparing the upload');
-        this.props.addSample(file, fileName, fileType);
+        let userId = this.props.userId;
+        this.props.addSample(file, fileName, fileType, userId);
     };
 
     render() {
