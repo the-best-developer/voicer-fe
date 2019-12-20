@@ -6,12 +6,22 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
+  Button,
+  Modal,
+  Form,
+  ModalHeader,
+  FormGroup,
+  Label,
+  Input
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Logo from '../images/logo-white.svg';
 import UserIcon from '../images/user.svg';
+import axiosWithAuth from '../components/axiosAuth';
+import jwt from 'jsonwebtoken';
+import { dbUrl } from '../actions';
+import { getClientProfile, deposit } from '../actions';
 
 const NavContainer = styled.div`
     display: flex;
@@ -44,6 +54,9 @@ const NavContainer = styled.div`
 `;
 
 const TertiaryNav = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     height: 9vh;
     background-color: rgb(159,164,195, 0.75);
@@ -82,16 +95,69 @@ const IconStyle = styled.img`
 const Divider = styled.div`
     height: 8vh;
     width: 1px;
-    margin: 0 5vw;
+    margin: 0 3vw;
     display:block; /* for use on default inline elements like span */
     overflow: hidden;
     background-color: #717F86;
 `;
 
+const DepositDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 3vw;
+`
+
+const AccountBalance = styled.span`
+  margin-right: 3vw;
+  color: white;
+`
+
+const DepositModal = styled(Modal)`
+  padding: 25px;
+  width: 50%;
+`
+
+const StyledModalHeader = styled(ModalHeader)`
+    margin: 25px;
+`
+
+const StyledForm = styled(Form)`
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const StyledButton = styled(Button)`
+    width: 50%;
+    margin: 0 auto;
+`
+const StyledFormGroup = styled(FormGroup)`
+    width: 100%;
+`
+const DepositButton = styled(Button)`
+  width: 50%;
+  margin: 0 auto;
+  background-color: #556080;
+`
 class ClientNavigation extends React.Component {
 
     constructor(props) {
       super(props)
+      this.state = {
+        client: {},
+        depositModalIsOpen: false,
+        depositAmount: 0
+      }
+    }
+
+    componentDidMount = async () => {
+      let userId = jwt.decode(localStorage.getItem('token')).userId;
+      await axiosWithAuth()
+        .get(`${dbUrl}/api/clients/${userId}`)
+        .then(res => this.setState({client: res.data[0]}))
     }
 
     logout = e => {
@@ -105,9 +171,42 @@ class ClientNavigation extends React.Component {
       this.props.history.push(`/client${route}`)
     }
 
+    toggleDepositModal = () => {
+      console.log("toggle")
+      this.setState({depositModalIsOpen: !this.state.depositModalIsOpen})
+    }
+
+    changeHandler = event => {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
+
+    clickHandler = () => {
+      this.props.deposit(this.state.client, this.state.depositAmount)
+    }
+
     render() {
         return (
             <NavContainer>
+              <DepositModal
+                isOpen={this.state.depositModalIsOpen}
+                toggle={this.toggleDepositModal}
+                centered={true}
+                size="lg"
+              >
+                <StyledModalHeader>Deposit Funds</StyledModalHeader>
+                <StyledForm className="ApplyToJob">
+                    <StyledFormGroup>
+                        <Label>Amount To Deposit:</Label>
+                        <Input type="number" onChange={this.changeHandler} name="depositAmount"></Input>
+                    </StyledFormGroup>
+                    <StyledButton onClick={this.clickHandler}>Deposit</StyledButton>
+                    {/* {this.props.postingApplication ? <p>... Posting Job ...</p> : null}
+                    {this.props.error ? <p>Error Posting Job</p> : null}
+                    {this.props.success ? <p>Congrats! You've Successfully Applied.</p> : null} */}
+                </StyledForm>
+              </DepositModal>
               <Navbar className="clientnavbar" expand="md">
                 <NavbarBrand href="/">
                     <AppLogo src={Logo} />
@@ -133,6 +232,14 @@ class ClientNavigation extends React.Component {
                   </Nav>
               </Navbar>
               <TertiaryNav>
+                <DepositDiv>
+                  <AccountBalance>
+                    {`Account Balance: $${this.state.client.accountBalance}`}
+                  </AccountBalance>
+                  <DepositButton onClick={this.toggleDepositModal}>
+                    Deposit
+                  </DepositButton>
+                </DepositDiv>
                 <div className="link-container">
                   <NavLink onClick={(e) => this.route('/talentlist', e)} className="tert-link">
                     Find Talent
@@ -151,4 +258,4 @@ const mapStateToProps = (state) => ({
   client: state.getClientProfileReducer.clientProfile
 })
 
-export default connect(mapStateToProps, {})(ClientNavigation);
+export default connect(mapStateToProps, { getClientProfile, deposit })(ClientNavigation);
