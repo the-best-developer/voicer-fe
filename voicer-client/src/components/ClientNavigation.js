@@ -183,6 +183,7 @@ class ClientNavigation extends React.Component {
     }
 
     clickHandler = () => {
+      console.log(this.state.depositAmount)
       this.props.deposit(this.state.client, this.state.depositAmount)
     }
 
@@ -196,7 +197,7 @@ class ClientNavigation extends React.Component {
                 size="lg"
               >
                 <StyledModalHeader>Deposit Funds</StyledModalHeader>
-                <StyledForm className="ApplyToJob">
+                <StyledForm className="depositModalForm">
                     <StyledFormGroup>
                         <Label>Amount To Deposit:</Label>
                         <Input type="number" onChange={this.changeHandler} name="depositAmount"></Input>
