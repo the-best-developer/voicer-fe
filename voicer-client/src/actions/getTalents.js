@@ -1,4 +1,5 @@
 import axiosWithAuth from '../components/axiosAuth';
+import { dbUrl } from "../actions";
 
 import {dbUrl} from './index'
 
@@ -10,7 +11,7 @@ export const getTalents = () => dispatch => {
     dispatch({ type: GET_TALENTS_START });
 
     return axiosWithAuth()
-        .get(`${dbUrl}/api/talents`)
+        .get(`${dbUrl}/api/talents/`)
         .then((res) => {
             dispatch({
                 type: GET_TALENTS_SUCCESS,

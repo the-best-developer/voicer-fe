@@ -127,6 +127,26 @@ export {
   getJobsBy
 } from './getJobs';
 
+// Review submit actions
+
+export {
+  SUBMIT_REVIEW_START,
+  SUBMIT_REVIEW_SUCCESS,
+  SUBMIT_REVIEW_FAILED,
+  SUBMIT_REVIEW_COMPLETED,
+  submitReview
+} from './submitReview';
+
+// Get reviews actions
+
+export {
+  GET_REVIEW_START,
+  GET_REVIEW_SUCCESS,
+  GET_REVIEW_FAILED
+} from './getReviews';
+
+
+
 export { SET_JOB_ID, setJobId } from './setJobId';
 
 const dbUrl = 'https://voicer-lambda-app.herokuapp.com';
