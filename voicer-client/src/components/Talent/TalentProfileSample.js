@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InputGroup, InputGroupText, InputGroupAddon, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addSample } from '../../actions/addSample';
 
@@ -10,6 +11,7 @@ class TalentProfileSample extends Component {
         this.state = {
             success: false,
             url: '',
+            description: '',
             error: false,
             errorMessage: ''
         };
@@ -18,6 +20,13 @@ class TalentProfileSample extends Component {
     handleChange = ev => {
         this.setState({ success: false, url: '' });
     };
+
+    changeHandler = event => {
+        this.setState({
+          [event.target.name]: event.target.value
+        });
+    };
+
     handleUpload = ev => {
         ev.preventDefault();
         let file = this.uploadInput.files[0];
@@ -54,6 +63,19 @@ class TalentProfileSample extends Component {
                     <h1 className="sampleTitle">UPLOAD VOICE SAMPLE</h1>
                     {this.props.uploadSuccess ? <SuccessMessage /> : null}
                     {this.props.uploadError ? <ErrorMessage /> : null}
+                    <div className="desDiv">
+                        <InputGroup size="sm">
+                            <InputGroupAddon addonType="prepend">
+                                <InputGroupText>Description</InputGroupText>
+                            </InputGroupAddon>
+                            <Input 
+                                onChange={this.changeHandler} 
+                                type="text" 
+                                name="description" 
+                                id="description" 
+                            />
+                        </InputGroup>
+                    </div>
                     <input
                         className="sampleInput"
                         onChange={this.handleChange}
