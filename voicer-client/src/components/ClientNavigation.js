@@ -222,7 +222,7 @@ class ClientNavigation extends React.Component {
                       <Divider />
                     </NavItem>
                     <NavItem>
-                      <NavLink className='username'>{this.props.client.firstName} {this.props.client.lastName}</NavLink>
+                      <NavLink className='username'>{this.state.client.firstName} {this.state.client.lastName}</NavLink>
                     </NavItem>
                     <NavItem>
                       <IconStyle src={UserIcon} />
