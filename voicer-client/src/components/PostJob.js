@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import axiosWithAuth from './axiosAuth';
 import Container from '../styles/styledComponents/Container';
 import styled from 'styled-components';
+import { dbUrl } from '../actions';
 
 const PostJobContainer = styled(Container)`
     min-height: 48vh;
@@ -45,7 +46,7 @@ class PostJob extends React.Component {
     handleSubmit = async event => {
         event.preventDefault()
 
-        const client = await axiosWithAuth().get(`https://voicer-lambda-app-staging.herokuapp.com/api/clients/${this.state.userId}`)
+        const client = await axiosWithAuth().get(`${dbUrl}/api/clients/${this.state.userId}`)
 
         this.props.postJob({
             jobTitle: this.state.jobTitle,
