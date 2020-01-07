@@ -172,7 +172,6 @@ class ClientNavigation extends React.Component {
     }
 
     toggleDepositModal = () => {
-      console.log("toggle")
       this.setState({depositModalIsOpen: !this.state.depositModalIsOpen})
     }
 
@@ -183,8 +182,9 @@ class ClientNavigation extends React.Component {
     }
 
     clickHandler = () => {
-      console.log(this.state.depositAmount)
       this.props.deposit(this.state.client, this.state.depositAmount)
+      this.setState({client: {...this.state.client, accountBalance: parseFloat(this.state.client.accountBalance) + parseFloat(this.state.depositAmount)}})
+      this.toggleDepositModal()
     }
 
     render() {
@@ -203,9 +203,6 @@ class ClientNavigation extends React.Component {
                         <Input type="number" onChange={this.changeHandler} name="depositAmount"></Input>
                     </StyledFormGroup>
                     <StyledButton onClick={this.clickHandler}>Deposit</StyledButton>
-                    {/* {this.props.postingApplication ? <p>... Posting Job ...</p> : null}
-                    {this.props.error ? <p>Error Posting Job</p> : null}
-                    {this.props.success ? <p>Congrats! You've Successfully Applied.</p> : null} */}
                 </StyledForm>
               </DepositModal>
               <Navbar className="clientnavbar" expand="md">
