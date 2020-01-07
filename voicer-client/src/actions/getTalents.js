@@ -1,5 +1,6 @@
 import axiosWithAuth from '../components/axiosAuth';
-import { dbUrl } from "../actions";
+
+import {dbUrl} from './index'
 
 export const GET_TALENTS_START = 'GET_TALENTS_START';
 export const GET_TALENTS_SUCCESS = 'GET_TALENTS_SUCCESS';

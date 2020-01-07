@@ -45,9 +45,7 @@ class PostJob extends React.Component {
 
     handleSubmit = async event => {
         event.preventDefault()
-
         const client = await axiosWithAuth().get(`${dbUrl}/api/clients/${this.state.userId}`)
-
         this.props.postJob({
             jobTitle: this.state.jobTitle,
             jobDescription: this.state.jobDescription,
