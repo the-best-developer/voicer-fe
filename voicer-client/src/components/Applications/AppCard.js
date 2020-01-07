@@ -6,6 +6,7 @@ import {getTalentByTalentId} from '../../actions/getTalent';
 import AcceptOffer from '../AcceptOffer';
 import DeclineJob from '../DeclineJob';
 import CounterOffer from '../CounterOffer';
+import ReviewModal from '../ReviewModal';
 import axiosWithAuth from '../axiosAuth';
 
  const StyledCard = styled.div`
@@ -83,7 +84,8 @@ class AppCard extends React.Component {
         talentData: {},
         counterModalIsOpen: false,
         declineModalIsOpen: false,
-        acceptModalIsOpen: false
+        acceptModalIsOpen: false,
+        reviewModalIsOpen: false
       }
     }
 
@@ -107,6 +109,12 @@ class AppCard extends React.Component {
     toggleAcceptModal = () => {
       this.setState({
           acceptModalIsOpen: !this.state.acceptModalIsOpen
+      })
+    }
+
+    toggleReviewModal = () => {
+      this.setState({
+          reviewModalIsOpen: !this.state.reviewModalIsOpen
       })
     }
 
@@ -135,6 +143,14 @@ class AppCard extends React.Component {
               job={this.props.job}
               userType='Client'
             />
+            <ReviewModal 
+              toggle={this.toggleReviewModal}
+              isOpen={this.state.reviewModalIsOpen}
+              authorId= {this.props.appData.clientId}
+              recipientId= {this.props.appData.talentId}
+              jobId= {this.props.appData.jobId}
+              userType='Client'
+            />
             <StyledCardBody>
                 <StyledCardColumn>
                   <StyledCardContent>
@@ -154,7 +170,16 @@ class AppCard extends React.Component {
                       null
                     }
                     {this.props.appData.status.toLowerCase()==="completed" ?
-                      "Job Completed!" :
+                    <StyledButtonsDiv>
+                      <StyledButtonDiv>
+                          <StyledButton
+                            onClick={this.toggleReviewModal}
+                          >
+                            Review
+                          </StyledButton>
+                      </StyledButtonDiv>
+                    </StyledButtonsDiv>
+                    :
                       null
                     }
                     {this.props.appData.status.toLowerCase()==="declined" ?

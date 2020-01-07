@@ -8,7 +8,7 @@ export const getTalents = () => dispatch => {
     dispatch({ type: GET_TALENTS_START });
 
     return axiosWithAuth()
-        .get(`https://voicer-lambda-app-staging.herokuapp.com/api/talents/`)
+        .get(`https://voicer-lambda-app.herokuapp.com/api/talents/`)
         .then((res) => {
             dispatch({
                 type: GET_TALENTS_SUCCESS,

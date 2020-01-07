@@ -18,13 +18,13 @@ export const submitReview = review => dispatch => {
         type: SUBMIT_REVIEW_SUCCESS,
         payload: res.data
       });
-      setTimeout(() => dispatch({type: SUBMIT_REVIEW_COMPLETED}), 3000)
+      //setTimeout(() => dispatch({type: SUBMIT_REVIEW_COMPLETED}), 3000)
     })
     .catch(err => {
       dispatch({
         type: SUBMIT_REVIEW_FAILED,
         payload: err
       });
-      setTimeout(() => dispatch({type: SUBMIT_REVIEW_COMPLETED}), 3000)
+      //setTimeout(() => dispatch({type: SUBMIT_REVIEW_COMPLETED}), 3000)
     });
 };

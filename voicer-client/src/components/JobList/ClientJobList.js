@@ -65,6 +65,7 @@ class ClientJobList extends Component {
                 <AppList
                     toggle={this.toggle}
                     isOpen={this.state.modalIsOpen}
+                    clientId={this.props.clientId}
                     clientName={this.props.clientName}
                     activeJob={this.state.activeJob}
                     apps={this.props.applications.filter(app => app.jobId === this.state.activeJob.jobId)}

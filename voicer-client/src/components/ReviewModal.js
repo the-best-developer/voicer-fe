@@ -33,10 +33,11 @@ class ReviewModal extends React.Component {
 
     // Call the submitReview action creator
     clickHandler = () => {
+        console.log(this.props)
         this.props.submitReview({
-            authorId: 1, //this.props.
-            recipientId: 2,
-            jobId: 1,
+            authorId: this.props.authorId,
+            recipientId: this.props.recipientId,
+            jobId: this.props.jobId,
             rating: this.state.reviewRating,
             message: this.state.reviewText
         })
@@ -45,7 +46,7 @@ class ReviewModal extends React.Component {
     render() {
         return(
             <Modal
-                isOpen={this.props.isOpen}
+                isOpen={(this.props.success) ? 0 : this.props.isOpen}
                 toggle={this.props.toggle}
                 centered={true}
             >
