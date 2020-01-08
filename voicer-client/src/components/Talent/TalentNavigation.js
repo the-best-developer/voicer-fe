@@ -5,12 +5,23 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
- } from 'reactstrap';
-
+  NavLink,
+  Button,
+  Modal,
+  Form,
+  ModalHeader,
+  FormGroup,
+  Label,
+  Input
+} from 'reactstrap';
+import {Link} from 'react-router-dom';
 import Logo from '../../images/logo-white.svg';
 import UserIcon from '../../images/user.svg';
 import { connect } from 'react-redux';
+import axiosWithAuth from '../../components/axiosAuth';
+import jwt from 'jsonwebtoken';
+import { dbUrl } from '../../actions';
+import { deposit } from '../../actions';
 
 const NavContainer = styled.div`
     display: flex;
@@ -43,13 +54,16 @@ const NavContainer = styled.div`
 `;
 
 const TertiaryNav = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     height: 9vh;
     background-color: rgb(159,164,195, 0.75);
     position: absolute;
     top: 10.5vh;
     z-index: 4;
-    div {
+    .link-container {
       height: 9vh;
       display: flex;
       justify-content: flex-end;
@@ -87,10 +101,65 @@ const Divider = styled.div`
     background-color: #717F86;
 `;
 
+const DepositDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 3vw;
+`
+
+const AccountBalance = styled.span`
+  margin-right: 3vw;
+  color: white;
+`
+
+const DepositModal = styled(Modal)`
+  padding: 25px;
+  width: 50%;
+`
+
+const StyledModalHeader = styled(ModalHeader)`
+    margin: 25px;
+`
+
+const StyledForm = styled(Form)`
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const StyledButton = styled(Button)`
+    width: 50%;
+    margin: 0 auto;
+`
+const StyledFormGroup = styled(FormGroup)`
+    width: 100%;
+`
+const DepositButton = styled(Button)`
+  width: 50%;
+  margin: 0 auto;
+  background-color: #556080;
+`
+
 class TalentNavigation extends React.Component {
 
     constructor(props) {
       super(props)
+      this.state = {
+        talent: {},
+        depositModalIsOpen: false,
+        depositAmount: 0
+      }
+    }
+
+    componentDidMount = async () => {
+      let userId = jwt.decode(localStorage.getItem('token')).userId;
+      await axiosWithAuth()
+        .get(`${dbUrl}/api/talents/profile/${userId}`)
+        .then(res => this.setState({talent: res.data[0]}))
+      console.log(this.state.talent)
     }
 
     logout = e => {
@@ -104,13 +173,40 @@ class TalentNavigation extends React.Component {
       this.props.history.push(`/talent${route}`)
     }
 
+    toggleDepositModal = () => {
+      this.setState({depositModalIsOpen: !this.state.depositModalIsOpen})
+    }
+
+    changeHandler = event => {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
+
+    clickHandler = () => {
+      this.props.deposit(this.state.talent, this.state.depositAmount)
+      this.setState({talent: {...this.state.talent, accountBalance: parseFloat(this.state.talent.accountBalance) + parseFloat(this.state.depositAmount)}})
+      this.toggleDepositModal()
+    }
+
     render() {
-      const name =
-        this.props.talent.length > 0 ?
-        this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName :
-        "John Smith"
         return (
             <NavContainer>
+              <DepositModal
+                isOpen={this.state.depositModalIsOpen}
+                toggle={this.toggleDepositModal}
+                centered={true}
+                size="lg"
+              >
+                <StyledModalHeader>Deposit Funds</StyledModalHeader>
+                <StyledForm className="depositModalForm">
+                    <StyledFormGroup>
+                        <Label>Amount To Deposit:</Label>
+                        <Input type="number" onChange={this.changeHandler} name="depositAmount"></Input>
+                    </StyledFormGroup>
+                    <StyledButton onClick={this.clickHandler}>Deposit</StyledButton>
+                </StyledForm>
+              </DepositModal>
               <Navbar className="talentnavbar" expand="md">
                 <NavbarBrand href="/">
                     <AppLogo src={Logo} />
@@ -128,7 +224,7 @@ class TalentNavigation extends React.Component {
                       <Divider />
                     </NavItem>
                     <NavItem>
-                      <NavLink className='username'>{name}</NavLink>
+                      <NavLink className='username'>{this.state.talent.firstName} {this.state.talent.lastName}</NavLink>
                     </NavItem>
                     <NavItem>
                       <IconStyle src={UserIcon} />
@@ -136,7 +232,15 @@ class TalentNavigation extends React.Component {
                   </Nav>
               </Navbar>
               <TertiaryNav>
-                <div>
+                <DepositDiv>
+                  <AccountBalance>
+                    {`Account Balance: $${this.state.talent.accountBalance}`}
+                  </AccountBalance>
+                  <DepositButton onClick={this.toggleDepositModal}>
+                    Deposit
+                  </DepositButton>
+                </DepositDiv>
+                <div className="link-container">
                   <NavLink onClick={(e) => this.route('/applications', e)} className='tert-link'>
                     Applications
                   </NavLink>
@@ -153,4 +257,4 @@ const mapStateToProps = (state) => ({
   talent: state.getTalentReducer.talent
 })
 
-export default connect(mapStateToProps, null)(TalentNavigation);
+export default connect(mapStateToProps, {deposit})(TalentNavigation);

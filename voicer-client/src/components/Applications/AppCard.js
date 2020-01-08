@@ -189,7 +189,7 @@ class AppCard extends React.Component {
                   </StyledCardText>
                 </StyledButtonsDiv>
                 :
-                !this.props.appData.isClientOffer && this.props.recent ?
+                !this.props.appData.isClientOffer && this.props.recent && !"completedhired".includes(this.props.job.status.toLowerCase()) ?
                 <StyledButtonsDiv>
                   <StyledButtonDiv>
                       <StyledButton
@@ -215,7 +215,9 @@ class AppCard extends React.Component {
                 </StyledButtonsDiv>
                 :
                 <StyledButtonsDiv>
-                  <StyledCardText>{this.props.recent ? "Pending" : "Previous Offer"}</StyledCardText>
+                  {this.props.job.status.toLowerCase() === "completed" ? 
+                  <StyledCardText>Job Completed</StyledCardText> :
+                  <StyledCardText>{this.props.recent ? "Pending" : "Previous Offer"}</StyledCardText>}
                 </StyledButtonsDiv>
                 }
             </StyledCardBody>

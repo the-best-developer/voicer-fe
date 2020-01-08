@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addSample } from '../../actions/addSample';
 
+import '../../styles/talent-samples.scss';
+
 class TalentProfileSample extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +26,8 @@ class TalentProfileSample extends Component {
         let fileName = fileParts[0] + ' - ' + Date.now();
         let fileType = fileParts[1];
         console.log('Preparing the upload');
-        this.props.addSample(file, fileName, fileType);
+        let userId = this.props.userId;
+        this.props.addSample(file, fileName, fileType, userId);
     };
 
     render() {
@@ -46,21 +49,22 @@ class TalentProfileSample extends Component {
             </div>
         );
         return (
-            <div className="App">
-                <center>
-                    <h1>UPLOAD A FILE</h1>
+            <div className="div">
+                <div className="sampleDiv">
+                    <h1 className="sampleTitle">UPLOAD VOICE SAMPLE</h1>
                     {this.props.uploadSuccess ? <SuccessMessage /> : null}
                     {this.props.uploadError ? <ErrorMessage /> : null}
                     <input
+                        className="sampleInput"
                         onChange={this.handleChange}
                         ref={ref => {
                             this.uploadInput = ref;
                         }}
                         type="file"
+                        accept=".mp3"
                     />
-                    <br />
-                    <button onClick={this.handleUpload}>UPLOAD</button>
-                </center>
+                </div>
+                <button className="sampleButton" onClick={this.handleUpload}>UPLOAD</button>
             </div>
         );
     }

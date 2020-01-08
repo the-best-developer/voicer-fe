@@ -17,7 +17,7 @@ class AcceptOffer extends React.Component {
 
     validate = async() => {
         let name = 
-        this.props.talent.length > 0 ?
+        !this.props.clientName ?
         this.props.talent[0].firstName + ' ' + this.props.talent[0].lastName :
         this.props.clientName
         name.toLowerCase() === this.state.checkboxText.toLowerCase() && this.state.checkbox ? await this.setState({validated: true}) : await this.setState({validated: false})

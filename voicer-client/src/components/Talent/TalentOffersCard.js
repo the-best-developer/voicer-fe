@@ -5,6 +5,8 @@ import TalentOfferCard from './TalentOfferCard';
 import DeclineJob from '../DeclineJob';
 import CompleteJob from '../CompleteJob';
 import '../../styles/tjobofferlist.scss';
+import jwt from 'jsonwebtoken';
+import ReviewModal from '../ReviewModal';
 
 class TalentOffersCard extends React.Component {
     constructor(props) {
@@ -13,7 +15,9 @@ class TalentOffersCard extends React.Component {
             sortedOffers: [],
             recentOffer: {},
             showOffers: false,
-            declineModalIsOpen: false
+            declineModalIsOpen: false,
+            reviewModalIsOpen: false,
+            userId: jwt.decode(localStorage.getItem("token")).userId
         }
     }
 
@@ -37,9 +41,23 @@ class TalentOffersCard extends React.Component {
         })
     }
 
+    toggleReviewModal = () => {
+        this.setState({
+            reviewModalIsOpen: !this.state.reviewModalIsOpen
+        })
+      }
+
     render() {
         return (
         <>
+        <ReviewModal 
+              toggle={this.toggleReviewModal}
+              isOpen={this.state.reviewModalIsOpen}
+              authorId= {this.state.userId}
+              recipientId= {this.props.job.clientId}
+              jobId= {this.props.job.jobId}
+              userType='Client'
+            />
         {this.state.sortedOffers.length > 0 ?
         this.state.sortedOffers[0].status !== "Declined" ?
 
@@ -62,8 +80,19 @@ class TalentOffersCard extends React.Component {
                         {this.props.job.status.toLowerCase() === "hired" ||
                          this.props.job.status.toLowerCase() === "completed" ? "Show Final Bid" : "Show Offers"}
                     </button>
+                    {this.props.job.status.toLowerCase() === "completed" && 
+                        <button onClick={() => this.setState({reviewModalIsOpen: !this.state.reviewModalIsOpen})} className="header-element">
+                        Review
+                    </button>
+                    }
+                    
                 </>
             </div>
+            {this.props.job.status.toLowerCase() === "completed" &&
+                <div>
+                test
+                </div>
+            }
             {this.props.job.status === "Hiring" ?
             <Collapse
                 isOpen={this.state.showOffers}
