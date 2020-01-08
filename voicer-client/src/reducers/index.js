@@ -13,6 +13,7 @@ import { getJobOffersReducer } from './getJobOffersReducer';
 import { languageReducer } from './languageReducer';
 import { accentReducer } from './accentReducer';
 import { sampleReducer } from './sampleReducer';
+import { getVoiceSamplesReducer } from './getVoiceSamplesReducer';
 
 export default combineReducers({
   registerReducer,
@@ -28,5 +29,6 @@ export default combineReducers({
   getJobOffersReducer,
   languageReducer,
   accentReducer,
-  sampleReducer
+  sampleReducer,
+  getVoiceSamplesReducer
 });

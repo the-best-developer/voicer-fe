@@ -202,6 +202,9 @@ class TalentProfile extends React.Component {
             Save Profile
           </Button>
           <TalentProfileSample userId={this.state.userId} />
+
+              <p>Files here (in TalentProfile)</p>
+
         </Form>
       </div>
     );
@@ -211,7 +214,8 @@ class TalentProfile extends React.Component {
 const mapStateToProps = state => ({
   languageOptions: state.languageReducer.languages,
   accentOptions: state.accentReducer.accents,
-  talent: state.getTalentReducer.talent
+  talent: state.getTalentReducer.talent,
+  voiceSamples: state.getVoiceSamplesReducer.samples
 });
 
 export default connect(mapStateToProps, {

@@ -87,6 +87,11 @@ class TalentProfileSample extends Component {
                     />
                 </div>
                 <button className="sampleButton" onClick={this.handleUpload}>UPLOAD</button>
+
+
+
+
+
             </div>
         );
     }
