@@ -53,11 +53,11 @@ class TalentProfile extends React.Component {
     this.props.getTalent(this.state.userId).then(res => this.setState({talent: this.props.talent[0]}))
     this.props.getLanguages().then(this.modifyLanguage);
     this.props.getAccents().then(this.modifyAccents);
-    this.props.getVoiceSamples()
+    this.props.getVoiceSamples(jwt.decode(localStorage.getItem('token')).userId)
   }
 
   refreshSamples = () => {
-    return this.props.getVoiceSamples()
+    return this.props.getVoiceSamples(jwt.decode(localStorage.getItem('token')).userId)
   }
 
   modifyLanguage = () => {
@@ -228,11 +228,10 @@ class TalentProfile extends React.Component {
           </Button>
           <TalentProfileSample refreshSamples={this.refreshSamples} userId={this.state.userId} />
 
-              <h2>Voice Samples</h2>
-
-      {
-        this.props.voiceSamples.map(sample => <VoiceSample sample={sample} />)
-      }
+          <div className="sampleDiv">
+            <h2>Voice Samples</h2>
+            { this.props.voiceSamples.map(sample => <VoiceSample sample={sample} />) }
+          </div>
 
         </Form>
       </div>

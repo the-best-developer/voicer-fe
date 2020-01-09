@@ -6,9 +6,7 @@ export const GET_VOICE_SAMPLES_START = "GET_VOICE_SAMPLES_START";
 export const GET_VOICE_SAMPLES_SUCCESS = "GET_VOICE_SAMPLES_SUCCESS";
 export const GET_VOICE_SAMPLES_FAILURE = "GET_VOICE_SAMPLES_SUCCESS";
 
-export const getVoiceSamples = () => dispatch => {
-
-  let userId = jwt.decode(localStorage.getItem('token')).userId;
+export const getVoiceSamples = (userId) => dispatch => {
 
   dispatch({ type: GET_VOICE_SAMPLES_START })
 
@@ -19,6 +17,7 @@ export const getVoiceSamples = () => dispatch => {
               type: GET_VOICE_SAMPLES_SUCCESS,
               payload: res.data
             })
+            return res.data
           })
           .catch(err => {
             dispatch({
