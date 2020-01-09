@@ -155,7 +155,7 @@ export {
 
 export { SET_JOB_ID, setJobId } from './setJobId';
 
-// const dbUrl = 'https://voicer-lambda-app.herokuapp.com';
-const dbUrl = 'http://localhost:4000';
+const dbUrl = 'https://voicer-lambda-app.herokuapp.com';
+// const dbUrl = 'http://localhost:4000';
 
 export { dbUrl };
