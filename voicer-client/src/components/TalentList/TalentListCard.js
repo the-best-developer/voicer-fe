@@ -146,10 +146,10 @@ const TalentListCard = props => {
 
                 <StyledCardDetail>
                   <DetailLabel>
-                    Email
+                    Loyalty Level
                   </DetailLabel>
                   <DetailItem>
-                    {props.talentData.email}
+                    {props.talentData.loyaltyLevel}
                   </DetailItem>
                 </StyledCardDetail>
               </StyledCardDetails>

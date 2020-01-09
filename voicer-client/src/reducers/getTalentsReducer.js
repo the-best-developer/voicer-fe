@@ -26,7 +26,7 @@ export const getTalentsReducer = (state = initialState, action) => {
         ...state,
         gettingTalents: false,
         error: null,
-        talents: action.payload
+        talents: action.payload.filter(talent => talent.firstName !== "Admin")
       }
     }
 

@@ -17,6 +17,9 @@ const HomePage = styled.div`
     min-height: 100%;
     display: flex;
     flex-direction: row;
+    .btn-orange.btn-centered {
+        margin-bottom: 5vh !important;
+    }
 `;
 
 class ClientHomePage extends React.Component {
