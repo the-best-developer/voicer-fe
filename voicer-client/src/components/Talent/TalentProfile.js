@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import jwt from 'jsonwebtoken';
 import { getLanguages, addTalentLanguage } from '../../actions/language';
 import { getAccents, addTalentAccent } from '../../actions/accent';
+import { getVoiceSamples } from '../../actions/getVoiceSamples';
 import { addTalentBio } from '../../actions/talentBio';
 import makeAnimated from 'react-select/animated';
 import TalentProfileSample from './TalentProfileSample';
+import VoiceSample from './VoiceSample';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../styles/talent-profile.css';
 
@@ -35,7 +37,8 @@ class TalentProfile extends React.Component {
       accentOptions: [],
       languages: [],
       accents: [],
-      biography: ''
+      biography: '',
+      voiceSamples: []
     };
   }
 
@@ -44,6 +47,11 @@ class TalentProfile extends React.Component {
   componentDidMount() {
     this.props.getLanguages().then(this.modifyLanguage);
     this.props.getAccents().then(this.modifyAccents);
+    this.props.getVoiceSamples()
+  }
+
+  refreshSamples = () => {
+    return this.props.getVoiceSamples()
   }
 
   modifyLanguage = () => {
@@ -201,9 +209,13 @@ class TalentProfile extends React.Component {
           >
             Save Profile
           </Button>
-          <TalentProfileSample userId={this.state.userId} />
+          <TalentProfileSample refreshSamples={this.refreshSamples} userId={this.state.userId} />
 
-              <p>Files here (in TalentProfile)</p>
+              <h2>Voice Samples</h2>
+
+      {
+        this.props.voiceSamples.map(sample => <VoiceSample sample={sample} />)
+      }
 
         </Form>
       </div>
@@ -223,5 +235,6 @@ export default connect(mapStateToProps, {
   getLanguages,
   addTalentAccent,
   addTalentLanguage,
-  addTalentBio
+  addTalentBio,
+  getVoiceSamples
 })(TalentProfile);

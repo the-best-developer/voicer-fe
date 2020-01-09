@@ -1,11 +1,15 @@
 import axiosWithAuth from '../components/axiosAuth';
 import { dbUrl } from './index';
+import jwt from 'jsonwebtoken';
 
 export const GET_VOICE_SAMPLES_START = "GET_VOICE_SAMPLES_START";
 export const GET_VOICE_SAMPLES_SUCCESS = "GET_VOICE_SAMPLES_SUCCESS";
 export const GET_VOICE_SAMPLES_FAILURE = "GET_VOICE_SAMPLES_SUCCESS";
 
-export const getVoiceSamples = userId => dispatch => {
+export const getVoiceSamples = () => dispatch => {
+
+  let userId = jwt.decode(localStorage.getItem('token')).userId;
+
   dispatch({ type: GET_VOICE_SAMPLES_START })
 
   return axiosWithAuth()

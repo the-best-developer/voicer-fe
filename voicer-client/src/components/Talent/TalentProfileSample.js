@@ -27,16 +27,20 @@ class TalentProfileSample extends Component {
         });
     };
 
-    handleUpload = ev => {
+    handleUpload = async (ev) => {
         ev.preventDefault();
         let file = this.uploadInput.files[0];
         // Split the filename to get the name and type
         let fileParts = this.uploadInput.files[0].name.split('.');
         let fileName = fileParts[0] + ' - ' + Date.now();
         let fileType = fileParts[1];
+        let description = this.state.description;
         console.log('Preparing the upload');
         let userId = this.props.userId;
-        this.props.addSample(file, fileName, fileType, userId);
+        await this.props.addSample(file, fileName, fileType, userId, description)
+        await setTimeout(() => this.props.uploadSuccess ? 
+            this.props.refreshSamples() : setTimeout(() => this.props.refreshSamples(), 3750)
+        , 3750) 
     };
 
     render() {

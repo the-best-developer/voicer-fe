@@ -7,7 +7,7 @@ export const ADD_SAMPLE_START = 'ADD_SAMPLE_START';
 export const ADD_SAMPLE_SUCCESS = 'ADD_SAMPLE_SUCCESS';
 export const ADD_SAMPLE_FAIL = 'ADD_SAMPLE_FAIL';
 
-export const addSample = (file, fileName, fileType, userId) => dispatch => {
+export const addSample = (file, fileName, fileType, userId, description) => dispatch => {
     dispatch({ type: ADD_SAMPLE_START });
     return axiosWithAuth()
         .post(`${dbUrl}/api/uploads`, {
@@ -40,6 +40,7 @@ export const addSample = (file, fileName, fileType, userId) => dispatch => {
         })
         .then(voiceSampleData => {
             const data = voiceSampleData;
+            data.description = description
 
             axiosWithAuth().post(`${dbUrl}/api/talents/voice-samples/`, data)
               .then(result => {
