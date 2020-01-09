@@ -5,6 +5,7 @@ import {
     getReceivedReviews
 } from '../actions';
 import Container from '../styles/styledComponents/Container';
+import ReviewCard from './ReviewCard';
 import styled from 'styled-components'
 
 const ReviewsContainer = styled(Container)`
@@ -23,21 +24,17 @@ class ReviewList extends React.Component {
     }
 
     componentDidMount() {
-        getAuthoredReviews();
-        getReceivedReviews();
+        this.props.getReceivedReviews();
+        this.props.getAuthoredReviews();
     }
 
     render() {
         return (
             <ReviewsContainer>
                 <ReviewType>Received Reviews</ReviewType>
-                    {this.props.authoredReviews.map((review, index) => {
-                        return <h1>Thing</h1>
-                    })}
+                {this.props.receivedReviews.map(review => <ReviewCard authored={false} review={review} />)}
                 <ReviewType>Authored Reviews</ReviewType>
-                    {this.props.receivedReviews.map((review, index) => {
-                        return <h1>Thing</h1>
-                    })}
+                {this.props.authoredReviews.map(review => <ReviewCard authored={true} review={review} />)}
             </ReviewsContainer>
         );
     }

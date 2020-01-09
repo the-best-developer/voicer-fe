@@ -16,7 +16,8 @@ const initialState = {
 }
 
 export const getReviewsReducer = (state = initialState, action) => {
-    switch (action) {
+    console.log(action.payload)
+    switch (action.type) {
         case GET_AUTHORED_REVIEWS_START:
             return {
                 ...state,

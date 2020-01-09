@@ -7,12 +7,14 @@ export const GET_AUTHORED_REVIEWS_START = "GET_AUTHORED_REVIEWS_START";
 export const GET_AUTHORED_REVIEWS_SUCCESS = "GET_AUTHORED_REVIEWS_SUCCESS";
 export const GET_AUTHORED_REVIEWS_FAILURE = "GET_AUTHORED_REVIEWS_FAILURE";
 
-export const GET_RECEIVED_REVIEWS_START = "GET_AUTHORED_REVIEWS_START";
-export const GET_RECEIVED_REVIEWS_SUCCESS = "GET_AUTHORED_REVIEWS_SUCCESS";
-export const GET_RECEIVED_REVIEWS_FAILURE = "GET_AUTHORED_REVIEWS_FAILURE";
+export const GET_RECEIVED_REVIEWS_START = "GET_RECEIVED_REVIEWS_START";
+export const GET_RECEIVED_REVIEWS_SUCCESS = "GET_RECEIVED_REVIEWS_SUCCESS";
+export const GET_RECEIVED_REVIEWS_FAILURE = "GET_RECEIVED_REVIEWS_FAILURE";
 
 export const getAuthoredReviews = () => dispatch => {
     let authorId = jwt.decode(localStorage.getItem("token")).userId;
+    console.log(localStorage.getItem("token"));
+    console.log(authorId);
     dispatch({ type: GET_AUTHORED_REVIEWS_START });
     axiosWithAuth()
         .get(`${dbUrl}/api/reviews/authored/${authorId}`)
@@ -32,7 +34,9 @@ export const getAuthoredReviews = () => dispatch => {
 
 
 export const getReceivedReviews = () => dispatch => {
-    let recipientId = jwt.decode(localStorage).getItem("token").userId;
+    let recipientId = jwt.decode(localStorage.getItem("token")).userId;
+    console.log(localStorage.getItem("token"));
+    console.log(recipientId);
     dispatch({ type: GET_RECEIVED_REVIEWS_START });
     axiosWithAuth()
         .get(`${dbUrl}/api/reviews/received/${recipientId}`)
