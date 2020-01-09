@@ -6,12 +6,16 @@ import jwt from 'jsonwebtoken';
 import { getLanguages, addTalentLanguage } from '../../actions/language';
 import { getAccents, addTalentAccent } from '../../actions/accent';
 import { getVoiceSamples } from '../../actions/getVoiceSamples';
+import { getTalent } from '../../actions';
 import { addTalentBio } from '../../actions/talentBio';
 import makeAnimated from 'react-select/animated';
 import TalentProfileSample from './TalentProfileSample';
 import VoiceSample from './VoiceSample';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../styles/talent-profile.css';
+import goldMic from '../../images/Gold-Mic.png';
+import silverMic from '../../images/Silver-Mic.png';
+import bronzeMic from '../../images/Bronze-Mic.png';
 
 const genderOptions = [
   { value: 'male', label: 'Male' },
@@ -31,6 +35,7 @@ class TalentProfile extends React.Component {
 
     this.state = {
       userId: jwt.decode(localStorage.getItem('token')).userId,
+      talent: {},
       voiceGender: '',
       voiceAge: '',
       languageOptions: [],
@@ -45,6 +50,7 @@ class TalentProfile extends React.Component {
   //On Mount, lang/accents are pulled from back-end and added to store, then
   //modified to a format that the form fields can use and put into state
   componentDidMount() {
+    this.props.getTalent(this.state.userId).then(res => this.setState({talent: this.props.talent[0]}))
     this.props.getLanguages().then(this.modifyLanguage);
     this.props.getAccents().then(this.modifyAccents);
     this.props.getVoiceSamples()
@@ -148,10 +154,21 @@ class TalentProfile extends React.Component {
     );
   };
 
+  loyaltyLevel = level => {
+    if(level === 1) {
+        return <img className="loyaltyBadge" src={bronzeMic} alt="bronze-mic" />
+    } else if (level === 2) {
+        return <img className="loyaltyBadge" src={silverMic} alt="silver-mic" />
+    } else if (level ===3) {
+        return <img className="loyaltyBadge" src={goldMic} alt="gold-mic" />
+    }
+}
+
   render() {
     return (
       <div style={{ marginTop: '21vh' }} className="TalentProfile">
         <h1 className="title">TALENT PROFILE</h1>
+        {this.loyaltyLevel(this.state.talent.loyaltyLevel)}
         <Form className="ProfileForm">
           <FormGroup tag="fieldset">
             <Label for="genderSelect">Select Voice Gender</Label>
@@ -233,6 +250,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getAccents,
   getLanguages,
+  getTalent,
   addTalentAccent,
   addTalentLanguage,
   addTalentBio,

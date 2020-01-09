@@ -17,6 +17,9 @@ const HomePage = styled.div`
     min-height: 100%;
     display: flex;
     flex-direction: row;
+    .btn-orange.btn-centered {
+        margin-bottom: 5vh !important;
+    }
 `;
 
 class ClientHomePage extends React.Component {
@@ -24,17 +27,18 @@ class ClientHomePage extends React.Component {
         super(props)
         this.state = {
             userId: jwt.decode(localStorage.getItem("token")).userId,
-            applications: []
+            applications: [],
+            client: {}
         }
     }
 
     componentDidMount = async () => {
         await this.props.getClientProfile(this.state.userId)
         await this.setState({client: this.props.client})
-        await this.props.getJobsBy(this.props.client.clientId)
+        await this.props.getJobsBy(this.state.client.clientId)
         await this.props.dataToFilter(this.props.jobs)
         await this.props.filterData()
-        await this.props.getApplicationsByClientId(this.props.client.clientId)
+        await this.props.getApplicationsByClientId(this.state.client.clientId)
         this.setState({applications: this.props.applications})
     }
 
@@ -46,8 +50,8 @@ class ClientHomePage extends React.Component {
                     {this.props.jobs.length === 0 ? <ClientWelcome /> :
                         <ClientJobList
                             jobs={this.props.filteredData}
-                            clientId={this.props.client.clientId}
-                            clientName={this.props.client.firstName + ' ' + this.props.client.lastName}
+                            clientId={this.state.client.clientId}
+                            clientName={this.state.client.firstName + ' ' + this.state.client.lastName}
                             applications={this.state.applications}
                         />
                     }

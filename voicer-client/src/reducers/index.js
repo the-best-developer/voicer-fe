@@ -14,6 +14,8 @@ import { languageReducer } from './languageReducer';
 import { accentReducer } from './accentReducer';
 import { sampleReducer } from './sampleReducer';
 import { getVoiceSamplesReducer } from './getVoiceSamplesReducer';
+import { submitReviewReducer } from './submitReviewReducer';
+import { getReviewsReducer } from './getReviewsReducer';
 
 export default combineReducers({
   registerReducer,
@@ -30,5 +32,7 @@ export default combineReducers({
   languageReducer,
   accentReducer,
   sampleReducer,
-  getVoiceSamplesReducer
+  getVoiceSamplesReducer,
+  submitReviewReducer,
+  getReviewsReducer
 });

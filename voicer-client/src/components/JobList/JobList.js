@@ -49,7 +49,8 @@ class JobList extends Component {
     }
 
     render() {
-        const jobs = this.props.jobs.filter(job => job.status !== "Hired")
+        const jobs = this.props.jobs.filter(job => 
+            job.status.toLowerCase() !== "hired" && job.status.toLowerCase() !== "completed")
         return (
             <MainDiv>
                 {jobs.map(job =>

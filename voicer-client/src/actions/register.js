@@ -48,7 +48,7 @@ export const register = creds => dispatch => {
     .catch(err => {
       dispatch({
         type: REGISTER_FAILED,
-        payload: 'FAILED'
+        payload: err
       });
     });
 };

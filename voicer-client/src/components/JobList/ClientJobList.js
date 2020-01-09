@@ -12,6 +12,9 @@ const MainDiv = styled.div`
   width: 60%;
   margin: 0 auto;
   padding: 10px;
+  h1 {
+      margin-top: 5vh;
+  }
 `
 
 // Component
@@ -39,11 +42,12 @@ class ClientJobList extends Component {
     }
 
     render() {
-        const openJobs = this.props.jobs.filter(job => job.status !== "Hired")
-        const hiredJobs = this.props.jobs.filter(job => job.status !== "Hiring")
+        const openJobs = this.props.jobs.filter(job => 
+            job.status.toLowerCase() !== "hired" && job.status.toLowerCase() !== "completed")
+        const hiredJobs = this.props.jobs.filter(job => job.status.toLowerCase() !== "hiring")
         return (
             <MainDiv>
-                <h1>Hiring Jobs</h1>
+                <h1>{openJobs.length != 0 ? 'Hiring Jobs' : 'No posted jobs'}</h1>
                 {openJobs.map(job =>
                     <ClientJobListCard
                         key={job.jobId}
@@ -52,7 +56,7 @@ class ClientJobList extends Component {
                         toggle={this.toggle}
                         applications={this.props.applications.filter(app => app.jobId === job.jobId)}
                     />)}
-                <h1>Hired Jobs</h1>
+                <h1>{hiredJobs.length != 0 ? 'Hired/Completed Jobs' : 'No completed or hired jobs'}</h1>
                 {hiredJobs.map(job =>
                     <ClientJobListCard
                         key={job.jobId}
