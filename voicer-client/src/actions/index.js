@@ -89,6 +89,13 @@ export {
 } from './getTalent';
 
 export {
+  GET_CLIENT_START,
+  GET_CLIENT_SUCCESS,
+  GET_CLIENT_FAILED,
+  getClient
+} from './getClient';
+
+export {
     GET_TALENTS_START,
     GET_TALENTS_SUCCESS,
     GET_TALENTS_FAILED,

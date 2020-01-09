@@ -8,6 +8,7 @@ import DeclineJob from '../DeclineJob';
 import CounterOffer from '../CounterOffer';
 import ReviewModal from '../ReviewModal';
 import axiosWithAuth from '../axiosAuth';
+import jwt from 'jsonwebtoken';
 
  const StyledCard = styled.div`
   width: 90%;
@@ -85,7 +86,8 @@ class AppCard extends React.Component {
         counterModalIsOpen: false,
         declineModalIsOpen: false,
         acceptModalIsOpen: false,
-        reviewModalIsOpen: false
+        reviewModalIsOpen: false,
+        userId: jwt.decode(localStorage.getItem("token")).userId
       }
     }
 
@@ -146,9 +148,9 @@ class AppCard extends React.Component {
             <ReviewModal 
               toggle={this.toggleReviewModal}
               isOpen={this.state.reviewModalIsOpen}
-              authorId= {this.props.appData.clientId}
-              recipientId= {this.props.appData.talentId}
-              jobId= {this.props.appData.jobId}
+              authorId={this.state.userId}
+              recipientId={this.state.talentData.userId}
+              jobId={this.props.appData.jobId}
               userType='Client'
             />
             <StyledCardBody>
@@ -172,11 +174,11 @@ class AppCard extends React.Component {
                     {this.props.appData.status.toLowerCase()==="completed" ?
                     <StyledButtonsDiv>
                       <StyledButtonDiv>
-                          <StyledButton
+                          <Button
                             onClick={this.toggleReviewModal}
                           >
                             Review
-                          </StyledButton>
+                          </Button>
                       </StyledButtonDiv>
                     </StyledButtonsDiv>
                     :

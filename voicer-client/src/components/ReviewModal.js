@@ -33,7 +33,6 @@ class ReviewModal extends React.Component {
 
     // Call the submitReview action creator
     clickHandler = () => {
-        console.log(this.props)
         this.props.submitReview({
             authorId: this.props.authorId,
             recipientId: this.props.recipientId,
@@ -46,7 +45,7 @@ class ReviewModal extends React.Component {
     render() {
         return(
             <Modal
-                isOpen={(this.props.success) ? 0 : this.props.isOpen}
+                isOpen={this.props.isOpen}
                 toggle={this.props.toggle}
                 centered={true}
             >
@@ -61,7 +60,7 @@ class ReviewModal extends React.Component {
                         </FormGroup>
                         <StyledFButton onClick={this.clickHandler}>Submit</StyledFButton>
                     </Form>
-                    {(this.props.success) && <Label>Success!!!{this.props.feedback}</Label>}
+                    {(this.props.success) && <Label>Success! {this.props.feedback}</Label>}
                     {(this.props.error) && <Label>Error: {this.props.error.message}</Label>}
                 </ModalBody>
             </Modal>
