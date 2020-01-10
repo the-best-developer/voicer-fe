@@ -55,12 +55,14 @@ class TalentOfferView extends React.Component {
         this.props.jobs.map(job => {
             if(hiringIds.includes(job.jobId) && job.status.toLowerCase() === 'hiring') {
                 hiringJobs.push(job)
+                {console.log(job)}
             }
         })
         this.props.jobs.map(job => {
             if(hiredIds.includes(job.jobId) && job.status.toLowerCase() === 'hired' || 
                hiredIds.includes(job.jobId) && job.status.toLowerCase() === 'completed') {
                 hiredJobs.push(job)
+                {console.log(job)}
             }
         })
         this.props.jobs.map(job => {

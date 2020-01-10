@@ -5,6 +5,9 @@ import TalentOfferCard from './TalentOfferCard';
 import DeclineJob from '../DeclineJob';
 import CompleteJob from '../CompleteJob';
 import '../../styles/tjobofferlist.scss';
+import jwt from 'jsonwebtoken';
+import ReviewModal from '../ReviewModal';
+import {getClientByClientId} from '../../actions/getClient';
 
 class TalentOffersCard extends React.Component {
     constructor(props) {
@@ -13,7 +16,10 @@ class TalentOffersCard extends React.Component {
             sortedOffers: [],
             recentOffer: {},
             showOffers: false,
-            declineModalIsOpen: false
+            declineModalIsOpen: false,
+            reviewModalIsOpen: false,
+            userId: jwt.decode(localStorage.getItem("token")).userId,
+            clientData: {}
         }
     }
 
@@ -22,7 +28,8 @@ class TalentOffersCard extends React.Component {
             .filter(offer => offer.jobId === this.props.job.jobId)
             .reverse()
         await this.setState({sortedOffers: sortedOffers, recentOffer: sortedOffers[0]})
-        console.log(this.state.sortedOffers)
+        const clientData = await this.props.getClientByClientId(this.props.job.clientId)
+        this.setState({clientData: clientData[0]})
     }
 
     toggleDeclineModal = () => {
@@ -37,9 +44,23 @@ class TalentOffersCard extends React.Component {
         })
     }
 
+    toggleReviewModal = () => {
+        this.setState({
+            reviewModalIsOpen: !this.state.reviewModalIsOpen
+        })
+      }
+
     render() {
         return (
         <>
+        <ReviewModal 
+              toggle={this.toggleReviewModal}
+              isOpen={this.state.reviewModalIsOpen}
+              authorId= {this.state.userId}
+              recipientId= {this.state.clientData.userId}
+              jobId= {this.props.job.jobId}
+              userType='Client'
+        />
         {this.state.sortedOffers.length > 0 ?
         this.state.sortedOffers[0].status !== "Declined" ?
 
@@ -62,6 +83,12 @@ class TalentOffersCard extends React.Component {
                         {this.props.job.status.toLowerCase() === "hired" ||
                          this.props.job.status.toLowerCase() === "completed" ? "Show Final Bid" : "Show Offers"}
                     </button>
+                    {this.props.job.status.toLowerCase() === "completed" && 
+                        <button onClick={() => this.setState({reviewModalIsOpen: !this.state.reviewModalIsOpen})} className="header-element">
+                        Review
+                    </button>
+                    }
+                    
                 </>
             </div>
             {this.props.job.status === "Hiring" ?
@@ -135,4 +162,4 @@ const mapStateToProps = state => ({
     jobOffers: state.getJobOffersReducer.jobOffers,
 })
 
-export default connect(mapStateToProps, {})(TalentOffersCard);
+export default connect(mapStateToProps, {getClientByClientId})(TalentOffersCard);

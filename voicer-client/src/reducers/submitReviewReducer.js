@@ -23,7 +23,7 @@ export const submitReviewReducer = (state = initialState, action) => {
         case SUBMIT_REVIEW_SUCCESS:
             return {
                 ...state,
-                feedback: action.payload,
+                feedback: action.payload.message,
                 submittingReview: false,
                 success: true
             }

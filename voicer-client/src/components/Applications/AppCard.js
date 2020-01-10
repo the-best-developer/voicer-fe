@@ -6,7 +6,9 @@ import {getTalentByTalentId} from '../../actions/getTalent';
 import AcceptOffer from '../AcceptOffer';
 import DeclineJob from '../DeclineJob';
 import CounterOffer from '../CounterOffer';
+import ReviewModal from '../ReviewModal';
 import axiosWithAuth from '../axiosAuth';
+import jwt from 'jsonwebtoken';
 
  const StyledCard = styled.div`
   width: 90%;
@@ -83,7 +85,9 @@ class AppCard extends React.Component {
         talentData: {},
         counterModalIsOpen: false,
         declineModalIsOpen: false,
-        acceptModalIsOpen: false
+        acceptModalIsOpen: false,
+        reviewModalIsOpen: false,
+        userId: jwt.decode(localStorage.getItem("token")).userId
       }
     }
 
@@ -107,6 +111,12 @@ class AppCard extends React.Component {
     toggleAcceptModal = () => {
       this.setState({
           acceptModalIsOpen: !this.state.acceptModalIsOpen
+      })
+    }
+
+    toggleReviewModal = () => {
+      this.setState({
+          reviewModalIsOpen: !this.state.reviewModalIsOpen
       })
     }
 
@@ -135,6 +145,14 @@ class AppCard extends React.Component {
               job={this.props.job}
               userType='Client'
             />
+            <ReviewModal 
+              toggle={this.toggleReviewModal}
+              isOpen={this.state.reviewModalIsOpen}
+              authorId={this.state.userId}
+              recipientId={this.state.talentData.userId}
+              jobId={this.props.appData.jobId}
+              userType='Client'
+            />
             <StyledCardBody>
                 <StyledCardColumn>
                   <StyledCardContent>
@@ -154,7 +172,16 @@ class AppCard extends React.Component {
                       null
                     }
                     {this.props.appData.status.toLowerCase()==="completed" ?
-                      "Job Completed!" :
+                    <StyledButtonsDiv>
+                      <StyledButtonDiv>
+                          <Button
+                            onClick={this.toggleReviewModal}
+                          >
+                            Review
+                          </Button>
+                      </StyledButtonDiv>
+                    </StyledButtonsDiv>
+                    :
                       null
                     }
                     {this.props.appData.status.toLowerCase()==="declined" ?
@@ -164,7 +191,7 @@ class AppCard extends React.Component {
                   </StyledCardText>
                 </StyledButtonsDiv>
                 :
-                !this.props.appData.isClientOffer && this.props.recent ?
+                !this.props.appData.isClientOffer && this.props.recent && !"completedhired".includes(this.props.job.status.toLowerCase()) ?
                 <StyledButtonsDiv>
                   <StyledButtonDiv>
                       <StyledButton
@@ -190,7 +217,9 @@ class AppCard extends React.Component {
                 </StyledButtonsDiv>
                 :
                 <StyledButtonsDiv>
-                  <StyledCardText>{this.props.recent ? "Pending" : "Previous Offer"}</StyledCardText>
+                  {this.props.job.status.toLowerCase() === "completed" ? 
+                  <StyledCardText>Job Completed</StyledCardText> :
+                  <StyledCardText>{this.props.recent ? "Pending" : "Previous Offer"}</StyledCardText>}
                 </StyledButtonsDiv>
                 }
             </StyledCardBody>

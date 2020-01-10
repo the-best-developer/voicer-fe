@@ -16,7 +16,32 @@ const AppListModalHeader = styled(ModalHeader)`
 
 // Component
 const AppList = props => {
-    const apps = props.apps.reverse()
+    
+    const sortApps = arr => {
+        const cache = {}
+        arr.map(offer => 
+            offer.talentId in cache ? 
+                cache[offer.talentId].push(offer) : cache[offer.talentId] = [offer]
+        )
+        return cache
+    }
+
+    const returnCards = (apps) => {
+        const arr = Object.keys(apps)
+        console.log(apps)
+        return (
+            <div className='tucan'>
+            { 
+            arr.map(talent =>
+                apps[talent].reverse().map((app, index) => 
+                    <AppCard key={app.jobOfferId} recent={index===0 ? true : false} appData={app} clientName={props.clientName} job={props.activeJob} />
+            ))
+            }
+            </div>
+        )
+    }
+
+    const apps = sortApps(props.apps)
     return (
         <AppListModal
             isOpen={props.isOpen}
@@ -25,7 +50,9 @@ const AppList = props => {
             size="lg"
         >
             <AppListModalHeader>{`Applications for ${props.activeJob.jobTitle}`}</AppListModalHeader>
-            {props.apps.length === 0 ?
+            {Object.keys(apps).length > 0 ?
+                returnCards(apps)
+                :
                 <div className="default-application-list centered">
                     <p>No Applications Yet</p>
                     <Link to="/client/talentlist">
@@ -33,8 +60,8 @@ const AppList = props => {
                             Find Talent
                         </Button>
                     </Link>
-                </div> :
-                apps.map((app, index) => <AppCard key={app.jobOfferId} recent={index===0 ? true : false} appData={app} clientName={props.clientName} job={props.activeJob}/>)}
+                </div>
+            }        
         </AppListModal>
     );
 };
