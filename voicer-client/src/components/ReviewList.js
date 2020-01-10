@@ -9,7 +9,7 @@ import ReviewCard from './ReviewCard';
 import styled from 'styled-components'
 
 const ReviewsContainer = styled(Container)`
-    margin: 21vh 0;
+    margin: 21vh 25%;
 `;
 
 const ReviewType = styled('h3')`

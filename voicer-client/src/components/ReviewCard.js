@@ -1,5 +1,12 @@
 import React from 'react';
-import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
+
+import 
+{
+    ReviewContainer,
+    ReviewRating,
+    ReviewMessage
+} 
+from '../styles/styledComponents/ReviewCard';
 
 class ReviewCard extends React.Component {
     constructor(props) {
@@ -8,12 +15,14 @@ class ReviewCard extends React.Component {
 
     render() {
         return (
-            <Card>
-                <CardBody>
-                    <CardTitle>{this.props.authored ? `${this.props.review.rating} stars to ${this.props.review.recipientUsername}` : `${this.props.review.rating} stars from ${this.props.review.authorUsername}`}</CardTitle>
-                    <CardText>{this.props.review.message}</CardText>
-                </CardBody>
-            </Card>
+            <ReviewContainer>
+                <ReviewRating>
+                    {this.props.authored ? `${this.props.review.rating} stars to ${this.props.review.recipientUsername}` : `${this.props.review.rating} stars from ${this.props.review.authorUsername}`}
+                </ReviewRating>
+                <ReviewMessage>
+                    {this.props.review.message}
+                </ReviewMessage>
+            </ReviewContainer>
         );
     }
 }
