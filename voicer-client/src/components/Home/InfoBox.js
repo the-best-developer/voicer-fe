@@ -8,13 +8,11 @@ const InfoBox = () => {
         <h1>Voicer is driven by users like you.</h1>
 
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum
+          Voicer is a marketplace for voicer-over talent to offer their services to potential clients. 
+          The difference between Voicer and other marketplaces is the transparency and simplicity of the application. 
+          As a potential client, you can easily hire talent to fill your listing, and vice-versa for a talent. 
+          Voicer's loyalty system offers low service fees to both the client and the talent, 
+          just by completing jobs on the platform. You can get started on Voicer by registering above!
         </p>
 
 
