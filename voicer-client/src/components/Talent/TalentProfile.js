@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import jwt from 'jsonwebtoken';
 import { getLanguages, addTalentLanguage } from '../../actions/language';
 import { getAccents, addTalentAccent } from '../../actions/accent';
+import { getVoiceSamples } from '../../actions/getVoiceSamples';
 import { getTalent } from '../../actions';
 import { addTalentBio } from '../../actions/talentBio';
 import makeAnimated from 'react-select/animated';
 import TalentProfileSample from './TalentProfileSample';
+import VoiceSample from './VoiceSample';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../styles/talent-profile.css';
 import goldMic from '../../images/Gold-Mic.png';
@@ -40,7 +42,8 @@ class TalentProfile extends React.Component {
       accentOptions: [],
       languages: [],
       accents: [],
-      biography: ''
+      biography: '',
+      voiceSamples: []
     };
   }
 
@@ -50,6 +53,11 @@ class TalentProfile extends React.Component {
     this.props.getTalent(this.state.userId).then(res => this.setState({talent: this.props.talent[0]}))
     this.props.getLanguages().then(this.modifyLanguage);
     this.props.getAccents().then(this.modifyAccents);
+    this.props.getVoiceSamples(jwt.decode(localStorage.getItem('token')).userId)
+  }
+
+  refreshSamples = () => {
+    return this.props.getVoiceSamples(jwt.decode(localStorage.getItem('token')).userId)
   }
 
   modifyLanguage = () => {
@@ -218,7 +226,13 @@ class TalentProfile extends React.Component {
           >
             Save Profile
           </Button>
-          <TalentProfileSample userId={this.state.userId} />
+          <TalentProfileSample refreshSamples={this.refreshSamples} userId={this.state.userId} />
+
+          <div className="sampleDiv">
+            <h2>Voice Samples</h2>
+            { this.props.voiceSamples.map(sample => <VoiceSample sample={sample} />) }
+          </div>
+
         </Form>
       </div>
     );
@@ -228,7 +242,8 @@ class TalentProfile extends React.Component {
 const mapStateToProps = state => ({
   languageOptions: state.languageReducer.languages,
   accentOptions: state.accentReducer.accents,
-  talent: state.getTalentReducer.talent
+  talent: state.getTalentReducer.talent,
+  voiceSamples: state.getVoiceSamplesReducer.samples
 });
 
 export default connect(mapStateToProps, {
@@ -237,5 +252,6 @@ export default connect(mapStateToProps, {
   getTalent,
   addTalentAccent,
   addTalentLanguage,
-  addTalentBio
+  addTalentBio,
+  getVoiceSamples
 })(TalentProfile);

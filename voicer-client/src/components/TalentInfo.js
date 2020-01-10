@@ -3,6 +3,7 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import UserIcon from '../images/user.svg';
+import VoiceSample from './Talent/VoiceSample';
 
 //Styling
 const StyledModal = styled(Modal)`
@@ -30,9 +31,10 @@ const UserImg = styled.img`
 
 class TalentInfo extends React.Component {
 
-  talentName = talent => `${talent.firstName} ${talent.lastName}` 
+  talentName = talent => `${talent.firstName} ${talent.lastName}`
 
   render() {
+    console.log(this.props.samples)
     return (
       <StyledModal
           isOpen={this.props.isOpen}
@@ -49,7 +51,9 @@ class TalentInfo extends React.Component {
             <p>id: {this.props.talent.talentId}</p>
             <p>username: {this.props.talent.username}</p>
             <p>email: {this.props.talent.email}</p>
-
+            <>
+              { this.props.samples ? this.props.samples.map(sample => <VoiceSample sample={sample} /> ) : null}
+            </>
           </StyledModalContent>
       </StyledModal>
     )

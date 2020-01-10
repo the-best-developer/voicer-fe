@@ -89,6 +89,12 @@ export {
 } from './getTalent';
 
 export {
+    GET_VOICE_SAMPLES_START,
+    GET_VOICE_SAMPLES_SUCCESS,
+    GET_VOICE_SAMPLES_FAILURE
+} from './getVoiceSamples'
+
+export {
     GET_TALENTS_START,
     GET_TALENTS_SUCCESS,
     GET_TALENTS_FAILED,
@@ -150,5 +156,6 @@ export {
 export { SET_JOB_ID, setJobId } from './setJobId';
 
 const dbUrl = 'https://voicer-lambda-app.herokuapp.com';
+// const dbUrl = 'http://localhost:4000';
 
 export { dbUrl };

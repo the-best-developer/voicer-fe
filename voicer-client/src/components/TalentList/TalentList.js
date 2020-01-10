@@ -3,6 +3,7 @@ import TalentListCard from './TalentListCard';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setJobId, getTalents } from '../../actions';
+import { getVoiceSamples } from '../../actions/getVoiceSamples';
 import FilterComponent from '../FilterComponents/FilterComponent';
 import '../../styles/_colors.scss';
 import { Divider } from '../../styles/styledComponents/ClientListCard';
@@ -37,6 +38,7 @@ class TalentList extends Component {
         super(props)
         this.state = {
             activeTalent: {},
+            activeSamples: [],
             modalIsOpen: false,
             modalJobInfoIsOpen: false,
         }
@@ -47,8 +49,10 @@ class TalentList extends Component {
     }
 
     openModal = async (talent) => {
+        let samples = await this.props.getVoiceSamples(talent.userId)
         await this.setState({
             activeTalent: talent,
+            activeSamples: samples
         })
     }
 
@@ -79,12 +83,13 @@ class TalentList extends Component {
                     )}
                 </ListDiv>
 
-
+                {this.state.activeTalent.userId ? 
                 <TalentInfo
                     toggle={this.toggleInfo}
                     isOpen={this.state.modalJobInfoIsOpen}
                     talent={this.state.activeTalent}
-                />
+                    samples={this.state.activeSamples}
+                /> : null}
 
             </MainDiv>
         );
@@ -97,5 +102,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setJobId, getTalents }
+  { setJobId, getTalents, getVoiceSamples }
 )(TalentList);

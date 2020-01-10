@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InputGroup, InputGroupText, InputGroupAddon, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addSample } from '../../actions/addSample';
 
@@ -10,6 +11,7 @@ class TalentProfileSample extends Component {
         this.state = {
             success: false,
             url: '',
+            description: '',
             error: false,
             errorMessage: ''
         };
@@ -18,16 +20,27 @@ class TalentProfileSample extends Component {
     handleChange = ev => {
         this.setState({ success: false, url: '' });
     };
-    handleUpload = ev => {
+
+    changeHandler = event => {
+        this.setState({
+          [event.target.name]: event.target.value
+        });
+    };
+
+    handleUpload = async (ev) => {
         ev.preventDefault();
         let file = this.uploadInput.files[0];
         // Split the filename to get the name and type
         let fileParts = this.uploadInput.files[0].name.split('.');
         let fileName = fileParts[0] + ' - ' + Date.now();
         let fileType = fileParts[1];
+        let description = this.state.description;
         console.log('Preparing the upload');
         let userId = this.props.userId;
-        this.props.addSample(file, fileName, fileType, userId);
+        await this.props.addSample(file, fileName, fileType, userId, description)
+        await setTimeout(() => this.props.uploadSuccess ? 
+            this.props.refreshSamples() : setTimeout(() => this.props.refreshSamples(), 3750)
+        , 3750) 
     };
 
     render() {
@@ -54,6 +67,19 @@ class TalentProfileSample extends Component {
                     <h1 className="sampleTitle">UPLOAD VOICE SAMPLE</h1>
                     {this.props.uploadSuccess ? <SuccessMessage /> : null}
                     {this.props.uploadError ? <ErrorMessage /> : null}
+                    <div className="desDiv">
+                        <InputGroup size="sm">
+                            <InputGroupAddon addonType="prepend">
+                                <InputGroupText>Description</InputGroupText>
+                            </InputGroupAddon>
+                            <Input 
+                                onChange={this.changeHandler} 
+                                type="text" 
+                                name="description" 
+                                id="description" 
+                            />
+                        </InputGroup>
+                    </div>
                     <input
                         className="sampleInput"
                         onChange={this.handleChange}
@@ -65,6 +91,11 @@ class TalentProfileSample extends Component {
                     />
                 </div>
                 <button className="sampleButton" onClick={this.handleUpload}>UPLOAD</button>
+
+
+
+
+
             </div>
         );
     }
