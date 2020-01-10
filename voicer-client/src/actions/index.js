@@ -96,6 +96,12 @@ export {
 } from './getClient';
 
 export {
+    GET_VOICE_SAMPLES_START,
+    GET_VOICE_SAMPLES_SUCCESS,
+    GET_VOICE_SAMPLES_FAILURE
+} from './getVoiceSamples'
+
+export {
     GET_TALENTS_START,
     GET_TALENTS_SUCCESS,
     GET_TALENTS_FAILED,
@@ -147,15 +153,20 @@ export {
 // Get reviews actions
 
 export {
-  GET_REVIEW_START,
-  GET_REVIEW_SUCCESS,
-  GET_REVIEW_FAILED
+  GET_AUTHORED_REVIEWS_START,
+  GET_AUTHORED_REVIEWS_SUCCESS,
+  GET_AUTHORED_REVIEWS_FAILURE,
+  GET_RECEIVED_REVIEWS_START,
+  GET_RECEIVED_REVIEWS_SUCCESS,
+  GET_RECEIVED_REVIEWS_FAILURE,
+  getAuthoredReviews,
+  getReceivedReviews
 } from './getReviews';
 
 
 
 export { SET_JOB_ID, setJobId } from './setJobId';
 
-const dbUrl = 'https://voicer-lambda-app.herokuapp.com/';
+const dbUrl = 'https://voicer-lambda-app.herokuapp.com';
 
 export { dbUrl };

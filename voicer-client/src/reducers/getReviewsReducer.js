@@ -1,38 +1,58 @@
 import {
-    GET_REVIEW_START,
-    GET_REVIEW_SUCCESS,
-    GET_REVIEW_FAILED
+    GET_AUTHORED_REVIEWS_START,
+    GET_AUTHORED_REVIEWS_SUCCESS,
+    GET_AUTHORED_REVIEWS_FAILURE,
+    GET_RECEIVED_REVIEWS_START,
+    GET_RECEIVED_REVIEWS_SUCCESS,
+    GET_RECEIVED_REVIEWS_FAILURE
 } from '../actions';
 
 const initialState = {
-    fetchingReview: false,
-    reviews: [],
-    error: "",
-    success: false
+    gettingAuthoredReviews: false,
+    gettingReceivedReviews: false,
+    authoredReviews: [],
+    receivedReviews: [],
+    error: null
 }
 
 export const getReviewsReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case GET_REVIEW_START:
+    console.log(action.payload)
+    switch (action.type) {
+        case GET_AUTHORED_REVIEWS_START:
             return {
                 ...state,
-                fetchingReview: true,
-                success: false
+                gettingAuthoredReviews: true
             }
-        case GET_REVIEW_SUCCESS:
+        case GET_AUTHORED_REVIEWS_SUCCESS:
             return {
                 ...state,
-                reviews: action.payload,
-                fetchingReview: false,
-                success: true
+                gettingAuthoredReviews: false,
+                authoredReviews: action.payload
             }
-        case GET_REVIEW_FAILED:
+        case GET_AUTHORED_REVIEWS_FAILURE:
             return {
                 ...state,
-                fetchingReview: false,
-                error: action.payload,
-                success: false
+                gettingAuthoredReviews: false,
+                error: action.payload
             }
-        default: return state;
+        case GET_RECEIVED_REVIEWS_START:
+            return {
+                ...state,
+                gettingReceivedReviews: true
+            }
+        case GET_RECEIVED_REVIEWS_SUCCESS:
+            return {
+                ...state,
+                gettingReceivedReviews: false,
+                receivedReviews: action.payload
+            }
+        case GET_RECEIVED_REVIEWS_FAILURE:
+            return {
+                ...state,
+                gettingReceivedReviews: false,
+                error: action.payload
+            }
+        default:
+            return state;
     }
 }

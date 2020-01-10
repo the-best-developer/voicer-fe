@@ -1,27 +1,55 @@
-import axiosWithAuth from '../components/axiosAuth';
-import { dbUrl } from './index';
+import axiosWithAuth from "../components/axiosAuth";
+import jwt from "jsonwebtoken";
+import { dbUrl } from "./index";
 //replace dbUrl in index.js to change backend server for testing
 
-export const GET_REVIEW_START = 'GET-REVIEW-START';
-export const GET_REVIEW_SUCCESS = 'GET_REVIEW-SUCCESS';
-export const GET_REVIEW_FAILED = 'GET-REVIEW-FAILED';
+export const GET_AUTHORED_REVIEWS_START = "GET_AUTHORED_REVIEWS_START";
+export const GET_AUTHORED_REVIEWS_SUCCESS = "GET_AUTHORED_REVIEWS_SUCCESS";
+export const GET_AUTHORED_REVIEWS_FAILURE = "GET_AUTHORED_REVIEWS_FAILURE";
 
-export const getReviews = userId => dispatch => {
+export const GET_RECEIVED_REVIEWS_START = "GET_RECEIVED_REVIEWS_START";
+export const GET_RECEIVED_REVIEWS_SUCCESS = "GET_RECEIVED_REVIEWS_SUCCESS";
+export const GET_RECEIVED_REVIEWS_FAILURE = "GET_RECEIVED_REVIEWS_FAILURE";
 
-  dispatch({ type: GET_REVIEW_START });
-  axiosWithAuth()
-    .get(`${dbUrl}/api/reviews/${userId}`)
-    //.get(`http://localhost:4000/api/reviews${userId}`)
-    .then(res => {
-      dispatch({
-        type: GET_REVIEW_SUCCESS,
-        payload: res.data
-      });
-    })
-    .catch(err => {
-      dispatch({
-        type: GET_REVIEW_FAILED,
-        payload: err
-      });
-    });
+export const getAuthoredReviews = () => dispatch => {
+    let authorId = jwt.decode(localStorage.getItem("token")).userId;
+    console.log(localStorage.getItem("token"));
+    console.log(authorId);
+    dispatch({ type: GET_AUTHORED_REVIEWS_START });
+    axiosWithAuth()
+        .get(`${dbUrl}/api/reviews/authored/${authorId}`)
+        .then(res => {
+            dispatch({
+                type: GET_AUTHORED_REVIEWS_SUCCESS,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            dispatch({
+                type: GET_AUTHORED_REVIEWS_FAILURE,
+                payload: err
+            });
+        });
 };
+
+
+export const getReceivedReviews = () => dispatch => {
+    let recipientId = jwt.decode(localStorage.getItem("token")).userId;
+    console.log(localStorage.getItem("token"));
+    console.log(recipientId);
+    dispatch({ type: GET_RECEIVED_REVIEWS_START });
+    axiosWithAuth()
+        .get(`${dbUrl}/api/reviews/received/${recipientId}`)
+        .then(res => {
+            dispatch({
+                type: GET_RECEIVED_REVIEWS_SUCCESS,
+                payload: res.data
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: GET_RECEIVED_REVIEWS_FAILURE,
+                payload: err
+            });
+        });
+}
