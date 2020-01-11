@@ -36,6 +36,7 @@ class App extends Component {
         <PrivateRoute exact path="/talent/profile" component={TalentProfile} />
         <PrivateRoute exact path="/talent/applications" component={TalentOfferView} />
         <PrivateRoute exact path="/talent/reviews" component={ReviewList} />
+        <PrivateRoute exact path="/client/reviews" component={ReviewList} />
         <PrivateRoute exact path="/client/talentlist" component={TalentList} />
         <PrivateRoute
           exact

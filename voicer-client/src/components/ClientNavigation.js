@@ -245,6 +245,9 @@ class ClientNavigation extends React.Component {
                   <NavLink onClick={(e) => this.route('/profile', e)} className='tert-link'>
                     My Profile
                   </NavLink>
+                  <NavLink onClick={(e) => this.route('/reviews', e)} className='tert-link'>
+                    Reviews
+                  </NavLink>
                   <Link to="/client/postJob"><Button className="btn-orange">Post Job</Button></Link>
                 </div>
               </TertiaryNav>
