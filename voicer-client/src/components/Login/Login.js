@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button, Label } from 'reactstrap';
 import { login } from '../../actions/login';
-import NavBar from '../Home/NavBar';
-import jwt from 'jsonwebtoken';
 
 class Login extends Component {
     state = {
@@ -48,11 +46,7 @@ class Login extends Component {
         const { username, password } = this.state.creds;
 
         return (
-                <div>
-                <NavBar className="navbar"/>
-                <div className="login-page">
-
-                  <div className="input-box">
+                  <article className="onboard-card">
                         <h2>Log In</h2>
                         <Form onSubmit={this.submitHandler}>
                             <Label className="input-label" for="username">Username</Label>
@@ -79,9 +73,7 @@ class Login extends Component {
                             this.props.success ? <p className="login-status success">Login Successful!</p> :
                             this.props.error ? <p className="login-status error">Login Failed</p> : null}
                         </Form>
-                  </div>
-              </div>
-            </div>
+                  </article>
         )
     }
 }

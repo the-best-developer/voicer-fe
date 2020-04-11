@@ -27,7 +27,7 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div style={{width: '100%'}}>
+            <header style={{width: '100%'}}>
 
               <Navbar className="navbar-main">
 
@@ -35,17 +35,17 @@ class NavBar extends React.Component {
                     <img className="logo" src={logo} alt="voicer" />
                 </NavbarBrand>
 
-                <Nav>
+                {/* <Nav>
                   <NavItem>
                     <NavLink href="/register">Register</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink href="/login">Login</NavLink>
                   </NavItem>
-                </Nav>
+                </Nav> */}
 
               </Navbar>
-            </div>
+            </header>
         );
     }
 }

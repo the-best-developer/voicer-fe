@@ -1,14 +1,14 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
-import OnboardCard from './OnboardCard';
+import Login from '../Login/Login'
 
 const OnboardBox = () => {
     return (
-        <div className="hero-box">
+        <section className="hero-box">
             <Jumbotron className="hero">
-              <OnboardCard />
+              <Login />
             </Jumbotron>
-        </div>
+        </section>
     )
 }
 

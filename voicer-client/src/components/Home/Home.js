@@ -5,11 +5,10 @@ import OnboardBox from './OnboardBox';
 
 const Home = () => {
     return (
-        <div className='home'>
-            <NavBar />
+        <>
             <OnboardBox />
             <InfoBox />
-        </div>
+        </>
     )
 }
 
