@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button, Label } from 'reactstrap';
 import { login } from '../../actions/login';
 
+
 class Login extends Component {
+
     state = {
         creds: {
             username: '',
@@ -32,14 +34,18 @@ class Login extends Component {
         })
         .then(() => {
             if (localStorage.getItem('token')) {
-                return this.props.userType === "client" ?
-                    this.props.history.push('/client') :
-                    this.props.history.push('/talent')
+                // return this.props.userType === "client" ?
+                    // this.props.history.push('/client') :
+                    // this.props.history.push('/talent')
             } else {
                 this.setState({ error: true });
             }
         })
         .catch(err => console.log(err))
+        .finally(()=> {
+            window.location.reload()
+
+        })
     }
 
     render() {
