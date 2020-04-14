@@ -52,7 +52,7 @@ class Login extends Component {
         const { username, password } = this.state.creds;
 
         return (
-                  <article className="2onboard-card">
+                  <article className="onboard-card">
                         <h2>Log In</h2>
                         <Form onSubmit={this.submitHandler}>
                             <Label className="input-label" for="username">Username</Label>
