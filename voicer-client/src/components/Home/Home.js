@@ -5,6 +5,8 @@ import OnboardBox from './OnboardBox';
 import InfoBox from './InfoBox';
 import TalentHomePage from '../Talent/TalentHomePage';
 import ClientHomePage from '../ClientHomePage'
+import TalentNavigation from '../Talent/TalentNavigation';
+import ClientNavigation from '../ClientNavigation';
 
 
 
@@ -21,9 +23,15 @@ const Home = ({refreshAppHandler}) => {
                     <>
                     {
                         token.userType == "talent" ? (
-                            <TalentHomePage />
+                            <>
+                                {/* <TalentNavigation /> */}
+                                <TalentHomePage />
+                            </>
                         ) : (
-                            <ClientHomePage />
+                            <>
+                                {/* <ClientNavigation /> */}
+                                <ClientHomePage />
+                            </>
                         ) 
                     }
                     </>
