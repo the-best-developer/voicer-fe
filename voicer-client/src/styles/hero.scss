@@ -6,13 +6,13 @@
 }
 
 .hero {
-  background-image: url(../images/recording-studio.jpg);
+  background-image: url(../images/recording-studio-bkg.jpg);
   background-size: auto;
   background-position: center;
-  transform:scaleX(-1);
+  // transform:scaleX(-1);
   display: flex;
-  justify-content: flex-start;
-  // padding: 4rem 0 !important;
+  justify-content: flex-end;
+    // padding: 4rem 0 !important;
 }
 
 .onboard-card {
@@ -20,13 +20,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  transform:scaleX(-1);
+  // transform:scaleX(-1);
   color: white;
   background-color: $blue-dark;
   border: 1px solid white;
   border-radius: 30px;
   padding: 2.0rem 4rem;
-  margin-right: 4rem;
+  
 
   h2 {
     color: white;

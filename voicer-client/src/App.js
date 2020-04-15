@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Login from './components/Login/Login';
+import {UIContext} from './contexts/UIContext'
+
+import NavBar from './components/Home/NavBar'
 import Register from './components/Register';
 import PrivateRoute from './components/Login/PrivateRoute';
 import PostJob from './components/PostJob';
@@ -19,12 +21,23 @@ import ClientNavigation from './components/ClientNavigation';
 import TalentOfferView from './components/Talent/TalentOfferView';
 import ReviewList from './components/ReviewList';
 
-class App extends Component {
-  render() {
-    return (
+const App = () => {
+  const [refreshApp, setRefreshApp] = useState(true)
+
+  useEffect(()=>{
+
+  }, [refreshApp])
+
+  const refreshAppHandler = () => {
+    setRefreshApp(!refreshApp)
+  }
+
+  return (
+    <UIContext.Provider value={{refreshAppHandler}}>
       <Router>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
+        <NavBar refreshAppHandler={refreshAppHandler} />
+        <Route exact path="/" component={Home} refreshAppHandler={refreshAppHandler}/>
+        {/* <Route exact path="/login" component={Login} /> */}
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path="/client" component={ClientHomePage} />
         <PrivateRoute path="/client" component={ClientNavigation} />
@@ -43,10 +56,11 @@ class App extends Component {
           path="/client/applicationlist"
           component={AppList}
         />
-        <Footer />
+        {/* <Footer /> */}
       </Router>
-    );
-  }
+    </UIContext.Provider>
+  );
 }
+
 
 export default App;

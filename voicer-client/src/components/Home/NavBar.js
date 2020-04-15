@@ -11,43 +11,37 @@ import {
   NavLink
   } from 'reactstrap';
 
-class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false
-        }
-    }
+const NavBar = ({refreshAppHandler}) => {
 
-    toggle = e => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 
-    render() {
-        return (
-            <div style={{width: '100%'}}>
+  const logout = e => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    refreshAppHandler();
+    // this.props.history.push('/');
+  }
 
-              <Navbar className="navbar-main">
+  return (
+      <header style={{width: '100%'}}>
 
-                <NavbarBrand href="/">
-                    <img className="logo" src={logo} alt="voicer" />
-                </NavbarBrand>
+        <Navbar className="navbar-main">
 
-                <Nav>
-                  <NavItem>
-                    <NavLink href="/register">Register</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="/login">Login</NavLink>
-                  </NavItem>
-                </Nav>
+          <NavbarBrand href="/">
+              <img className="logo" src={logo} alt="voicer" />
+          </NavbarBrand>
+          
+          {
+            localStorage.getItem('token') ? (
+              <a className="client-link" onClick={logout}>Logout</a>
+            ):(
+              <a className="client-link" href="register">Register</a>
+            ) 
+          }
+          
 
-              </Navbar>
-            </div>
-        );
-    }
+        </Navbar>
+      </header>
+  );
 }
 
 export default NavBar;
