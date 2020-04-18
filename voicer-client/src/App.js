@@ -45,11 +45,11 @@ const App = () => {
         <Router>
           <GateKeeper />
           <NavBar />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/:job" component={Home} />
-          <Route exact path="/voice/" component={Voice} />
-          <Route exact path="/voice/:job" component={Voice} />
-          <Route exact path="/register" component={Register} />
+          {/* <Route exact path="/" component={Home} /> */}
+          <Route path="/:job" component={Home} />
+          <Route path="/voice/" component={Voice} />
+          <Route path="/voice/:job" component={Voice} />
+          <Route path="/register" component={Register} />
           <PrivateRoute exact path="/client" component={ClientHomePage} />
           <PrivateRoute path="/client" component={ClientNavigation} />
           <Route exact path="/talent/apply" component={ApplyToJob} />
