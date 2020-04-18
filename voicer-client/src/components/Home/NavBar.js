@@ -13,7 +13,7 @@ import { UIContext } from '../../contexts/UIContext';
 
 const NavBar = () => {
 
-  const {refreshAppHandler} = useContext(UIContext)
+  const {refreshAppHandler, homeLoginToggle, homeLoginToggleHandler} = useContext(UIContext)
   
   const logout = e => {
     e.preventDefault();
@@ -32,9 +32,15 @@ const NavBar = () => {
           </NavbarBrand>
           {
             localStorage.getItem('token') ? (
-              <a className="client-link" onClick={logout}>Logout</a>
+              <button className="client-link" onClick={(e)=>logout(e)}>Logout</button>
             ):(
-              <a className="client-link" href="register">Register</a>
+              <>{
+                homeLoginToggle ? (
+                  <button className="client-link" onClick={(e) => homeLoginToggleHandler(e)}>Hide Login</button>
+                ):(
+                  <button className="client-link" onClick={(e) => homeLoginToggleHandler(e)}>Login</button>
+                )
+              }</>
             ) 
           }
         </Navbar>

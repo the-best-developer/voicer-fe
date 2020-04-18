@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import jwt from 'jsonwebtoken';
 import {useParams} from 'react-router-dom'
 
@@ -6,12 +6,14 @@ import OnboardBox from './OnboardBox';
 import InfoBox from './InfoBox';
 import TalentHomePage from '../Talent/TalentHomePage';
 import ClientHomePage from '../ClientHomePage'
+import { UIContext } from '../../contexts/UIContext';
 
 
 
-const Home = ({refreshAppHandler}) => {
+const Home = () => {
     const job = useParams().job
     const token = jwt.decode(localStorage.getItem("token"))
+    const {homeLoginToggle} = useContext(UIContext)
 
     useEffect(() => {
         console.log(token)
@@ -38,7 +40,8 @@ const Home = ({refreshAppHandler}) => {
                 </>
             ):(
                 <>
-                    <OnboardBox />
+                    {homeLoginToggle && <OnboardBox />}
+                    
                     <InfoBox />
                 </>
             )

@@ -11,7 +11,7 @@ const Voice = () => {
     useEffect(() => {
         console.log(token)
         console.log(job)
-    }, [])
+    })
 
     return (
         <>{

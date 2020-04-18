@@ -30,10 +30,16 @@ const App = () => {
   const [refreshApp, setRefreshApp] = useState(true)
   const dbURL = 'https://voicer-lambda-app.herokuapp.com'
   const [data, setData] = useState([])
+  const [homeLoginToggle, setHomeLoginToggle] = useState(false)
 
-  useEffect(()=>{
+  useEffect(()=>{}, [refreshApp])
 
-  }, [refreshApp])
+  useEffect(()=>{console.log(homeLoginToggle)}, [homeLoginToggle])
+
+  const homeLoginToggleHandler = (e) => {
+    e.preventDefault();
+    setHomeLoginToggle(!homeLoginToggle)
+  }
 
   const refreshAppHandler = () => {
     setRefreshApp(!refreshApp)
@@ -41,15 +47,15 @@ const App = () => {
 
   return (
     <DataContext.Provider value={{dbURL, data, setData}}>
-      <UIContext.Provider value={{refreshAppHandler}}>
+      <UIContext.Provider value={{refreshAppHandler, homeLoginToggle, homeLoginToggleHandler}}>
         <Router>
           <GateKeeper />
           <NavBar />
-          {/* <Route exact path="/" component={Home} /> */}
-          <Route path="/:job" component={Home} />
-          <Route path="/voice/" component={Voice} />
-          <Route path="/voice/:job" component={Voice} />
-          <Route path="/register" component={Register} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/marketplace/:job" component={Home} />
+          <Route exact path="/voice/" component={Voice} />
+          <Route exact path="/myvoice/:job" component={Voice} />
+          {/* <Route path="/register" component={Register} /> */}
           <PrivateRoute exact path="/client" component={ClientHomePage} />
           <PrivateRoute path="/client" component={ClientNavigation} />
           <Route exact path="/talent/apply" component={ApplyToJob} />
