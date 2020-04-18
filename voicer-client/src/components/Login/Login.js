@@ -87,18 +87,9 @@ const Login = () => {
     }
 
     return (
-        <article className="onboard-card">
-            <div>
-                <Button type="toggle" onClick={(e) => loginToggleHandler(e)}>
-                    {
-                        loginToggle === "login" ? (
-                            <>Click to Register</>
-                        ):(
-                            <>Click to Login</>
-                        )
-                    }
-                </Button>
-            </div>
+        <article className={
+            loginToggle === "register" ? "onboard-card twoColumns":"onboard-card"
+        }>
             {
                 loginToggle === "login" ? (
                     <h2>Log In</h2>
@@ -106,147 +97,162 @@ const Login = () => {
                     <h2>Register</h2>
                 )
             }
-            <Form onSubmit={(e) => submitLoginHandler(e)}>
-                <Label className="input-label" for="username">Username</Label>
-                <Input
-                    className="input"
-                    type="text"
-                    value={login.username}
-                    name="username"
-                    onChange={(e) => changeHandler(e)}
-                />
-                <Label className="input-label" for="password">Password</Label>
-                <Input
-                    className="input"
-                    type="password"
-                    value={login.password}
-                    name="password"
-                    onChange={(e) => changeHandler(e)}
-                />
+            <Form 
+                className={
+                    loginToggle === "register" ? "twoColumns":""
+                } 
+                onSubmit={(e) => submitLoginHandler(e)}
+            >
+                    
+                        <Label className="input-label" for="username">Username</Label>
+                        <Input
+                            className="input"
+                            type="text"
+                            value={login.username}
+                            name="username"
+                            onChange={(e) => changeHandler(e)}
+                        />
+                   
+                        <Label className="input-label" for="password">Password</Label>
+                        <Input
+                            className="input"
+                            type="password"
+                            value={login.password}
+                            name="password"
+                            onChange={(e) => changeHandler(e)}
+                        />
 
+                        {
+                            loginToggle === "register" && (
+                                <>
+                                <Label className="input-label" for="firstName">
+                                    First name
+                                </Label>
+                                <Input
+                                    className="input"
+                                    type="text"
+                                    name="firstName"
+                                    tabindex="1"
+                                    value={login.firstName}
+                                    onChange={(e) => changeHandler(e)}
+                                />
+
+                                <Label className="input-label" for="lastName">
+                                    Last name
+                                </Label>
+                                <Input
+                                    className="input"
+                                    type="text"
+                                    name="lastName"
+                                    tabindex="2"
+                                    value={login.lastName}
+                                    onChange={(e) => changeHandler(e)}
+                                />
+                                <Label className="input-label" for="email">
+                                    Email
+                                </Label>
+                                <Input
+                                    className="input"
+                                    type="email"
+                                    name="email"
+                                    tabindex="4"
+                                    value={login.email}
+                                    onChange={(e) => changeHandler(e)}
+                                />
+
+                                <Label className="input-label" for="gender">
+                                    Gender
+                                </Label>
+                                <div className="dropdown-div">
+                                    <Dropdown
+                                        isOpen={toggleDropGender}
+                                        toggle={() => toggleDropGenderHandler()}
+                                        className="dropdown"
+                                    >
+                                    <DropdownToggle caret>
+                                        {login.gender
+                                        ? login.gender
+                                        : 'Gender'}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem header>Gender</DropdownItem>
+                                        <DropdownItem
+                                        name="gender"
+                                        value="Male"
+                                        onClick={(e) => changeHandler(e)}
+                                        >
+                                        Male
+                                        </DropdownItem>
+                                        <DropdownItem
+                                        name="gender"
+                                        value="Female"
+                                        onClick={(e) => changeHandler(e)}
+                                        >
+                                        Female
+                                        </DropdownItem>
+                                        <DropdownItem
+                                        name="gender"
+                                        value="Other"
+                                        onClick={(e) => changeHandler(e)}
+                                        >
+                                        Other
+                                        </DropdownItem>
+                                        <DropdownItem
+                                        name="gender"
+                                        value="Decline to say"
+                                        onClick={(e) => changeHandler(e)}
+                                        >
+                                        Decline to say
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                    </Dropdown>
+                                </div>
+                                <Label className="input-label" for="userType">
+                                    User type
+                                </Label>
+                                <div className="dropdown-div">
+                                    <Dropdown
+                                    isOpen={toggleDropUserType}
+                                    toggle={() => toggleDropUserTypeHandler()}
+                                    className="dropdown"
+                                    >
+                                    <DropdownToggle caret>
+                                        {login.userType
+                                        ? login.userType
+                                        : 'Client/Talent'}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem header>User Type</DropdownItem>
+                                        <DropdownItem
+                                        name="userType"
+                                        value="Client"
+                                        onClick={(e) => changeHandler(e)}
+                                        >
+                                        Client
+                                        </DropdownItem>
+                                        <DropdownItem
+                                        name="userType"
+                                        value="Talent"
+                                        onClick={(e) => changeHandler(e)}
+                                        >
+                                        Talent
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                    </Dropdown>
+                                </div>
+                                </>
+                            )
+                        }
+
+                <Button type="submit" size="lg" className="btn-orange btn-centered">
                 {
-                    loginToggle === "register" && (
-                        <>
-                        <Label className="input-label" for="firstName">
-                            First name
-                        </Label>
-                        <Input
-                            className="input"
-                            type="text"
-                            name="firstName"
-                            tabindex="1"
-                            value={login.firstName}
-                            onChange={(e) => changeHandler(e)}
-                        />
-
-                        <Label className="input-label" for="lastName">
-                            Last name
-                        </Label>
-                        <Input
-                            className="input"
-                            type="text"
-                            name="lastName"
-                            tabindex="2"
-                            value={login.lastName}
-                            onChange={(e) => changeHandler(e)}
-                        />
-                        <Label className="input-label" for="email">
-                            Email
-                        </Label>
-                        <Input
-                            className="input"
-                            type="email"
-                            name="email"
-                            tabindex="4"
-                            value={login.email}
-                            onChange={(e) => changeHandler(e)}
-                        />
-
-                        <Label className="input-label" for="gender">
-                            Gender
-                        </Label>
-                        <div className="dropdown-div">
-                            <Dropdown
-                            isOpen={toggleDropGender}
-                            toggle={() => toggleDropGenderHandler()}
-                            className="dropdown"
-                            >
-                            <DropdownToggle caret>
-                                {login.gender
-                                ? login.gender
-                                : 'Gender'}
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem header>Gender</DropdownItem>
-                                <DropdownItem
-                                name="gender"
-                                value="Male"
-                                onClick={(e) => changeHandler(e)}
-                                >
-                                Male
-                                </DropdownItem>
-                                <DropdownItem
-                                name="gender"
-                                value="Female"
-                                onClick={(e) => changeHandler(e)}
-                                >
-                                Female
-                                </DropdownItem>
-                                <DropdownItem
-                                name="gender"
-                                value="Other"
-                                onClick={(e) => changeHandler(e)}
-                                >
-                                Other
-                                </DropdownItem>
-                                <DropdownItem
-                                name="gender"
-                                value="Decline to say"
-                                onClick={(e) => changeHandler(e)}
-                                >
-                                Decline to say
-                                </DropdownItem>
-                            </DropdownMenu>
-                            </Dropdown>
-                        </div>
-                        <Label className="input-label" for="userType">
-                            User type
-                        </Label>
-                        <div className="dropdown-div">
-                            <Dropdown
-                            isOpen={toggleDropUserType}
-                            toggle={() => toggleDropUserTypeHandler()}
-                            className="dropdown"
-                            >
-                            <DropdownToggle caret>
-                                {login.userType
-                                ? login.userType
-                                : 'Client/Talent'}
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem header>User Type</DropdownItem>
-                                <DropdownItem
-                                name="userType"
-                                value="Client"
-                                onClick={(e) => changeHandler(e)}
-                                >
-                                Client
-                                </DropdownItem>
-                                <DropdownItem
-                                name="userType"
-                                value="Talent"
-                                onClick={(e) => changeHandler(e)}
-                                >
-                                Talent
-                                </DropdownItem>
-                            </DropdownMenu>
-                            </Dropdown>
-                        </div>
-                        </>
+                    loginToggle === "login" ? (
+                        <>Log In</>
+                    ):(
+                        <>Register</>
                     )
                 }
-
-                <Button type="submit" size="lg" className="btn-orange btn-centered">Log In</Button>
+                </Button>
                 
                 {
                     loggingIn === "start" ? (
@@ -265,6 +271,17 @@ const Login = () => {
                     )
                 }
             </Form>
+            <Button
+                onClick={(e) => loginToggleHandler(e)}
+                className="dropdown"
+            >{
+                loginToggle === "login" ? (
+                    <>Register Instead</>
+                ):(
+                    <>Login Instead</>
+                )
+            }
+            </Button>
         </article>
     )
 }
