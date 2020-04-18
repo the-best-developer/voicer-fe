@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useContext} from 'react';
 
 import logo from '../../images/logo-white.svg';
 
 import {
   Navbar,
   NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
+  //Nav,
+  //NavItem,
+  //NavLink
   } from 'reactstrap';
+import { UIContext } from '../../contexts/UIContext';
 
-const NavBar = ({refreshAppHandler}) => {
+const NavBar = () => {
 
-
+  const {refreshAppHandler} = useContext(UIContext)
+  
   const logout = e => {
     e.preventDefault();
     localStorage.removeItem('token');
@@ -29,7 +30,6 @@ const NavBar = ({refreshAppHandler}) => {
           <NavbarBrand href="/">
               <img className="logo" src={logo} alt="voicer" />
           </NavbarBrand>
-          
           {
             localStorage.getItem('token') ? (
               <a className="client-link" onClick={logout}>Logout</a>
@@ -37,8 +37,6 @@ const NavBar = ({refreshAppHandler}) => {
               <a className="client-link" href="register">Register</a>
             ) 
           }
-          
-
         </Navbar>
       </header>
   );

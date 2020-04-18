@@ -1,98 +1,96 @@
-import React, { Component, useContext } from 'react';
-import { connect } from 'react-redux';
-import { Form, Input, Button, Label } from 'reactstrap';
-import { login } from '../../actions/login';
+import React, { useState, useContext } from 'react'
+import axios from 'axios'
+//import { connect } from 'react-redux';
+import { Form, Input, Button, Label } from 'reactstrap'
+//import { login } from '../../actions/login';
+import {DataContext} from '../../contexts/DataContext'
+import {UIContext} from '../../contexts/UIContext'
 
 
-class Login extends Component {
+// class Login extends Component {
 
-    state = {
-        creds: {
-            username: '',
-            password: ''
-        },
-        error: false
-    }
 
-    changeHandler = e => {
-        this.setState({
-            creds: {
-                ...this.state.creds,
-                [e.target.name]: e.target.value
-            }
-        }); 
+
+const Login = () => {
+
+    const {
+        setData, // for new data
+        dbURL
+    } = useContext(DataContext)
+
+    const {
+        refreshAppHandler
+    } = useContext(UIContext)
+
+    const [login, setLogin] = useState({
+        username: "",
+        password: ""
+    })
+
+    const changeHandler = e => {
+        setLogin({
+            ...login,
+            [e.target.name]: e.target.value
+        }) 
     }
     
-    submitHandler = e => {
+    const submitLoginHandler = e => {
         e.preventDefault();
-    
-        const { username, password } = this.state.creds
-    
-        this.props.login({
-            username: username,
-            password: password
-        })
-        .then(() => {
-            if (localStorage.getItem('token')) {
-                // return this.props.userType === "client" ?
-                    // this.props.history.push('/client') :
-                    // this.props.history.push('/talent')
-            } else {
-                this.setState({ error: true });
-            }
-        })
-        .catch(err => console.log(err))
-        .finally(()=> {
-            window.location.reload()
-
-        })
+        
+        axios.post(`${dbURL}/api/auth/login`, login)
+            .then(res => {
+                localStorage.setItem("token", res.data.token)
+            })
+            .catch(err => console.log(err))
+            .finally(()=> {
+                refreshAppHandler()
+            })
     }
 
-    render() {
-        const { username, password } = this.state.creds;
-
-        return (
-                  <article className="onboard-card">
-                        <h2>Log In</h2>
-                        <Form onSubmit={this.submitHandler}>
-                            <Label className="input-label" for="username">Username</Label>
-                            <Input
-                                className="input"
-                                type="text"
-                                value={username}
-                                name="username"
-                                onChange={this.changeHandler}
-                            />
-                            <Label className="input-label" for="password">Password</Label>
-                            <Input
-                                className="input"
-                                type="password"
-                                value={password}
-                                name="password"
-                                onChange={this.changeHandler}
-                            />
+    return (
+        <article className="onboard-card">
+            <h2>Log In</h2>
+            <Form onSubmit={(e) => submitLoginHandler(e)}>
+                <Label className="input-label" for="username">Username</Label>
+                <Input
+                    className="input"
+                    type="text"
+                    value={login.username}
+                    name="username"
+                    onChange={(e) => changeHandler(e)}
+                />
+                <Label className="input-label" for="password">Password</Label>
+                <Input
+                    className="input"
+                    type="password"
+                    value={login.password}
+                    name="password"
+                    onChange={(e) => changeHandler(e)}
+                />
 
 
-                          <Button type="submit" size="lg" className="btn-orange btn-centered">Log In</Button>
-                          {this.props.loggingIn ?
-                            <p className="login-status">...Logging In...</p> : 
-                            this.props.success ? <p className="login-status success">Login Successful!</p> :
-                            this.props.error ? <p className="login-status error">Login Failed</p> : null}
-                        </Form>
-                  </article>
-        )
-    }
+                <Button type="submit" size="lg" className="btn-orange btn-centered">Log In</Button>
+                {/* {this.props.loggingIn ?
+                <p className="login-status">...Logging In...</p> : 
+                this.props.success ? <p className="login-status success">Login Successful!</p> :
+                this.props.error ? <p className="login-status error">Login Failed</p> : null} */}
+            </Form>
+        </article>
+    )
 }
 
-const mapStateToProps = state => ({
-    loggingIn: state.loginReducer.loggingIn,
-    id: state.loginReducer.id,
-    userType: state.loginReducer.userType,
-    error: state.loginReducer.error,
-    success: state.loginReducer.success
-})
 
-export default connect(
-    mapStateToProps,
-    { login }
-)(Login)
+// const mapStateToProps = state => ({
+//     loggingIn: state.loginReducer.loggingIn,
+//     id: state.loginReducer.id,
+//     userType: state.loginReducer.userType,
+//     error: state.loginReducer.error,
+//     success: state.loginReducer.success
+// })
+
+// export default connect(
+//     mapStateToProps,
+//     { login }
+// )(Login)
+
+export default Login
