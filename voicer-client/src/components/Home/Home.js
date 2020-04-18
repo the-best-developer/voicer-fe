@@ -5,8 +5,6 @@ import OnboardBox from './OnboardBox';
 import InfoBox from './InfoBox';
 import TalentHomePage from '../Talent/TalentHomePage';
 import ClientHomePage from '../ClientHomePage'
-import TalentNavigation from '../Talent/TalentNavigation';
-import ClientNavigation from '../ClientNavigation';
 
 
 
