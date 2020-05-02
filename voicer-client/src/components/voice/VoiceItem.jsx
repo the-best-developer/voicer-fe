@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Samples from './Samples'
 
 const VoiceItem = ({data, token, bio, currentDisplayName}) => {
@@ -6,11 +6,12 @@ const VoiceItem = ({data, token, bio, currentDisplayName}) => {
   const [crud, setCrud] = useState(false)
 
   //if logged in and bio is active (bio will be in a specified path)
-  //useEffect(()=>{
-  if(token && (token.display_name === currentDisplayName)){
-    setCrud(true)
-  }
-  //},[])
+  useEffect(()=>{
+    if(token && (token.display_name === currentDisplayName)){
+      setCrud(true)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   //useEffect(()=> {console.log(`crud: ${crud} edit: ${edit}`)},[crud, edit])
 
