@@ -1,71 +1,232 @@
-@import 'styles/resets';
-@import 'styles/typography';
-@import 'styles/buttons';
-@import 'styles/header';
-@import 'styles/hero';
-@import 'styles/infobox';
-@import 'styles/user-access';
-@import 'styles/footer';
-@import 'styles/colors';
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
 
 
-.TalentNavigation {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 50px;
+:root {
+  --voicer-orange: #FF934F;
+  --voicer-star-on: #FFFF00;
+  --bg: #223843;
+  --bg-rgb: 34, 56, 67;
+  --bg-main: #242424;
+  --bg-accent: #535353;
+  --bg-button: #686868;
+  --button-selected: #009AeC;
+  --text-color: #EFF1F3;
+  --nav-size: 4rem;
+  --border: 1px solid #838383;
+  --border-radius: 1rem;
+  --speed: 500ms;
+  --tablet: 500px;
 }
 
-.TalentNavigationLinks {
-  display: flex;
-  flex-direction: row;
+*{
+  box-sizing: border-box;
 }
 
-.TalentNavigationLinks a {
-  margin-left: 100px;
+body{
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 
-.PostJob {
-  margin: 0 auto;
-  width: 600px;
-  margin-top: 19vh;
-  padding-top: 4vh;
-  min-height: 55.9vh;
+a{
+  color: var(--text-color);
+  text-decoration: none;
 }
 
-.PostJob h1 {
-  text-align: center;
+html{
+  color: var(--text-color);
+  background-color: var(--bg-main);
 }
 
-.PostJob Form {
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button{
+  border: none;
+  background: none;
+  color: var(--text-color);
+  &:focus {outline:0;}
+}
+
+
+
+body{
   display: flex;
   flex-direction: column;
-  align-content: center;
-}
-
-.PostJob Button {
-  margin-top: 20px;
-}
-
-.default-application-list {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  padding-bottom: 5vh;
-}
-
-.centered {
-  margin: 0 auto;
-}
-
-.job-list-container {
-  margin: 0 auto;
-  padding-top: 5vh;
   width: 100%;
 }
 
-.job-list-container h3 {
-  text-align: center;
+#root {
+  width: 100%;
+  max-width: 1440px;
+}
+
+.navbar{
+  background-color: var(--bg);
+  height: var(--nav-size);
+  padding: 0 1rem;
+  border-bottom: var(--border);
+  display: flex;
+  align-items: center;
+  .logo{
+    width: 100px;
+  }
+  .navbar-nav{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .nav-item {
+      width: calc(var(--nav-size) *0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .icon-button{
+        --button-size: calc(var(--nav-size)*.5);
+        width: var(--button-size);
+        height: var(--button-size);
+        background-color: var(--bg-button);
+        border-radius: 50%;
+        border: var(--border);
+        margin: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: filter 300ms;
+        &:hover{
+          filter: brightness(1.7);
+          //color: var(--bg);
+          font-weight: 400;
+        }
+        svg {
+          fill: var(--text-color);
+          width: 20px;
+          height: 20px;
+        }
+        .icon-right{
+          margin-left:auto;
+        }
+        .menu {
+          width: 100%;
+        }
+        
+      }
+      .selected{
+        svg{
+          fill: var(--button-selected);
+        }
+      }
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(var(--nav-size) - .75rem);
+  width: 300px;
+  transform: translateX((-40%));
+  background-color: rgba(var(--bg-rgb), 0.9);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.menu-item{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  border-radius: var(--border-radius);
+  transition: background var(--speed);
+  padding: .5rem;
+  &:hover{
+    background-color: #555555;
+  }
+}
+
+.hero{
+  margin: 0px;
+  height: 80vh;
+  background: url("./images/recording-studio-bkg.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .infobox{
+    background-color: rgba(var(--bg-rgb), 0.8);
+    margin: 1rem 5%;
+    padding: 1rem 5%;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+      font-family: Nunito Sans,sans-serif;
+      font-weight: 800;
+      color: var(--voicer-orange);
+      text-align: center;
+      margin: none;
+      margin-bottom: .5rem;
+    }
+    p{
+      margin: none;
+    }
+  }
+
+}
+
+.voice{
+  margin: .5rem;
+  .voiceItem{
+    padding: 1rem;
+    background-color: var(--bg);
+    border-radius: var(--border-radius);
+    margin: 1rem 0px;
+    .profileHeader{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: .5rem;
+      padding: 1rem;
+      .profileImage{
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background-color: var(--button-selected);
+      }
+      .profileInfo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    .profileBio{
+      margin: .5rem;
+      padding: 1rem;
+      background-color: var(--bg-main);
+      border: var(--border);
+      border-radius: var(--border-radius);
+      p{
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (min-width: 500px){
+  .voice{
+    .voiceItem{
+      .profileHeader{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }     
+    }
+  }
+
+  .hero {
+    height: 50vh;
+  }
 }
