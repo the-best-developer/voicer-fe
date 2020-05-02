@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-import GateKeeper from './components/gatekeeper/GateKeeper.js'
+import GateKeeper from './components/GateKeeper/GateKeeper'
 import NavBar from './components/navbar/NavBar'
 import Marketplace from './components/marketplace/Marketplace'
 import Voice from './components/voice/Voice'
