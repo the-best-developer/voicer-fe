@@ -22,12 +22,16 @@ export default function Voice() {
       console.log("there is a param")
       axios.get(`${url}/api/users?display_name=${displayName}`)
         .then(result => {
-          setData(result.data.filter(voice => voice.display_name === displayName))
           setData(result.data)
-          setNameMatchesDB(false)
+          if(result.data[0]){
+            setNameMatchesDB(true)
+          }else{
+            setNameMatchesDB(false)
+          }
         })
         .catch(err => {
           console.log(err)
+          setNameMatchesDB(true)
         })
     }  else {   
       //console.log("there is no param")
@@ -38,6 +42,7 @@ export default function Voice() {
         })
         .catch(err => {
           console.log(err)
+          setNameMatchesDB(true)
         })
     
     }
