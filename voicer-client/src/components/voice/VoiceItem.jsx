@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import Samples from './Samples'
 
+
 const VoiceItem = ({data, token, bio, currentDisplayName}) => {
   const [edit, setEdit] = useState(false)
   const [crud, setCrud] = useState(false)
 
-  //if logged in and bio is active (bio will be in a specified path)
+  //if logged in and your record => you can edit
   useEffect(()=>{
     if(token && (token.display_name === currentDisplayName)){
       setCrud(true)
@@ -16,6 +17,7 @@ const VoiceItem = ({data, token, bio, currentDisplayName}) => {
   //useEffect(()=> {console.log(`crud: ${crud} edit: ${edit}`)},[crud, edit])
 
   return(
+    // if edit is true -->
       edit ? (
         // allow editing
         <article className="voiceItem">
