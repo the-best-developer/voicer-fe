@@ -2,11 +2,13 @@ import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import Login from '../Login/Login'
 
-const OnboardBox = ({refreshAppHandler}) => {
+const OnboardBox = () => {
+
+
     return (
         <section className="hero-box">
             <Jumbotron className="hero">
-              <Login refreshAppHandler={refreshAppHandler} />
+              <Login />
             </Jumbotron>
         </section>
     )

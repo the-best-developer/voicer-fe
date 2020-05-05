@@ -1,66 +1,46 @@
-import React, { Component, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, {useState} from 'react'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-import {UIContext} from './contexts/UIContext'
+import GateKeeper from './components/GateKeeper/GateKeeper'
+import NavBar from './components/navbar/NavBar'
+import Marketplace from './components/marketplace/Marketplace'
+import Voice from './components/voice/Voice'
 
-import NavBar from './components/Home/NavBar'
-import Register from './components/Register';
-import PrivateRoute from './components/Login/PrivateRoute';
-import PostJob from './components/PostJob';
-import TalentNavigation from './components/Talent/TalentNavigation';
-import TalentProfile from './components/Talent/TalentProfile';
-import ClientProfile from './components/ClientProfile';
-import Home from './components/Home/Home';
-import TalentHomePage from './components/Talent/TalentHomePage';
-import ClientHomePage from './components/ClientHomePage';
-import ApplyToJob from './components/ApplyToJob';
-import TalentList from './components/TalentList/TalentList';
-import AppList from './components/Applications/AppList';
-import Footer from './components/Footer';
-import ClientNavigation from './components/ClientNavigation';
-import TalentOfferView from './components/Talent/TalentOfferView';
-import ReviewList from './components/ReviewList';
 
-const App = () => {
+import {DataContext} from './context/DataContext'
+
+import './App.scss'
+
+function App() {
+  const token = GateKeeper()
   const [refreshApp, setRefreshApp] = useState(true)
+  const [url] = useState("https://pt9-dbtest.herokuapp.com")
 
-  useEffect(()=>{
-
-  }, [refreshApp])
-
+  const [data, setData] = useState([])
+  
+  //global reset
   const refreshAppHandler = () => {
+    console.log(refreshApp)
     setRefreshApp(!refreshApp)
   }
+  //end global reset
+  
+  //UI elements
+
 
   return (
-    <UIContext.Provider value={{refreshAppHandler}}>
+    <DataContext.Provider value={{token, data, setData, refreshAppHandler, url}}>
       <Router>
-        <NavBar refreshAppHandler={refreshAppHandler} />
-        <Route exact path="/" component={Home} refreshAppHandler={refreshAppHandler}/>
-        {/* <Route exact path="/login" component={Login} /> */}
-        <Route exact path="/register" component={Register} />
-        <PrivateRoute exact path="/client" component={ClientHomePage} />
-        <PrivateRoute path="/client" component={ClientNavigation} />
-        <Route exact path="/talent/apply" component={ApplyToJob} />
-        <PrivateRoute exact path="/client/postjob" component={PostJob} />
-        <PrivateRoute exact path="/client/profile" component={ClientProfile} />
-        <PrivateRoute path="/talent" component={TalentNavigation} />
-        <PrivateRoute exact path="/talent" component={TalentHomePage} />
-        <PrivateRoute exact path="/talent/profile" component={TalentProfile} />
-        <PrivateRoute exact path="/talent/applications" component={TalentOfferView} />
-        <PrivateRoute exact path="/talent/reviews" component={ReviewList} />
-        <PrivateRoute exact path="/client/reviews" component={ReviewList} />
-        <PrivateRoute exact path="/client/talentlist" component={TalentList} />
-        <PrivateRoute
-          exact
-          path="/client/applicationlist"
-          component={AppList}
-        />
-        {/* <Footer /> */}
+        <NavBar />
+         <main>
+          <Route exact path='/' component={Marketplace} />
+          <Route exact path='/:marketplaceID' component={Marketplace} />
+          <Route exact path='/voice/' component={Voice} />
+          <Route exact path='/voice/:displayName' component={Voice} />
+        </main>
       </Router>
-    </UIContext.Provider>
-  );
+    </DataContext.Provider>
+  )
 }
 
-
-export default App;
+export default App
