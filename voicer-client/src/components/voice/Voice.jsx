@@ -23,6 +23,8 @@ export default function Voice() {
       axios.get(`${url}/api/users?display_name=${displayName}`)
         .then(result => {
           setData(result.data)
+          console.log(result)
+
           if(result.data[0]){
             setNameMatchesDB(true)
           }else{
@@ -38,6 +40,8 @@ export default function Voice() {
       axios.get(`${url}/api/users`)
         .then(result => {
           setData(result.data)
+          console.log(data)
+
           setNameMatchesDB(false)
         })
         .catch(err => {
@@ -49,7 +53,10 @@ export default function Voice() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
+  console.log(data)
+
   return (
+    
     <section className="voice"> 
       {
         (!nameMatchesDB && displayName !== undefined) && <article className="error">The Display Name you specified is either unavailable, or doesn't exist</article>
