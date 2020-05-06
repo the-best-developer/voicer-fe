@@ -28,15 +28,19 @@ const JobsCard = ({ token, data }) => {
       )}
     </article>
   ) : (
-    <>
-      <div className="jobCard">
-        <div>
-          <h1 className="jobTitle">{data.title}</h1>
+    <article className="jobCard">
+      <div className="jobTitle">
+        <h3>{data.title}</h3>
+      </div>
+      <div className="jobBody">
+        <div className="jobImage">
           <img
             className="jobCardStockImage"
             src={`https://picsum.photos/id/${data.id}/87/87?grayscale`}
             alt="Stock image for beautification"
-          ></img>
+          />
+        </div>
+        <div className="jobInfo">
           <p>This job pays ${data.payrate}/hour</p>
           <p>Job poster: {data.creator_id}</p>
           <button type="button" className="applyButton">
@@ -44,7 +48,14 @@ const JobsCard = ({ token, data }) => {
           </button>
         </div>
       </div>
-    </>
+      <div className="jobDescription">
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit quam
+          saepe minus reiciendis error consequuntur incidunt commodi delectus
+          quas assumenda!
+        </p>
+      </div>
+    </article>
   );
 };
 

@@ -6,8 +6,9 @@ import VoiceItem from "./VoiceItem";
 
 export default function Voice() {
   const [nameMatchesDB, setNameMatchesDB] = useState(true);
+  const [data, setData] = useState([]);
 
-  const { token, data, setData, url } = useContext(DataContext);
+  const { token, url } = useContext(DataContext);
 
   const displayName = useParams().displayName;
 
