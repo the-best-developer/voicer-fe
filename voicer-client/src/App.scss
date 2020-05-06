@@ -178,11 +178,12 @@ body {
 .voice,
 .marketplace {
   margin: 0.5rem;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  .voiceItem,
-  .jobCard {
+  display: flex;
+  // flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  .voiceItem {
     padding: 1rem;
     background-color: var(--bg);
     border-radius: var(--border-radius);
@@ -205,7 +206,42 @@ body {
         align-items: center;
       }
     }
+
     .profileBio {
+      margin: 0.5rem;
+      padding: 1rem;
+      background-color: var(--bg-main);
+      border: var(--border);
+      border-radius: var(--border-radius);
+      p {
+        text-align: center;
+      }
+    }
+  }
+  .jobCard {
+    max-width: 500px;
+    padding: 1rem;
+    background-color: var(--bg);
+    border-radius: var(--border-radius);
+    margin: 1rem 0px;
+    display: flex;
+    flex-direction: column;
+    .jobTitle {
+      text-align: center;
+    }
+    .jobBody {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      .jobImage {
+        .jobCardStockImage {
+          border-radius: 50%;
+        }
+      }
+      .jobInfo {
+      }
+    }
+    .jobDescription {
       margin: 0.5rem;
       padding: 1rem;
       background-color: var(--bg-main);
@@ -218,27 +254,13 @@ body {
   }
 }
 
-.marketplace {
-  width: 100%;
-  .jobCard {
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    img {
-      border-radius: 50%;
-    }
-  }
-}
-
 @media (min-width: 500px) {
   .voice {
     .voiceItem {
       .profileHeader {
-        .jobCard {
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
       }
     }
   }

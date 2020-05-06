@@ -9,8 +9,8 @@ import Hero from "../hero/Hero";
 
 export default function Marketplace() {
   const [jobMatchesDB, setJobMatchesDB] = useState(true);
-
-  const { token, data, setData, url } = useContext(DataContext);
+  const [data, setData] = useState([]);
+  const { token, url } = useContext(DataContext);
 
   const jobId = useParams().jobId;
   console.log(jobId);
@@ -49,13 +49,13 @@ export default function Marketplace() {
   //   }
   // }, []);
 
-  // useEffect(() => {
-  //   setData(jobs);
-  // }, []);
-  // console.log(data);
+  useEffect(() => {
+    setData(jobs);
+  }, []);
+  console.log(data);
 
-  setData(jobs);
-  console.log(jobId);
+  // setData(jobs);
+  // console.log(jobId);
 
   return (
     <section className="marketplace">

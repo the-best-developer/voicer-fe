@@ -16,11 +16,8 @@ function App() {
   // const [url] = useState("localhost:3000")
   const [url] = useState("https://voicer-lambda-app.herokuapp.com");
 
-  const [data, setData] = useState([]);
-
   //global reset
   const refreshAppHandler = () => {
-    setData([]);
     setRefreshApp(!refreshApp);
   };
   //end global reset
@@ -28,9 +25,7 @@ function App() {
   //UI elements
 
   return (
-    <DataContext.Provider
-      value={{ token, data, setData, refreshAppHandler, url }}
-    >
+    <DataContext.Provider value={{ token, refreshAppHandler, url }}>
       <Router>
         <NavBar />
         <main>
