@@ -14,7 +14,7 @@ function App() {
   const token = GateKeeper();
   const [refreshApp, setRefreshApp] = useState(true);
   // const [url] = useState("localhost:3000")
-  const [url] = useState("https://pt9-dbtest.herokuapp.com");
+  const [url] = useState("https://voicer-lambda-app.herokuapp.com");
 
   const [data, setData] = useState([]);
 

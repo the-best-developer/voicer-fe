@@ -11,7 +11,23 @@ const JobsCard = ({ token, data }) => {
     }
   });
 
-  return (
+  return edit ? (
+    <article className="jobCard">
+      {crud && (
+        <>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setEdit(!edit);
+            }}
+          >
+            Cancel
+          </button>
+          <button>Delete Job</button>
+        </>
+      )}
+    </article>
+  ) : (
     <>
       <div className="jobCard">
         <div>
