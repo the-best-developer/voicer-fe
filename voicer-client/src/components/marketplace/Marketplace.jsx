@@ -17,43 +17,45 @@ export default function Marketplace() {
 
   // useEffect(() => {
   //   if (jobId) {
-  //     console.log("we are in 'detail mode'")
-  //     axios.get(url)
-  //       .then(result => {
-  //         setData(result)
+  //     console.log("we are in 'detail mode'");
+  //     axios
+  //       .get(url)
+  //       .then((result) => {
+  //         setData(result);
 
   //         if (result.data[0]) {
   //           setJobMatchesDB(true);
   //         } else {
-  //           setJobMatchesDB(false)
+  //           setJobMatchesDB(false);
   //         }
   //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //         setJobMatchesDB(true)
+  //       .catch((err) => {
+  //         console.log(err);
+  //         setJobMatchesDB(true);
+  //       });
+  //   } else {
+  //     axios
+  //       .get(url)
+  //       .then((result) => {
+  //         setData(result.data);
+  //         console.log(data);
+
+  //         setJobMatchesDB(false);
   //       })
-  //     } else {
-  //       axios.get(url)
-  //         .then(result => {
-  //           setData(result.data)
-  //           console.log(data)
+  //       .catch((err) => {
+  //         console.log(err);
+  //         setJobMatchesDB(false);
+  //       });
+  //   }
+  // }, []);
 
-  //           setJobMatchesDB(false)
-  //         })
-  //         .catch(err => {
-  //           console.log(err)
-  //           setJobMatchesDB(false)
-  //         })
+  // useEffect(() => {
+  //   setData(jobs);
+  // }, []);
+  // console.log(data);
 
-  //     }
-  //   },[])
-
-  useEffect(() => {
-    setData(jobs);
-  }, []);
-  console.log(data);
-
-  // setData(jobs);
+  setData(jobs);
+  console.log(jobId);
 
   return (
     <section className="marketplace">
@@ -74,7 +76,7 @@ export default function Marketplace() {
         <>
           {data.map((job) => (
             <a className="jobLink" key={job.id} href={`/job/${job.id}`}>
-              <JobsCard data={job} token={token} />
+              <JobsCard data={job} />
             </a>
           ))}
         </>
