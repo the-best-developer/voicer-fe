@@ -1,57 +1,56 @@
-import React, { useState, useContext } from "react";
-import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
+import React, { useState, useContext } from "react"
+import { Button, Card, InputGroup, FormControl } from "react-bootstrap"
 
-import { useInputControl } from "../../../hooks/useInputControl.js";
-import ValidateFields from "./validate.js";
+import { useInputControl } from "../../../hooks/useInputControl.js"
+import ValidateFields from "./validate.js"
 
-import axios from "axios";
+import axios from "axios"
 
-import { DataContext } from "../../../context/DataContext";
+import { DataContext } from "../../../context/DataContext"
 
 const LogRegFields = (props) => {
-  const { refreshAppHandler, url } = useContext(DataContext);
+  const { refreshAppHandler, url } = useContext(DataContext)
 
-  const [validate, setValidate] = useState([]);
+  const [validate, setValidate] = useState([])
 
-  const isReg = props.register;
-  let title = "Login";
-  let notTitle = "Register";
+  const isReg = props.register
+  let title = "Login"
+  let notTitle = "Register"
 
   if (isReg) {
-    title = "Register";
-    notTitle = "Login";
+    title = "Register"
+    notTitle = "Login"
   }
 
-  const displayNameInput = useInputControl("");
-  const passwordInput = useInputControl("");
-  const firstNameInput = useInputControl("");
-  const lastNameInput = useInputControl("");
-  const emailInput = useInputControl("");
+  const displayNameInput = useInputControl("")
+  const passwordInput = useInputControl("")
+  const firstNameInput = useInputControl("")
+  const lastNameInput = useInputControl("")
+  const emailInput = useInputControl("")
 
   const userInfo = {
     password: passwordInput.value,
     email: emailInput.value,
-  };
+  }
 
   if (isReg) {
-    userInfo.first_name = firstNameInput.value;
-    userInfo.last_name = lastNameInput.value;
-    userInfo.display_name = displayNameInput.value;
+    userInfo.first_name = firstNameInput.value
+    userInfo.last_name = lastNameInput.value
+    userInfo.display_name = displayNameInput.value
   }
 
   const doSubmit = (e) => {
-    e.preventDefault();
-    const make = [];
+    e.preventDefault()
+    const make = []
     Object.keys(userInfo).forEach((key) => {
       if (userInfo[key] === "") {
-        make.push(`Please fill out the ${key} field`);
+        make.push(`Please fill out the ${key} field`)
       }
-    });
+    })
     if (make.length !== 0) {
-      setValidate(make);
-      return;
+      setValidate(make)
+      return
     } else {
-      console.log(userInfo);
       axios
         .post(
           title === "Register"
@@ -60,16 +59,16 @@ const LogRegFields = (props) => {
           userInfo
         )
         .then((res) => {
-          props.setDropDown(false);
-          localStorage.setItem("token", res.data.token);
+          props.setDropDown(false)
+          localStorage.setItem("token", res.data.token)
         })
         .catch((err) => {})
         .finally(() => {
-          props.setLoginRegister(false);
-          refreshAppHandler();
-        });
+          props.setLoginRegister(false)
+          refreshAppHandler()
+        })
     }
-  };
+  }
 
   return (
     <section>
@@ -106,8 +105,8 @@ const LogRegFields = (props) => {
         I want to {notTitle} instead
       </button>
     </section>
-  );
-};
+  )
+}
 
 function RegFields(props) {
   if (props.isReg) {
@@ -123,9 +122,9 @@ function RegFields(props) {
           <FormControl {...props.displayNameInput} placeholder="Display Name" />
         </InputGroup>
       </>
-    );
+    )
   }
-  return <></>;
+  return <></>
 }
 
-export default LogRegFields;
+export default LogRegFields
