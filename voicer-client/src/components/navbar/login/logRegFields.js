@@ -40,6 +40,7 @@ const LogRegFields = (props) => {
   }
 
   const doSubmit = (e) => {
+    console.log(userInfo)
     e.preventDefault()
     const make = []
     Object.keys(userInfo).forEach((key) => {

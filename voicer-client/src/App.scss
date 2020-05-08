@@ -257,10 +257,11 @@ body {
 @media (min-width: 500px) {
   .voice {
     .voiceItem {
+      width: 100%;
       .profileHeader {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
       }
     }
   }
