@@ -21,7 +21,9 @@ const NavBar = () => {
     <>
       <header>
         <nav className="navbar">
-          <Logo className="logo" />
+          <Link to='/'>
+            <Logo className="logo" />
+          </Link>
           <ul className="navbar-nav">
             <NavItem
               icon={<Caret />}
