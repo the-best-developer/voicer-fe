@@ -3,6 +3,8 @@ import axios from "axios"
 import { useInputControl } from "../../hooks/useInputControl"
 import { DataContext } from "../../context/DataContext"
 import { Button, Card, InputGroup, FormControl } from "react-bootstrap"
+import Editor from '../editor/Editor'
+
 
 export default function EditProfile({ profileData, token }) {
   // last_name
@@ -60,6 +62,7 @@ export default function EditProfile({ profileData, token }) {
           <InputGroup className="mb-3">
             <FormControl {...passwordInput} placeholder="Password" />
           </InputGroup>
+          <Editor />
           <Button variate="primary" type="submit">
             SUPER SUBMIT
           </Button>
