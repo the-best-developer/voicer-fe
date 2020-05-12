@@ -20,14 +20,14 @@ export default function EditProfile({ profileData, token }) {
   const { refreshAppHandler, url } = useContext(DataContext)
 
   const displayNameInput = useInputControl(initialState.display_name)
-  const passwordInput = useInputControl("")
+  //const passwordInput = useInputControl("")
   const firstNameInput = useInputControl(initialState.first_name)
   const lastNameInput = useInputControl(initialState.last_name)
   const emailInput = useInputControl(initialState.email)
   const bioInput = useInputControl(initialState.bio)
 
   userInfo.display_name = displayNameInput.value
-  userInfo.password = passwordInput.value
+  //userInfo.password = passwordInput.value
   userInfo.first_name = firstNameInput.value
   userInfo.last_name = lastNameInput.value
   userInfo.email = emailInput.value
@@ -63,13 +63,13 @@ export default function EditProfile({ profileData, token }) {
           <InputGroup className="mb-3">
             <FormControl {...emailInput} placeholder="Email" />
           </InputGroup>
-          <InputGroup className="mb-3">
+          {/* <InputGroup className="mb-3">
             <FormControl
               {...passwordInput}
               placeholder="Password"
               type="password"
             />
-          </InputGroup>
+          </InputGroup> */}
           <InputGroup>
             <FormControl
               {...bioInput}
