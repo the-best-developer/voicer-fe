@@ -74,7 +74,7 @@ const VoiceItem = ({ data, token, bio, currentDisplayName }) => {
             {bio && <button>Invite to Apply</button>}
           </div>
           <div className="profileSamples">
-            <AudioPlayer samples={data.samples}/>
+            {data.samples[0] !== undefined && <AudioPlayer samples={data.samples}/>}
           </div>
         </div>
         {bio && (
