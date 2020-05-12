@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Samples from "./Samples"
+import AudioPlayer from "../audio/AudioPlayer"
 import EditProfile from "./EditProfile"
 
 const VoiceItem = ({ data, token, bio, currentDisplayName }) => {
@@ -74,7 +74,7 @@ const VoiceItem = ({ data, token, bio, currentDisplayName }) => {
             {bio && <button>Invite to Apply</button>}
           </div>
           <div className="profileSamples">
-            {data.samples && data.samples.map((sample) => <Samples sample={sample}/>)}
+            {data.samples && data.samples.map((sample, item) => <AudioPlayer key={item} sample={sample}/>)}
           </div>
         </div>
         {bio && (
