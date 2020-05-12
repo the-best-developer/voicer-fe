@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player'
 const AudioPlayer = ({samples}) => {
 
   const [sampleIndex, setSampleIndex] = useState(0)
-  const [sampleLength, setSampleLength] = useState(samples.length)
+  const [sampleLength] = useState(samples.length)
 
   const nexthandler = (e) => {
     e.preventDefault()
@@ -28,7 +28,7 @@ const AudioPlayer = ({samples}) => {
   console.log(samples, sampleIndex, sampleLength)
   return(<>
     <div className="title">
-      <p>{samples[sampleIndex].title}</p>
+      <p>{`${sampleIndex+1}/${sampleLength} ${samples[sampleIndex].title}`}</p>
     </div>
     <div className="carousel">
       {sampleLength > 1 && (
