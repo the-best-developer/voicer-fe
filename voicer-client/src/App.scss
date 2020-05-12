@@ -201,6 +201,7 @@ body {
         background-color: var(--button-selected);
       }
       .profileInfo {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -254,6 +255,44 @@ body {
   }
 }
 
+.profileSamples{
+  margin: 1rem 0px;
+  .title{
+    background-color: var(--voicer-orange);
+    color: var(--bg-main);  
+    padding: .25rem 1rem;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    p{
+      margin: 0px;
+    }
+  }
+  .carousel{
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-main);
+    button{
+      background-color: var(--voicer-orange);
+      color: var(--bg-main);
+      height: 20px;
+      width: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin: .5rem
+    }
+  }
+  .player{
+    audio{
+      background-color: var(--bg-main);
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}
+
 @media (min-width: 500px) {
   .voice {
     .voiceItem {
@@ -262,6 +301,9 @@ body {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
+        .profileInfo{
+          width: 33%
+        }
       }
     }
   }
