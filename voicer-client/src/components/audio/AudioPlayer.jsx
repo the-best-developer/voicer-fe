@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AudioPlayer = (props) => {
-  console.log(PushSubscriptionOptions)
+  console.log(props)
   return(<></>)
   
 }
