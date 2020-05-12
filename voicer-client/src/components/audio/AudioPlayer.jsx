@@ -51,7 +51,7 @@ const AudioPlayer = ({samples}) => {
       className="player"
       playing={false} 
       controls={true} 
-      width="100%"
+      width="240px"
       height="20px"
       config={{
         file:{
