@@ -74,7 +74,7 @@ const VoiceItem = ({ data, token, bio, currentDisplayName }) => {
             {bio && <button>Invite to Apply</button>}
           </div>
           <div className="profileSamples">
-            {data.samples && data.samples.map((sample, item) => <AudioPlayer key={item} sample={sample}/>)}
+            <AudioPlayer samples={data.samples}/>
           </div>
         </div>
         {bio && (
