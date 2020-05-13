@@ -1,12 +1,10 @@
 import axios from "axios"
-import DataContext from "../../context/DataContext"
 
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("token")
-  const { url } = useContext(DataContext)
 
   return axios.create({
-    baseURL: url,
+    baseURL: 'https://voicer-lambda-app.herokuapp.com',
     headers: {
       authorization: token,
     },
