@@ -1,71 +1,102 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { DataContext } from "../../context/DataContext";
-import axios from "axios";
-import JobsCard from "./JobsCard";
-import { jobs } from "../../fakedata/jobs";
+import React, { useState, useContext, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { DataContext } from "../../context/DataContext"
+import axios from "axios"
+import JobsCard from "./JobsCard"
+// import { jobs } from "../../fakedata/jobs"
 
-import Hero from "../hero/Hero";
+import Hero from "../hero/Hero"
 
 export default function Marketplace() {
-  const [jobMatchesDB, setJobMatchesDB] = useState(true);
-  const [data, setData] = useState([]);
-  const { token, url } = useContext(DataContext);
+  const [jobMatchesDB, setJobMatchesDB] = useState(true)
+  const [data, setData] = useState([])
+  const { token, url } = useContext(DataContext)
 
-  const jobId = useParams().jobId;
-  console.log(jobId);
-
-  // useEffect(() => {
-  //   if (jobId) {
-  //     console.log("we are in 'detail mode'");
-  //     axios
-  //       .get(url)
-  //       .then((result) => {
-  //         setData(result);
-
-  //         if (result.data[0]) {
-  //           setJobMatchesDB(true);
-  //         } else {
-  //           setJobMatchesDB(false);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setJobMatchesDB(true);
-  //       });
-  //   } else {
-  //     axios
-  //       .get(url)
-  //       .then((result) => {
-  //         setData(result.data);
-  //         console.log(data);
-
-  //         setJobMatchesDB(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setJobMatchesDB(false);
-  //       });
-  //   }
-  // }, []);
+  const jobId = useParams().jobId
 
   useEffect(() => {
-    setData(jobs);
-  }, []);
-  console.log(data);
+    if (jobId) {
+      console.log("we are in 'detailed job mode")
+      axios
+        .get(`${url}/api/jobs/${jobId}`)
+        .then((result) => {
+          console.log(result.data)
+          setData([result.data])
+          if ([result.data][0] !== "") {
+            console.log("FIRST")
+            setJobMatchesDB(true)
+          } else {
+            console.log("SECOND")
+            setJobMatchesDB(false)
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+          setJobMatchesDB(true)
+        })
+    } else {
+      axios
+        .get(`${url}/api/jobs`)
+        .then((result) => {
+          console.log("THIRD")
+
+          console.log(result)
+          setData(result.data.found)
+          setJobMatchesDB(false)
+        })
+        .catch((err) => {
+          console.log(err)
+          setJobMatchesDB(false)
+        })
+    }
+  }, [])
+
+  /*
+  ------------------------------------------------------------
+
+  This section adds the logic for what to display.
+  - if no jobId --> show all jobs
+  - if jobId isn't in the DB --> display a helpful error message
+  - if jobId is in the DB --> show that specific job only 
+
+  -------------------------------------------------------------
+  */
+
+  let display
+  if (jobId === undefined) {
+    display = <MultipleJobs data={data} />
+  }
+  if (jobId !== undefined && jobMatchesDB) {
+    display = <SingleJob data={data} />
+  }
+  if (jobId !== undefined && !jobMatchesDB) {
+    display = <JobDoesntExist />
+  }
+
+  // USED FOR FAKE DATA WHILE SETTING UP API
+  // ---------------------------------------------
+  // useEffect(() => {
+  //   setData(jobs);
+  // }, []);
+  // console.log(data);
 
   // setData(jobs);
-  // console.log(jobId);
+  // console.log(jobId)
+  // ----------------------------------------------
 
   return (
     <section className="marketplace">
-      {!token && jobId === undefined && <Hero />}
+      {display}
+
+      {/* {!token && jobId === undefined && <Hero />}
 
       {!jobMatchesDB && jobId !== undefined && (
         <article className="error">
           The job you are looking for does not exist
         </article>
       )}
+      this is the case where you are looking at a user id and it is in the db
+      
       {jobId !== undefined && jobMatchesDB ? (
         <>
           {data.map((job) => (
@@ -80,7 +111,38 @@ export default function Marketplace() {
             </a>
           ))}
         </>
-      )}
+      )} */}
     </section>
-  );
+  )
+}
+
+const JobDoesntExist = () => {
+  return (
+    <article className="error">
+      The job you are looking for does not exist
+    </article>
+  )
+}
+
+const MultipleJobs = (props) => {
+  return (
+    <>
+      {props.data.map((job) => (
+        <a className="jobLink" key={job.id} href={`/job/${job.id}`}>
+          <JobsCard data={job} />
+        </a>
+      ))}
+    </>
+  )
+}
+
+const SingleJob = (props) => {
+  console.log(props)
+  return (
+    <>
+      {props.data.map((job) => (
+        <JobsCard key={job.id} data={job} token={props.token} />
+      ))}
+    </>
+  )
 }

@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState } from "react"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 
-import GateKeeper from "./components/GateKeeper/GateKeeper";
-import NavBar from "./components/navbar/NavBar";
-import Marketplace from "./components/marketplace/Marketplace";
-import Voice from "./components/voice/Voice";
+import GateKeeper from "./components/GateKeeper/GateKeeper"
+import NavBar from "./components/navbar/NavBar"
+import Marketplace from "./components/marketplace/Marketplace"
+import Voice from "./components/voice/Voice"
 
-import { DataContext } from "./context/DataContext";
+import { DataContext } from "./context/DataContext"
 
-import "./App.scss";
+import "./App.scss"
 
 function App() {
-  const token = GateKeeper();
-  const [refreshApp, setRefreshApp] = useState(true);
+  const token = GateKeeper()
+  const [refreshApp, setRefreshApp] = useState(true)
   // const [url] = useState("localhost:3000")
-  const [url] = useState("https://voicer-lambda-app.herokuapp.com");
+  const [url] = useState("https://voicer-lambda-app.herokuapp.com")
 
   //global reset
   const refreshAppHandler = () => {
-    setRefreshApp(!refreshApp);
-  };
+    setRefreshApp(!refreshApp)
+  }
   //end global reset
 
   //UI elements
@@ -36,7 +36,7 @@ function App() {
         </main>
       </Router>
     </DataContext.Provider>
-  );
+  )
 }
 
-export default App;
+export default App
