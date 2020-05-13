@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
 const JobsCard = ({ token, data }) => {
-  console.log(data, token);
-  const [edit, setEdit] = useState(false);
-  const [crud, setCrud] = useState(false);
+  const [edit, setEdit] = useState(false)
+  const [crud, setCrud] = useState(false)
 
   useEffect(() => {
     if (token && token.user_id === data.creator_id) {
-      console.log("in business");
+      console.log("in business")
     }
-  });
+  })
 
   return edit ? (
     <article className="jobCard">
@@ -17,8 +16,8 @@ const JobsCard = ({ token, data }) => {
         <>
           <button
             onClick={(e) => {
-              e.preventDefault();
-              setEdit(!edit);
+              e.preventDefault()
+              setEdit(!edit)
             }}
           >
             Cancel
@@ -56,7 +55,7 @@ const JobsCard = ({ token, data }) => {
         </p>
       </div>
     </article>
-  );
-};
+  )
+}
 
-export default JobsCard;
+export default JobsCard
