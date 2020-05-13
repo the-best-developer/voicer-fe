@@ -4,6 +4,7 @@ import { useInputControl } from "../../hooks/useInputControl"
 import { DataContext } from "../../context/DataContext"
 import { Button, Card, InputGroup, FormControl } from "react-bootstrap"
 import Editor from "../editor/Editor"
+import ReactUploadImage from '../audio/AudioRecorder'
 
 export default function EditProfile({ profileData, token }) {
   // last_name
@@ -81,6 +82,7 @@ export default function EditProfile({ profileData, token }) {
             SUPER SUBMIT
           </Button>
         </form>
+        <ReactUploadImage />
       </section>
     </>
   )

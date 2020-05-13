@@ -47,7 +47,7 @@ const AudioPlayer = ({samples}) => {
       )}
     </div>
     <ReactPlayer 
-      url='/assets/audio/winamp.mp3'
+      url={samples[sampleIndex].s3_location}
       className="player"
       playing={false} 
       controls={true} 
