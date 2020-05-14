@@ -1,29 +1,34 @@
-import React, { useState, useContext } from "react";
-import LogRegFields from "./login/logRegFields";
-import { ReactComponent as Logo } from "../../images/logo-white.svg";
-import { ReactComponent as Caret } from "../../images/caret.svg";
-import { ReactComponent as SignOut } from "../../images/sign-out-alt-light.svg";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react"
+import LogRegFields from "./login/logRegFields"
+import { ReactComponent as Logo } from "../../images/logo-white.svg"
+import { ReactComponent as Caret } from "../../images/caret.svg"
+import { ReactComponent as SignOut } from "../../images/sign-out-alt-light.svg"
+import { Link } from "react-router-dom"
 
-import { DataContext } from "../../context/DataContext";
+import { DataContext } from "../../context/DataContext"
 
 const NavBar = () => {
-  const { token, refreshAppHandler } = useContext(DataContext);
-  const [dropDown, setDropDown] = useState(false);
-  const [loginRegister, setLoginRegister] = useState(false);
+  const { token, refreshAppHandler } = useContext(DataContext)
+  const [dropDown, setDropDown] = useState(false)
+  const [loginRegister, setLoginRegister] = useState(false)
 
   const loginRegisterHandler = (e) => {
-    e.preventDefault();
-    setLoginRegister(!loginRegister);
-  };
+    e.preventDefault()
+    setLoginRegister(!loginRegister)
+  }
 
   return (
     <>
       <header>
         <nav className="navbar">
-          <Link to='/'>
+          <Link to="/">
             <Logo className="logo" />
           </Link>
+          {
+            // if logged in, add a 'Post job' link to nav bar
+            token ? <p className="post-job-nav">Post a job</p> : <></>
+          }
+
           <ul className="navbar-nav">
             <NavItem
               icon={<Caret />}
@@ -36,7 +41,7 @@ const NavBar = () => {
                     to={`/`}
                     className="menu-item"
                     onClick={() => {
-                      setDropDown(false);
+                      setDropDown(false)
                     }}
                   >
                     Marketplace{" "}
@@ -45,7 +50,7 @@ const NavBar = () => {
                     to={`/voice`}
                     className="menu-item"
                     onClick={() => {
-                      setDropDown(false);
+                      setDropDown(false)
                     }}
                   >
                     All Users
@@ -57,19 +62,28 @@ const NavBar = () => {
                         href={`/voice/${token.display_name}`}
                         className="menu-item"
                         onClick={() => {
-                          setDropDown(false);
+                          setDropDown(false)
                         }}
                       >
                         My Profile
                       </a>
+                      <p
+                        className="menu-item post-job-text"
+                        onClick={() => {
+                          setDropDown(false)
+                          //set a display to true to show the form
+                        }}
+                      >
+                        Post a job
+                      </p>
                       <button
                         className="menu-item"
                         lefticon={SignOut}
                         onClick={(e) => {
-                          e.preventDefault();
-                          setDropDown(false);
-                          localStorage.removeItem("token");
-                          window.location.href = "/";
+                          e.preventDefault()
+                          setDropDown(false)
+                          localStorage.removeItem("token")
+                          window.location.href = "/"
                         }}
                       >
                         Logout
@@ -91,8 +105,8 @@ const NavBar = () => {
         </nav>
       </header>
     </>
-  );
-};
+  )
+}
 
 const NavItem = ({ children, icon, dropDown, setDropDown }) => {
   return (
@@ -100,15 +114,15 @@ const NavItem = ({ children, icon, dropDown, setDropDown }) => {
       <button
         className={dropDown ? "icon-button selected" : "icon-button"}
         onClick={(e) => {
-          e.preventDefault();
-          setDropDown(!dropDown);
+          e.preventDefault()
+          setDropDown(!dropDown)
         }}
       >
         {icon}
       </button>
       {dropDown && children}
     </li>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar
