@@ -4,6 +4,7 @@ import { DataContext } from "../../context/DataContext"
 import axios from "axios"
 import JobsCard from "./JobsCard"
 // import { jobs } from "../../fakedata/jobs"
+import AddJobForm from "../addJobForm/AddJobForm"
 
 import Hero from "../hero/Hero"
 
@@ -86,6 +87,7 @@ export default function Marketplace() {
 
   return (
     <section className="marketplace">
+      <AddJobForm />
       {display}
 
       {/* {!token && jobId === undefined && <Hero />}
