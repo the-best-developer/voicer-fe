@@ -16,74 +16,68 @@ const VoiceItem = ({ data, token, bio, currentDisplayName }) => {
 
   //useEffect(()=> {console.log(`crud: ${crud} edit: ${edit}`)},[crud, edit])
 
-  return (
-    // if edit is true -->
-    edit ? (
-      // allow editing
-      <article className="voiceItem">
-        {crud && (
-          <>
-            <button
-              onClick={(e) => {
-                e.preventDefault()
-                setEdit(!edit)
-              }}
-            >
-              cancel edit
-            </button>
-            <button
-              onClick={(e) => {
-                e.preventDefault()
-                setEdit(!edit)
-              }}
-            >
-              submit edit
-            </button>
-            <EditProfile profileData={data} token={token} />
-          </>
-        )}
-      </article>
-    ) : (
-      // don't allow editing
-      <article className="voiceItem">
-        {
-          // check to see if we should allow editing
-          crud && (
-            <button
-              onClick={(e) => {
-                e.preventDefault()
-                setEdit(!edit)
-              }}
-            >
-              Edit My Info
-            </button>
-          )
-        }
-        <div className="profileHeader">
-          <div className="profileImage">{/* photo placeholder */}</div>
-          <div className="profileInfo">
-            <h2>{`${data.first_name} ${data.last_name}`}</h2>
-            <h3>{data.display_name}</h3>
-            {bio && <p>{data.location}</p>}
-            <div className="stars">
-              <span role="img" aria-label="Stars">
-                ⭐️⭐️⭐️⭐️⭐️
-              </span>
-            </div>
-            <p>{data.jobsCompleted} Jobs Completed</p>
-            {bio && <button>Invite to Apply</button>}
+  return edit ? (
+    <article className="voiceItem">
+      {crud && (
+        <>
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              setEdit(!edit)
+            }}
+          >
+            cancel edit
+          </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              setEdit(!edit)
+            }}
+          >
+            submit edit
+          </button>
+          <EditProfile profileData={data} token={token} />
+        </>
+      )}
+    </article>
+  ) : (
+    <article className="voiceItem">
+      {crud && (
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            setEdit(!edit)
+          }}
+        >
+          Edit My Info
+        </button>
+      )}
+      <div className="profileHeader">
+        <div className="profileImage">{/* photo placeholder */}</div>
+        <div className="profileInfo">
+          <h2>{`${data.first_name} ${data.last_name}`}</h2>
+          <h3>{data.display_name}</h3>
+          {bio && <p>{data.location}</p>}
+          <div className="stars">
+            <span role="img" aria-label="Stars">
+              ⭐️⭐️⭐️⭐️⭐️
+            </span>
           </div>
-          <div className="profileSamples">
-            {data.samples[0] !== undefined && <AudioPlayer samples={data.samples}/>}
-          </div>
+          <p>{data.jobsCompleted} Jobs Completed</p>
+          {bio && <button>Invite to Apply</button>}
         </div>
-        {bio && (
-          <div className="profileBio">
-            <p>{data.bio}</p>
-          </div>
-        )}
-      </article>
-    )
+        <div className="profileSamples">
+          {data.samples[0] !== undefined && (
+            <AudioPlayer samples={data.samples} />
+          )}
+        </div>
+      </div>
+      {bio && (
+        <div className="profileBio">
+          <p>{data.bio}</p>
+        </div>
+      )}
+    </article>
   )
 }
 

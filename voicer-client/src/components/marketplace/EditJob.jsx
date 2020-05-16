@@ -3,7 +3,7 @@ import { token, url, refreshAppHandler } from "../../context/DataContext"
 import { Button, Card, Form, InputGroup, FormControl } from "react-bootstrap"
 import { useInputControl } from "../../hooks/useInputControl"
 
-const EditJob = ({ data }) => {
+const EditJob = ({ setEdit, data, token }) => {
   // ----------------------------------------------------------------
   // ***********DESCRIPTION***************
   // This component displays when the creator_id of the job
@@ -11,7 +11,13 @@ const EditJob = ({ data }) => {
   // edit their job posts or delete them entirely.
   // ----------------------------------------------------------------
 
+  // going to use this variable to confirm with the user
+  // whether they really want to delete the job.
+  // If yes, this changes to true (and job deletion is executed)
+
   const jobUpdate = {}
+  console.log(data, token)
+
   const titleInput = useInputControl(data.title)
   const descriptionInput = useInputControl(data.description)
   const payrateInput = useInputControl(data.payrate)
@@ -21,34 +27,41 @@ const EditJob = ({ data }) => {
   jobUpdate.payrate = payrateInput.value
 
   const submitForm = (e) => {
+    e.preventDefault()
     console.log("submitted form")
+    setEdit(false)
   }
 
   const cancelForm = (e) => {
     console.log("cancelled form")
+    setEdit(false)
   }
 
   const deleteForm = (e) => {
-    console.log("deleted form")
+    window.confirm("Are you sure you want to delete this job?")
+      ? setEdit(false)
+      : console.log("Didn't delete")
   }
 
   return (
     <Form onSubmit={submitForm}>
-      <FormControl>
-        <InputControl {...descriptionInput}></InputControl>
-      </FormControl>
+      <InputGroup>
+        <FormControl />
+      </InputGroup>
 
-      <FormControl>
-        <InputControl></InputControl>
-      </FormControl>
+      <InputGroup>
+        <FormControl />
+      </InputGroup>
 
-      <FormControl>
-        <InputControl></InputControl>
-      </FormControl>
+      <InputGroup>
+        <FormControl />
+      </InputGroup>
 
-      <Button>Cancel</Button>
       <Button type="submit">Submit</Button>
-      <Button>Delete Job</Button>
+      <Button onClick={cancelForm}>Cancel</Button>
+      <Button onClick={deleteForm}>Delete Job</Button>
     </Form>
   )
 }
+
+export default EditJob

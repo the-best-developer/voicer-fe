@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import EditJob from "./EditJob"
 
 const JobsCard = ({ token, data }) => {
   const [edit, setEdit] = useState(false)
@@ -9,28 +10,30 @@ const JobsCard = ({ token, data }) => {
       setCrud(true)
       console.log("THIS IS MY FUCKING JOB")
     }
-  })
+  }, [])
 
-  console.log(token)
+  console.log(crud, edit)
 
   return edit ? (
     <article className="jobCard">
       {crud && (
         <>
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              setEdit(!edit)
-            }}
-          >
-            Cancel
-          </button>
-          <button>Delete Job</button>
+          <EditJob data={data} token={token} setEdit={setEdit} />
         </>
       )}
     </article>
   ) : (
     <article className="jobCard">
+      {crud && (
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            setEdit(!edit)
+          }}
+        >
+          Edit job info
+        </button>
+      )}
       <div className="jobTitle">
         <h3>{data.title}</h3>
       </div>
