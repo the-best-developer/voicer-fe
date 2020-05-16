@@ -1,6 +1,15 @@
-import React, { useState, useEffect } from "react"
-import { token, url, refreshAppHandler } from "../../context/DataContext"
-import { Button, Card, Form, InputGroup, FormControl } from "react-bootstrap"
+import React, { useState, useEffect, useContext } from "react"
+import { DataContext } from "../../context/DataContext"
+import { axiosWithAuth } from "../axiosWithAuth/axiosWithAuth"
+import { Redirect, useHistory } from "react-router-dom"
+import {
+  Button,
+  FormLabel,
+  Card,
+  Form,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap"
 import { useInputControl } from "../../hooks/useInputControl"
 
 const EditJob = ({ setEdit, data, token }) => {
@@ -11,12 +20,9 @@ const EditJob = ({ setEdit, data, token }) => {
   // edit their job posts or delete them entirely.
   // ----------------------------------------------------------------
 
-  // going to use this variable to confirm with the user
-  // whether they really want to delete the job.
-  // If yes, this changes to true (and job deletion is executed)
-
+  let history = useHistory()
+  const { url } = useContext(DataContext)
   const jobUpdate = {}
-  console.log(data, token)
 
   const titleInput = useInputControl(data.title)
   const descriptionInput = useInputControl(data.description)
@@ -39,22 +45,38 @@ const EditJob = ({ setEdit, data, token }) => {
 
   const deleteForm = (e) => {
     window.confirm("Are you sure you want to delete this job?")
-      ? setEdit(false)
+      ? axiosWithAuth()
+          .delete(`${url}/api/jobs/${data.id}`)
+          .then((res) => {
+            console.log(`${url}/api/jobs/${data.id}`)
+            console.log(res)
+            history.push("/")
+          })
+          .catch((err) => {
+            console.log(err)
+            console.log(`${url}/api/jobs/${data.id}`)
+          })
       : console.log("Didn't delete")
   }
 
   return (
-    <Form onSubmit={submitForm}>
+    <Form onSubmit={submitForm} onChange={() => console.log(jobUpdate)}>
       <InputGroup>
-        <FormControl />
+        <FormLabel>Title</FormLabel>
+        <FormControl {...titleInput} placeholder="Enter new title here" />
       </InputGroup>
 
       <InputGroup>
-        <FormControl />
+        <FormLabel>Description</FormLabel>
+        <FormControl
+          {...descriptionInput}
+          placeholder="Edit the project here"
+        />
       </InputGroup>
 
       <InputGroup>
-        <FormControl />
+        <FormLabel>Payrate</FormLabel>
+        <FormControl {...payrateInput} placeholder="Edit payrate" />
       </InputGroup>
 
       <Button type="submit">Submit</Button>

@@ -8,12 +8,14 @@ import AddJobForm from "../addJobForm/AddJobForm"
 
 import Hero from "../hero/Hero"
 
-export default function Marketplace() {
+export default function Marketplace(props) {
   const [jobMatchesDB, setJobMatchesDB] = useState(true)
   const [data, setData] = useState([])
   const { token, url } = useContext(DataContext)
 
   const jobId = useParams().jobId
+
+  console.log(props)
 
   useEffect(() => {
     if (jobId) {
@@ -68,7 +70,7 @@ export default function Marketplace() {
     display = <MultipleJobs data={data} />
   }
   if (jobId !== undefined && jobMatchesDB) {
-    display = <SingleJob data={data} token={token} />
+    display = <SingleJob data={data} token={token} history={props.history} />
   }
   if (jobId !== undefined && !jobMatchesDB) {
     display = <JobDoesntExist />
