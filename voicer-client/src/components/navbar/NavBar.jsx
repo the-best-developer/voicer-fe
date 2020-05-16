@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react"
 import LogRegFields from "./login/logRegFields"
-import { ReactComponent as Logo } from "../../images/logo-white.svg"
 import { ReactComponent as Caret } from "../../images/caret.svg"
 import { ReactComponent as SignOut } from "../../images/sign-out-alt-light.svg"
 import { Link } from "react-router-dom"
 
 import { DataContext } from "../../context/DataContext"
+import Logo from "./Logo"
 
 const NavBar = () => {
   const { token, refreshAppHandler } = useContext(DataContext)
@@ -21,9 +21,7 @@ const NavBar = () => {
     <>
       <header>
         <nav className="navbar">
-          <Link to="/">
-            <Logo className="logo" />
-          </Link>
+          <Logo />
           {
             // if logged in, add a 'Post job' link to nav bar
             token ? <p className="post-job-nav">Post a job</p> : <></>
