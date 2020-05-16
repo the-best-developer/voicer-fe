@@ -2,7 +2,9 @@
 You can find the deployed project at https://www.voicer-app.com
 
 #Badges
-[<img src ="https://img.shields.io/packagist/l/doctrine/orm.svg" />](https://img.shields.io/packagist/l/doctrine/orm.svg)[<img src ="https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg">](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)[here](https://github.com/badges/shields)
+[<img src ="https://img.shields.io/packagist/l/doctrine/orm.svg" />](https://img.shields.io/packagist/l/doctrine/orm.svg)
+[<img src ="https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg" />](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
+[<img src ="https://img.shields.io/codeclimate/coverage/Lambda-Labs/voicer-fe" />](https://img.shields.io/codeclimate/coverage/Lambda-School-Labs/voicer-fe)
 
 ## Contributors
 
