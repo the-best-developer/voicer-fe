@@ -8,7 +8,6 @@ const JobsCard = ({ token, data }) => {
   useEffect(() => {
     if (token && token.user_id === data.creator) {
       setCrud(true)
-      console.log("THIS IS MY FUCKING JOB")
     }
   }, [])
 

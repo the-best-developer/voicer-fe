@@ -20,7 +20,7 @@ const EditJob = ({ setEdit, data, token, history }) => {
   // edit their job posts or delete them entirely.
   // ----------------------------------------------------------------
 
-  const { url } = useContext(DataContext)
+  const { url, refreshAppHandler } = useContext(DataContext)
   const jobUpdate = {}
 
   const titleInput = useInputControl(data.title)
@@ -33,8 +33,18 @@ const EditJob = ({ setEdit, data, token, history }) => {
 
   const submitForm = (e) => {
     e.preventDefault()
+    axiosWithAuth()
+      .put(`${url}/api/jobs/${data.id}`, jobUpdate)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(window.location.reload())
+
     console.log("submitted form")
-    setEdit(false)
+    // setEdit(false)
   }
 
   const cancelForm = (e) => {
@@ -63,7 +73,7 @@ const EditJob = ({ setEdit, data, token, history }) => {
   }
 
   return (
-    <Form onSubmit={submitForm} onChange={() => console.log(jobUpdate)}>
+    <Form onSubmit={submitForm}>
       <InputGroup>
         <FormLabel>Title</FormLabel>
         <FormControl {...titleInput} placeholder="Enter new title here" />
