@@ -6,7 +6,7 @@ const JobsCard = ({ token, data }) => {
 
   useEffect(() => {
     if (token && token.user_id === data.creator_id) {
-      console.log("in business")
+      setCrud(true)
     }
   })
 
