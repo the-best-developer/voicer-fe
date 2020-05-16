@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { DataContext } from "../../context/DataContext"
 import { axiosWithAuth } from "../axiosWithAuth/axiosWithAuth"
-import { Redirect, useHistory } from "react-router-dom"
 import {
   Button,
   FormLabel,
@@ -20,7 +19,6 @@ const EditJob = ({ setEdit, data, token }) => {
   // edit their job posts or delete them entirely.
   // ----------------------------------------------------------------
 
-  let history = useHistory()
   const { url } = useContext(DataContext)
   const jobUpdate = {}
 
