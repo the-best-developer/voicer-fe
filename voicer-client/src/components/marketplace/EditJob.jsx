@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import { DataContext } from "../../context/DataContext"
 import { axiosWithAuth } from "../axiosWithAuth/axiosWithAuth"
+import { withRouter } from "react-router-dom"
 import {
   Button,
   FormLabel,
@@ -43,17 +44,21 @@ const EditJob = ({ setEdit, data, token, history }) => {
 
   const deleteForm = (e) => {
     window.confirm("Are you sure you want to delete this job?")
-      ? axiosWithAuth()
-          .delete(`${url}/api/jobs/${data.id}`)
-          .then((res) => {
-            console.log(`${url}/api/jobs/${data.id}`)
-            console.log(res)
-            history.push("/")
-          })
-          .catch((err) => {
-            console.log(err)
-            console.log(`${url}/api/jobs/${data.id}`)
-          })
+      ? // *** NEED TO KEEP COMMENTED OUT UNTIL BACKEND BUG IS FIXED,****
+        // *** ELSE WE CANT TEST COMPONENT ANYMORE ***
+
+        // axiosWithAuth()
+        //     .delete(`${url}/api/jobs/${data.id}`)
+        //     .then((res) => {
+        //       console.log(`${url}/api/jobs/${data.id}`)
+        //       console.log(res)
+        //       history.push("/")
+        //     })
+        //     .catch((err) => {
+        //       console.log(err)
+        //       console.log(`${url}/api/jobs/${data.id}`)
+        //     })
+        history.push("/")
       : console.log("Didn't delete")
   }
 
@@ -84,4 +89,4 @@ const EditJob = ({ setEdit, data, token, history }) => {
   )
 }
 
-export default EditJob
+export default withRouter(EditJob)

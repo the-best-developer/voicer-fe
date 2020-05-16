@@ -70,7 +70,7 @@ export default function Marketplace(props) {
     display = <MultipleJobs data={data} />
   }
   if (jobId !== undefined && jobMatchesDB) {
-    display = <SingleJob data={data} token={token} history={props.history} />
+    display = <SingleJob data={data} token={token} />
   }
   if (jobId !== undefined && !jobMatchesDB) {
     display = <JobDoesntExist />
