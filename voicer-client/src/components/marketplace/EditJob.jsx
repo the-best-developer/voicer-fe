@@ -37,11 +37,11 @@ const EditJob = ({ setEdit, data, token, history }) => {
       .put(`${url}/api/jobs/${data.id}`, jobUpdate)
       .then((res) => {
         console.log(res)
+        window.location.reload()
       })
       .catch((err) => {
         console.log(err)
       })
-      .finally(window.location.reload())
 
     console.log("submitted form")
     // setEdit(false)
