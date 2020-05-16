@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap"
 import { useInputControl } from "../../hooks/useInputControl"
 
-const EditJob = ({ setEdit, data, token }) => {
+const EditJob = ({ setEdit, data, token, history }) => {
   // ----------------------------------------------------------------
   // ***********DESCRIPTION***************
   // This component displays when the creator_id of the job
