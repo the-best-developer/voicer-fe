@@ -5,10 +5,13 @@ const JobsCard = ({ token, data }) => {
   const [crud, setCrud] = useState(false)
 
   useEffect(() => {
-    if (token && token.user_id === data.creator_id) {
+    if (token && token.user_id === data.creator) {
       setCrud(true)
+      console.log("THIS IS MY FUCKING JOB")
     }
   })
+
+  console.log(token)
 
   return edit ? (
     <article className="jobCard">

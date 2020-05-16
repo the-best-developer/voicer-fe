@@ -68,52 +68,16 @@ export default function Marketplace() {
     display = <MultipleJobs data={data} />
   }
   if (jobId !== undefined && jobMatchesDB) {
-    display = <SingleJob data={data} />
+    display = <SingleJob data={data} token={token} />
   }
   if (jobId !== undefined && !jobMatchesDB) {
     display = <JobDoesntExist />
   }
 
-  // USED FOR FAKE DATA WHILE SETTING UP API
-  // ---------------------------------------------
-  // useEffect(() => {
-  //   setData(jobs);
-  // }, []);
-  // console.log(data);
-
-  // setData(jobs);
-  // console.log(jobId)
-  // ----------------------------------------------
-
   return (
     <section className="marketplace">
       <AddJobForm />
       {display}
-
-      {/* {!token && jobId === undefined && <Hero />}
-
-      {!jobMatchesDB && jobId !== undefined && (
-        <article className="error">
-          The job you are looking for does not exist
-        </article>
-      )}
-      this is the case where you are looking at a user id and it is in the db
-      
-      {jobId !== undefined && jobMatchesDB ? (
-        <>
-          {data.map((job) => (
-            <JobsCard key={job.id} data={job} token={token} />
-          ))}
-        </>
-      ) : (
-        <>
-          {data.map((job) => (
-            <a className="jobLink" key={job.id} href={`/job/${job.id}`}>
-              <JobsCard data={job} />
-            </a>
-          ))}
-        </>
-      )} */}
     </section>
   )
 }
