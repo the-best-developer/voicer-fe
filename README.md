@@ -3,24 +3,35 @@ You can find the deployed project at https://www.voicer-app.com
 
 ## Contributors
 
-|                                       Joseph Oliver(https://github.com/jOliver)                                        |                                       Brian Hague(https://github.com/alphaseinor)                                        |                                       David Francis(https://github.com/davidjayfrancis)                                        |                                       Tim Jeffries(https://github.com/TimRexJeff)                                        |                                       Christopher Quinn(https://github.com/xerillius)                                        |                                       Mary Clayton(https://github.com/mary-clayton)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars1.githubusercontent.com/u/107058?s=460&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars3.githubusercontent.com/u/2449547?s=460&u=e9a01ef6432007e6aa7e8328f8eaea830ddf868b&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars3.githubusercontent.com/u/19578799?s=460&u=ada7469f7ab10d073581c1e373a471c8ea67ef71&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars2.githubusercontent.com/u/48488539?s=400&u=af65e60066e644016e2d54d8e45cf86760e335df&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars1.githubusercontent.com/u/3174281?s=460&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars0.githubusercontent.com/u/52017102?s=460&u=3d6d943ad87af37a80ad0b80a67f2cfacee8c663&v=4" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+Joseph Oliver()
+[<img src="https://avatars1.githubusercontent.com/u/107058?s=460&v=4" width = "200" />](https://github.com/jOliver)
 
-<br>
-<br>
+Brian Hague()
+[<img src="https://avatars3.githubusercontent.com/u/2449547?s=460&u=e9a01ef6432007e6aa7e8328f8eaea830ddf868b&v=4" width = "200" />](https://github.com/alphaseinor)
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+David Francis()
+[<img src="https://avatars3.githubusercontent.com/u/19578799?s=460&u=ada7469f7ab10d073581c1e373a471c8ea67ef71&v=4" width = "200" />](https://github.com/davidjayfrancis)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
+
+Tim Jeffries()
+[<img src="https://avatars2.githubusercontent.com/u/48488539?s=400&u=af65e60066e644016e2d54d8e45cf86760e335df&v=4" width = "200" />](https://github.com/TimRexJeff)
+
+
+Christopher Quinn()
+[<img src="https://avatars1.githubusercontent.com/u/3174281?s=460&v=4" width = "200" />](https://github.com/xerillius)
+
+
+Mary Clayton()
+[<img src="https://avatars0.githubusercontent.com/u/52017102?s=460&u=3d6d943ad87af37a80ad0b80a67f2cfacee8c663&v=4" width = "200" />](https://github.com/mary-clayton)
+
+
+Optional examples of using images with links for your tech stack, make sure to change these to fit your project
+
+[MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+[React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
+
+[here](https://github.com/badges/shields)
 
 ## Project Overview
 
