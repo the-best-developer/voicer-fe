@@ -4,7 +4,8 @@ You can find the deployed project at https://www.voicer-app.com
 #Badges
 [<img src ="https://img.shields.io/packagist/l/doctrine/orm.svg" />](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [<img src ="https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg" />](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-[<img src ="https://img.shields.io/codeclimate/coverage/Lambda-Labs/voicer-fe" />](https://img.shields.io/codeclimate/coverage/Lambda-School-Labs/voicer-fe)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d96d9240f248b31ce972/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/voicer-fe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d96d9240f248b31ce972/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/voicer-fe/test_coverage)
 
 ## Contributors
 
