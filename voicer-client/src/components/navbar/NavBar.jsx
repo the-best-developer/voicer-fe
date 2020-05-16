@@ -6,9 +6,11 @@ import { Link } from "react-router-dom"
 import { DataContext } from "../../context/DataContext"
 import Logo from "./Logo"
 import Logout from "./Logout"
+import MyProfile from "./MyProfile"
+import PostAJob from "./PostAJob"
 
 const NavBar = () => {
-  const { token, refreshAppHandler } = useContext(DataContext)
+  const { token } = useContext(DataContext)
   const [dropDown, setDropDown] = useState(false)
   const [loginRegister, setLoginRegister] = useState(false)
 
@@ -22,10 +24,10 @@ const NavBar = () => {
       <header>
         <nav className="navbar">
           <Logo />
-          {
+          {/* {
             // if logged in, add a 'Post job' link to nav bar
             token ? <p className="post-job-nav">Post a job</p> : <></>
-          }
+          } */}
 
           <ul className="navbar-nav">
             <NavItem
@@ -56,24 +58,8 @@ const NavBar = () => {
                   <hr />
                   {token ? (
                     <>
-                      <a
-                        href={`/voice/${token.display_name}`}
-                        className="menu-item"
-                        onClick={() => {
-                          setDropDown(false)
-                        }}
-                      >
-                        My Profile
-                      </a>
-                      <p
-                        className="menu-item post-job-text"
-                        onClick={() => {
-                          setDropDown(false)
-                          //set a display to true to show the form
-                        }}
-                      >
-                        Post a job
-                      </p>
+                      <MyProfile setDropDown={setDropDown}/>
+                      <PostAJob setDropDown={setDropDown}/>
                       <Logout setDropDown={setDropDown} />
                     </>
                   ) : (
