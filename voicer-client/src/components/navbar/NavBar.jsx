@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react"
 import LogRegFields from "./login/logRegFields"
 import { ReactComponent as Caret } from "../../images/caret.svg"
-import { ReactComponent as SignOut } from "../../images/sign-out-alt-light.svg"
 import { Link } from "react-router-dom"
 
 import { DataContext } from "../../context/DataContext"
 import Logo from "./Logo"
+import Logout from "./Logout"
 
 const NavBar = () => {
   const { token, refreshAppHandler } = useContext(DataContext)
@@ -74,18 +74,7 @@ const NavBar = () => {
                       >
                         Post a job
                       </p>
-                      <button
-                        className="menu-item"
-                        lefticon={SignOut}
-                        onClick={(e) => {
-                          e.preventDefault()
-                          setDropDown(false)
-                          localStorage.removeItem("token")
-                          window.location.href = "/"
-                        }}
-                      >
-                        Logout
-                      </button>
+                      <Logout setDropDown={setDropDown} />
                     </>
                   ) : (
                     <LogRegFields
