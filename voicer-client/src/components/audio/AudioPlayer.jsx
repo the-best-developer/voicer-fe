@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import ReactPlayer from 'react-player'
 
 
 const AudioPlayer = ({samples}) => {
@@ -34,20 +33,12 @@ const AudioPlayer = ({samples}) => {
           onClick={(e)=>nexthandler(e)}
         >&rarr;</button>
     </div>
-    <ReactPlayer 
-      url={samples[sampleIndex].s3_location}
+    <audio 
+      src={samples[sampleIndex].s3_location}
       className="player"
-      playing={false} 
-      controls={true} 
-      width="240px"
-      height="20px"
-      config={{
-        file:{
-          attributes:{
-            controlslist: "nodownload"
-          }
-        }
-      }}
+      preload="auto" 
+      controls
+      controlslist="nodownload"
     />
   </>)
   
