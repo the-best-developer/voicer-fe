@@ -1,110 +1,60 @@
 import React, { useState, useContext } from "react"
 import LogRegFields from "./login/logRegFields"
-import { ReactComponent as Logo } from "../../images/logo-white.svg"
-import { ReactComponent as Caret } from "../../images/caret.svg"
-import { ReactComponent as SignOut } from "../../images/sign-out-alt-light.svg"
-import { Link } from "react-router-dom"
 
+import { ReactComponent as Caret } from "../../images/caret.svg"
 import { DataContext } from "../../context/DataContext"
+import Logo from "./Logo"
+import Logout from "./Logout"
+import MyProfile from "./MyProfile"
+import PostAJob from "./PostAJob"
+import AllUsers from "./AllUsers"
+import Marketplace from "./Marketplace"
 
 const NavBar = () => {
-  const { token, refreshAppHandler } = useContext(DataContext)
   const [dropDown, setDropDown] = useState(false)
+  
+
+  return (
+    <>
+      <header>
+        <nav className="navbar">
+          <Logo />
+          <ul className="navbar-nav">
+            <NavItem icon={<Caret />} dropDown={dropDown} setDropDown={setDropDown}>
+            <DropDown setDropDown={setDropDown} />
+            </NavItem>
+          </ul>
+        </nav>
+      </header>
+    </>
+  )
+}
+
+const DropDown = ({setDropDown}) => {
+  const { token } = useContext(DataContext)
   const [loginRegister, setLoginRegister] = useState(false)
 
   const loginRegisterHandler = (e) => {
     e.preventDefault()
     setLoginRegister(!loginRegister)
   }
-
   return (
-    <>
-      <header>
-        <nav className="navbar">
-          <Link to="/">
-            <Logo className="logo" />
-          </Link>
-          {
-            // if logged in, add a 'Post job' link to nav bar
-            token ? <p className="post-job-nav">Post a job</p> : <></>
-          }
-
-          <ul className="navbar-nav">
-            <NavItem
-              icon={<Caret />}
-              dropDown={dropDown}
-              setDropDown={setDropDown}
-            >
-              <aside className="dropdown">
-                <div className="menu">
-                  <Link
-                    to={`/`}
-                    className="menu-item"
-                    onClick={() => {
-                      setDropDown(false)
-                    }}
-                  >
-                    Marketplace{" "}
-                  </Link>
-                  <Link
-                    to={`/voice`}
-                    className="menu-item"
-                    onClick={() => {
-                      setDropDown(false)
-                    }}
-                  >
-                    All Users
-                  </Link>
-                  <hr />
-                  {token ? (
-                    <>
-                      <a
-                        href={`/voice/${token.display_name}`}
-                        className="menu-item"
-                        onClick={() => {
-                          setDropDown(false)
-                        }}
-                      >
-                        My Profile
-                      </a>
-                      <p
-                        className="menu-item post-job-text"
-                        onClick={() => {
-                          setDropDown(false)
-                          //set a display to true to show the form
-                        }}
-                      >
-                        Post a job
-                      </p>
-                      <button
-                        className="menu-item"
-                        lefticon={SignOut}
-                        onClick={(e) => {
-                          e.preventDefault()
-                          setDropDown(false)
-                          localStorage.removeItem("token")
-                          window.location.href = "/"
-                        }}
-                      >
-                        Logout
-                      </button>
-                    </>
-                  ) : (
-                    <LogRegFields
-                      setDropDown={setDropDown}
-                      className="login-item"
-                      register={loginRegister}
-                      loginRegisterHandler={loginRegisterHandler}
-                      setLoginRegister={setLoginRegister}
-                    />
-                  )}
-                </div>
-              </aside>
-            </NavItem>
-          </ul>
-        </nav>
-      </header>
-    </>
+    <aside className="dropdown">
+      <div className="menu">
+        <Marketplace setDropDown={setDropDown} />
+        <AllUsers setDropDown={setDropDown} />
+        <hr />
+        {token ? (
+          <>
+            <MyProfile setDropDown={setDropDown}/>
+            <PostAJob setDropDown={setDropDown}/>
+            <Logout setDropDown={setDropDown} />
+          </>
+        ) : (
+          <LogRegFields setDropDown={setDropDown} className="login-item" register={loginRegister} loginRegisterHandler={loginRegisterHandler} setLoginRegister={setLoginRegister} />
+        )}
+      </div>
+    </aside>
   )
 }
 
