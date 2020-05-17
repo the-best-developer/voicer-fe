@@ -23,20 +23,16 @@ const AudioPlayer = ({samples}) => {
       <p>{`${sampleIndex+1}/${sampleLength} ${samples[sampleIndex].title}`}</p>
     </div>
     <div className="carousel">
-      {sampleLength > 1 && (
         <button
           onClick={(e)=>prevhandler(e)}
         >&larr;</button>
-      )}
       <div className="description">
         <p>{samples[sampleIndex].description}</p>
         <p>Attributes</p>
       </div>
-      {sampleLength > 1 && (
         <button
           onClick={(e)=>nexthandler(e)}
         >&rarr;</button>
-      )}
     </div>
     <ReactPlayer 
       url={samples[sampleIndex].s3_location}
