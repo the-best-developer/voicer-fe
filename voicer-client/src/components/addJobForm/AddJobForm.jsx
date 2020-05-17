@@ -43,7 +43,7 @@ const AddJobForm = () => {
 
   return (
     <>
-      <Form onSubmit={addJob} onChange={() => console.log(jobInfo)}>
+      <Form onSubmit={addJob}>
         <FormGroup>
           <FormLabel>Title</FormLabel>
           <FormControl

@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from "react"
+import EditJob from "./EditJob"
 
 const JobsCard = ({ token, data }) => {
   const [edit, setEdit] = useState(false)
   const [crud, setCrud] = useState(false)
 
   useEffect(() => {
-    if (token && token.user_id === data.creator_id) {
-      console.log("in business")
+    if (token && token.user_id === data.creator) {
+      setCrud(true)
     }
-  })
+  }, [])
+
+  console.log(crud, edit)
 
   return edit ? (
     <article className="jobCard">
       {crud && (
         <>
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              setEdit(!edit)
-            }}
-          >
-            Cancel
-          </button>
-          <button>Delete Job</button>
+          <EditJob data={data} token={token} setEdit={setEdit} />
         </>
       )}
     </article>
   ) : (
     <article className="jobCard">
+      {crud && (
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            setEdit(!edit)
+          }}
+        >
+          Edit job info
+        </button>
+      )}
       <div className="jobTitle">
         <h3>{data.title}</h3>
       </div>
