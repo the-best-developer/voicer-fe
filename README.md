@@ -1,52 +1,49 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Voicer
+You can find the deployed project at https://www.voicer-app.com
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+#Badges
+[<img src ="https://img.shields.io/packagist/l/doctrine/orm.svg" />](https://img.shields.io/packagist/l/doctrine/orm.svg)
+[<img src ="https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg" />](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d96d9240f248b31ce972/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/voicer-fe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d96d9240f248b31ce972/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/voicer-fe/test_coverage)
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
+Joseph Oliver
+[<img src="https://avatars1.githubusercontent.com/u/107058?s=460&v=4" width = "200" />](https://github.com/jOliver)
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+Brian Hague
+[<img src="https://avatars3.githubusercontent.com/u/2449547?s=460&u=e9a01ef6432007e6aa7e8328f8eaea830ddf868b&v=4" width = "200" />](https://github.com/alphaseinor)
 
-## 4️⃣ Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
+David Francis
+[<img src="https://avatars3.githubusercontent.com/u/19578799?s=460&u=ada7469f7ab10d073581c1e373a471c8ea67ef71&v=4" width = "200" />](https://github.com/davidjayfrancis)
 
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
-<br>
-<br>
+Tim Jeffries
+[<img src="https://avatars2.githubusercontent.com/u/48488539?s=400&u=af65e60066e644016e2d54d8e45cf86760e335df&v=4" width = "200" />](https://github.com/TimRexJeff)
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+Christopher Quinn
+[<img src="https://avatars1.githubusercontent.com/u/3174281?s=460&v=4" width = "200" />](https://github.com/xerillius)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
+
+Mary Clayton
+[<img src="https://avatars0.githubusercontent.com/u/52017102?s=460&u=3d6d943ad87af37a80ad0b80a67f2cfacee8c663&v=4" width = "200" />](https://github.com/mary-clayton)
+
+
+
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+https://trello.com/b/bSVcWjZF/voicer
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+https://www.notion.so/Voicer-3276d8fdf5df414299411e3e393167cd
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
-
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+To create a voice over marketplace environment where users can post jobs, connect with reliable voice-over talent, offer a file delivery service between project owners and talent, and facilitate the financial transactions between the two parties.  
 
 
-### 4️⃣ Key Features
+### Key Features
 
 -    feature one
 -    feature two
@@ -54,22 +51,33 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 -    feature four
 -    feature five
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React
 
-🚫 Why did you choose this framework?
+Why did you choose this framework?
 
--    point one
--    point two
--    point three
--    point four
+-    well documented
+-    team is familiar with it
+-    does what we want it to do without any issues
+-    very well maintained
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### Node Sass
 
-#### Front end deployed to `🚫insert service here`
+Why did you choose this framework?
+
+-    easy to use with react
+
+#### axios
+
+Why did you choose this framework?
+
+-    well documented
+-    team is familiar with it
+
+#### Front end deployed to Netlify
 
 #### [Back end](🚫link to back end repo here) built using:
 
