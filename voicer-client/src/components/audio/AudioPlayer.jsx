@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import ReactPlayer from 'react-player'
 
 
 const AudioPlayer = ({samples}) => {
@@ -9,20 +8,12 @@ const AudioPlayer = ({samples}) => {
 
   const nexthandler = (e) => {
     e.preventDefault()
-    if(sampleIndex === (sampleLength - 1)){
-      setSampleIndex(0)
-    }else{
-      setSampleIndex(sampleIndex+1)
-    }
+    sampleIndex === (sampleLength - 1) ? setSampleIndex(0) : setSampleIndex(sampleIndex+1)
   } 
 
   const prevhandler = (e) => {
     e.preventDefault()
-    if(sampleIndex === 0){
-      setSampleIndex(sampleLength - 1)
-    }else{
-      setSampleIndex(sampleIndex - 1)
-    }
+    sampleIndex === 0 ? setSampleIndex(sampleLength - 1) : setSampleIndex(sampleIndex - 1)
   } 
 
   console.log(samples, sampleIndex, sampleLength)
@@ -31,35 +22,23 @@ const AudioPlayer = ({samples}) => {
       <p>{`${sampleIndex+1}/${sampleLength} ${samples[sampleIndex].title}`}</p>
     </div>
     <div className="carousel">
-      {sampleLength > 1 && (
         <button
           onClick={(e)=>prevhandler(e)}
         >&larr;</button>
-      )}
       <div className="description">
         <p>{samples[sampleIndex].description}</p>
         <p>Attributes</p>
       </div>
-      {sampleLength > 1 && (
         <button
           onClick={(e)=>nexthandler(e)}
         >&rarr;</button>
-      )}
     </div>
-    <ReactPlayer 
-      url={samples[sampleIndex].s3_location}
+    <audio 
+      src={samples[sampleIndex].s3_location}
       className="player"
-      playing={false} 
-      controls={true} 
-      width="240px"
-      height="20px"
-      config={{
-        file:{
-          attributes:{
-            controlslist: "nodownload"
-          }
-        }
-      }}
+      preload="auto" 
+      controls
+      controlslist="nodownload"
     />
   </>)
   
