@@ -9,20 +9,12 @@ const AudioPlayer = ({samples}) => {
 
   const nexthandler = (e) => {
     e.preventDefault()
-    if(sampleIndex === (sampleLength - 1)){
-      setSampleIndex(0)
-    }else{
-      setSampleIndex(sampleIndex+1)
-    }
+    sampleIndex === (sampleLength - 1) ? setSampleIndex(0) : setSampleIndex(sampleIndex+1)
   } 
 
   const prevhandler = (e) => {
     e.preventDefault()
-    if(sampleIndex === 0){
-      setSampleIndex(sampleLength - 1)
-    }else{
-      setSampleIndex(sampleIndex - 1)
-    }
+    sampleIndex === 0 ? setSampleIndex(sampleLength - 1) : setSampleIndex(sampleIndex - 1)
   } 
 
   console.log(samples, sampleIndex, sampleLength)
