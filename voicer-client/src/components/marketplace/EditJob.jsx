@@ -37,7 +37,8 @@ const EditJob = ({ setEdit, data, token, history }) => {
       .put(`${url}/api/jobs/${data.id}`, jobUpdate)
       .then((res) => {
         console.log(res)
-        window.location.reload()
+        // window.location.reload()
+        refreshAppHandler()
       })
       .catch((err) => {
         console.log(err)
