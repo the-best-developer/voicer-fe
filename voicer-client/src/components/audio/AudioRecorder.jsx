@@ -1,52 +1,87 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { axiosWithAuth } from '../axiosWithAuth/axiosWithAuth'
+import { useInputControl } from '../../hooks/useInputControl'
+import { Button, Card, InputGroup, FormControl, FormGroup, Col, FormText, FormLabel } from "react-bootstrap"
 
-//As the req.body fields
-//File
-//Title
-//Description
+const ReactUploadMedia = () => {
 
-class ReactUploadImage extends React.Component {
+	const [media, setMedia] = useState({
+		file: null
+	})
+	const titleInput = useInputControl('')
+	const descriptionInput = useInputControl('')
 
-    constructor(props) {
-        super(props);
-        this.state ={
-            file: null
-        };
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-    onFormSubmit(e){
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('file',this.state.file);
-        formData.append('title','This is a title');
-        formData.append('description','This is a description');
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        };
-        axiosWithAuth()
-        .post("/api/voice",formData,config)
-            .then((response) => {
-                alert("The file is successfully uploaded");
-            }).catch((error) => {
-        });
-    }
-    onChange(e) {
-        this.setState({file:e.target.files[0]});
-    }
+	const doSubmit = (e) => {
+		e.preventDefault()
+		const formData = new FormData()
+		formData.append('file', media)
+		formData.append('title', "")
+		formData.append('description', "")
+		const config = {
+			headers: {
+				'content-type': 'multipart/form-data'
+			}
+		}
+		axiosWithAuth()
+		.post("/api/voice", formData, config)
+			.then(res => {
+				alert("File successfully uploaded")
+			})
+			.catch(err => {
+				return err
+			})
+	}
 
-    render() {
-        return (
-            <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
-                <input type="file" name="myImage" onChange= {this.onChange} />
-                <button type="submit">Upload</button>
-            </form>
-        )
-    }
+	const onChange = (e) => {
+		setMedia({file:e.target.files[0]})
+	}
+
+	return (
+		<section>
+			<form onSubmit={doSubmit}>
+				<Card.Header>
+					<Card.Title>Voice sample upload</Card.Title>
+				</Card.Header>
+
+				<Card.Body>
+					<FormGroup row>
+						<FormLabel for="exampleFile" sm={2}>File</FormLabel>
+						<Col sm={10}>
+							<FormText color="muted">
+								<input type="file" name="file" onChange={onChange} />
+								<RegFields
+									titleInput={titleInput}
+									descriptionInput={descriptionInput}
+								/>
+							</FormText>
+						</Col>
+					</FormGroup>
+				</Card.Body>
+
+				<Card.Footer>
+					<Button
+						variate="primary"
+						type="submit"
+						style={{ width: "10rem", margin: "0 0 1.75rem" }}
+					>Upload
+					</Button>
+				</Card.Footer>
+			</form>
+		</section>
+	)
 }
 
-export default ReactUploadImage
+function RegFields(props) {
+	  return (
+		<>
+		  <InputGroup className="mb-3">
+			<FormControl {...props.titleInput} placeholder="Title" />
+		  </InputGroup>
+		  <InputGroup className="mb-3">
+			<FormControl {...props.descriptionInput} placeholder="Description" />
+		  </InputGroup>
+		</>
+	  )
+}
+
+export default ReactUploadMedia
