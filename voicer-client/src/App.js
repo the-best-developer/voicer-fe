@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import GateKeeper from "./components/GateKeeper/GateKeeper"
@@ -12,14 +12,14 @@ import "./App.scss"
 
 function App() {
   const token = GateKeeper()
-  const [refreshApp, setRefreshApp] = useState(true)
   // const [url] = useState("localhost:3000")
   const [url] = useState("https://voicer-lambda-app.herokuapp.com")
 
   //global reset
   const refreshAppHandler = () => {
-    setRefreshApp(!refreshApp)
+    window.location.reload()
   }
+
   //end global reset
 
   //UI elements

@@ -11,7 +11,7 @@ import Hero from "../hero/Hero"
 export default function Marketplace(props) {
   const [jobMatchesDB, setJobMatchesDB] = useState(true)
   const [data, setData] = useState([])
-  const { token, url } = useContext(DataContext)
+  const { token, url, refreshApp } = useContext(DataContext)
 
   const jobId = useParams().jobId
 
@@ -52,7 +52,7 @@ export default function Marketplace(props) {
           setJobMatchesDB(false)
         })
     }
-  }, [])
+  }, [refreshApp])
 
   /*
   ------------------------------------------------------------
