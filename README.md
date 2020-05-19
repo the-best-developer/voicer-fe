@@ -10,7 +10,7 @@ You can find the deployed project at https://www.voicer-app.com
 ## Contributors
 
 Joseph Oliver
-[<img src="https://avatars1.githubusercontent.com/u/107058?s=460&v=4" width = "200" />](https://github.com/jOliver)
+[<img src="https://avatars1.githubusercontent.com/u/46079055?s=460&v=4" width = "200" />](https://github.com/j0liver)
 
 Brian Hague
 [<img src="https://avatars3.githubusercontent.com/u/2449547?s=460&u=e9a01ef6432007e6aa7e8328f8eaea830ddf868b&v=4" width = "200" />](https://github.com/alphaseinor)
