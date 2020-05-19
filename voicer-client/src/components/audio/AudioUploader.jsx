@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { axiosWithAuth } from '../axiosWithAuth/axiosWithAuth'
 import { useInputControl } from '../../hooks/useInputControl'
 import { Button, Card, InputGroup, FormControl, FormGroup, Col, FormText, FormLabel } from "react-bootstrap"
+import { DataContext } from '../../context/DataContext'
 
-const ReactUploadMedia = () => {
+const AudioUploader = () => {
+
+	const { refreshAppHandler } = useContext(DataContext)
 
 	const [media, setMedia] = useState({
 		file: null
@@ -14,9 +17,11 @@ const ReactUploadMedia = () => {
 	const doSubmit = (e) => {
 		e.preventDefault()
 		const formData = new FormData()
-		formData.append('file', media)
-		formData.append('title', "")
-		formData.append('description', "")
+		// setMedia({...media, title: titleInput, description: descriptionInput})
+		formData.append('file', media.file)
+		formData.append('title', titleInput.value)
+		formData.append('description', descriptionInput.value)
+		console.log(formData)
 		const config = {
 			headers: {
 				'content-type': 'multipart/form-data'
@@ -25,9 +30,11 @@ const ReactUploadMedia = () => {
 		axiosWithAuth()
 		.post("/api/voice", formData, config)
 			.then(res => {
-				alert("File successfully uploaded")
+				refreshAppHandler()
+				// alert("File successfully uploaded")
 			})
 			.catch(err => {
+				console.log(formData, config)
 				return err
 			})
 	}
@@ -84,4 +91,4 @@ function RegFields(props) {
 	  )
 }
 
-export default ReactUploadMedia
+export default AudioUploader
