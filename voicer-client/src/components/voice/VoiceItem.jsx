@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
 import AudioPlayer from "../audio/AudioPlayer"
 import EditProfile from "./EditProfile"
-import AudioUploader from '../audio/AudioUploader'
+import AudioUploader from "../audio/AudioUploader"
+import AddJobForm from "../addJobForm/AddJobForm"
 
 const VoiceItem = ({ data, token, bio, currentDisplayName }) => {
   const [edit, setEdit] = useState(false)
@@ -71,7 +72,8 @@ const VoiceItem = ({ data, token, bio, currentDisplayName }) => {
           {data.samples[0] !== undefined && (
             <AudioPlayer samples={data.samples} />
           )}
-          {crud && (<AudioUploader />)}
+          {crud && <AudioUploader />}
+          {crud && <AddJobForm />}
         </div>
       </div>
       {bio && (
