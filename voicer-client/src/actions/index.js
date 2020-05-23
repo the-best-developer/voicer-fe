@@ -167,6 +167,6 @@ export {
 
 export { SET_JOB_ID, setJobId } from './setJobId';
 
-const dbUrl = 'https://voicer-lambda-app.herokuapp.com';
+const dbUrl = 'https://dylan-voicer-backend.herokuapp.com';
 
 export { dbUrl };
